@@ -1,0 +1,523 @@
+.app-alert-text2speech {
+  position: fixed;
+  z-index: 100;
+
+  .floating-message {
+    position: fixed;
+    z-index: 54;
+    background: #ffd260;
+    border: 2px solid #e1ad27;
+    border-radius: 10px;
+    height: 40px;
+    width: 288px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 40px;
+    right: 1.4vw;
+    opacity: 1;
+    animation: fade 4s forwards;
+
+    svg {
+      margin: 0;
+      margin-right: 6px;
+    }
+
+    p {
+      margin: 0;
+      font-family: "Sarabun", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 21px;
+    }
+  }
+
+  @keyframes fade {
+    75% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+}
+
+button.btn-toolbar-create-mobile {
+  background-color: #01bffb;
+  color: white;
+  height: 34px;
+  width: 100%;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  img {
+    width: 20px;
+    height: 20px;
+    border-radius: 15px;
+  }
+}
+
+.toolbar-create {
+  height: 34px;
+  padding: 3px 1px;
+  // height: 34px;
+  width: auto;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+
+  button.btn-toolbar-create {
+    background-color: #01bffb;
+    color: white;
+    height: 28px;
+    width: 55px;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    background-color: #01bffb33;
+    // border: 0.5px solid rgba(1, 191, 251, 0.2);
+    font-family: "Sarabun";
+    font-size: 12px;
+    border-radius: 10px;
+    padding: 0 10px;
+    margin: 0px 1px;
+  }
+
+  span {
+    margin: 0px 1px;
+  }
+
+  button.btn-toolbar-play {
+    height: 28px;
+    width: 80px;
+  }
+
+  button.btn-toolbar-play .mat-button-wrapper {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  button.btn-toolbar-play img {
+    width: 15px;
+    margin-right: 3px;
+  }
+
+  .btn-select-voice {
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #01bffb;
+    box-sizing: border-box;
+    height: 28px;
+    padding: 3px 2px;
+    font-size: 12px;
+    font-family: "Sarabun";
+    display: flex;
+    width: auto;
+    justify-content: flex-start;
+  }
+
+  .btn-select-voice mat-icon {
+    font-size: 26px;
+    color: #6e7375;
+    margin-top: -3px;
+    user-select: none;
+  }
+
+  .img-btn-select-voice {
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: -4px;
+    border-radius: 15px;
+    object-fit: cover;
+  }
+
+  .label-btn-select-voice {
+    // padding-left: 4px;
+    font-family: "Sarabun" !important;
+  }
+
+  .select-voice--no-speaker {
+    font-family: "Sarabun" !important;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+
+    mat-icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .dropdown {
+    .select-lang-tooltip {
+      background: #effbfe;
+      border: 0.5px solid rgba(1, 191, 251, 0.2);
+      box-sizing: border-box;
+      border-radius: 8px;
+      height: 28px;
+      display: flex;
+      padding: 3px 8px;
+      font-size: 12px;
+      width: 60px;
+      font-family: "Sarabun" !important;
+      align-items: center;
+      position: relative;
+      width: auto;
+      gap: 8px;
+
+      img {
+        width: 22px;
+        height: 22px;
+      }
+
+      p {
+        font-size: 11px;
+        font-family: "Sarabun";
+        padding: 0px 8px;
+      }
+
+      // .down {
+      //   display: flex;
+      //   justify-content: center;
+      //   align-items: center;
+      //   width: 16px;
+      //   height: 16px;
+      // }
+
+      // .lang-popup {
+      //   position: absolute;
+      //   top: 34px;
+      //   left: 0;
+      //   width: 100px;
+      //   height: auto;
+      //   border-radius: 8px;
+      //   border: 1px solid #b1eafc;
+      //   background: #fff;
+      //   display: flex;
+      //   flex-direction: column;
+      //   z-index: 2000;
+
+      //   .main-lang {
+      //     margin: 0;
+      //     background: #ffffff;
+      //     font-family: "Sarabun";
+      //     font-size: 12px;
+      //     font-style: normal;
+      //     font-weight: 700;
+      //     line-height: 24px; /* 200% */
+      //     letter-spacing: 0.5px;
+      //     display: flex;
+      //     height: 32px;
+      //     padding: 0px 8px;
+      //   }
+
+      //   .lang-item {
+      //     display: flex;
+      //     justify-content: flex-start;
+      //     width: 100%;
+      //     height: 28px;
+      //     background: #fff;
+      //     border: none;
+      //     margin: 0;
+      //     padding: 0;
+      //     transition: all 0.3s;
+
+      //     img {
+      //       width: 19px;
+      //       height: 19px;
+      //       margin: 0px 6px;
+      //     }
+
+      //     &:hover {
+      //       background: #effbfe;
+      //     }
+      //   }
+
+      //   .addons-lang {
+      //     margin: 0;
+      //     background: #effbfe;
+      //     font-size: 10px;
+      //     font-family: "Sarabun";
+      //     display: flex;
+      //     height: 16px;
+      //     padding-left: 6px;
+      //   }
+      // }
+
+      // &:disabled {
+      //   pointer-events: none;
+      //   border: 0.5px solid #d6d8db !important;
+      //   background-color: #eaedf0 !important;
+      //   color: #b7bbc0;
+
+      //   img {
+      //     filter: grayscale(60%);
+      //     opacity: 0.6;
+      //   }
+      // }
+    }
+  }
+
+  .select-lang-tooltip {
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #01bffb;
+    box-sizing: border-box;
+    height: 28px;
+    display: flex;
+    padding: 3px 8px;
+    font-size: 12px;
+    width: auto;
+    font-family: "Sarabun" !important;
+    align-items: center;
+    position: relative;
+    width: auto;
+    gap: 8px;
+
+    ::ng-deep .mat-mdc-select-trigger {
+      gap: 4px;
+    }
+
+    ::ng-deep .mat-mdc-select-value {
+      max-width: 50px;
+      font-family: "Sarabun";
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+    }
+  }
+
+  .select-speed-tooltip {
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #01bffb;
+    box-sizing: border-box;
+    height: 28px;
+    display: flex;
+    padding: 6px 5px;
+    font-size: 12px;
+    width: auto;
+    font-family: "Sarabun" !important;
+    align-items: center;
+
+    ::ng-deep .mat-mdc-select-trigger {
+      gap: 4px;
+    }
+
+    ::ng-deep .mat-mdc-select-value {
+      max-width: 50px;
+      font-family: "Sarabun";
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+    }
+
+    ::ng-deep .mat-icon {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      margin-right: 4px;
+      svg {
+        width: 22px;
+        height: 16px;
+      }
+    }
+  }
+
+  .select-volume-tooltip {
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #01bffb;
+    box-sizing: border-box;
+    height: 28px;
+    display: flex;
+    padding: 6px 5px;
+    font-size: 12px;
+    width: auto;
+    font-family: "Sarabun" !important;
+    align-items: center;
+
+    ::ng-deep .mat-mdc-select-trigger {
+      gap: 4px;
+    }
+
+    ::ng-deep .mat-mdc-select-value {
+      max-width: 50px;
+      font-family: "Sarabun";
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+      margin-bottom: 2px;
+    }
+
+    ::ng-deep .mat-icon {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      margin-right: 4px;
+
+      svg {
+        width: 22px;
+        height: 16px;
+      }
+    }
+  }
+
+  .viewport {
+    height: 200px;
+    width: 200px;
+  }
+
+  .example-item-detail {
+    height: 18px;
+  }
+}
+
+::ng-deep .mat-mdc-select-value-text {
+  padding: 0px 2px;
+}
+
+.main-lang {
+  margin: 0;
+  background: #ffffff;
+  font-family: "Sarabun";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 200% */
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 0px 8px;
+  white-space: nowrap;
+}
+
+.addons-lang {
+  margin: 0;
+  background: #ffffff;
+  font-family: "Sarabun";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 200% */
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 0px 8px;
+  white-space: nowrap;
+}
+
+.flag {
+  width: 19px;
+  height: 19px;
+}
+
+.toolbar-create-disabled,
+.toolbar-create-disabled span {
+  background-color: #d6d8db !important;
+  cursor: default !important;
+  border-color: transparent;
+}
+
+app-toolbar-dropdown {
+  display: block;
+  position: absolute;
+  top: 44px;
+  z-index: 1;
+}
+
+::ng-deep .toolbar-create .mat-tooltip-dropdown {
+  font-family: "Sarabun";
+  font-style: normal;
+  font-weight: 300 !important;
+  font-size: 10px !important;
+  line-height: 20px;
+  background: rgba(50, 60, 76, 0.85) !important;
+  border-radius: 4px !important;
+  overflow: visible !important;
+}
+
+::ng-deep .toolbar-create .mat-tooltip-dropdown:before {
+  border-right-color: rgba(50, 60, 76, 0.85) !important;
+}
+
+::ng-deep .toolbar-create .mat-tooltip-dropdown:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 45%;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(50, 60, 76, 0.85) transparent transparent transparent;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+button:disabled {
+  background-color: #d6d8db !important;
+  cursor: default !important;
+}
+
+@media (max-width: 1150px) {
+  .dropdown {
+    .select-lang-tooltip {
+      p {
+        display: none;
+      }
+    }
+  }
+
+  .label-btn-select-voice {
+    display: none;
+  }
+
+  .img-btn-select-voice {
+    margin-right: 0px !important;
+  }
+
+  .select-lang-tooltip,
+  .select-speed-tooltip,
+  .select-volume-tooltip {
+    ::ng-deep .mat-mdc-select-value {
+      display: none;
+    }
+  }
+
+  ::ng-deep .dropdown-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .select-voice--no-speaker {
+    span {
+      display: none;
+    }
+  }
+}

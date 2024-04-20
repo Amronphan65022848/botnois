@@ -1,0 +1,25 @@
+<div class="recomend-package-container">
+  <div class="header">
+    <div class="group-header">
+      <img src="../../../../assets/payment/worth.png" alt="worth icon without text">
+      <span>{{text.header}}</span>
+    </div>
+  </div>
+  <div class="body">
+    <span class="text">{{text.text + ' ' + (point | number) + ' ' + currency}}</span>
+    <span class="text">
+      {{text.text2}}
+      <span class="bonus">{{text.bonus + ' ' + (bonus | number) + ' ' + currency}}</span>
+    </span>
+    <span class="ask">{{text.ask}}</span>
+  </div>
+  <div class="footer">
+    <button [mat-dialog-close]="true">
+      <img src="../../../../assets/payment/magic-star.svg" alt="magic-star-icon">
+      <span>
+        {{text.offer}}
+      </span>
+    </button>
+    <u [mat-dialog-close]="false" >{{text.back}}</u>
+  </div>
+</div>

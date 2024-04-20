@@ -1,0 +1,40 @@
+<div class="container" [formGroup]="getAllData.form">
+
+  <!-- header -->
+  <div class="header">
+    <div class="text-container">
+      <span class="text">{{text.regidter}}</span>
+      <span class="text"> {{text.forOffer}}</span>
+    </div>
+    <div class="line"></div>
+  </div>
+
+  <!-- input data form  -->
+  <div class="form-container" *ngFor="let item of inputList; let i = index;">
+    <ng-container *ngIf="item == 'description'; else elseTemplate">
+      <textarea [formControlName]="item" [placeholder]="text.placeholderList[i]"></textarea>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <input [formControlName]="item" [placeholder]="text.placeholderList[i]" type="text">
+    </ng-template>
+
+    <div class="error" *ngIf="getAllData.form.get(item).touched && getAllData.form.get(item).invalid">
+      {{pleasefill + ' ' + text.placeholderList[i]}}
+    </div>
+  </div>
+
+  <!-- button -->
+  <div class="btn-container">
+    <button
+      class="btn-submit"
+      [disabled]="getAllData.form.invalid"
+      (click)="onSubmit()"
+    >
+      {{text.sentdata}}
+    </button>
+  </div>
+
+</div>
+
+<app-footer></app-footer>
+<ngx-loading [show]="isLoading"></ngx-loading>

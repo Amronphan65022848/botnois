@@ -1,0 +1,26 @@
+<!-- <ng-container *ngIf="isMaintenance; else elseTemplate">
+  <app-maintenance></app-maintenance>
+</ng-container>
+<ng-template #elseTemplate>
+  <app-navbar-v2 *ngIf="!hideNavbar"></app-navbar-v2>
+  <ngx-loading
+    [show]="isLoading"
+    [config]="{ fullScreenBackdrop: true }"
+  ></ngx-loading>
+
+  <div class="app-content">
+    <app-dialog-cookie *ngIf="isCanvaUser"></app-dialog-cookie>
+    <router-outlet></router-outlet>
+  </div>
+</ng-template> -->
+
+@if (isMaintenance) {
+  <app-maintenance />
+} @else {
+  <app-navbar-v2 *ngIf="!hideNavbar" />
+  <ngx-loading [show]="isLoading" [config]="{ fullScreenBackdrop: true }" />
+  <div class="app-content">
+    <app-dialog-cookie *ngIf="isCanvaUser" />
+    <router-outlet />
+  </div>
+}

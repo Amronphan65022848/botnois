@@ -1,0 +1,185 @@
+::ng-deep .mat-mdc-paginator-outer-container {
+
+  .mat-mdc-paginator-container {
+    justify-content: space-between !important;
+    padding: 0px;
+    .mat-mdc-paginator-page-size {
+      .mat-mdc-paginator-page-size-label {
+        display: none;
+    }
+    
+    
+      .mat-mdc-form-field {
+        .mat-mdc-select-value {
+          color: #01BFFB;
+      }
+        .mdc-text-field {
+          .mdc-notched-outline__leading{
+            border: none;
+          }
+          .mdc-notched-outline__trailing{
+            border: none;
+          }
+        }
+   
+      }
+    }
+    .mat-mdc-paginator-range-actions{
+      button {
+        background: none !important;
+    }
+    }
+  }
+
+}
+
+// Common styles for all screen sizes
+.history-container {
+  padding: 24px;
+  width: 100%;
+  font-family: "Sarabun";
+  .box {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .title {
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+
+    .select-date {
+      position: relative;
+
+      .label {
+        position: absolute;
+        padding: 0px 4px;
+        top: -11px;
+        left: 16px;
+        color: #bdbdbd;
+        background-color: white;
+        font-family: Sarabun;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0.4px;
+      }
+
+      .textDate {
+        font-size: 12px;
+      }
+
+      .selectoption {
+        padding: 0px 16px;
+        width: 168px;
+        height: 56px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid grey;
+      }
+    }
+
+    .content {
+      table {
+        border-spacing: 0;
+        border-collapse: separate;
+        border-radius: 18px;
+        border: 1px solid #e2e3e9;
+        padding: 0px 0px 10px 0px;
+        width: 100%;
+      }
+
+      td {
+        padding: 12px;
+      }
+
+      .tag {
+        span {
+          display: inline-flex;
+          padding: 5px 8px;
+          justify-content: center;
+          align-items: center;
+          gap: 5px;
+          color: white;
+          border-radius: 8px;
+          border: 1px solid #b1eafc;
+          background: #01bffb;
+        }
+      }
+      .paginator{
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .matpaginator{
+          flex: 1;
+        }
+      }
+
+    }
+  }
+}
+
+@media (max-width: 670px) {
+::ng-deep .mat-mdc-paginator-outer-container {
+
+    .mat-mdc-paginator-container {
+      flex-wrap:nowrap;
+
+        .mat-mdc-paginator-range-actions{
+        
+          .mat-mdc-paginator-range-label{
+            display: none;
+          }
+        }
+      }
+
+    
+}
+
+  .history-container {
+    .box {
+      .content {
+        td {
+          padding: 12px 8px;
+        }
+
+        th.details,
+        td.details {
+          display: none; // Hide the "Detail" column on smaller screens
+        }
+      }
+    }
+  }
+}
+@media (max-width: 390px) {
+
+  .history-container {
+    .box {
+      .header {
+        .title {
+          font-size: 16px;
+        }
+      }
+      font-size: 13px;
+      .content{
+        .paginator{
+          .inner-paginator{
+            display: none;
+          }
+          .matpaginator{
+            font-size: 15px;
+          }
+        }
+
+      }
+    }
+  }
+}

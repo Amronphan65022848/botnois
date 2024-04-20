@@ -1,0 +1,141 @@
+<div class="mainPreUpload" *ngIf="showSubContent">
+  <mat-dialog-content class="mat-typography">
+    <mat-dialog-actions class="close-bt">
+      <mat-button mat-dialog-close class="close"></mat-button>
+    </mat-dialog-actions>
+
+    <div class="image">
+      <img src="../../../../assets/icons/import-icon.png" />
+    </div>
+
+    <h2>{{importFile}}</h2>
+    <p>{{supportFile}}</p>
+    <!-- <div class="template-panel">
+      <mat-button class="xlsx" (click)="downloadXlsx()"
+        >{{templateXLSX}}</mat-button
+      >
+      <mat-button class="csv" (click)="downloadCsv()"
+        >{{templateCSV}}</mat-button
+      >
+    </div> -->
+
+    <div class="example-section">
+      <p>{{sampleFile}}</p>
+      <img src="{{tableExample}}" />
+    </div>
+
+    <mat-dialog-actions class="bt-panel">
+      <mat-button mat-dialog-close class="btn-form1">{{cancel}}</mat-button>
+      <mat-button class="btn-form2" (click)="fileInput.click()"
+        >{{selectFile}}</mat-button
+      >
+      <input
+        hidden
+        (change)="onFileSelected($event); ShowSuccessButton()"
+        #fileInput
+        type="file"
+        id="imported-file"
+        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      />
+    </mat-dialog-actions>
+  </mat-dialog-content>
+</div>
+
+<div class="mainPostUpload" *ngIf="!showSubContent">
+  <mat-dialog-content class="mat-typography2">
+    <mat-dialog-actions class="close-bt2">
+      <mat-button mat-dialog-close class="close2"></mat-button>
+    </mat-dialog-actions>
+
+    <div class="image2">
+      <img src="../../../../assets/icons/import-icon.png" />
+    </div>
+
+    <h2>{{importFile}}</h2>
+    <p>{{supportFile}}</p>
+
+    <mat-dialog-actions class="upload2">
+      <span class="file-name2">
+        <img src="../../../../assets/icons/file-icon.png" />
+        <p>{{selectedFileName?.name}}</p>
+        <mat-button (click)="ShowSuccessButton()"></mat-button>
+      </span>
+    </mat-dialog-actions>
+
+    <mat-dialog-actions
+      class="upload-succuess"
+      style="justify-content: center; align-items: flex-start; gap: 10px"
+    >
+      <img
+        src="../../../../assets/icons/upload-success-icon.png"
+        style="margin-top: 3px"
+      />
+      <p style="font-size: 16px; line-height: 21px; color: #75dbca">
+        {{uploadSuccess}}
+      </p>
+    </mat-dialog-actions>
+
+    <mat-dialog-actions class="bt-panel2">
+      <mat-button class="btn-form3" (click)="ShowSuccessButton()"
+        >{{cancel}}</mat-button
+      >
+      <mat-button class="btn-form4" (click)="import();">{{confirm}}</mat-button>
+    </mat-dialog-actions>
+  </mat-dialog-content>
+</div>
+
+<div class="mainPostUploadFail" *ngIf="!showSubContentFail">
+  <mat-dialog-content class="mat-typography3">
+    <mat-dialog-actions class="close-bt3">
+      <mat-button mat-dialog-close class="close3"></mat-button>
+    </mat-dialog-actions>
+
+    <div class="image3">
+      <img src="../../../../assets/icons/import-icon.png" />
+    </div>
+
+    <h2>{{importFile}}</h2>
+    <p>{{supportFile}}</p>
+
+    <mat-dialog-actions class="upload3">
+      <span class="file-name3">
+        <img src="../../../../assets/icons/file-icon2.png" />
+        <p>{{selectedFileName?.name}}</p>
+        <mat-button class="reUpload-file"></mat-button>
+        <mat-button class="close-file" (click)="ShowFailButton()"></mat-button>
+      </span>
+    </mat-dialog-actions>
+
+    <mat-dialog-actions
+      class="upload-failed"
+      style="justify-content: center; gap: 10px"
+    >
+      <img
+        src="../../../../assets/icons/upload-fail-icon.png"
+        style="margin-top: -10px"
+      />
+      <p style="font-size: 16px; line-height: 21px; color: #f87979">
+        {{uploadFailed}}
+      </p>
+    </mat-dialog-actions>
+
+    <p
+      style="
+        font-size: 16px;
+        line-height: 21px;
+        color: #a19f9d;
+        margin-top: 10px;
+        margin-bottom: 0px;
+      "
+    >
+      {{selectAgain}}
+    </p>
+
+    <mat-dialog-actions class="bt-panel3">
+      <mat-button class="btn-form5" mat-dialog-close>ยกเลิก</mat-button>
+      <mat-button class="btn-form6" (click)="ShowFailButton()"
+        >{{selectFile}}</mat-button
+      >
+    </mat-dialog-actions>
+  </mat-dialog-content>
+</div>

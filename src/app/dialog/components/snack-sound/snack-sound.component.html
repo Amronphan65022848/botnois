@@ -1,0 +1,17 @@
+<div class="container-alert">
+  <span class="icon">
+    <mat-icon
+      [svgIcon]="icon"
+      [ngStyle]="{ color: color }"
+      (click)="snackBarRef.dismiss()"
+    ></mat-icon>
+  </span>
+  <span class="text" ngClass="{{ action }}">{{ text }}</span>
+  <span class="icon">
+    <mat-icon
+      svgIcon="cross_circle_dynamic"
+      [ngStyle]="{ color: 'black' }"
+      (click)="snackBarRef.dismiss()"
+    ></mat-icon>
+  </span>
+</div>

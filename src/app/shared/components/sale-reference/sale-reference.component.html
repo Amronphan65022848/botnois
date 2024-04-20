@@ -1,0 +1,74 @@
+<div [formGroup]="submitForm" class="container-fluid p-4 row row-cols-1 gap-4">
+  <select class="col" [formControl]="contentStyleForm">
+    @for (item of contentStyleList; track item) {
+      <option [value]="item">
+        {{ item | titlecase }}
+      </option>
+    }
+  </select>
+  <input
+    class="col"
+    formControlName="text"
+    type="text"
+    placeholder="กรอกข้อความ"
+  />
+  <select class="col" formControlName="topic">
+    @for (item of getListBasedOnStyle("topicList"); track item.value) {
+      <option [value]="item.value">
+        {{ item.label }}
+      </option>
+    }
+  </select>
+  <select class="col" formControlName="style">
+    @for (item of getListBasedOnStyle("styleList"); track item.value) {
+      <option [value]="item.value">
+        {{ item.label }}
+      </option>
+    }
+  </select>
+  <select class="col" formControlName="range">
+    @for (item of rangeList; track item.value) {
+      <option [value]="item.value">
+        {{ item.label }}
+      </option>
+    }
+  </select>
+  <select class="col" formControlName="model">
+    @for (item of openAIModelList; track item.value) {
+      <option [value]="item.value">
+        {{ item.label }}
+      </option>
+    }
+  </select>
+  <select class="col" formControlName="language">
+    @for (item of languageList; track item.value) {
+      <option [value]="item.EN_name">
+        {{ item.TH_name }}
+      </option>
+    }
+  </select>
+  <input
+    class="col"
+    formControlName="generateCount"
+    type="number"
+    placeholder="จำนวนผลลัพธ์"
+  />
+
+  <div class="list-group">
+    <label class="list-group-item">
+      <input
+        class="form-check-input me-1"
+        formControlName="emoji"
+        type="checkbox"
+        value=""
+      />
+      EMOJI
+    </label>
+  </div>
+
+  <button type="button" class="btn btn-primary" (click)="onSubmit()">
+    Submit
+  </button>
+
+  <span class="col"> data: {{ data?.data }} </span>
+</div>

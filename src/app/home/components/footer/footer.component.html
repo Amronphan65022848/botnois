@@ -1,0 +1,11 @@
+<div class="footer">
+  <div>{{ text.footer.left }}</div>
+  <div class="group">
+    <div (click)="onNavigate()" style="cursor: pointer">
+      {{ text.footer.right }}
+    </div>
+    <div (click)="onNavigateToAgreement()" style="cursor: pointer">
+      {{ '& ' + text.footer.right_2 }}
+    </div>
+  </div>
+</div>

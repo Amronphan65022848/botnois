@@ -1,0 +1,429 @@
+<div class="studio-container " [formGroup]="submitForm">
+  <div class="select-categories">
+    <app-categories-bar (topicSelected)="onTopicSelected($event)" />
+  </div>
+  <div class="generate-section">
+    <div class="prompt">
+      <div class="prompt1">
+        <div class="options-section-prompt">
+          <div class="icon">
+            <div
+              class="basic"
+              [class.selected]="selectedIcon === 'basic'"
+              (click)="selectIcon('basic')"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="none"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill="#B0B0B0"
+                  d="M8.001 8a3.333 3.333 0 1 0 0-6.666 3.333 3.333 0 0 0 0 6.666Z"
+                  opacity="1"
+                />
+                <path
+                  fill="#B0B0B0"
+                  d="M8.001 9.666c-3.34 0-6.06 2.24-6.06 5a.33.33 0 0 0 .334.334h11.453a.33.33 0 0 0 .333-.334c0-2.76-2.72-5-6.06-5Z"
+                />
+              </svg>
+            </div>
+
+            <div
+              class="pro"
+              [class.selected]="selectedIcon === 'pro'"
+              (click)="selectIcon('pro')"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="none"
+                viewBox="0 0 16 16"
+              >
+                <g clip-path="url(#a)">
+                  <path
+                    fill="#B0B0B0"
+                    d="M4.296 1.867h.311a252.184 252.184 0 0 0 .653.002h.406a643.49 643.49 0 0 1 5.584.037l.107.002c.103.001.207.004.31.007h.094l.087.004.075.002c.178.039.304.173.429.298l.047.046.153.154.11.11a156.174 156.174 0 0 1 .613.612 635.409 635.409 0 0 1 1.133 1.134 494.132 494.132 0 0 1 1.234 1.234l.147.147.083.083c.11.123.138.214.143.378l.005.093c-.054.27-.326.48-.512.665l-.093.093-.253.254-.274.273-.535.536-.435.435-.062.063-.126.126a2302.025 2302.025 0 0 1-2.259 2.26 1448.645 1448.645 0 0 1-2.53 2.53 72.98 72.98 0 0 1-.379.38l-.08.079-.067.068a.616.616 0 0 1-.413.167l-.075.002c-.26-.05-.435-.261-.614-.44a63.174 63.174 0 0 0-.349-.35l-.276-.276a430.334 430.334 0 0 1-1.17-1.17A1564.36 1564.36 0 0 1 3.306 9.69a2458.985 2458.985 0 0 1-1.313-1.313l-.063-.063A955.508 955.508 0 0 0 .435 6.819a52.444 52.444 0 0 0-.133-.134l-.08-.08-.069-.069c-.116-.132-.167-.232-.167-.41l-.002-.094c.031-.188.169-.318.3-.449a513.183 513.183 0 0 0 .315-.316l.304-.304.319-.318a656.91 656.91 0 0 1 1.152-1.153 603.762 603.762 0 0 1 1.404-1.404l.085-.084c.14-.126.249-.138.433-.137Zm6.491 2.445c-.1.138-.116.238-.1.407.073.166.19.29.319.413.058.057.11.117.164.179.095.11.196.212.3.313.08.083.156.17.231.259.051.06.051.06.127.125.047.054.047.054.043.111-.037.094-.094.146-.165.216l-.043.044-.143.14-.099.099-.262.259a198.49 198.49 0 0 0-.563.557 6.238 6.238 0 0 0-.362.379c-.127.149-.267.285-.407.422l-.148.146a137.07 137.07 0 0 1-.773.763c-.266.248-.266.248-.382.582.026.168.075.297.213.407.13.083.232.106.388.086.199-.074.329-.223.475-.37l.086-.086.231-.232.244-.244a259.03 259.03 0 0 0 .932-.935l.451-.452.144-.145.27-.271.08-.08c.134-.135.263-.271.386-.415.056-.065.117-.124.179-.183l.07-.067.14-.134c.156-.151.275-.29.283-.517-.016-.238-.225-.402-.383-.561-.102-.104-.201-.211-.301-.318l-.128-.135a90.646 90.646 0 0 1-.317-.34c-.328-.411-.328-.411-.776-.619a.513.513 0 0 0-.404.197Z"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="a">
+                    <path fill="#fff" d="M0 0h16v16H0z" />
+                  </clipPath>
+                </defs>
+              </svg>
+              <div class="mini-pro">Pro</div>
+            </div>
+          </div>
+
+          <div class="style">
+            <button class="toggle-style" (click)="style.open()">
+              <div class="text-span">
+                <!-- <span>{{textLang === "TH" ? lang?.TH_name : lang?.EN_name}}</span> -->
+                @if (styleName === "") {
+                  <span>เลือกสไตล์</span>
+                } @else {
+                  <span>{{ styleName }}</span>
+                }
+              </div>
+              <mat-icon class="down" svgIcon="down" tabindex="0"></mat-icon>
+              <mat-select
+                #style
+                formControlName="style"
+                hideSingleSelectionIndicator
+                panelClass="customVoiceHome"
+                (selectionChange)="switstyle($event)"
+                required
+              >
+                @for (item of CategoryObj.styleList; track item.value) {
+                  <mat-option [value]="item.value">
+                    {{
+                      textLang === "TH" ? item.label : item.value
+                    }}</mat-option
+                  >
+                }
+              </mat-select>
+            </button>
+          </div>
+          <div class="lang">
+            <button class="toggle-lang" (click)="select.open()">
+              <div class="text-span">
+                @if (currentFlag === "") {
+                  <span>เลือกภาษาที่ต้องการ</span>
+                } @else {
+                  <img
+                    class="flag"
+                    src="../../../../assets/icons/toolbar/conversation/flags/{{
+                      currentFlag
+                    }}"
+                    alt="flag"
+                  />
+                  <span>{{
+                    textLang === "TH" ? lang?.TH_name : lang?.EN_name
+                  }}</span>
+                }
+              </div>
+              <mat-icon class="down" svgIcon="down"></mat-icon>
+              <mat-select
+                #select
+                hideSingleSelectionIndicator
+                panelClass="customVoiceHome"
+                (selectionChange)="switchLang($event)"
+                formControlName="language"
+                required
+              >
+                @for (item of languageList; track item.value) {
+                  <mat-option
+                    [value]="item.value"
+                    [ngClass]="{ active: currentLangSelect === item.value }"
+                  >
+                    <!-- {{ item.TH_name }} -->
+                    <img
+                      class="flag-dropdown"
+                      src="../../../../assets/icons/toolbar/conversation/flags/{{
+                        item.flag
+                      }}"
+                      alt="flag"
+                      loading="lazy"
+                    />
+                    {{ getCountryName(item) }}
+                  </mat-option>
+                }
+                <!-- <mat-option
+                  *ngFor="let item of languageList"
+                  [value]="item.value"
+                  [ngClass]="{ active: currentLangSelect === item.value }"
+                >
+                  <img
+                    class="flag-dropdown"
+                    src="../../../../assets/icons/toolbar/conversation/flags/{{
+                      item.flag
+                    }}"
+                    alt="flag"
+                    loading="lazy"
+                  />
+                  {{ getCountryName(item) }}</mat-option
+                > -->
+              </mat-select>
+            </button>
+          </div>
+        </div>
+        <div class="input">
+          <textarea
+            class="col"
+            formControlName="text"
+            type="text"
+            placeholder="ใส่ Prompt ที่ต้องการสร้างข้อความได้อย่างไม่จำกัด เช่น สอนวิธีอ่านภาษาจีน ขายโน้ตบุ๊ค"
+          ></textarea>
+          @if (textAreaValue.length > 0) {
+            <mat-icon
+              class="clear"
+              svgIcon="cross_dynamic"
+              [ngStyle]="{ color: '#000' }"
+              (click)="clearText()"
+              [matTooltip]="text?.clearText"
+            ></mat-icon>
+          }
+        </div>
+        <div class="platform">
+          <div class="header">แพลตฟอร์มที่ลง :</div>
+          <div class="icon-pf">
+            <div
+              class="fb"
+              [class.selected]="platform === 'Facebook'"
+              (click)="selectPlatform('Facebook', 0)"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <rect width="24" height="24" fill="#fff" rx="12" />
+                <rect
+                  width="23"
+                  height="23"
+                  x=".5"
+                  y=".5"
+                  fill="#fff"
+                  stroke="#B3B3B3"
+                  rx="2.5"
+                />
+                <path
+                  fill="#B3B3B3"
+                  d="M15.017 9.667h-2.35V8.333c0-.688.056-1.121 1.042-1.121h1.245v-2.12A17.379 17.379 0 0 0 13.129 5C11.32 5 10 6.105 10 8.133v1.534H8v2.666h2v6h2.667v-6.002h2.044l.306-2.664Z"
+                />
+              </svg>
+            </div>
+            <div
+              class="tiktok"
+              [class.selected]="platform === 'Tiktok'"
+              (click)="selectPlatform('Tiktok', 1)"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <rect
+                  width="23"
+                  height="23"
+                  x=".5"
+                  y=".5"
+                  fill="#fff"
+                  stroke="#B3B3B3"
+                  rx="2.5"
+                />
+                <path
+                  fill="#B3B3B3"
+                  d="M16.382 7.208c-.101-.052-.2-.11-.295-.172a4.151 4.151 0 0 1-.758-.644 3.576 3.576 0 0 1-.855-1.764h.003c-.065-.381-.038-.628-.034-.628h-2.576v9.962c0 .134 0 .266-.006.396 0 .017-.002.032-.003.05l-.001.021v.006a2.187 2.187 0 0 1-1.1 1.736 2.15 2.15 0 0 1-1.067.282 2.18 2.18 0 0 1-2.173-2.188 2.18 2.18 0 0 1 2.173-2.188c.228 0 .453.036.67.106l.003-2.623a4.786 4.786 0 0 0-3.688 1.08A5.055 5.055 0 0 0 5.572 12c-.109.187-.52.94-.569 2.163-.031.694.177 1.413.277 1.71v.007c.062.175.304.772.7 1.275.317.404.693.759 1.115 1.053v-.006l.006.006c1.247.848 2.63.792 2.63.792.24-.01 1.042 0 1.952-.432a4.898 4.898 0 0 0 1.585-1.19c.367-.427.66-.912.864-1.436.233-.613.31-1.348.31-1.642V9.015l.448.294s.6.385 1.536.635c.67.178 1.575.216 1.575.216V7.602c-.317.035-.96-.065-1.619-.394Z"
+                />
+              </svg>
+            </div>
+            <div
+              class="yt"
+              [class.selected]="platform === 'Youtube'"
+              (click)="selectPlatform('Youtube', 2)"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <rect
+                  width="23"
+                  height="23"
+                  x=".5"
+                  y=".5"
+                  fill="#fff"
+                  stroke="#B3B3B3"
+                  rx="2.5"
+                />
+                <path
+                  fill="#B3B3B3"
+                  d="M19.376 7.337c-.577-.687-1.643-.967-3.68-.967H8.304c-2.083 0-3.168.298-3.743 1.03C4 8.111 4 9.161 4 10.614v2.77c0 2.816.666 4.245 4.304 4.245h7.392c1.766 0 2.745-.247 3.378-.853.649-.621.926-1.636.926-3.392v-2.77c0-1.532-.043-2.589-.624-3.278Zm-5.104 5.046-3.357 1.754a.515.515 0 0 1-.755-.457v-3.498a.516.516 0 0 1 .754-.458l3.357 1.743a.516.516 0 0 1 .001.916Z"
+                />
+              </svg>
+            </div>
+            <div
+              class="ig"
+              [class.selected]="platform === 'Instagram'"
+              (click)="selectPlatform('Instagram', 3)"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <rect
+                  width="23"
+                  height="23"
+                  x=".5"
+                  y=".5"
+                  fill="#fff"
+                  stroke="#B3B3B3"
+                  rx="2.5"
+                />
+                <rect
+                  width="16.5"
+                  height="16.5"
+                  x="3.75"
+                  y="3.75"
+                  stroke="#B3B3B3"
+                  stroke-width="1.5"
+                  rx="4.25"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="3.25"
+                  stroke="#B3B3B3"
+                  stroke-width="1.5"
+                />
+                <circle cx="16.25" cy="7.25" r="1.25" fill="#B3B3B3" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="length-gen">
+          <div class="header">ความยาว Generate :</div>
+          @for (item of rangeList; track item.value) {
+            <label class="text" [class.selected]="selectedRange === item.value">
+              {{ item.label }}
+              <input
+                type="radio"
+                [value]="item.value"
+                formControlName="range"
+                (change)="selectRange(item.value)"
+              />
+            </label>
+          }
+        </div>
+        <div class="footer">
+          <div class="emoji">
+            <div class="text">เพิ่มอิโมจิ :</div>
+            <input type="checkbox" id="switch" formControlName="emoji" /><label
+              for="switch"
+              >Toggle</label
+            >
+
+            <div class="results">
+              <div class="svg">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1"
+                  height="30"
+                  fill="none"
+                  viewBox="0 0 1 30"
+                >
+                  <path stroke="#B3B3B3" d="M.5 0v30" />
+                </svg>
+              </div>
+              <span> จำนวนผลลัพธ์ </span>
+
+              <button class="toggle-range" (click)="results.open()">
+                <div class="text-range">
+                  <span>{{ resultNumber }}x</span>
+                </div>
+                <mat-icon class="down" svgIcon="down"></mat-icon>
+                <mat-select
+                  #results
+                  formControlName="generateCount"
+                  hideSingleSelectionIndicator
+                  panelClass="customVoiceHome"
+                  (selectionChange)="switresults($event)"
+                >
+                  @for (item of resultsList; track item.value) {
+                    <mat-option [value]="item.value">
+                      {{ item.label }}
+                    </mat-option>
+                  }
+                </mat-select>
+              </button>
+            </div>
+          </div>
+
+          <div class="sub">
+            @if (loading === false) {
+              <button
+                class="button"
+                [class.pro-selected]="selectedIcon === 'pro'"
+                (click)="onSubmit()"
+              >
+                สร้างข้อความ
+              </button>
+            } @else {
+              <button
+                class="button"
+                [class.pro-selected]="selectedIcon === 'pro'"
+                (click)="onSubmit()"
+              >
+                <mat-icon class="spinner" svgIcon="spinner_gradient"></mat-icon
+                ><span class="btn-ring"></span>
+                รอสักครู่
+              </button>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="card">
+        <div class="coin">
+          <div class="icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="#fff"
+                d="M0 18.998V21c0 1.655 4.031 3 9 3s9-1.345 9-3v-2.002C16.064 20.362 12.525 21 9 21c-3.525 0-7.064-.637-9-2.002ZM15 6c4.969 0 9-1.345 9-3s-4.031-3-9-3-9 1.345-9 3 4.031 3 9 3ZM0 14.081V16.5c0 1.655 4.031 3 9 3s9-1.345 9-3v-2.419c-1.936 1.594-5.48 2.419-9 2.419-3.52 0-7.064-.825-9-2.419Zm19.5.516C22.186 14.077 24 13.11 24 12V9.998c-1.087.77-2.686 1.294-4.5 1.618v2.98ZM9 7.5c-4.969 0-9 1.678-9 3.75S4.031 15 9 15s9-1.678 9-3.75S13.969 7.5 9 7.5Zm10.28 2.64C22.092 9.632 24 8.64 24 7.5V5.498c-1.664 1.177-4.523 1.81-7.533 1.96 1.383.67 2.4 1.57 2.813 2.681Z"
+              />
+            </svg>
+          </div>
+          <div class="text">299 เหรียญ</div>
+        </div>
+        <div class="button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="none"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill="#fff"
+              d="M9 11.25a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM14.75 8A6.75 6.75 0 1 1 8 1.25 6.758 6.758 0 0 1 14.75 8Zm-1.5 0a5.25 5.25 0 1 0-10.5 0 5.25 5.25 0 0 0 10.5 0ZM8 4C6.484 4 5.25 5.121 5.25 6.5v.25a.75.75 0 0 0 1.5 0V6.5c0-.551.563-1 1.25-1 .688 0 1.25.449 1.25 1 0 .551-.563 1-1.25 1a.75.75 0 0 0-.75.75v.5a.75.75 0 0 0 1.483.16c1.161-.293 2.017-1.262 2.017-2.41C10.75 5.121 9.516 4 8 4Z"
+            />
+          </svg>
+          @if (selectedIcon === "basic") {
+            <button>สร้างได้ 50 ครั้ง</button>
+          } @else {
+            <div class="mini-pro">Pro</div>
+            <button>สร้างได้ 50 ครั้ง</button>
+          }
+        </div>
+      </div> -->
+    </div>
+    <div class="result">
+      <div *ngIf="resultObject">
+        <span>Text: {{ resultObject.text }}</span>
+        <div *ngFor="let item of resultObject.data">
+          Data: {{ item }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

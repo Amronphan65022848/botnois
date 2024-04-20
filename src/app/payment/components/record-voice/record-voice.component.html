@@ -1,0 +1,170 @@
+<main *ngIf="isTTSErr" class="error">
+  <span>
+    {{err_redirect.can_use_on_Chrome}}
+  </span>
+</main>
+<main *ngIf="!isTTSErr" class="recording-page">
+  <section>
+    <div class="record-section" style="margin-top: 1%">
+      <div class="record-top">
+        <div class="record-top-text">{{record_point[0]}} {{ displayScore*10 }} PT</div>
+      </div>
+      <div class="record-middle">
+        <div class="record-skip-text-container">
+          <!-- <div style="display: flex; cursor: pointer" (click)="randomText(true)" *ngIf="!isRecording || isLoadNewText || isOutOfText">
+            <span class="record-text">{{next}}</span>
+            <img
+              src="../../assets/img/skip_icon.svg"
+              alt="icon"
+              style="vertical-align: middle; padding-top: 3px"
+            />
+          </div> -->
+        </div>
+        <div class="record-use-text-container">
+          <div
+          *ngIf="isloadingCategory"
+            style="
+              height: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img width="150px" src="../../assets/img/dowload_gif5.gif" />
+          </div>
+
+          <div
+            class="record-use-text"
+            *ngIf="!isloadingCategory"
+            lang
+          >
+            {{ readingtext }}
+            <br>
+            <span #sub_text style="font-size:2vh">
+              {{ readingSubText ? readingSubText : '' }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="record-bottom-text-container">
+        <div class="total_read">
+          <img
+            src="../../assets/img/total_read_icon.svg"
+            alt="total read icon"
+          />
+          {{ ( isMobile ? record_contain[0] : record_contain[1] ) + ' ' + totalCounter + ' ' + record_contain[2] }}
+        </div>
+        <!-- <div class="point-container" >
+          <div class="point-change">
+            <span>{{ number + " พอยท์" }}</span>
+          </div>
+        </div> -->
+
+        <div class="category-type">
+          <mat-select
+            panelClass="custom-typeword"
+            class="custom-typeword-select"
+            [value]="selectedCategory"
+            (selectionChange)="onChangeCategory($event)"
+            *ngIf="!isloadingCategory"
+          >
+            <mat-option *ngFor="let category of categories" [value]="category">
+              {{ category }}
+            </mat-option>
+          </mat-select>
+        </div>
+      </div>
+
+      <div class="record-bottom-block-container">
+        <button
+          class="record-sub-block-playaudio"
+          (click)="resetAudio()"
+          [disabled]="!isAudioExist || isOutOfText"
+        >
+          <img
+            src="../../assets/img/refresh_t2s.svg"
+            alt="icon"
+            srcset=""
+            style="width: 20px; height: 20px; padding-right: 5px"
+          />
+          {{read_again}}
+        </button>
+
+        <button
+        (click)="sendAudio()"
+        [disabled]="!isAudioExist || isOutOfText"
+        class="record-sub-block-sendfile">
+          <img
+            src="../../assets/img/send_file_icon.svg"
+            alt="icon"
+            srcset=""
+            style="width: 20px; height: 20px; padding-right: 5px"
+          />
+          {{sent_audio}}
+        </button>
+        <button
+          class="record-sub-block-playaudio"
+          [disabled]="!isAudioExist || isOutOfText"
+          (click)="playAudio()"
+        >
+          <img
+            src="../../assets/img/play_icon_wallet.svg"
+            alt="icon"
+            srcset=""
+            style="width: 20px; height: 20px; padding-right: 5px"
+          />
+          {{play_audio}}
+        </button>
+      </div>
+    </div>
+
+    <div class="text-press"> {{ isRecording ? recordedTime :
+      ('')}}
+    </div>
+
+    <div
+      class="mic_icon"
+      *ngIf="!isRecording"
+    >
+    <div class="text-press">
+      {{err_redirect.text_press_putMicrophoneBT}}
+    </div>
+      <img
+        (click)="startRecording()"
+        src="../../assets/img/mic_icon.svg"
+        alt="icon"
+        style="
+          margin-left: auto;
+          margin-right: auto;
+          display: flex;
+          margin-top: 11px;
+          width: 110px;
+          cursor: pointer;
+        "
+      />
+    </div>
+
+    <div
+      mat-raised-button
+      class="btn-record"
+      *ngIf="isRecording"
+    >
+
+      <img
+        (click)="stopRecording()"
+        src="../../assets/icons/stop_record.svg"
+        alt=""
+        style="
+          margin-left: auto;
+          margin-right: auto;
+          display: flex;
+          margin-top: 11px;
+          width: 110px;
+          cursor: pointer;
+        "
+      />
+    </div>
+
+  </section>
+  <app-record-information></app-record-information>
+</main>

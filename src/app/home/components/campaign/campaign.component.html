@@ -1,0 +1,156 @@
+<div class="main">
+  <div class="header">
+      <span>Botnoi Voice x Teachers </span>
+  </div>
+  <div class="body">
+      <p>
+        &nbsp;&nbsp;&nbsp; {{text.description1}}
+        {{text.description2}}
+      </p>
+      <p>&nbsp;&nbsp;&nbsp;{{text.seemoreWorkshop}} <a href="https://www.youtube.com/watch?v=SnVVOjG4YmU">https://www.youtube.com/watch?v=SnVVOjG4YmU</a> </p>
+      <mat-expansion-panel class="expand" [expanded]="true">
+          <mat-expansion-panel-header>
+            {{text.rules}}
+          </mat-expansion-panel-header>
+          <ul>
+            <li>{{text.textli[0]}}</li>
+            <li>{{text.textli[1]}}</li>
+            <li>{{text.textli[2]}}</li>
+            <li>{{text.textli[3]}}</li>
+            <li>{{text.textli[4]}}</li>
+          </ul>
+      </mat-expansion-panel>
+      <mat-expansion-panel class="expand" [expanded]="true">
+          <mat-expansion-panel-header>
+            {{text.conditionTopic}}
+          </mat-expansion-panel-header>
+          <ul>
+            <li>{{text.warning}}</li>
+          </ul>
+      </mat-expansion-panel>
+      <div class="contact-container">
+        <span>{{text.contact[0]}}</span>
+        <span>{{text.contact[1]}} : <a href="http://line.me/ti/g2/JKG6IUkKh8FrqSLZgtsXbRp2cit4vPqBYELXDA?utm_source=invitation&utm_medium=QR_code&utm_campaign=default">http://line.me/ti/g2/JKG6IUkKh8FrqSLZgtsX...</a> </span>
+        <img src="../../../../assets/main_page_img/campaign/qrcode_botnoi_teacher.jpg" alt="qrcode_botnoi_teacher">
+        <!-- <img src="../../../../assets/campaign/qrcode_botnoi_teacher.jpg" alt="qrcode_botnoi_teacher">
+        <img src="../../../../assets/main_page_img/campaign/qrcode_botnoi_teacher.jpg" alt="qrcode_botnoi_teacher"> -->
+
+      </div>
+  </div>
+  <div class="footer">
+      <app-footer></app-footer>
+  </div>
+</div>
+
+<!-- <div class="main">
+    <div class="header">
+        <span>เงื่อนไขในการเข้าร่วม Botnoi Voice Tiktok Challenge ชิงเงินรางวัลมูลค่ารวมกว่า 100,000 บาท!!</span>
+        <span class="sub-text">ประกวดคลิป Tiktok ในแบบของคุณโดยใช้เสียงจาก Botnoi Voice ชิงเงินรางวัลมูลค่ารวมกว่า 100,000 บาท!!</span>
+    </div>
+    <div class="body">
+        <mat-expansion-panel [expanded]="true" class="expand">
+            <mat-expansion-panel-header>
+                กติกาการแข่งขันและวิธีส่งผลงาน
+            </mat-expansion-panel-header>
+            <span>
+                1. สร้างคลิปใน Tiktok ไม่จำกัดไอเดียและความยาว <br>
+                2. ต้องมีการใช้เสียงสังเคราะห์จาก <a target="_blank" href="https://voice.botnoi.ai" rel="voice botnoi platform">voice.botnoi.ai</a> (สามารถใช้เสียงพูดหรือเสียงอื่น ๆ ประกอบได้ตามความเหมาะสม) <br>
+                3. ใส่โลโก้บอทน้อยไว้ท้ายคลิป พร้อมใส่ข้อความเสียงจาก Botnoi Voice ประกอบด้วยว่า “AI สร้างเสียง จาก Botnoivoice” (ดาวน์โหลดรูปโลโก้บอทน้อยได้ที่ด้านล่าง) <br>
+                4. ติดแท็ก (@) Official Account ของ Botnoi Voice ชื่อ “botnoivoice” <br>
+                5. ติดแฮชแท็ก  #AIสร้างเสียง และ #botnoivoice <br>
+                6. ส่งผลงาน 1 ชิ้น (1 คลิป) ต่อการกรอกแบบฟอร์ม 1 ครั้ง และจำเป็นต้องกรอกข้อมูลให้ครบถ้วน <br>
+                7. ส่งผลงานได้ไม่จำกัดจำนวน  แต่หากได้รับรางวัลจะเลือกให้รางวัลจากคลิปที่ได้ยอดกดหัวใจ สูงที่สุดเพียง 1 คลิป <br>
+            </span>
+
+            <div class="btn-form">
+                <div class="btn-group">
+
+                    <span> <img src="../../../../assets/main_page_img/campaign/download.png" alt="download"> ดาวน์โหลดโลโก้บอทน้อย ได้ที่</span>
+                    <button (click)="downloadBotnoiVoiceLogo()">ดาวน์โหลดโลโก้</button>
+                </div>
+                <div class="btn-group">
+
+                    <span> <img down src="../../../../assets/main_page_img/campaign/send.png" alt="send"> ส่งผลงานผ่านทาง Google form ได้ที่ <a href="https://forms.gle/GvQ65tE1zvm3e1hd8" target="_blank" rel="send video form">https://forms.gle/GvQ65tE1zvm3e1hd8</a> หรือ </span>
+                    <button (click)="redirect()">ส่งวิดิโอ คลิก !</button>
+                </div>
+            </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="expand">
+            <mat-expansion-panel-header>
+                วิธีรับ point สำหรับดาวน์โหลดเสียง
+            </mat-expansion-panel-header>
+            <ol>
+                <li> ล็อกอินเว็บไซต์ voice.botnoi.ai แล้ว คลิกที่สัญลักษณ์ <img src="../../../../assets/main_page_img/campaign/point.png" alt="point"> เพื่อเข้าสู่หน้ารับ point</li>
+                <li>เลือกรับพอยต์ได้ 4 วิธี ได้แก่</li>
+                <span>2.1 ซื้อพอยต์ตามแพ็คเกจที่ต้องการ ในหัวข้อ “ซื้อพอยต์เพิ่ม” (ชำระเงินผ่านการสแกน QR code)</span><br>
+                <span>2.2 เชิญเพื่อนในหัวข้อเชิญเพื่อน ผ่านลิงก์เชิญหรือ QR code โดย 1 ลิงก์จะใช้เชิญเพื่อนได้ 1 คน ถ้าถูกใช้แล้ว จะต้องส่งลิงก์ใหม่ </span><br>
+                <span>2.3 อัดเสียงเพื่อแลกพอยต์ ในหัวข้อ “อัดเสียงแลกพอยต์”</span><br>
+                <span>2.4 ใช้โค้ด (ถ้ามี) ในหัวข้อ “ใช้โค้ด”</span>
+            </ol>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="expand">
+            <mat-expansion-panel-header>
+                ของรางวัล
+            </mat-expansion-panel-header>
+            <ul>
+                <li>รางวัลชนะเลิศ เงินรางวัล 15,000 บาท พร้อมใบประกาศนียบัตร</li>
+                <li>รางวัลรองชนะเลิศอันดับ 1 เงินรางวัล 10,000 บาท พร้อมใบประกาศนียบัตร</li>
+                <li>รางวัลรองชนะเลิศอันดับ 2 เงินรางวัล  5,000 บาท พร้อมใบประกาศนียบัตร</li>
+                <li>รางวัลชนะเลิศตามหมวดหมู่ที่กำหนด จำนวน 10 รางวัล เงินรางวัล รางวัลละ 1,000 บาท พร้อมใบประกาศนียบัตร</li>
+                <li>รางวัลคอนเทนต์ถูกใจมหาชน จำนวน 100 รางวัล ได้รับ Point สำหรับดาวน์โหลดเสียงจาก <a href="https://voice.botnoi.ai" target="_blank" rel="voice botnoi platform">voice.botnoi.ai</a>  จำนวน 30,000 points มูลค่ารางวัลละ 600 บาท พร้อมใบประกาศนียบัตร</li>
+                <li>รางวัลชมเชย ใบประกาศนียบัตรสำหรับผู้ที่คลิปมียอดกดหัวใจ 100 หัวใจขึ้นไป และมียอดรับชม 1000 วิว ขึ้นไป</li>
+            </ul>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="expand">
+            <mat-expansion-panel-header>
+                เงื่อนไขในการตัดสินรางวัล
+            </mat-expansion-panel-header>
+            <span>
+                รางวัลชนะเลิศและรองชนะเลิศ ตัดสินจากคลิปที่มียอดกดหัวใจสูงที่สุด 3 อันดับแรก <br>
+                รางวัลชนะเลิศตามหมวดหมู่ที่กำหนด จำนวน 10 รางวัล ตัดสินจาก 10 คลิปที่โดนใจทีมงานที่สุดตามหัวข้อต่อไปนี้
+            </span>
+            <ol>
+                <li>สุดยอดเทคนิค</li>
+                <li>สายฮา</li>
+                <li>มีสาระ</li>
+                <li>ดีต่อใจ</li>
+                <li>แปลกแหวกแนว</li>
+                <li>สร้าง Impact ต่อสังคม</li>
+                <li>เพลิน ๆ ดูจบไม่รู้ตัว</li>
+                <li>ขายเก่ง</li>
+                <li>สวยงาม น่ารับชม</li>
+                <li>ตื่นเต้นเร้าใจ</li>
+            </ol>
+            <span>
+                รางวัลคอนเทนต์ถูกใจมหาชน ตัดสินจากคลิปมียอดกดหัวใจเป็นอันดับที่ 4-103 <br>
+                รางวัลใบประกาศนียบัตรสำหรับผู้เข้าร่วมที่คลิป Tiktok มี 100 หัวใจและ 1000 วิว ขึ้นไป
+            </span>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="expand">
+            <mat-expansion-panel-header>
+                ขอบเขตและเงื่อนไขการเข้าประกวด
+            </mat-expansion-panel-header>
+            <ul>
+                <li>ส่งผลงานได้ตั้งแต่วันที่ 1-30 พฤศจิกายน 2564</li>
+                <li>ประกาศผลวันที่ 5 ธันวาคม 2564 ผ่านทาง Facebook Page: <a href="https://www.facebook.com/texttospeech.botnoi" target="_blank" rel="text2speech facebook page">Botnoi Voice - Text To Speech</a></li>
+                <li>ผู้ที่ได้รับรางวัลจะได้รับการติดต่อกลับจากทีมงานภายในวันที่ 15 ธันวาคม 2564</li>
+            </ul>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="expand">
+            <mat-expansion-panel-header>
+                หมายเหตุ ( สำคัญมาก ! )
+            </mat-expansion-panel-header>
+            <ul>
+                <li>ไม่จำกัดอายุผู้เข้าร่วมการแข่งขัน</li>
+                <li>รับพอยท์ที่ใช้สำหรับการดาวน์โหลดเสียงสังเคราะห์ จากการเชิญเพื่อนใน <a href="https://voice.botnoi.ai" target="_blank" rel="voice botnoi platform">voice.botnoi.ai</a> หรือเติมเงินเพื่อซื้อพอยท์</li>
+                <li>ดูคลิปวิธีการใช้งาน Platform Botnoi Voice และการรับพอยท์จาก Account Tiktok: botnoivoice</li>
+                <li>ได้รับรางวัลชมเชย ต้องติดต่อทีมงานผ่าน Inbox ของ Facebook page: Botnoi Voice - Text To Speech เพื่อขอรับใบประกาศนียบัตรในรูปแบบไฟล์ออนไลน์</li>
+                <li>หากพบว่าผู้เข้าแข่งขันท่านใดไม่ปฏิบัติตามกติกาที่ระบุไว้ข้างต้น ขอสงวนสิทธิ์ในการรับรางวัลทุกกรณี</li>
+                <li>การตัดสินใจของทีมงานถือเป็นที่สิ้นสุด</li>
+            </ul>
+        </mat-expansion-panel>
+    </div>
+    <div class="footer">
+        <app-footer></app-footer>
+    </div>
+</div> -->

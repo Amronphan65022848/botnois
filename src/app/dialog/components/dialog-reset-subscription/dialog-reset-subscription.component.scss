@@ -1,0 +1,50 @@
+:host {
+  display: block;
+  .reset-subscription-container {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 24px;
+    max-width: 650px;
+
+    .header,
+    .footer {
+      text-align: center;
+    }
+    .body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: scroll;
+
+      p {
+        color: #000;
+        font-family: Sarabun;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+      }
+
+      .detail {
+        text-align: justify;
+      }
+    }
+    .footer {
+      button {
+        background: var(--botnoi-color);
+        padding: 8px;
+        border-radius: 8px;
+
+        span {
+          color: white;
+        }
+      }
+    }
+  }
+  span,
+  h1 {
+    font-family: "Sarabun";
+  }
+}

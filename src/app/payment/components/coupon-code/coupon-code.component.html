@@ -1,0 +1,46 @@
+<section>
+  <div class="codepage-contain">
+    <div
+      style="display: flex; justify-content: space-between; align-items: center"
+    >
+      <div style="display: flex">
+        <span class="code_title" style="width: 30%">{{code_}} : </span>
+
+        <input
+          matInput
+          placeholder="{{couponInput}}"
+          class="input-discount"
+          [(ngModel)]="couponCode"
+        />
+      </div>
+
+      <div>
+        <div
+          class="codepage-btn"
+          style="color: white; background-color: #01bffb; cursor: pointer;user-select: none;"
+          (click)="submitCode()"
+        >
+          {{access}}
+        </div>
+      </div>
+    </div>
+    <div
+      class="alert-code"
+      *ngIf="!isLoading"
+      [ngClass]="{
+        'selected-err': colorMessage == 'red',
+        'selected-pass': colorMessage == 'blue'
+      }"
+    >
+      {{ message }}
+    </div>
+    <div *ngIf="isLoading" class="icon_loading">
+      <div class="lds-ellipsis" style="background-color: red">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</section>

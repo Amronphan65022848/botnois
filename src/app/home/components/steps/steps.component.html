@@ -1,0 +1,670 @@
+<div class="section-container">
+  <div class="header">
+    <div class="header_1">{{ text.header_1 }}</div>
+    <div class="header_2">{{ text.header_2}}</div>
+  </div>
+
+  <div class="container justify-content-center">
+    <!-- Row for the three cards -->
+    <div class="row">
+      <!-- First card for text input -->
+      <div class="col-md-4 mb-3">
+        <div class="border-card">
+          <div class="card">
+            <div class="card-body text-center">
+              <div class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48px"
+                  height="48px"
+                  viewBox="0 0 256 256"
+                  id="Flat"
+                >
+                  <defs>
+                    <linearGradient
+                      id="textGradient"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="0%"
+                    >
+                      <stop offset="0%" style="stop-color: #8050ea" />
+                      <stop offset="100%" style="stop-color: #01bffb" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    fill="url(#textGradient)"
+                    d="M86.85742,50.89062a11.99923,11.99923,0,0,0-21.71484,0l-64,136a11.99956,11.99956,0,0,0,21.71484,10.21876L38.43848,164h75.123l15.58106,33.10938a11.99956,11.99956,0,0,0,21.71484-10.21876ZM49.73291,140,76,84.18262,102.26709,140ZM204,90.90039a46.5134,46.5134,0,0,0-26.89746,8.32129,11.99992,11.99992,0,0,0,13.78711,19.64453A22.96251,22.96251,0,0,1,204,114.90039c11.02832,0,20,7.17773,20,16v1.37891A48.30971,48.30971,0,0,0,204,128c-24.26172,0-44,17.49512-44,39s19.73828,39,44,39a47.94743,47.94743,0,0,0,23.1875-5.87549A11.98692,11.98692,0,0,0,248,192V130.90039C248,108.84473,228.26172,90.90039,204,90.90039ZM204,182c-10.84082,0-20-6.86914-20-15s9.15918-15,20-15,20,6.86914,20,15S214.84082,182,204,182Z"
+                  />
+                </svg>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="7" height="31" fill="none" viewBox="0 0 7 31">
+                  <path fill="#353942" d="M0 0h7v1.944H0z"/>
+                  <path fill="#353942" d="M2.719 1.943h1.75v26.833h-1.75zM0 28.777h7v1.75H0z"/>
+                </svg>
+                
+              </div>
+              <h5 class="card-title ">{{ text.card_1 }}</h5>
+              <div class="input-container">
+                <input type="text" id="myInput" required readonly />
+                <label for="myInput">{{ text.card_1_input }}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second card for settings selection -->
+      <div class="col-md-4 mb-3">
+        <div class="border-card">
+          <div class="card">
+            <div class="card-body text-center">
+              <div class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48px"
+                  height="48px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <defs>
+                    <linearGradient
+                      id="knobGradient"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="0%"
+                    >
+                      <stop offset="0%" style="stop-color: #8050ea" />
+                      <stop offset="100%" style="stop-color: #01bffb" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M18.48 18.5368H21"
+                    stroke="#363853"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M4.68 12L3 12.044"
+                    stroke="#363853"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M4.68 12C4.68 13.3255 5.75451 14.4 7.08 14.4C8.40548 14.4 9.48 13.3255 9.48 12C9.48 10.6745 8.40548 9.6 7.08 9.6C5.75451 9.6 4.68 10.6745 4.68 12Z"
+                    stroke="url(#knobGradient)"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M10.169 12.0441H21"
+                    stroke="#363853"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M12.801 5.55124L3 5.55124"
+                    stroke="#363853"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M21 5.55124H18.48"
+                    stroke="#363853"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M3 18.5368H12.801"
+                    stroke="#363853"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M17.88 18.6C17.88 19.9255 16.8055 21 15.48 21C14.1545 21 13.08 19.9255 13.08 18.6C13.08 17.2745 14.1545 16.2 15.48 16.2C16.8055 16.2 17.88 17.2745 17.88 18.6Z"
+                    stroke="url(#knobGradient)"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M17.88 5.4C17.88 6.72548 16.8055 7.8 15.48 7.8C14.1545 7.8 13.08 6.72548 13.08 5.4C13.08 4.07452 14.1545 3 15.48 3C16.8055 3 17.88 4.07452 17.88 5.4Z"
+                    stroke="url(#knobGradient)"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <h5 class="card-title">{{ text.card_2 }}</h5>
+              <div class="d-flex">
+                <div class="border-toggle-lang">
+                  <div class="bg-toggle-lang">
+                    <button class="toggle-lang">
+                      <img
+                        class="flag"
+                        src="../../../../assets/icons/toolbar/conversation/flags/TH.svg"
+                        alt="flag"
+                      />
+                      <!-- <span>{{ textLang === "TH" ? "" : ""}}{{ truncateText(lang) }}</span> -->
+                      <span>{{ text.card_2_select_1 }}</span>
+                      <svg
+                        width="16px"
+                        height="16px"
+                        viewBox="0 0 16 16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <defs>
+                          <linearGradient
+                            id="gradient-hover"
+                            x1="0%"
+                            y1="0%"
+                            x2="100%"
+                            y2="100%"
+                          >
+                            <stop offset="0%" stop-color="#8050EA" />
+                            <stop offset="100%" stop-color="#01bffb" />
+                          </linearGradient>
+                        </defs>
+                        <path
+                          class="path-normal"
+                          d="M 7.99999 12.999 C 8.39999 12.999 8.77799 12.841 9.05999 12.556 L 15.708 5.72305 C 16.098 5.32805 16.098 4.69005 15.708 4.29505 C 15.318 3.90005 14.684 3.90005 14.294 4.29505 L 7.99999 10.771 L 1.70699 4.29505 C 1.31699 3.89905 0.683988 3.89905 0.292988 4.29505 C -0.0970117 4.69005 -0.0970117 5.32805 0.292988 5.72305 L 6.93899 12.556 C 7.22199 12.841 7.59699 12.999 7.99899 12.999 H 7.99999 Z"
+                          fill="#ccc"
+                        />
+                        <path
+                          class="path-gradient"
+                          d="M 7.99999 12.999 C 8.39999 12.999 8.77799 12.841 9.05999 12.556 L 15.708 5.72305 C 16.098 5.32805 16.098 4.69005 15.708 4.29505 C 15.318 3.90005 14.684 3.90005 14.294 4.29505 L 7.99999 10.771 L 1.70699 4.29505 C 1.31699 3.89905 0.683988 3.89905 0.292988 4.29505 C -0.0970117 4.69005 -0.0970117 5.32805 0.292988 5.72305 L 6.93899 12.556 C 7.22199 12.841 7.59699 12.999 7.99899 12.999 H 7.99999 Z"
+                          fill="url(#gradient-hover)"
+                          opacity="0"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="border-toggle-lang">
+                  <div class="bg-toggle-lang">
+                    <button class="toggle-lang">
+                      <div class="frame">
+                        <mat-icon
+                          _ngcontent-ng-c4060486594=""
+                          role="img"
+                          svgicon="person_dynamic"
+                          class="mat-icon notranslate mic no-speaker-focus-img mat-icon-no-color"
+                          aria-hidden="true"
+                          data-mat-icon-type="svg"
+                          data-mat-icon-name="person_dynamic"
+                          ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="100%"
+                            height="100%"
+                            viewBox="0 0 16 16"
+                            fit=""
+                            preserveAspectRatio="xMidYMid meet"
+                            focusable="false"
+                          >
+                            <path
+                              d="M13 5C13 2.24 10.76 0 8 0C5.24 0 3 2.24 3 5C3 6.52 3.678 7.882 4.75 8.8C2.52 9.97 1 12.306 1 15C1 15.552 1.448 16 2 16C2.552 16 3 15.552 3 15C3 12.24 5.24 10 8 10C10.76 10 13 12.24 13 15C13 15.552 13.448 16 14 16C14.552 16 15 15.552 15 15C15 12.307 13.48 9.97 11.25 8.8C12.323 7.88 13 6.52 13 5ZM8 8C6.343 8 5 6.657 5 5C5 3.343 6.343 2 8 2C9.657 2 11 3.343 11 5C11 6.657 9.657 8 8 8Z"
+                            ></path></svg></mat-icon>
+                      </div>
+                      <span>{{ text.card_2_select_2 }}</span>
+                      <svg
+                        width="16px"
+                        height="16px"
+                        viewBox="0 0 16 16"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <defs>
+                          <linearGradient
+                            id="gradient-hover"
+                            x1="0%"
+                            y1="0%"
+                            x2="100%"
+                            y2="100%"
+                          >
+                            <stop offset="0%" stop-color="#b2a1fa" />
+                            <stop offset="100%" stop-color="#01bffb" />
+                          </linearGradient>
+                        </defs>
+                        <path
+                          class="path-normal"
+                          d="M 7.99999 12.999 C 8.39999 12.999 8.77799 12.841 9.05999 12.556 L 15.708 5.72305 C 16.098 5.32805 16.098 4.69005 15.708 4.29505 C 15.318 3.90005 14.684 3.90005 14.294 4.29505 L 7.99999 10.771 L 1.70699 4.29505 C 1.31699 3.89905 0.683988 3.89905 0.292988 4.29505 C -0.0970117 4.69005 -0.0970117 5.32805 0.292988 5.72305 L 6.93899 12.556 C 7.22199 12.841 7.59699 12.999 7.99899 12.999 H 7.99999 Z"
+                          fill="#ccc"
+                        />
+                        <path
+                          class="path-gradient"
+                          d="M 7.99999 12.999 C 8.39999 12.999 8.77799 12.841 9.05999 12.556 L 15.708 5.72305 C 16.098 5.32805 16.098 4.69005 15.708 4.29505 C 15.318 3.90005 14.684 3.90005 14.294 4.29505 L 7.99999 10.771 L 1.70699 4.29505 C 1.31699 3.89905 0.683988 3.89905 0.292988 4.29505 C -0.0970117 4.69005 -0.0970117 5.32805 0.292988 5.72305 L 6.93899 12.556 C 7.22199 12.841 7.59699 12.999 7.99899 12.999 H 7.99999 Z"
+                          fill="url(#gradient-hover)"
+                          opacity="0"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Third card for download action -->
+      <div class="col-md-4 mb-3">
+        <div class="border-card">
+          <div class="card">
+            <div class="card-body text-center">
+              <div class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48px"
+                  height="48px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <defs>
+                    <linearGradient
+                      id="bottomArrowGradient"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="0%"
+                    >
+                      <stop offset="0%" style="stop-color: #8050ea" />
+                      <stop offset="100%" style="stop-color: #01bffb" />
+                      <!-- #C800FF 0%, #01bffb 100% -->
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M3 15C3 17.8284 3 19.2426 3.87868 20.1213C4.75736 21 6.17157 21 9 21H15C17.8284 21 19.2426 21 20.1213 20.1213C21 19.2426 21 17.8284 21 15"
+                    stroke="url(#bottomArrowGradient)"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M12 3V16M12 16L16 11.625M12 16L8 11.625"
+                    stroke="#1C274C"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+
+              <h5 class="card-title">{{ text.card_3 }}</h5>
+              <div class="box">
+                <div class="text">
+                  {{ text.card_3_text_1 }}
+                  <span> {{ text.card_3_text_2 }}</span>
+                </div>
+                <button class="btn btn-primary">
+                  {{ text.card_3_button }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button id="LD_start_btn" class="step-btn" (click)="loginFirebase()">
+    {{ text.btn }}
+  </button>
+</div>
+<app-experience [page]="'landing'" [languageObj]="languageObj" [allSpeaker]="allSpeaker" />
+
+<!-- <div class="language">
+  <div class="language-header">
+    <div class="header mb-3">{{ text.card_3_header_lang}}</div>
+    <div class="subtitle mb-4">
+      {{ text.card_3_sub_lang}}
+    </div>
+  </div>
+</div> -->
+
+<!-- <div
+  class="play-sounds-container mt5"
+  *ngIf="isScreenLarge; else smallScreenTemplate"
+>
+  <div class="card-container-lang container">
+    
+    <div class="row mb-4">
+      
+      <div class="card-lang">
+        <div class="language-card">
+          <div class="card-color d-flex align-items-center">
+            <div class="flag-col">
+              <img
+                class="flag"
+                src="../../../../assets/icons/toolbar/conversation/flags/TH.svg"
+                alt="English flag"
+              />
+            </div>
+            <div class="text-col">
+              <div class="speaker-name">Thailand Text to Speech Voices</div>
+              <div class="speaker-name-sub">แปลงข้อความเป็นเสียงภาษาไทย</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card-lang">
+        <div class="language-card">
+          <div class="card-color d-flex align-items-center">
+            <div class="flag-col">
+              <img
+                class="flag"
+                src="../../../../assets/icons/toolbar/conversation/flags/LA.svg"
+                alt="English flag"
+              />
+            </div>
+            <div class="text-col">
+              <div class="speaker-name">Laos Text to Speech Voices</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row mb-4">
+      
+      <div class="card-lang">
+        <div class="language-card">
+          <div class="card-color d-flex align-items-center">
+            <div class="flag-col">
+              <img
+                class="flag"
+                src="../../../../assets/icons/toolbar/conversation/flags/EN.svg"
+                alt="English flag"
+              />
+            </div>
+            <div class="text-col">
+              <div class="speaker-name">English Text to Speech Voices</div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card-lang">
+        <div class="language-card">
+          <div class="card-color d-flex align-items-center">
+            <div class="flag-col">
+              <img
+                class="flag"
+                src="../../../../assets/icons/toolbar/conversation/flags/CN.svg"
+                alt="English flag"
+              />
+            </div>
+            <div class="text-col">
+              <div class="speaker-name">Chinese Text to Speech Voices</div>
+              <div class="speaker-name-sub">文字轉語音中文</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="row mb-4">
+      
+      <div class="card-lang">
+        <div class="language-card">
+          <div class="card-color d-flex align-items-center">
+            <div class="flag-col">
+              <img
+                class="flag"
+                src="../../../../assets/icons/toolbar/conversation/flags/ID.svg"
+                alt="English flag"
+              />
+            </div>
+            <div class="text-col">
+              <div class="speaker-name">Indonesia Text to Speech Voices</div>
+              <div class="speaker-name-sub">Ubah teks jadi suara</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card-lang">
+        <div class="language-card">
+          <div class="card-color d-flex align-items-center">
+            <div class="flag-col">
+              <img
+                class="flag"
+                src="../../../../assets/icons/toolbar/conversation/flags/VN.svg"
+                alt="English flag"
+              />
+            </div>
+            <div class="text-col">
+              <div class="speaker-name">Vietnam Text to Speech Voices</div>
+              <div class="speaker-name-sub">
+                Chuyển văn bản thành giọng nói online
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="row mb-4">
+      
+      <div class="card-lang">
+        <div class="language-card">
+          <div class="card-color d-flex align-items-center">
+            <div class="flag-col">
+              <img
+                class="flag"
+                src="../../../../assets/icons/toolbar/conversation/flags/JPN.svg"
+                alt="English flag"
+              />
+            </div>
+            <div class="text-col">
+              <div class="speaker-name">Japanese Text to Speech Voices</div>
+              <div class="speaker-name-sub">テキスト 音声変換</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card-lang">
+        <div class="language-card">
+          <div class="card-color d-flex align-items-center">
+            <div class="flag-col">
+              <img
+                class="flag"
+                src="../../../../assets/icons/toolbar/conversation/flags/MMR.svg"
+                alt="English flag"
+              />
+            </div>
+            <div class="text-col">
+              <div class="speaker-name">Myanmar Text to Speech Voices</div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- <ng-template #smallScreenTemplate>
+  
+  <div id="carouselExampleIndicators"class="carousel slide"data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+       
+        <div class="row mb-4">
+          
+          <div class="card-lang mb-4">
+            <div class="language-card">
+              <div class="card-color d-flex align-items-center">
+                <div class="flag-col">
+                  <img
+                    class="flag"
+                    src="../../../../assets/icons/toolbar/conversation/flags/TH.svg"
+                    alt="English flag"
+                  />
+                </div>
+                <div class="text-col">
+                  <div class="speaker-name">Thailand Text to Speech Voices</div>
+                  <div class="speaker-name-sub">
+                    แปลงข้อความเป็นเสียงภาษาไทย
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-lang">
+            <div class="language-card">
+              <div class="card-color d-flex align-items-center">
+                <div class="flag-col">
+                  <img
+                    class="flag"
+                    src="../../../../assets/icons/toolbar/conversation/flags/LA.svg"
+                    alt="English flag"
+                  />
+                </div>
+                <div class="text-col">
+                  <div class="speaker-name">Laos Text to Speech Voices</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row mb-4">
+         
+          <div class="card-lang mb-4">
+            <div class="language-card">
+              <div class="card-color d-flex align-items-center">
+                <div class="flag-col">
+                  <img
+                    class="flag"
+                    src="../../../../assets/icons/toolbar/conversation/flags/EN.svg"
+                    alt="English flag"
+                  />
+                </div>
+                <div class="text-col">
+                  <div class="speaker-name">English Text to Speech Voices</div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-lang mb-4">
+            <div class="language-card">
+              <div class="card-color d-flex align-items-center">
+                <div class="flag-col">
+                  <img
+                    class="flag"
+                    src="../../../../assets/icons/toolbar/conversation/flags/CN.svg"
+                    alt="English flag"
+                  />
+                </div>
+                <div class="text-col">
+                  <div class="speaker-name">Chinese Text to Speech Voices</div>
+                  <div class="speaker-name-sub">文字轉語音中文</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        
+        <div class="row mb-4">
+          
+          <div class="card-lang mb-4">
+            <div class="language-card">
+              <div class="card-color d-flex align-items-center">
+                <div class="flag-col">
+                  <img
+                    class="flag"
+                    src="../../../../assets/icons/toolbar/conversation/flags/ID.svg"
+                    alt="English flag"
+                  />
+                </div>
+                <div class="text-col">
+                  <div class="speaker-name">
+                    Indonesia Text to Speech Voices
+                  </div>
+                  <div class="speaker-name-sub">Ubah teks jadi suara</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-lang">
+            <div class="language-card">
+              <div class="card-color d-flex align-items-center">
+                <div class="flag-col">
+                  <img
+                    class="flag"
+                    src="../../../../assets/icons/toolbar/conversation/flags/VN.svg"
+                    alt="English flag"
+                  />
+                </div>
+                <div class="text-col">
+                  <div class="speaker-name">Vietnam Text to Speech Voices</div>
+                  <div class="speaker-name-sub">
+                    Chuyển văn bản thành giọng nói online
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="row mb-4">
+          
+          <div class="card-lang mb-4">
+            <div class="language-card">
+              <div class="card-color d-flex align-items-center">
+                <div class="flag-col">
+                  <img
+                    class="flag"
+                    src="../../../../assets/icons/toolbar/conversation/flags/JPN.svg"
+                    alt="English flag"
+                  />
+                </div>
+                <div class="text-col">
+                  <div class="speaker-name">Japanese Text to Speech Voices</div>
+                  <div class="speaker-name-sub">テキスト 音声変換</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-lang mb-4">
+            <div class="language-card">
+              <div class="card-color d-flex align-items-center">
+                <div class="flag-col">
+                  <img
+                    class="flag"
+                    src="../../../../assets/icons/toolbar/conversation/flags/MMR.svg"
+                    alt="English flag"
+                  />
+                </div>
+                <div class="text-col">
+                  <div class="speaker-name">Myanmar Text to Speech Voices</div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      
+      
+    </div>
+
+  </div>
+</ng-template> -->

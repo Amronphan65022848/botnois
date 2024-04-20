@@ -1,0 +1,99 @@
+<div class="conver-tools">
+  <div class="dropdown" appClickOutside (clickOutside)="speakerClose()">
+    <button class="voice-actor-btn" (click)="toggleSpeaker()">
+      <img src="{{ currentSpeaker.face_img }}" alt="" />
+    </button>
+    <div class="speaker-popup" *ngIf="isSpeakerShow">
+      <ul class="speaker-list">
+        <li
+          class="speaker"
+          *ngFor="let speaker of speakerCart; let i = index"
+          (click)="selectSpeaker(speaker.face_image, speaker.speaker_id)"
+        >
+          <img src="{{ speaker.face_image }}" alt="" />
+          <p>{{ speaker.thai_name }}</p>
+        </li>
+        <li class="new-speaker" (click)="getSpeaker()">
+          <p>เพิ่มเสียงใหม่</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <app-speaker-list
+    *ngIf="isSpeakerListShow"
+    appClickOutside
+    (clickBackdrop)="speakerListClose()"
+  ></app-speaker-list>
+  <div class="dropdown" appClickOutside (clickOutside)="langClose()">
+    <button class="lang-btn" (click)="toggleLang()">
+      <p>{{ langShow }}</p>
+    </button>
+    <div class="lang-popup" *ngIf="isLangShow">
+      <ul class="lang-list">
+        <li
+          class="lang-item"
+          *ngFor="let langItem of langItems; let i = index"
+          (click)="selectLang(langItem.value, i)"
+          [class.active]="i === selectedLang"
+        >
+          {{ langItem.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="dropdown" appClickOutside (clickOutside)="volumeClose()">
+    <button class="volume-btn" (click)="toggleVolume()">
+      <img src="../../../../assets/icons/v3/volume.svg" alt="volume" />
+      <p>{{ volumeShow }}%</p>
+    </button>
+    <div class="volume-popup" *ngIf="isVolumeShow">
+      <input
+        #volumeBar
+        id="volumeBar"
+        class="volume"
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        [value]="volumeValue"
+        (input)="changeVolume($event)"
+        (mouseup)="closeVolumePopup()"
+      />
+    </div>
+  </div>
+  <div class="dropdown" appClickOutside (clickOutside)="speedClose()">
+    <button class="speed-btn" (click)="toggleSpeed()">
+      <img src="../../../../assets/icons/v3/speed.svg" alt="speed" />
+      <p>{{ speedShow }}</p>
+    </button>
+    <div class="speed-popup" *ngIf="isSpeedShow">
+      <ul class="speed-list">
+        <li
+          class="speed-item"
+          *ngFor="let speedItem of speedItems; let i = index"
+          [value]="speedItem.value"
+          (click)="selectedSpeed(speedItem.value, i)"
+          [class.active]="i === isSpeedSelected"
+        >
+          {{ speedItem.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="dropdown" appClickOutside (clickOutside)="delayClose()">
+    <button class="delay-btn" (click)="toggleDelay()">
+      <img src="../../../../assets/icons/v3/delay.svg" alt="delay" />
+      <p>เว้นวรรค</p>
+    </button>
+    <div class="delay-popup" *ngIf="isDelayShow">
+      <ul class="delay-list">
+        <li
+          class="delay-item"
+          *ngFor="let delayItem of delayItems; let i = index"
+        >
+          {{ delayItem.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

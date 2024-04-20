@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=K2D:wght@300&display=swap');
+
+.importexport-t2s{
+    display: flex;
+    padding: 10px 0;
+    justify-content: center;
+    position: relative;
+    // .import-button, .export-button{
+    //     cursor: pointer;
+    //     display: flex;
+    //     height: 34px;
+    //     width: 107px;
+    //     border-radius: 10px;
+    //     border: 2px solid #01BFFB;
+    //     background-color: #ffffff00;
+    //     justify-content: center;
+    //     align-items: center;
+
+    //     font-family: 'K2D', sans-serif;
+    //     font-size: 14px;
+    //     font-weight: 700;
+    //     text-align: center;
+    //     color: #01BFFB;
+
+    //     img{
+    //         margin-right: 6px;
+    //     }
+    // }
+
+    button{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: white;
+      border: 1px solid #01BFFB;
+      color: #01BFFB;
+      font-weight: 600;
+      font-family: "Prompt";
+      padding: 10px;
+      width: 100%;
+      border-radius: 12px;
+      line-height: 0;
+    }
+
+    mat-select{
+      width: calc(100% - 40px);
+      position: absolute;
+      top: 78px;
+      visibility: hidden;
+    }
+
+}
+
+::ng-deep .importexport-dropdown{
+    font-family: 'Sarabun' !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #000000;
+}
+

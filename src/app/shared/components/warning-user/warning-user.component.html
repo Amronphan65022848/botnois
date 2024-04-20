@@ -1,0 +1,9 @@
+<div id="demo" onscroll="onWindowScroll()">
+    <div class="warnning-message" *ngIf="text_from_server?.length > 0 && !isClose" >
+    <!-- <div class="warnning-message"> -->
+        <p>
+            {{text_from_server}}
+        </p>
+        <button mat-icon-button (click)="closeWarn()"><mat-icon>close</mat-icon></button>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="footer" [class.shortWindow]="!panelOpenState">
+  <div class="header-footer">
+    <h2>{{ text.header }}</h2>
+    <mat-icon class="arrow" (click)="changeOpenState()">{{
+      panelOpenState ? "keyboard_arrow_down" : "keyboard_arrow_up"
+    }}</mat-icon>
+  </div>
+  <div class="line"></div>
+  <div class="cartbody" (wheel)="onWheel($event)">
+    <div class="no-result" *ngIf="_addlist.length <= 0">
+      <p>{{ text.result_false }}</p>
+      <p style="padding-top: 6px">
+        {{ text.add_btn[0] }}
+        <img
+          class="btn-add-small"
+          src="../../assets/add-cart/btn-add-small.svg"
+          alt="add"
+        />
+        {{ text.add_btn[1] }}
+      </p>
+    </div>
+    <!-- <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport"> -->
+    <ng-container *ngIf="_addlist.length > 0">
+      <div class="addCart" *ngFor="let p of _addlist">
+        <img class="img_f" [src]="p.face_image" />
+        <img
+          class="img_c"
+          (click)="delperson(p)"
+          src="../../assets/add-cart/close-img.svg"
+        />
+      </div>
+    </ng-container>
+    <!-- </cdk-virtual-scroll-viewport> -->
+  </div>
+
+  <div class="line"></div>
+
+  <div class="result-and-save">
+    <div class="add-result-num">
+      <h2>{{ text.result[0] }} {{ _addlist.length }} {{ text.result[1] }}</h2>
+      <p>{{ text.total[0] }} {{ _addlist.length }} {{ text.total[1] }} :</p>
+    </div>
+    <button
+      *ngIf="_addlist.length > 0"
+      class="btn-saveCart"
+      (click)="saveSpeaker()"
+    >
+      {{ text.saveSpeaker_ }}
+    </button>
+    <button
+      *ngIf="_addlist.length <= 0"
+      class="btn-saveCart"
+      style="background-color: #d6d8db"
+    >
+      {{ text.saveSpeaker_ }}
+    </button>
+  </div>
+</div>

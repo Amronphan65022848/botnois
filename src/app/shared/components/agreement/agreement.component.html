@@ -1,0 +1,128 @@
+<ngx-loading [show]="isLoading"></ngx-loading>
+<div class="container-privacy">
+  <div class="back_to_t2s" (click)="onBack()">
+    <mat-icon>arrow_back_ios</mat-icon>
+    <span>{{ text.callback }}</span>
+  </div>
+  <div class="container-privacy1">
+    <div class="topic-privacy">
+      <img
+        class="img-bot"
+        src="../../assets/img/botprivacy1.svg"
+        alt="icon บอทน้อย"
+      />
+      <div *ngIf="isDeleteState" style="color: red">
+        {{ text.title_delete_fb }}
+      </div>
+      <div>Agreement & Condition</div>
+    </div>
+    <div class="frame-text">
+      <div class="topic-text">{{ text.agreeCondiotion }}</div>
+      <div class="text2">
+        <p>{{ text.description.description1 }}</p>
+      </div>
+      <div class="text2">
+        <p>{{ text.description.description2 }}</p>
+      </div>
+      <div class="text2">
+        <p>{{ text.description.description3 }}</p>
+      </div>
+
+      <div class="text1">
+        <p>{{ text.titlewithDescrip[0].title }}</p>
+      </div>
+      <div class="text2">
+        <p>
+          {{ text.titlewithDescrip[0].description[0] }}
+        </p>
+      </div>
+      <div class="text2">
+        <p>
+          {{ text.titlewithDescrip[0].description[1] }}
+        </p>
+      </div>
+      <div class="text2">
+        <p>
+          {{ text.titlewithDescrip[0].description[2] }}
+        </p>
+      </div>
+      <div class="text1">
+        <p>{{ text.titlewithDescrip[1].title }}</p>
+      </div>
+      <div class="text2">
+        <p>
+          {{ text.titlewithDescrip[1].description[0] }}
+        </p>
+      </div>
+      <div class="text2">
+        <p>
+          {{ text.titlewithDescrip[1].description[1] }}
+        </p>
+      </div>
+      <div class="text2">
+        <p>
+          {{ text.titlewithDescrip[1].description[2] }}
+        </p>
+      </div>
+      <div class="text1">
+        <p>{{ text.titlewithDescrip[2].title }}</p>
+      </div>
+      <div class="text2">
+        <p>
+          {{ text.titlewithDescrip[2].description[0] }}
+        </p>
+      </div>
+      <div class="text2">
+        <p>
+          {{ text.titlewithDescrip[2].description[1] }}
+        </p>
+      </div>
+      <div class="text2">
+        <p>
+          {{ text.titlewithDescrip[2].description[2] }}
+        </p>
+      </div>
+      <div class="text2">
+        <p>
+          {{ text.titlewithDescrip[2].description[3] }}
+        </p>
+      </div>
+      <div class="text1">
+        <p>
+          {{ text.titlewithDescrip[3].title }}
+        </p>
+      </div>
+      <div class="text1">
+        <p>
+          {{ text.titlewithDescrip[4].title }}
+        </p>
+      </div>
+      <div class="text1">
+        <p>
+          {{ text.titlewithDescrip[5].title }}
+        </p>
+      </div>
+
+      <div class="text1">
+        <p>
+          {{ text.titlewithDescrip[6].title }}
+        </p>
+      </div>
+    </div>
+    <div class="grid-container" *ngIf="isLogin">
+      <mat-checkbox [(ngModel)]="isAccepted" color="primary" class="checkbox">
+        {{ text.agreementAccept }}
+      </mat-checkbox>
+
+      <div class="btn-group">
+        <button
+          class="button-buycoins-confirm"
+          (click)="isDeleteState ? deleteFacebookAccount() : onSubmit()"
+          [disabled]="!isAccepted"
+        >
+          {{ isDeleteState ? text.delete_fb : text.accept_ }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

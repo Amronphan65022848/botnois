@@ -1,0 +1,135 @@
+<ngx-loading [show]="isLoading"></ngx-loading>
+<div class="loading-progress">
+  <div>
+    <img src="../assets/img/dowload_gif5.gif" alt="download" />
+  </div>
+  <div>{{ text?.downloading }}</div>
+</div>
+
+<div class="t2s-container">
+  <div class="page-text2speech">
+    <main class="text2speech">
+      <div class="head">
+        <div class="left">
+          <!-- <mat-icon svgIcon="left"></mat-icon>
+          <span class="project-name">{{ workspaceName }}</span> -->
+          <span
+            class="project-dropdown"
+            matTooltip="{{ text?.workspace.project }}"
+            matTooltipClass="mat-tooltip-dropdown"
+            [matTooltipShowDelay]="300"
+            [matTooltipPosition]="'above'"
+            (click)="select.open()"
+          >
+            <!-- change image to svg tag for color changing -->
+            <p>{{ currentWorkspace?.name }}</p>
+            <mat-select
+              #select
+              matNativeControl
+              disableOptionCentering
+              hideSingleSelectionIndicator
+              panelClass="customProject"
+              (selectionChange)="switchWorkspace($event)"
+              class="dropdown-center"
+            >
+              <mat-option class="viewAll" (click)="goBack()">
+                <mat-icon svgIcon="folder"></mat-icon>
+                <p>{{ text?.workspace.view }}</p>
+              </mat-option>
+              <mat-option class="create" (click)="createWorkspace()">
+                <mat-icon svgIcon="plus_circle"></mat-icon>
+                <p>{{ text?.workspace.create }}</p>
+              </mat-option>
+              <mat-option
+                *ngFor="let item of workspace"
+                [value]="item"
+                [ngClass]="{
+                  selected:
+                    item?.workspace_id === currentWorkspace?.workspace_id
+                }"
+                >{{ item.name }}</mat-option
+              >
+            </mat-select>
+          </span>
+        </div>
+        <button (click)="onSaveText()">
+          <mat-icon #disk svgIcon="disk" *ngIf="!isSaving"></mat-icon>
+          <div #loading class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <span id="done" #done class="material-symbols-outlined">done</span>
+          <span [matTooltip]="text.btn_save">{{ text.btn_save }}</span>
+        </button>
+      </div>
+      <div class="alert-container" *ngIf="!hideWarning">
+        <div class="warning">
+          <mat-icon
+            svgIcon="annouce"
+            [ngStyle]="{ color: '#FB8C00' }"
+          ></mat-icon>
+          <span>
+            {{ warning_text }}
+          </span>
+          <mat-icon
+            class="close"
+            svgIcon="cross"
+            (click)="closeWarning()"
+          ></mat-icon>
+        </div>
+      </div>
+      <app-conver-mode
+        *ngIf="mode_button == '1'"
+        [data]="data"
+        [historyWord]="historyWord"
+        [limitText]="limitText"
+        [limitBox]="limitBox"
+        [currentUserPackage]="currentUserPackage"
+        [user]="user"
+        [device]="device"
+        [speaker]="speakerIcon"
+        [onloadedPlay]="onloadedPlay"
+        [currentTime]="currentTime"
+        [duration]="duration"
+        [currentIndex]="currentIndex"
+        (saveWorkspace)="onSaveText()"
+        (addTextBox)="addTextBox($event)"
+        (playSound)="playSoundTrack($event)"
+        (stopSound)="pauseSoundTrack($event)"
+        (downloadSound)="downloadTrack($event)"
+        (calpoint)="calculatePoint()"
+        (triggerDropdown)="triggerdropdown($event)"
+        (sliderValue)="setSliderValue($event)"
+        (toggleLoading)="toggleLoading($event)"
+        (setEditData)="setEditData($event)"
+        (deleteGenerated)="deleteS3($event)"
+      >
+      </app-conver-mode>
+    </main>
+    <app-panel-replaceword
+      [user]="user"
+      [page]="2"
+      [historyWord]="historyWord"
+      [state_loading]="loadingState"
+      [allsoundState]="allsoundState"
+      [data]="data"
+      [selectionLength]="selectionLength"
+      [isPlayAll]="isPlayAll"
+      [isReadyPlayAll]="isReadyPlayAll"
+      [isReadyDownloadAll]="isReadyDownloadAll"
+      [loadingState]="loadingState"
+      [totalPayPoint]="totalPayPoint"
+      [mobileText]="mobileText"
+      (_loadCSV)="loadcsvToData($event)"
+      (_playAll)="playAll()"
+      (_pauseAll)="pauseAll()"
+      (_downloadAll)="downloadAlltrack()"
+      (playInSidebar)="playWordInSidebar($event)"
+      (submitFormReplaceWord)="submitFormReplaceWord($event)"
+      (playHistorySidebar)="playHistoryInSidebar($event)"
+    >
+    </app-panel-replaceword>
+  </div>
+</div>

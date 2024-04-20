@@ -1,0 +1,118 @@
+<div class="hero-container">
+  <div class="hero-text-container">
+    <h1 class="hero-header">{{ text.hero.header }}</h1>
+    <h2 class="hero-detail">{{ text.hero.detail }}</h2>
+    <p class="hero-sub-detail">
+      {{ text.hero.sub_detail }}
+    </p>
+    <div class="counting">
+      <div class="count-card view">
+        <span class="count">{{ "1,490,612" }}</span>
+        <span class="count-text">
+          <mat-icon svgIcon="search"></mat-icon> {{ text.hero.visit }}</span>
+      </div>
+      <div class="count-card generate">
+        <span class="count">{{ "15,104,232" }}</span>
+        <span class="count-text">
+          <mat-icon svgIcon="play"></mat-icon> {{ text.hero.genvoice }}</span>
+      </div>
+    </div>
+    <div class="hero-btn-container">
+      <button id="LD_signUp_forFree_btn" class="hero-btn" (click)="loginFirebase()">
+        {{ text.hero.button }}
+      </button>
+    </div>
+  </div>
+  <div class="hero-sound-container">
+    <div class="toggle-lang-container">
+      <button class="toggle-lang" (click)="select.open()">
+        <img class="flag" src="../../../../assets/icons/toolbar/conversation/flags/{{
+            currentFlag
+          }}" alt="flag" />
+        <span>{{ text.hero.ex_lang }}{{ lang }}</span>
+        <mat-icon class="down" svgIcon="down"></mat-icon>
+        <mat-select #select hideSingleSelectionIndicator panelClass="customVoiceHome"
+          (selectionChange)="switchLang($event)">
+          <mat-option *ngFor="let item of langList" [value]="item.value"
+            [ngClass]="{ active: currentLangSelect === item.value }">
+            <img class="flag-dropdown" src="../../../../assets/icons/toolbar/conversation/flags/{{
+                item.flag
+              }}" alt="flag" loading="lazy" />
+            {{ getCountryName(item) }}</mat-option>
+        </mat-select>
+        <!-- <mat-select
+          #select
+          matNativeControl
+          disableOptionCentering
+          panelClass="customVoiceHome"
+          (selectionChange)="switchLang($event)"
+        >
+          <mat-option *ngFor="let item of langList" [value]="item.value">
+            <img
+              class="flag-dropdown"
+              src="../../../../assets/icons/toolbar/conversation/flags/{{
+                item.flag
+              }}"
+              alt="flag"
+              loading="lazy"
+            />
+            {{ item.name }}</mat-option
+          >
+        </mat-select> -->
+      </button>
+    </div>
+    <div class="display-speaker-container">
+      <div class="speaker-card" *ngFor="let speaker of currentSpeakerList; let last = last" [ngClass]="{
+          hide: ['ja', 'km'].includes(this.currentLangSelect)
+            ? ''
+            : isTablet() && last
+        }">
+        <img src="{{ speaker.img }}" alt="speaker" loading="lazy" />
+        <button class="toggle-sound" (click)="playSample(speaker.url, speaker.isPlaying, speaker.name)">
+          <mat-icon class="play-pause" svgIcon="{{ speaker.isPlaying ? 'pause_filled' : 'play_filled' }}"
+            [ngClass]="{ 'shift-left': !speaker.isPlaying }"></mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- <div
+    class="try-create"
+    (click)="scrollToDiv()"
+    [@move]="state"
+    (@move.done)="onEnd($event)"
+  >
+    <span>{{ text.hero.try }}</span>
+    <mat-icon svgIcon="down"></mat-icon>
+  </div> -->
+</div>
+<!-- <div class="customer-container">
+  <h3 class="customer-header">
+    {{ text.customer.text }}
+  </h3>
+  <div class="customer-logo-container">
+    <div class="slide-track">
+      <div class="slide" *ngFor="let item of items; let i=index">
+        <img
+          src="../../../../assets/landing-v3/customer_logo/{{i+1}}.png"
+          alt="customer_logo"
+          class="customer-logo"
+        />
+      </div>
+      <div class="slide" *ngFor="let item of items; let i=index">
+        <img
+          src="../../../../assets/landing-v3/customer_logo/{{i+1}}.png"
+          alt="customer_logo"
+          class="customer-logo"
+        />
+      </div>
+      <div class="slide" *ngFor="let item of items; let i=index">
+        <img
+          src="../../../../assets/landing-v3/customer_logo/{{i+1}}.png"
+          alt="customer_logo"
+          class="customer-logo"
+        />
+      </div>
+
+    </div>
+  </div>
+</div> -->

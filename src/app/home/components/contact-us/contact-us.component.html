@@ -1,0 +1,47 @@
+<div class="contact-container">
+  <div class="header">{{ text.header }}</div>
+  <form class="forms" (ngSubmit)="onSubmit()">
+    <input
+      type="text"
+      id="name"
+      name="name"
+      [(ngModel)]="formData.name"
+      [placeholder]="text.name"
+      required
+    />
+    <input
+      type="text"
+      id="company"
+      name="company"
+      [(ngModel)]="formData.company"
+      [placeholder]="text.company"
+      required
+    />
+    <div class="row">
+      <input
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="formData.email"
+        [placeholder]="text.email"
+        required
+      />
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        [(ngModel)]="formData.phone"
+        [placeholder]="text.phone"
+        required
+      />
+    </div>
+    <textarea
+      id="details"
+      name="details"
+      [(ngModel)]="formData.details"
+      [placeholder]="text.detail"
+    ></textarea>
+
+    <button type="submit">{{ text.submit }}</button>
+  </form>
+</div>

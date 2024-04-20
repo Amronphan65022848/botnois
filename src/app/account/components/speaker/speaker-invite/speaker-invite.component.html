@@ -1,0 +1,38 @@
+<div class="speaker-invite-container">
+  <div class="mode-toggle">
+    <span [ngClass]="{'title-choose': mode === 0}" class="title" (click)="toggleMode(0)">
+      {{text.invite}}
+    </span>
+    <span [ngClass]="{'title-choose': mode === 1}" class="title" (click)="toggleMode(1)">
+      {{text.block}}
+    </span>
+  </div>
+
+  <div class="invite-panel">
+    <input (keyup.enter)="onAdd(input)" #input type="text" [placeholder]="text.placeholder">
+    <button (click)="onAdd(input)">
+      <span> {{text.add}} </span>
+    </button>
+  </div>
+  <div class="invite-list">
+    <table>
+      <!-- <tr>
+        <th *ngFor="let header of text.thead"> {{header}} </th>
+      </tr> -->
+      <tr *ngFor="let item of obj[mode]; let i=index">
+        <td> {{i+1}}. </td>
+        <td> {{item}} </td>
+        <td (click)="onRemove(i)">
+          <span class="material-symbols-outlined">
+            close
+          </span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="invite-btn">
+    <button (click)="onSubmit()">
+      <span> {{text.submit}} </span>
+    </button>
+  </div>
+</div>

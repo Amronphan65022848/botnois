@@ -1,0 +1,136 @@
+<div id="media-center-container">
+  <div id="own-channel">
+    <p>{{ text.sub_text }}</p>
+    <div class="header">
+      <h1>{{ text.header[0] }}</h1>
+      <h1 class="gradient middle">{{ text.header[1] }}</h1>
+      <h1>{{ text.header[2] }}</h1>
+    </div>
+    <div id="box" class="box">
+      <div class="channel-box">
+        <img
+          class="gradient-border"
+          [src]="creator.image"
+          alt="image of content creator channel"
+        />
+        <div class="group">
+          <span class="name gradient" (click)="toUrl(creator.channel_url)">
+            &#64;{{ creator.name }}
+          </span>
+          <span class="subscribe">
+            {{ text.subscribe }} {{ creator.subscribe_count | shortNumber }}
+          </span>
+        </div>
+
+        <div class="channel-banner">
+          <mat-icon id="platform" [svgIcon]="creator.platform"></mat-icon>
+
+          <span class="channel-name">
+            {{ creator.channel_name }}
+          </span>
+          <button
+            [ngClass]="creator.platform"
+            (click)="toUrl(creator.channel_url)"
+          >
+            <span>
+              {{ text.btn_follow }}
+            </span>
+          </button>
+        </div>
+      </div>
+      <div class="video-box">
+        <!-- <div class="skeleton-loader" [hidden]="!isVideoLoading"></div> -->
+        <iframe
+          *ngFor="let url of creator.video_list; let i = index"
+          id="video-creator"
+          [src]="url | safe"
+          title="video's content creator"
+          frameborder="0"
+          scrolling="no"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+    <div class="creator-slide">
+      <mat-icon svgIcon="left" (click)="onLeft()"></mat-icon>
+      <div class="group">
+        <div
+          class="creator"
+          *ngFor="
+            let item of ownChannelData | pagination : page : resultCount;
+            let i = index
+          "
+          (click)="onSelectCreator(item.name)"
+        >
+          <img [src]="item.image" alt="content creator logo" />
+          <span class="name">
+            {{ item.name }}
+          </span>
+        </div>
+      </div>
+
+      <mat-icon svgIcon="right" (click)="onRight()"></mat-icon>
+    </div>
+  </div>
+  <div class="video-pool">
+    <!-- <img
+      src="../../../../assets/media-center/banner.webp"
+      alt="media center banner"
+    /> -->
+    <div class="group">
+      <div class="banner">
+        <p>{{ text.sub_text2 }}</p>
+        <div class="group-text">
+          <h1>{{ text.header[0] }}</h1>
+          <h1 class="gradient bnv">{{ text.header[1] }}</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="platform-panel">
+      <button
+        [ngClass]="{ active: currentPlatformIndex === i }"
+        *ngFor="let item of platform_list; let i = index"
+        (click)="onSelectPlatform(i)"
+      >
+        <mat-icon [svgIcon]="item"></mat-icon>
+        <span>
+          {{ item | titlecase }}
+        </span>
+      </button>
+    </div>
+
+    <div class="content">
+      <div class="skeleton-loader" [hidden]="!isVideoLoading">
+        <ngx-skeleton-loader
+          [count]="videoLoaderCount"
+          [theme]="{
+            width: platform === 'youtube' ? '454px' : '325px',
+            height: platform === 'youtube' ? '316px' : '575px',
+            'border-radius': '12px',
+            margin: '0px'
+          }"
+        ></ngx-skeleton-loader>
+      </div>
+      <div
+        class="video_container"
+        infiniteScroll
+        [infiniteScrollDistance]="scrollDistance"
+        (scrolled)="onScrollDown()"
+        [ngStyle]="{ display: isVideoLoading ? 'none' : 'flex' }"
+      >
+        <iframe
+          *ngFor="let url of selectVideoByPlatform(); let i = index"
+          id="content-iframe"
+          [ngClass]="platform === 'youtube' ? 'landscape' : 'portrait'"
+          [src]="url | safe"
+          frameborder="0"
+          scrolling="no"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="full-users-container">
+  <mat-icon class="close" [matDialogClose]="true">close</mat-icon>
+  <div class="header">
+    <p>{{text.header}}</p>
+  </div>
+  <div class="body">
+    <pre>{{main_text}}</pre>
+    <pre class="bold">{{bold_text}}</pre>
+  </div>
+  <div class="uid" (click)="onCopy()">
+    <span>{{ 'UID: ' + (data!.uid || 'No UID')}}</span>
+    <mat-icon>content_copy</mat-icon>
+  </div>
+  <!-- <div class="group-checkbox">
+    <mat-checkbox [(ngModel)]="isCredit" color="primary">
+      <div class="main_text-img">
+        <span>ชำระเงินด้วย</span>
+        <img src="../../../../assets/img/visa-mastercard.png" alt="visa-mastercard icon" style="width: 60px;">
+      </div>
+
+      <span class="main_text-fee">(ค่าดำเนินการ + 10 บาท)</span>
+    </mat-checkbox>
+  </div> -->
+
+  <div class="group-dropdown">
+    <label for="method">{{text.pay}}</label>
+    <mat-select class="select" [(ngModel)]="paymentMethod">
+      <mat-option *ngFor="let choice of dropdown; let i = index;" [value]="choice">
+        <span>{{choice}}</span>
+        &nbsp;
+        <img [src]="'../../../../assets/img/' + image[i] + '.png'" alt="visa-mastercard icon" style="width: 60px;">
+      </mat-option>
+    </mat-select>
+  </div>
+  <div class="group-btn">
+    <button class="btn-yes" (click)="onConfirm()">
+      <span>{{text.ok}}</span>
+    </button>
+    <button class="btn-try" (click)="onTry()">
+      <span>{{text.try}}</span>
+    </button>
+    <button class="btn-no" [matDialogClose]="true">
+      <span>{{text.no}}</span>
+    </button>
+  </div>
+</div>

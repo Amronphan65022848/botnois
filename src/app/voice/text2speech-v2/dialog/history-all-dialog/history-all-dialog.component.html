@@ -1,0 +1,103 @@
+<div class="modal-container">
+  <h3 class="header">แก้ไขคำอ่าน</h3>
+  <hr class="line" *ngIf="!isMobile" />
+  <div class="history-group">
+    <div class="history-container">
+      <div
+        class="history-word"
+        *ngFor="let item of paginatedItems; let i = index"
+      >
+        <div class="before-text">
+          <mat-icon
+            (click)="playHistoryWord(item.before_text)"
+            svgIcon="audio"
+          ></mat-icon>
+          <span *ngIf="!item.isEdit">{{ item.before_text }}</span>
+          <input
+            class="edit-input"
+            *ngIf="item.isEdit"
+            name="before"
+            [attr.data-ref]="item.ref_id"
+            placeholder="{{ item.before_text }}"
+            type="text"
+            (keydown)="detectKey($event, item)"
+          />
+        </div>
+        <div>
+          <img src="../../assets/img/fast_forward_blue.svg" />
+        </div>
+        <div class="before-text">
+          <mat-icon
+            (click)="playHistoryWord(item.after_text)"
+            svgIcon="audio"
+          ></mat-icon>
+          <span *ngIf="!item.isEdit">{{ item.after_text }}</span>
+          <input
+            class="edit-input"
+            *ngIf="item.isEdit"
+            name="after"
+            [attr.data-ref]="item.ref_id"
+            placeholder="{{ item.after_text }}"
+            type="text"
+            (keydown)="detectKey($event, item)"
+          />
+        </div>
+        <div class="tools">
+          <mat-icon
+            class="edit"
+            svgIcon="edit_pencil"
+            (click)="editText(i)"
+            *ngIf="!item.isEdit"
+          ></mat-icon>
+          <mat-icon
+            class="done"
+            svgIcon="check"
+            (click)="editDone(item, i)"
+            *ngIf="item.isEdit"
+          ></mat-icon>
+          <mat-icon
+            class="delete"
+            svgIcon="trash"
+            (click)="deleteHistoryWord(item)"
+            *ngIf="!item.isEdit"
+          ></mat-icon>
+          <mat-icon
+            class="cancel"
+            svgIcon="cross"
+            (click)="editCancel(i)"
+            *ngIf="item.isEdit"
+          ></mat-icon>
+        </div>
+      </div>
+    </div>
+    <div class="page-controls">
+      <button
+        (click)="goToPage(currentPage - 1)"
+        [disabled]="currentPage === 1"
+      >
+        <mat-icon svgIcon="previous"></mat-icon>
+      </button>
+
+      <div *ngFor="let pageNumber of getPageNumbers()">
+        <ng-container *ngIf="pageNumber === '...'">{{
+          pageNumber
+        }}</ng-container>
+        <ng-container *ngIf="pageNumber !== '...'">
+          <span
+            class="page-number"
+            [class.selected]="currentPage === pageNumber"
+            (click)="goToPage(pageNumber)"
+          >
+            {{ pageNumber }}
+          </span>
+        </ng-container>
+      </div>
+      <button
+        (click)="goToPage(currentPage + 1)"
+        [disabled]="currentPage === totalPages"
+      >
+        <mat-icon svgIcon="next"></mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

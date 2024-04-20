@@ -1,0 +1,100 @@
+.full-users-container{
+  padding: 5% 10%;
+  position: relative;
+  .close{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+  }
+  .header{
+    padding: 12px 0 36px 0;
+    p{
+      text-align: center;
+      font-size: 24px;
+      margin: auto;
+      font-weight: bold;
+    }
+  }
+  .body{
+    pre{
+      white-space: pre-wrap;
+      font-family: 'Sarabun';
+      font-size: 14px;
+      line-height: 24px;
+    }
+    img{
+      max-width: 100%;
+      padding: 12px 0;
+    }
+    .bold{
+      font-weight: bold;
+    }
+  }
+
+  .uid{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 8px;
+    cursor: pointer;
+  }
+  .group-checkbox{
+    text-align: center;
+    padding: 6px 0 20px 0;
+
+    ::ng-deep .mat-checkbox-label{
+      line-height: 0px ;
+    }
+    span{
+      font-family: 'Sarabun';
+    }
+    .text-fee{
+      color: #b7bbc0;
+      font-size: 12px;
+    }
+  }
+  .group-dropdown{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+    label{
+      white-space: nowrap;
+    }
+    .select{
+      width: 200px;
+      border: 1px solid #01bffb;
+      border-radius: 10px;
+      padding: 4px 12px;
+    }
+  }
+  .group-btn{
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 24px;
+    button{
+      padding: 0 24px;
+      height: 38px;
+      border-radius: 10px;
+      border-color: transparent;
+    }
+    .btn-yes{
+      background-color: #01bffb;
+      color: white;
+    }
+    .btn-try{
+      background-color: #F3B807;
+      color: white;
+    }
+    .btn-no{
+      background-color: white;
+      color: #01bffb;
+      border: solid 1px #01bffb;
+    }
+  }
+}

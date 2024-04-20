@@ -1,0 +1,104 @@
+<div class="dialog-container">
+  <mat-icon class="close" svgIcon="close" (click)="onCancel()"></mat-icon>
+  <div class="full-content">
+    <mat-icon class="danger-icon" svgIcon="danger"></mat-icon>
+    <h2 class="header">{{ text.header }}</h2>
+    <p class="details">
+      {{ text.details_2 }}
+      {{ textLimit }}
+      {{ text.details_3 }}
+    </p>
+  </div>
+  <ng-container *ngIf="!isMember">
+    <div class="special-text">
+      <span class="highlight">
+        {{ text.promotion[0] }}
+      </span>
+      <span class="text">
+        {{ text.promotion[1] }}
+      </span>
+    </div>
+    <div class="box gradient-border upsell">
+      <div class="left-group">
+        <img
+          class="point-icon"
+          src="../../assets/img/Real_point.svg"
+          alt="icon"
+        />
+        <div class="point-group">
+          <span class="point gradient">
+            {{ promotionPackage?.display_name }}
+            <!-- <span class="currency">{{ "text.content.point" }}</span> -->
+          </span>
+          <li class="free-gift gradient">
+            {{ text.advantage.text_limit[0] }}
+            {{ promotionPackage?.text_limit | number }}
+            {{ text.advantage.text_limit[1] }}
+          </li>
+          <li class="free-gift gradient">
+            {{ text.advantage.point[0] }}
+            {{ promotionPackage?.point | number }}
+            {{ text.advantage.point[1] }}
+          </li>
+        </div>
+      </div>
+
+      <div class="price-group">
+        <div class="group-1">
+          <span class="original">
+            {{ _wallet.displayPriceByCurrency(promotionPackage) }}
+          </span>
+          <div class="group-2">
+            <span class="discount gradient">
+              {{ _wallet.displayDiscountPriceByCurrency(promotionPackage) }}
+              <span class="currency">{{ text.currency }}</span>
+            </span>
+            <!-- <div class="counter">
+              <mat-icon svgIcon="clock_gradient"></mat-icon>
+              <span class="gradient">{{ "text.content.countdown" }}</span>
+              <span class="gradient">{{ 'countdown | date : "mm:ss"' }}</span>
+            </div> -->
+          </div>
+        </div>
+        <button (click)="onPay(promotionPackage)">
+          {{ text.confirm }}
+        </button>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- <div class="upsell">
+    <div class="package">
+      <img
+        class="point-icon"
+        src="../../assets/img/Real_point.svg"
+        alt="icon"
+      />
+      <div class="package-group">
+        <span class="display-name">
+          {{ promotionPackage?.display_name }}
+        </span>
+        <ul>
+          <li>
+            {{ text.advantage.text_limit[0] }}
+            {{ promotionPackage?.text_limit }}
+            {{ text.advantage.text_limit[1] }}
+          </li>
+          <li>
+            {{ text.advantage.point[0] }}
+            {{ promotionPackage?.point }}
+            {{ text.advantage.point[1] }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="price">
+
+    </div>
+  </div> -->
+  <div class="group-btn" *ngIf="isMember">
+    <button class="upgrade" [matDialogClose]="false">
+      {{ text.cancel }}
+    </button>
+  </div>
+</div>

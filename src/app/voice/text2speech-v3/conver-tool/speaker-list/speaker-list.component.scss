@@ -1,0 +1,421 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+.speaker-container {
+  position: fixed;
+  bottom: 50%;
+  left: 50%;
+  margin-left: calc(-920px / 2);
+  margin-bottom: calc(-682px / 2);
+  padding: 24px;
+  padding-bottom: 6px;
+  width: 872px;
+  height: 634px;
+  background: #ffffff;
+  border-radius: 24px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 100;
+}
+
+.tab {
+  display: flex;
+  flex-direction: row;
+
+  .tab-btn {
+    display: flex;
+    align-items: center;
+    font-family: "Prompt";
+    font-size: 14px;
+    font-weight: 600;
+    height: 37px;
+    width: auto;
+    padding: 8px 16px 8px 16px;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    border: none;
+    background-color: #ffffff;
+    cursor: pointer;
+
+    img {
+      margin-right: 8px;
+    }
+  }
+
+  .tab-btn:hover {
+    background-color: #f7f8fa;
+  }
+
+  .active {
+    background-color: #f7f8fa;
+  }
+}
+
+.search {
+  display: flex;
+}
+
+.filter-popup {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-btn {
+  display: flex;
+  flex: 1;
+
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Prompt";
+  font-size: 14px;
+  font-weight: 300;
+  padding: 11px 16px;
+  margin-right: 8px;
+  width: 124px;
+  height: 44px;
+  background-color: #ffffff;
+  border: 1px solid #e2e3e9;
+  border-radius: 12px;
+}
+
+.resetFilter-btn {
+  flex: 1;
+  font-family: "Prompt";
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  height: 44px;
+  width: auto;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.searchText {
+  position: relative;
+
+  .search-icon {
+    position: absolute;
+    top: 15px;
+    left: 16px;
+  }
+
+  .input-search {
+    font-family: "Prompt";
+    font-size: 16px;
+    font-weight: 400;
+    width: 313px;
+    height: 44px;
+    border: 1px solid #e2e3e9;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    margin-right: 16px;
+    padding: 10px 36px 10px 40px;
+  }
+
+  .clearText-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 10px;
+    right: 24px;
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+  }
+}
+
+.filter-popup {
+  position: absolute;
+  width: 124px;
+  height: auto;
+  max-height: 240px;
+  overflow-y: scroll;
+  padding: 8px 0px 4px 8px;
+  background: #ffffff;
+  box-shadow: 0px 16px 40px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
+  .input-select {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    background: #ffffff;
+    border-radius: 12px;
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+
+  .input-select:hover {
+    background-color: #f7f8fa;
+  }
+
+  input[type="radio"] {
+    display: none;
+
+    + label {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      min-height: 45px;
+      height: auto;
+      border-radius: 12px;
+      cursor: pointer;
+
+      .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0px 8px 0px 18px;
+        background: #ffffff;
+        width: 15px;
+        height: 15px;
+        border: 1px solid #e2e3e9;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+
+        img {
+          opacity: 0;
+          z-index: 10;
+          transition: all 0.3s ease;
+        }
+      }
+    }
+    &:checked + label .box img {
+      opacity: 1;
+    }
+    &:checked + label .box {
+      background: #000000;
+    }
+    &:checked + label {
+      background-color: #f7f8fa;
+    }
+  }
+}
+
+.speechStyle {
+  margin-bottom: 16px;
+  overflow: auto;
+
+  .input-select {
+    display: inline-block;
+    height: 35px;
+    background: #ffffff;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 400;
+    margin-right: 7px;
+    white-space: nowrap;
+  }
+
+  .input-select:hover {
+    background-color: #f7f8fa;
+  }
+
+  input[type="radio"] {
+    display: none;
+
+    + label {
+      padding: 7px 16px;
+      width: 100%;
+      height: 100%;
+      border-radius: 100px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    &:checked + label {
+      background-color: #f7f8fa;
+    }
+  }
+}
+
+.list {
+  width: 824px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  column-gap: 16px;
+
+  .speaker-card {
+    display: flex;
+    // flex-direction: column;
+    width: 264px;
+    height: auto;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: (0px 8px 24px rgba(0, 0, 0, 0.1));
+    margin-bottom: 16px;
+
+    // &:nth-child(3n-1) {
+    //   margin-left: 16px;
+    //   margin-right: 16px;
+    // }
+
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+      .detail-row-1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 12px 12px 0px 12px;
+
+        .face-img {
+          width: 28px;
+          height: 28px;
+          margin-right: 12px;
+          border-radius: 50%;
+        }
+
+        .speaker-name {
+          flex: 1;
+          font-size: 16px;
+          font-weight: 700;
+          margin: 0px 8px 0px 0px;
+        }
+
+        .fav-btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: none;
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          padding: 0;
+          cursor: pointer;
+          background-color: transparent;
+
+          .fav-heart {
+            width: 12px;
+            height: 12px;
+          }
+        }
+      }
+
+      .detail-row-2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 4px 12px 8px 52px;
+
+        .speaker-gender,
+        .speaker-lang {
+          font-size: 12px;
+          font-weight: 300;
+          margin: 0;
+          color: #605e5c;
+        }
+
+        .speaker-gender {
+          flex: 1;
+        }
+      }
+
+      .detail-row-3 {
+        display: flex;
+        flex: 1;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: center;
+        margin-left: 52px;
+        margin-bottom: 10px;
+
+        .tag {
+          font-size: 12px;
+          font-weight: 400;
+          margin: 0;
+          padding: 0px 8px;
+          background: #f7f8fa;
+          border-radius: 100px;
+          width: auto;
+        }
+      }
+
+      .detail-row-4 {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-left: 12px;
+        margin-bottom: 5px;
+
+        .sample-btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          border: none;
+          background: #ffffff;
+          cursor: pointer;
+        }
+
+        .add-remove-speaker {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: "Prompt";
+          font-size: 14px;
+          font-weight: 600;
+          color: #323130;
+          margin-right: 16px;
+          border: none;
+          border-radius: 12px;
+          cursor: pointer;
+          background-color: transparent;
+
+          img {
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 24px 0px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  background-clip: padding-box;
+  border: 4px solid transparent;
+  border-radius: 12px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  background-clip: padding-box;
+  border-right: 4px solid transparent;
+  border-radius: 12px;
+}

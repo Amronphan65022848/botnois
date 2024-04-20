@@ -1,0 +1,379 @@
+<div
+  class="boxes-container"
+  cdkDropList
+  cdkDragPreviewContainer="parent"
+  (cdkDropListDropped)="drop($event)"
+>
+  @for (box of data(); track box._id; let i = $index) {
+    <div
+      class="box"
+      cdkDrag
+      cdkDragLockAxis="y"
+      cdkDragBoundary=".boxes-container"
+      [cdkDragDisabled]="!isDraging()"
+      [ngClass]="{
+        'focus-bg': focusIndex === i,
+        'exceed-bg': box.isTextExceed
+      }"
+    >
+      <div
+        class="loading-box"
+        [ngStyle]="{
+          display: box.isLoading ? 'flex' : 'none'
+        }"
+      >
+        <div
+          #overlay_loading
+          id="overlay_loading"
+          class="loading"
+          [ngStyle]="{
+            display: box.isLoading ? 'flex' : 'none',
+            height: box.box_height
+          }"
+        >
+          <img src="assets/img/dowload_gif5.gif" alt="กำลังโหลด" />
+        </div>
+      </div>
+      @if (isDraging()) {
+        <div class="drag" [matMenuTriggerFor]="menuDrag">
+          <mat-icon
+            cdkDragHandle
+            svgIcon="six_dots"
+            [ngStyle]="{ color: box.isTextExceed ? '#FF5252' : '#01BFFB' }"
+          ></mat-icon>
+          <mat-menu class="rounded-menu" #menuDrag="matMenu">
+            <button
+              mat-menu-item
+              [disabled]="i === 0"
+              (click)="drop({ previousIndex: i, currentIndex: 0 })"
+            >
+              <span>{{ text?.drag.top }}</span>
+            </button>
+            <button
+              mat-menu-item
+              [disabled]="i === 0"
+              (click)="drop({ previousIndex: i, currentIndex: i - 1 })"
+            >
+              <span>{{ text?.drag.up }}</span>
+            </button>
+            <button
+              mat-menu-item
+              [disabled]="i === data().length - 1"
+              (click)="drop({ previousIndex: i, currentIndex: i + 1 })"
+            >
+              <span>{{ text?.drag.down }}</span>
+            </button>
+            <button
+              mat-menu-item
+              [disabled]="i === data().length - 1"
+              (click)="
+                drop({ previousIndex: i, currentIndex: data().length - 1 })
+              "
+            >
+              <span>{{ text?.drag.bot }}</span>
+            </button>
+          </mat-menu>
+        </div>
+      }
+      <div class="body" #conversation_box (click)="focus(i)">
+        <section class="speaker-section">
+          @if (!box.speaker) {
+            <div
+              class="display-selected-speaker"
+              [ngClass]="{
+                'focus-bg-darken': focusIndex === i,
+                'exceed-bg-no-focus': box.isTextExceed && focusIndex != i,
+                'exceed-bg-darken': box.isTextExceed && focusIndex === i
+              }"
+              (click)="triggerSelectSpeaker(box.speaker, i, conversation_box)"
+            >
+              <div
+                class="selected-speaker"
+                [ngClass]="{
+                  'exceed-border-2px': box.isTextExceed
+                }"
+              >
+                <mat-icon
+                  class="person-icon"
+                  svgIcon="person_dynamic"
+                  [ngStyle]="{
+                    color: box.isTextExceed ? '#FF5252' : '#22C7FC'
+                  }"
+                ></mat-icon>
+              </div>
+              <span class="speaker-name">{{ text?.select_voice }}</span>
+              <mat-icon
+                class="down-icon"
+                svgIcon="down_dynamic"
+                [ngStyle]="{ color: box.isTextExceed ? '#FF5252' : '#2196F3' }"
+              ></mat-icon>
+            </div>
+          } @else {
+            <div
+              class="display-selected-speaker"
+              [ngClass]="{
+                'focus-bg-darken': focusIndex === i,
+                'exceed-bg-no-focus': box.isTextExceed && focusIndex != i,
+                'exceed-bg-darken': box.isTextExceed && focusIndex === i
+              }"
+              (click)="triggerSelectSpeaker(box.speaker, i, conversation_box)"
+            >
+              <div
+                class="selected-speaker"
+                [ngClass]="{
+                  'exceed-border-2px': box.isTextExceed
+                }"
+              >
+                <img src="{{ findfaceimg(box.speaker) }}" alt="speaker" />
+              </div>
+              <span class="speaker-name">{{
+                findSpeakerName(box.speaker)
+              }}</span>
+              <mat-icon
+                class="down-icon"
+                svgIcon="down_dynamic"
+                [ngStyle]="{ color: box.isTextExceed ? '#FF5252' : '#2196F3' }"
+              ></mat-icon>
+            </div>
+          }
+
+          @if (!isSelecting()) {
+            <div class="edit">
+              <button class="icon-btn" (click)="remove(i)">
+                <mat-icon
+                  svgIcon="trash_dynamic"
+                  [ngStyle]="{ color: '#FF5252' }"
+                ></mat-icon>
+              </button>
+              <button class="icon-btn" [matMenuTriggerFor]="menu">
+                <mat-icon
+                  svgIcon="dot_horizontal"
+                  [ngStyle]="{
+                    color: box.isTextExceed ? '#FF5252' : '#01BFFB'
+                  }"
+                ></mat-icon>
+              </button>
+              <mat-menu class="rounded-menu" #menu="matMenu">
+                <button mat-menu-item (click)="toggleDrag()">
+                  <span>{{ text?.options.switch }}</span>
+                </button>
+                <button mat-menu-item (click)="addTextBoxMenu(i, 'above')">
+                  <span>{{ text?.options.add_above }}</span>
+                </button>
+                <button mat-menu-item (click)="addTextBoxMenu(i, 'below')">
+                  <span>{{ text?.options.add_below }}</span>
+                </button>
+              </mat-menu>
+            </div>
+          } @else {
+            <div class="select-checkbox">
+              <mat-checkbox
+                disableRipple="true"
+                [checked]="selectedList().includes(box._id)"
+                [value]="box._id"
+                (change)="toggleSelect($event.checked, box._id)"
+                color="primary"
+              ></mat-checkbox>
+            </div>
+          }
+        </section>
+        <section
+          class="text-section"
+          [ngClass]="{
+            'focus-border': focusIndex === i,
+            'exceed-border': box.isTextExceed && focusIndex === i
+          }"
+        >
+          <div
+            text-editable
+            contenteditable="true"
+            [(ngModel)]="box.display_text"
+            #textarea_inputbox
+            class="prevent-ios-zoom"
+            [disabled]="box.isDownload || !box.isEdit"
+            [class.textarea_inputbox]="!box.isDownload || box.isEdit"
+            [ngClass]="{
+              'exceed-bg-no-focus': box.isTextExceed && focusIndex != i
+            }"
+            id="textarea_inputbox_{{ i }}"
+            attr.placeholder="{{ placeholder }}"
+            type="text"
+            (keydown)="detectKey($event, i, conversation_box)"
+            (input)="
+              highlightText($event.target);
+              updateData(i);
+              textExceedLimit($event.target, i)
+            "
+            (paste)="onPasteText($event)"
+          ></div>
+          <!-- [class.textarea_inputbox_disable]="box.isDownload || !box.isEdit" -->
+          <!-- (keyup)="onChangeText($event, i)" -->
+          <span
+            class="textlength"
+            [ngClass]="{
+              textRed: getCurrentTextCounted(box.text) > limitText,
+              'exceed-bg-no-focus': box.isTextExceed && focusIndex != i
+            }"
+          >
+            {{
+              focusIndex === i
+                ? getCurrentTextCounted(box.text) + "/" + limitText
+                : ""
+            }}
+          </span>
+        </section>
+        <section class="controls-section">
+          @if (box.isTextExceed) {
+            <span class="alert-text-exceed textRed">
+              {{ text?.alert_exceed }}
+            </span>
+          }
+          @if (!box.speaker) {
+            <span class="select-lang-tooltip">
+              <span class="lang-warn">{{ text?.select_des }}</span>
+            </span>
+          } @else {
+            <span
+              class="select-lang-tooltip"
+              matTooltip="{{ text?.soundLang }}"
+              matTooltipClass="mat-tooltip-dropdown"
+              matTooltipShowDelay="300"
+              matTooltipPosition="above"
+              (click)="langDropdown.open()"
+              [ngClass]="{
+                'focus-text': focusIndex === i,
+                textRed: box.isTextExceed
+              }"
+            >
+              <img
+                class="flag"
+                src="../../../../../assets/icons/toolbar/conversation/flags/{{
+                  box?.language?.flag
+                }}"
+                alt="flag"
+              />
+              <mat-select
+                #langDropdown
+                matNativeControl
+                disableOptionCentering
+                hideSingleSelectionIndicator
+                panelClass="customLang"
+                [value]="box?.language?.value"
+                (selectionChange)="onChangeLanguage($event, i)"
+                class="dropdown shift-left"
+                [disabled]="focusIndex != i"
+              >
+                <p class="main-lang">{{ text?.mainLang }}</p>
+                <mat-option
+                  *ngFor="let item of box?.main_lang"
+                  [value]="item.value"
+                >
+                  <img
+                    class="flag"
+                    src="../../../../../assets/icons/toolbar/conversation/flags/{{
+                      item?.flag
+                    }}"
+                    alt="flag"
+                  />{{ lang === "TH" ? item?.TH_name : item?.EN_name }}
+                </mat-option>
+                <p class="addons-lang">{{ text?.addonsLang }}</p>
+                <mat-option
+                  *ngFor="let item of box?.sub_lang"
+                  [value]="item.value"
+                >
+                  <!-- <mat-option *ngFor="let item of sub_lang !! langListSub" [value]="item.value"> -->
+                  <img
+                    class="flag"
+                    src="../../../../../assets/icons/toolbar/conversation/flags/{{
+                      item?.flag
+                    }}"
+                    alt="flag"
+                  />{{ lang === "TH" ? item?.TH_name : item?.EN_name }}
+                </mat-option>
+              </mat-select>
+              @if (focusIndex === i) {
+                <span class="lang-warn">{{ text?.lang_des }}</span>
+              }
+            </span>
+          }
+
+          <div class="player">
+            <div class="audio-control">
+              <button
+                class="play-pause"
+                matTooltip="{{ text?.play }}"
+                matTooltipClass="mat-tooltip-dropdown"
+                matTooltipShowDelay="300"
+                matTooltipPosition="above"
+                [disabled]="box?.isEdit || box?.isDownload"
+                (click)="playsound(i)"
+              >
+                <mat-icon svgIcon="play" *ngIf="!box.isPlaying"></mat-icon>
+                <mat-icon svgIcon="pause" *ngIf="box.isPlaying"></mat-icon>
+              </button>
+              @if (currentIndex != i) {
+                <div class="disable">
+                  <span>{{ 0 | date: "m:ss" }} / {{ 0 | date: "m:ss" }}</span>
+                  <input class="slider" type="range" [value]="0" [max]="0" />
+                </div>
+              } @else {
+                <div class="play" *ngIf="currentIndex == i">
+                  <span
+                    >{{ currentTime | date: "m:ss" }} /
+                    {{ duration | date: "m:ss" }}</span
+                  >
+                  <input
+                    class="slider"
+                    type="range"
+                    [value]="currentTime"
+                    [max]="duration"
+                    (input)="onSliderInput($event)"
+                    [ngStyle]="{
+                      background:
+                        'linear-gradient(to right, #01BFFB 0%, #01BFFB ' +
+                        (currentTime / duration) * 100 +
+                        '%, #efefef ' +
+                        (currentTime / duration) * 100 +
+                        '%, #efefef 100%)'
+                    }"
+                    [disabled]="box.isEdit || box.freeze"
+                  />
+                </div>
+              }
+            </div>
+            <button
+              class="handle-action-btn"
+              [ngClass]="{
+                create: box?.isEdit,
+                download: !box?.isEdit
+              }"
+              [disabled]="box.isTextExceed"
+              (click)="handleDownloadOrCreate(i, conversation_box)"
+            >
+              {{
+                !box.isEdit && box.category === "soundtrack"
+                  ? text?.download
+                  : text?.generate
+              }}
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+    @if (i != data.length - 1) {
+      <mat-divider></mat-divider>
+    }
+  }
+</div>
+<!-- <div class="bottom-box mb-3">
+  <button
+    id="btn-add"
+    [disabled]="data.length >= limitBox"
+    [matTooltip]="add_word"
+    class="add-button"
+    (click)="add_textbox()"
+  >
+    <img src="assets/icons/toolbar/conversation/add.svg" />
+    <span>{{ add_word }}</span>
+  </button>
+</div> -->

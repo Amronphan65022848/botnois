@@ -1,0 +1,65 @@
+.speaker-invite-container{
+  display: grid;
+  grid-template-rows: 1fr 0.1fr 1fr 0.1fr;
+  height: 100%;
+  gap: 24px;
+  padding: 24px;
+  .mode-toggle{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+    text-align: center;
+
+    .title{
+      height: 100%;
+      font-size: clamp(16px,2vw,18px);
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+
+    .title-choose{
+      background-color: #01BFFB;
+      color: white;
+      border-radius: 5px;
+    }
+
+  }
+
+  .invite-panel{
+    display: grid;
+    grid-template-columns: 1fr 0.2fr;
+
+  }
+  .invite-list{
+    table{
+      width: 100%;
+      table-layout: fixed;
+      overflow-y: scroll;
+      height: 40vh;
+      display: block;
+      background-color: #f7f8fa;
+      border-radius: 10px;
+      padding: 12px;
+      tr{
+        display: grid;
+        grid-template-columns: 0.2fr 1fr 0.2fr;
+      }
+    }
+  }
+  .invite-btn{
+    text-align: center;
+  }
+
+  span{
+    font-family: "Sarabun";
+  }
+
+  .material-symbols-outlined{
+    font-family: 'Material Symbols Outlined' !important;
+  }
+}

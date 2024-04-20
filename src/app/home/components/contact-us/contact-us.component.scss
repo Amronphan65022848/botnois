@@ -1,0 +1,98 @@
+.contact-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0px 27px 0px;
+  gap: 32px;
+  background: url("../../../../assets/landing-v3/bg_contact.webp");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+
+  .header {
+    color: #000;
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 54px; /* 150% */
+  }
+
+  .forms {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    width: 550px;
+
+    input {
+      width: 100%;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1.2px solid #bdbdbd;
+      height: 56px;
+      color: #000;
+      font-family: Sarabun;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px; /* 150% */
+    }
+
+    textarea {
+      height: 120px;
+      width: 100%;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1.2px solid #bdbdbd;
+      color: #000;
+      font-family: Sarabun;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+    }
+
+    .row {
+      display: inline-flex;
+      flex-direction: row;
+      width: 100%;
+      gap: 32px;
+
+      input {
+        flex: 1;
+        width: auto;
+      }
+    }
+
+    button {
+      width: 121px;
+      height: 44px;
+      padding: 0px 16px;
+      border-radius: 8px;
+      background: #01bffb;
+      border: none;
+      color: #fff;
+      font-family: Sarabun;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 36px; /* 257.143% */
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-container {
+    padding-left: 16px;
+    padding-right: 16px;
+
+    .forms {
+      width: 100%;
+    }
+  }
+}

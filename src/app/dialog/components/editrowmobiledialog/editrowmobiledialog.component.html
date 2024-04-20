@@ -1,0 +1,131 @@
+
+<div class="card2" style="padding: 16px;">
+  <div class="topic-edit">
+    <div class="text-edit">{{text.topicEditword}}</div>
+    <span class="material-icons"  (click)="close_dialog()" style="background-color: white;background: none;cursor: pointer; " > close </span>
+  </div>
+  <div class="form-edit-word" style="overflow-y: auto;max-height: 300px;margin-top:5%;"  >
+    <form  >
+      <div >
+        <!-- input section -->
+        <div>
+          <div class="row"
+          style="width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-left: auto;
+          margin-right: auto;">
+            <div class="col-5 col-sm-5 " style="margin-top: 2%">
+              <div class="sub-card-input">
+                <div>
+                  <div class="sub-head" style="font-size: 12px;">{{text.writing}}</div>
+                  <div class="ic">
+                    <img src="../../assets/img/Real_audio.svg" alt="ฟังเสียงตัวอย่าง" style="width: 20px;" (click)="playCurrentText(firstWord)" />
+                  </div>
+                </div>
+                <div style="padding-top: 0px; padding-left: 5px">
+                  <div class="ipform">
+                    <div style="padding-top: 10px; padding-left: 5px;text-align: left;">
+                      <input
+                        type="text"
+                        autocomplete="off"
+                        matInput
+                        [(ngModel)]="firstWord"
+                        [value]="firstWord"
+                        style="font-size: 12px;
+                        text-align: left;
+                        "
+                        id="firstWord"
+                        [ngModelOptions]="{standalone: true}"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1 col-sm-1" style="display: flex;align-items: center;justify-content: center;">
+                <img src="../../assets/img/real_forward_icon.svg" alt="icon" style="width: 15px;"  >
+            </div>
+            <div class="col-5 col-sm-5" style="margin-top: 2%">
+              <div class="sub-card-input">
+                <div>
+                  <div class="sub-head" style="font-size: 12px;">{{text.reading}}</div>
+                  <div class="ic">
+                    <img src="../../assets/img/Real_audio.svg" style="width: 20px;" alt="ฟังเสียงตัวอย่าง" (click)="playCurrentText(secondWord)" />
+                  </div>
+                </div>
+                <div style="padding-top: 10px; padding-left: 5px;text-align: left;">
+                  <input
+                    type="text"
+                    autocomplete="off"
+                    matInput
+                    [(ngModel)]="secondWord"
+                    [value]="secondWord"
+                    style="font-size: 12px;
+                    text-align: left;"
+                    id="secondWord"
+                    [ngModelOptions]="{standalone: true}"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+
+
+    <!-- button section -->
+
+
+
+  <div style="margin-top:10%;padding-left:10px;padding-right:10px;text-align: center;">
+
+  <span  >
+    <p
+      mat-button
+      (click)="cancle()"
+      class="btn"
+      style="
+        width: 95px;
+        padding: 5px;
+        padding-top:7px;
+
+        color: #01bffb;
+        border-radius: 10px;
+        background-color: white;
+        border: 1px solid #01bffb;
+        height: 40px;
+      "
+    >
+      {{text.cancel_}}
+    </p>
+
+
+  </span>
+  <span  style="margin-left:5%;">
+    <p
+
+      mat-button
+      (click)="submit()"
+      class="btn"
+      style="
+        width: 95px;
+        padding: 5px 5px;
+
+        background: #01bffb;
+        padding-top:7px;
+        border-radius: 10px;
+        color: white;
+        height: 40px;
+      "
+    >
+      {{text.save_}}
+    </p>
+  </span>
+
+</div>
+</div>

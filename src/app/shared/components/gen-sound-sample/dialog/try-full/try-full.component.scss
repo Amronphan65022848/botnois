@@ -1,0 +1,140 @@
+.dialog-container {
+  position: relative;
+  padding: 24px 16px;
+  max-width: 554px;
+
+  .close {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: 16px;
+    top: 24px;
+    cursor: pointer;
+  }
+
+  .full-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    padding: 0px 32px;
+
+    .card-icon {
+      width: 83px;
+      height: 83px;
+    }
+
+    .header {
+      color: #212121;
+      text-align: center;
+      font-family: Prompt;
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
+
+    .credits {
+      margin-bottom: 12px !important;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      font-family: Prompt;
+      color: #212121;
+    }
+
+    .new-user {
+      font-family: Prompt;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 21px;
+      margin-bottom: 12px !important;
+
+      .text-new-user {
+        color: #424242;
+      }
+
+      .text-gradient {
+        background: linear-gradient(
+          90deg,
+          rgba(178, 161, 250, 1) 0%,
+          rgba(1, 191, 251, 1) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    .details {
+      color: #424242;
+      text-align: center;
+      font-family: Prompt;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 43px;
+    }
+  }
+
+  .group-btn {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    button {
+      height: 44px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      text-align: center;
+      font-family: Sarabun;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .max {
+      color: #fff;
+      background: linear-gradient(
+        180deg,
+        rgba(51, 33, 96, 1) 0%,
+        rgba(103, 34, 79, 1) 100%
+      );
+    }
+
+    .upgrade {
+      border: none;
+      background: #01bffb;
+      color: #fff;
+    }
+  }
+}
+
+// .text-gradiant-red {
+//   background: linear-gradient(
+//     90deg,
+//     rgba(72, 35, 90, 1) 0%,
+//     rgba(193, 52, 126, 1) 100%
+//   );
+//   -webkit-background-clip: text;
+//   -webkit-text-fill-color: transparent;
+// }
+
+// .text-gradiant-blue {
+//   background: linear-gradient(
+//     90deg,
+//     rgba(178, 161, 250, 1) 0%,
+//     rgba(1, 191, 251, 1) 100%
+//   );
+//   -webkit-background-clip: text;
+//   -webkit-text-fill-color: transparent;
+// }
+
+@media (max-width: 425px) {
+  .dialog-container {
+    .full-content {
+      padding: 0px 15px;
+    }
+  }
+}

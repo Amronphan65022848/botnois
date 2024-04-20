@@ -1,0 +1,15 @@
+<div class="buy-points-container">
+  @for (
+    packageType of packageTypes;
+    track packageType.type;
+    let $typeIndex = $index
+  ) {
+    <app-point-box
+      class="w-100"
+      [page]="page"
+      [user]="user"
+      [packageType]="packageType"
+      [$typeIndex]="$typeIndex"
+    />
+  }
+</div>

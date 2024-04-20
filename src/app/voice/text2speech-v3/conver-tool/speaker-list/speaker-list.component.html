@@ -1,0 +1,200 @@
+<div class="backdrop">
+  <div class="speaker-container">
+    <div class="tab">
+      <button class="tab-btn" (click)="checkTab(1)" [ngClass]="{ active: tab === 'tab1' }">
+        <img src="../../../../../assets/icons/v3/search.svg" alt="" />
+        ค้นหาเสียง
+      </button>
+      <button class="tab-btn" (click)="checkTab(2)" [ngClass]="{ active: tab === 'tab2' }">
+        <img src="../../../../../assets/icons/v3/heart.svg" alt="" />
+        เสียงที่ถูกใจ
+      </button>
+      <button class="tab-btn" (click)="checkTab(3)" [ngClass]="{ active: tab === 'tab3' }">
+        <img src="../../../../../assets/icons/v3/plus-circle.svg" alt="" />
+        เสียงที่ใช้งานอยู่
+      </button>
+    </div>
+    <div *ngIf="isSearchList">
+      <div class="search">
+        <div class="searchText">
+          <img class="search-icon" src="../../../../../assets/icons/v3/search.svg" alt="" />
+          <input class="input-search" type="text" name="search" [placeholder]="inputPlaceholder"
+            [(ngModel)]="searchText" />
+          <button class="clearText-btn" (click)="clearText()" *ngIf="searchText">
+            <img src="../../../../../assets/icons/v3/close.svg" alt="" />
+          </button>
+        </div>
+        <div class="dropdown" appClickOutside (clickOutside)="styleClose()">
+          <button class="dropdown-btn" (click)="toggleStyleShow()">
+            สไตล์
+            <img src="../../../../../assets/icons/v3/down.svg" alt="" />
+          </button>
+          <div class="filter-popup" *ngIf="isStyleShow">
+            <div class="input-select">
+              <input type="radio" id="voiceStyle" name="voiceStyle" value="all" [checked]="filterKey[2] === 'all'"
+                (change)="onCheck($event, 'all')" />
+              <label for="voiceStyle">
+                <span class="box">
+                  <img src="../../../../../assets/icons/v3/check.svg" alt="checked icon" />
+                </span>
+                <span>ทั้งหมด</span>
+              </label>
+            </div>
+            <div class="input-select" *ngFor="let voice of voiceStyle; let i = index">
+              <input type="radio" [id]="'voiceStyle_' + i" name="voiceStyle" value="{{ voice }}"
+                [checked]="filterKey[2] === voice" (change)="onCheck($event, voice)" />
+              <label [for]="'voiceStyle_' + i" *ngIf="voice != 'none'">
+                <span class="box">
+                  <img src="../../../../../assets/icons/v3/check.svg" alt="checked icon" />
+                </span>
+                <span>{{
+                  voice.replace("เสียง", "").replace(",เสียง", "")
+                  }}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown" appClickOutside (clickOutside)="langClose()">
+          <button class="dropdown-btn" (click)="toggleLangShow()">
+            ภาษา
+            <img src="../../../../../assets/icons/v3/down.svg" alt="" />
+          </button>
+          <div class="filter-popup" *ngIf="isLangShow">
+            <div class="input-select">
+              <input type="radio" id="lang-1" name="lang" value="all" [checked]="filterKey[0] === 'all'"
+                (change)="onCheck($event, 'all')" />
+              <label for="lang-1">
+                <span class="box">
+                  <img src="../../../../../assets/icons/v3/check.svg" alt="checked icon" />
+                </span>
+                <span>ทั้งหมด</span>
+              </label>
+            </div>
+            <div class="input-select">
+              <input type="radio" id="lang-2" name="lang" value="ไทย" [checked]="filterKey[0] === 'TH'"
+                (change)="onCheck($event, 'TH')" />
+              <label for="lang-2">
+                <span class="box">
+                  <img src=".../../../../../assets/icons/v3/check.svg" alt="checked icon" />
+                </span>
+                <span>ไทย</span>
+              </label>
+            </div>
+            <div class="input-select">
+              <input type="radio" id="lang-3" name="lang" value="EN" [checked]="filterKey[0] === 'EN'"
+                (change)="onCheck($event, 'EN')" />
+              <label for="lang-3">
+                <span class="box">
+                  <img src="../../../../../assets/icons/v3/check.svg" alt="checked icon" />
+                </span>
+                <span>EN</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown" appClickOutside (clickOutside)="genderClose()">
+          <button class="dropdown-btn" (click)="toggleGenderShow()">
+            เพศ
+            <img src="../../../../../assets/icons/v3/down.svg" alt="" />
+          </button>
+          <div class="filter-popup" *ngIf="isGenderShow">
+            <div class="input-select">
+              <input type="radio" id="gender-1" name="gender" value="all" [checked]="filterKey[1] === 'all'"
+                (change)="onCheck($event, 'all')" />
+              <label for="gender-1">
+                <span class="box">
+                  <img src="../../../../../assets/icons/v3/check.svg" alt="checked icon" />
+                </span>
+                <span>ทั้งหมด</span>
+              </label>
+            </div>
+            <div class="input-select">
+              <input type="radio" id="gender-2" name="gender" value="ผู้ชาย" [checked]="filterKey[1] === 'ผู้ชาย'"
+                (change)="onCheck($event, 'ผู้ชาย')" /><label for="gender-2">
+                <span class="box">
+                  <img src="../../../../../assets/icons/v3/check.svg" alt="checked icon" />
+                </span>
+                <span>ผู้ชาย</span>
+              </label>
+            </div>
+            <div class="input-select">
+              <input type="radio" id="gender-3" name="gender" value="ผู้หญิง" [checked]="filterKey[1] === 'ผู้หญิง'"
+                (change)="onCheck($event, 'ผู้หญิง')" /><label for="gender-3">
+                <span class="box">
+                  <img src="../../../../../assets/icons/v3/check.svg" alt="checked icon" />
+                </span>
+                <span>ผู้หญิง</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <button class="resetFilter-btn" (click)="resetFilter()">รีเซ็ต</button>
+      </div>
+      <div class="speechStyle">
+        <div class="input-select">
+          <input type="radio" id="speechStyle" name="speechStyle" value="ทั้งหมด" [checked]="filterKey[3] === 'all'"
+            (change)="onCheck($event, 'all')" /><label for="speechStyle">
+            <span>ทั้งหมด</span>
+          </label>
+        </div>
+        <div class="input-select" *ngFor="let speech of speechStyle; let i = index">
+          <input type="radio" [id]="'speechStyle_' + i" name="speechStyle" value="{{ speech }}"
+            [checked]="filterKey[3] === speech" (change)="onCheck($event, speech)" /><label [for]="'speechStyle_' + i">
+            <span>{{
+              speech
+              .replace("สไตล์", "")
+              .replace("ข่าวม", "ข่าว")
+              .replace(" สไตล์", "")
+              }}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="list">
+      <div *ngIf="tempList.length === 0">NOT FOUND</div>
+      <div class="speaker-card" *ngFor="let speaker of tempList | search : searchText; let i = index">
+        <div class="card-container">
+          <div class="detail-row-1">
+            <img class="face-img" src="{{ speaker.face_image }}" alt="" />
+            <p class="speaker-name">{{ speaker.thai_name }}</p>
+            <button class="fav-btn">
+              <img class="fav-heart" src="../../../../../assets/icons/v3/heart.svg" alt="add favorite"
+                (click)="addFavCart(speaker.speaker_id)" *ngIf="!checkFavorite(speaker.speaker_id)" />
+              <img class="fav-heart" src="../../../../../assets/icons/v3/heart-filled.svg" alt=""
+                (click)="removeFavCart(speaker.speaker_id)" *ngIf="checkFavorite(speaker.speaker_id)" />
+            </button>
+          </div>
+          <div class="detail-row-2">
+            <p class="speaker-gender">{{ speaker.gender }}</p>
+            <p class="speaker-lang">
+              {{ speaker.language.replace("/", " &#xB7; ") }}
+            </p>
+          </div>
+          <div class="detail-row-3">
+            <p class="tag" *ngFor="let speechtag of speaker.speech_style">
+              {{ speechtag.replace("สไตล์", "") }}
+            </p>
+            <p class="tag" *ngFor="let voicetag of speaker.voice_style">
+              {{ voicetag.replace("none", "") }}
+            </p>
+          </div>
+          <div class="detail-row-4">
+            <button class="sample-btn" (click)="playSample(speaker.audio)">
+              <img src="../../../../../assets/icons/v3/play.svg" alt="" />
+            </button>
+            <!-- (click)="addSpeakerCart(speaker.speaker_id)" -->
+            <button class="add-remove-speaker" *ngIf="!checkIsInCart(speaker.speaker_id)">
+              <img src="../../../../../assets/icons/v3/plus-circle.svg" alt="add speaker" />
+              เพิ่มเสียง
+            </button>
+            <button class="add-remove-speaker" (click)="removeSpeakerCart(speaker.speaker_id)"
+              *ngIf="checkIsInCart(speaker.speaker_id)">
+              <img src="../../../../../assets/icons/v3/minus-circle.svg" alt="delete speaker" />
+              ลบเสียง
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

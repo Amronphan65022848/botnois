@@ -1,0 +1,492 @@
+.subscription-management-container {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  padding: 2em;
+
+  .title {
+    span {
+      color: #323130;
+      font-size: 28px;
+
+      font-weight: bold;
+    }
+  }
+
+  .group-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    width: 100%;
+    .box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 400px;
+      width: 100%;
+      height: 400px;
+      grid-template-areas: "info info"
+      "warning warning"
+      "btn btn";
+      padding: 16px;
+      background: #FFFFFF;
+      border: 1px solid #E2E3E9;
+      border-radius: 16px;
+
+      .info {
+        grid-area: info;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        margin-bottom: 16px;
+
+        .info-form {
+          display: flex;
+          justify-content: space-between;
+
+          label,
+          .upgrade {
+            font-size: 16px;
+            font-weight: bold;
+            white-space: nowrap;
+          }
+
+          span {
+            font-size: 16px;
+          }
+
+          .price,
+          .date {
+            // font-family: 'Kanit';
+            font-weight: 300;
+            color: #323130;
+          }
+
+          .package {
+            font-weight: bold;
+          }
+
+          .date {
+            text-align: end;
+          }
+        }
+      }
+
+
+
+      .warning {
+        display: grid;
+        grid-area: warning;
+        grid-template-columns: 41px 1fr;
+        grid-template-areas: "icon title title"
+          "icon content content";
+        background-color: #B1EAFC33;
+        border: 1px solid #01BFFB;
+        border-radius: 16px;
+        padding: 12px 8px;
+        gap: 0 10px;
+        height: 137px;
+
+        .title,
+        .content {
+          color: #01BFFB;
+        }
+
+        mat-icon {
+          width: 100%;
+        }
+
+        .title {
+          // font-family: 'prompt';
+          grid-area: title;
+
+        }
+
+        .content {
+          // font-family: 'kanit';
+          grid-area: content;
+          font-size: 12px;
+          font-weight: 300;
+        }
+      }
+
+      .btn-group {
+        grid-area: btn;
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 32px;
+
+        .upgrade,
+        .cancel {
+          border-radius: 12px;
+          border: 1px solid;
+          width: 100%;
+          min-height: 44px;
+          background-color: white;
+
+          span {
+            font-weight: 500;
+          }
+        }
+
+        .upgrade {
+          border-color: #01BFFB;
+
+          span {
+            color: #01BFFB;
+          }
+        }
+
+        .cancel {
+          border-color: #F87979;
+
+          span {
+            color: #F87979;
+          }
+        }
+      }
+    }
+
+    .box-advantage {
+      border: 1px solid #E2E3E9;
+      border-radius: 16px;
+      padding: 16px;
+      width: 100%;
+      max-width: 400px;
+      height: 371px;
+      display: flex;
+      flex-direction: column;
+      .title {
+        color: #323130;
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 16px;
+      }
+
+      .group {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 8px;
+        mat-icon {
+          max-width: 12px;
+        }
+      }
+
+    }
+    .no_package{
+      margin: auto;
+      text-align: center;
+      color: #5c5c5c;
+      p{
+        margin-top: 16px;
+      }
+      img{
+        filter: brightness(110%) opacity(40%);
+      }
+      span{
+        color: #01bffb;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .hide {
+    visibility: hidden;
+  }
+
+  span,
+  p,
+  label {
+    font-family: 'Sarabun';
+  }
+}
+
+.package_tier_container {
+    width: 100%;
+    // display: flex;
+    flex-direction: row;
+    // justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+
+    .tier_card {
+      max-width: 360px;
+      width: 100%;
+      box-shadow: 0px 3px 15px 0px rgba(79, 117, 138, 0.3);
+      border-radius: 12px;
+
+      .noAds {
+        background: linear-gradient(
+          90deg,
+          #b2a1fa 0.19%,
+          #01bffb 171.96%
+        ) !important;
+      }
+      .general {
+        background: #5c5c5c !important;
+      }
+
+      .bronze {
+        background: linear-gradient(90deg, #d68765 0%, #ffc5ad 100%) !important;
+      }
+
+      .silver {
+        background: linear-gradient(90deg, #858c8e 0%, #dedede 100%) !important;
+      }
+
+      .gold {
+        background: linear-gradient(90deg, #d8a659 0%, #f5dca4 100%) !important;
+      }
+
+      .top_card {
+        padding: 16px;
+        border-radius: 12px 12px 0px 0px;
+        max-height: 120px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        background: #000;
+
+        .col1 {
+          display: flex;
+          flex-direction: column;
+
+          .member {
+            display: inline-flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 8px;
+
+            img {
+              width: 26px;
+              height: 21px;
+            }
+
+            span {
+              color: #fff;
+              font-family: "Sarabun";
+              font-size: 16px;
+              font-weight: 700;
+            }
+          }
+
+          .tier_text {
+            color: #fff;
+            font-family: "Sarabun";
+            font-size: 72px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 100%;
+          }
+        }
+        .col2 {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+
+          span {
+            color: #fff;
+            text-align: center;
+            font-family: "Sarabun";
+            font-size: 14px;
+            font-weight: 700;
+            white-space: nowrap;
+          }
+
+          .percent_card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            background: #fff;
+
+            span {
+              font-family: "Sarabun";
+              font-size: 32px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: normal;
+              background: linear-gradient(91deg, #222166 5.33%, #812448 90.37%);
+              background-clip: text;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            }
+          }
+        }
+      }
+
+      .bottom_card {
+        border-radius: 0px 0px 12px 12px;
+        background: #fff;
+        width: 100%;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .content_noAds {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: auto;
+
+          .text_noAds {
+            color: #424242;
+            font-family: Sarabun;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 400;
+          }
+        }
+
+        .content {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 8px;
+          height: 124px;
+
+          .list {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+
+            mat-icon {
+              width: 8px;
+              height: 8px;
+            }
+
+            .text_list {
+              color: #424242;
+              font-family: Sarabun;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+            }
+
+            .text_large {
+              font-size: 20px;
+            }
+
+            .bold {
+              font-weight: 700;
+            }
+          }
+        }
+        .price {
+          width: 100%;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          gap: 12px;
+
+          .old_price {
+            color: #ff5252;
+            font-family: "Sarabun";
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: line-through;
+          }
+
+          .discount_price {
+            color: #212121;
+            font-family: "Sarabun";
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 100%;
+          }
+
+          .price_unit {
+            color: #212121;
+            font-family: "Sarabun";
+            font-size: 16px;
+            font-weight: 700;
+          }
+        }
+
+        .discount-limited {
+          text-align: center;
+          font-family: "Sarabun";
+          font-size: 14px;
+          font-weight: 600;
+          background: linear-gradient(91.04deg, #222166 5.33%, #812448 90.37%);
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .info {
+        grid-area: info;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        margin-bottom: 16px;
+
+        .info-form {
+          display: flex;
+          justify-content: space-between;
+
+          label,
+          .upgrade {
+            font-size: 16px;
+            font-weight: bold;
+            white-space: nowrap;
+          }
+
+          span {
+            font-size: 16px;
+          }
+
+          .price,
+          .date {
+            // font-family: 'Kanit';
+            font-weight: 300;
+            color: #323130;
+          }
+
+          .package {
+            font-weight: bold;
+          }
+
+          .date {
+            text-align: end;
+          }
+        }
+      }
+    .button {
+          width: 100%;
+          height: 36px;
+          button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            width: 100%;
+            height: 36px;
+            border-radius: 8px;
+            background: #01bffb;
+            color: #fff;
+            font-family: "Sarabun";
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 36px;
+            transition: all 0.3s;
+
+            &:hover {
+              background: #03a5e6;
+            }
+          }
+        }
+
+      }
+    }
+  }

@@ -1,0 +1,22 @@
+<div class="dialog-container">
+  <div class="dialog-image-container">
+    <img src="../../../assets/img/yellow-caution.svg" alt="caution">
+  </div>
+  <div class="dialog-text-container">
+    <span class="text-normal">
+      {{textObj.content}}
+    </span>
+  </div>
+  <div class="dialog-btn-container">
+    <button
+
+    *ngFor="let btn of textObj.btn;"
+    (click)="onClose(btn)"
+    [ngStyle]="btn.length < 1 ? {display:'none'} : {}"
+    >
+      <span>
+        {{btn}}
+      </span>
+    </button>
+  </div>
+</div>

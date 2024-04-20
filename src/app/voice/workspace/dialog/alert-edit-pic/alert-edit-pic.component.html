@@ -1,0 +1,36 @@
+<div class="dialog-container">
+  <mat-icon class="close" svgIcon="close" (click)="onCancel()"></mat-icon>
+  <div class="full-content">
+    <h2 class="header">{{ text.header }}</h2>
+    <div class="input-container">
+      <input
+        type="file"
+        name="image"
+        id="image"
+        class="image-input"
+        accept=".webp,.png,.jpg,.jpeg"
+        (change)="onUploadImg($event)"
+      />
+      <label for="image">
+        <div class="project-img">
+          <img
+            class="uploaded-image"
+            [src]="imgSrc"
+            alt="uploaded-image"
+            *ngIf="imgSrc"
+          />
+          <div class="overlay">
+            <p class="change-img">{{ text.insertImage }}</p>
+          </div>
+        </div>
+      </label>
+      <div class="error" *ngIf="isAlert">
+        <p class="error-text">{{ alertText }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="group-btn">
+    <button class="ok" (click)="onCancel()">{{ text.cancel }}</button>
+    <button class="upgrade" (click)="onSubmit()">{{ text.confirm }}</button>
+  </div>
+</div>

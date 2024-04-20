@@ -1,0 +1,130 @@
+.discover{
+  overflow: hidden;
+  padding: 50px 50px 50px 50px;
+ 
+  height: 100vh;
+//  background-color: rgb(197, 233, 240);
+}
+.data{
+  display: flex;
+  // background-color: chartreuse;
+  gap: 80px;
+  
+}
+
+
+
+.highlight{
+  line-height: 42px;
+  background: linear-gradient(62.51deg, #c800ff -39.94%, #00f6ff 150.17%);
+  background-size: 150% 150%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.data-left{
+  padding: 100px 20px 100px 20px;
+  // background-color: blue;
+  align-items: center;
+}
+
+// .top-discover{
+//   background-color: #fff;
+// }
+
+.bottom-text {
+ 
+  font-size: 20px;
+  text-align: center;
+  margin-top: 80%; 
+  
+}
+
+.Text-to-Speech-highlight{
+  line-height: 36px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(62.51deg, #c800ff -39.94%, #00f6ff 133.17%);
+  padding: 10px 20px;
+  border-radius: 5rem;
+  text-align: center;
+}
+
+.Technology-Benefits-botom{
+  margin-top: 10px;
+}
+  
+
+
+@media screen and (max-width: 768px) {
+  .data {
+    padding: 30px;
+  }
+  h2 {
+    font-size: 24px;
+    line-height: 36px;
+  }
+  .bottom-text p:nth-of-type(1) {
+    font-size: 14px;
+    line-height: 32px;
+    padding: 8px 16px;
+    width: 200px;
+  }
+  .bottom-text p:nth-of-type(2) {
+    margin-bottom: 15px;
+  }
+}
+
+
+
+
+
+
+.container{
+  display: flex;
+  width: 100vw;
+}
+.panel{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  flex: 0.5;
+  margin: 10px;
+  position: relative;
+  -webkit-transition: all 700ms ease-in;
+}
+.panel h3{
+  font-size: 20px;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  opacity: 0;
+}
+.panel.active{
+  flex: 5;
+
+}
+.panel.active h3{
+  opacity: 1;
+  transition: opacity 0.3s ease-in 0.4;
+} 
+
+
+
+
+@media(max-width:480px) {
+  .container{
+     width: 100vw;
+  }
+  .panel :nth-of-type(4),
+  .panel :nth-of-type(5){
+     display: none;
+  }
+  
+}

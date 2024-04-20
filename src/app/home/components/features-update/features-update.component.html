@@ -1,0 +1,193 @@
+<div class="feature-container">
+  <h3 class="header">{{ text.header }}</h3>
+  <div class="card-container">
+    <div class="map-card">
+      <div class="map">
+        <div class="card_1">
+          <div class="card_name">
+            {{ text.card_1_name }}
+            <div class="card_name_highlight">
+              <span class="highlight"> {{ text.card_1_highlight }} </span>
+            </div>
+        
+          </div>
+          <div >
+            <img
+              src="../../../../assets/create-sound-v2/Edit_Misreading.webp"
+              alt="map"
+            />
+          </div>
+        </div>
+
+        <div class="card_2">
+          <div class="card_name">
+            {{ text.card_2_header }}
+            <div class="card_name_highlight">
+              <span class="highlight"> {{ text.card_2_sub }} </span>
+            </div>
+            
+          </div>
+          <div >
+            <img
+              src="../../../../assets/create-sound-v2/studio.webp"
+              alt="map"
+            />
+          </div>
+        </div>
+        <!-- <div class="img-one">
+          <img src="../../../../assets/create-sound-v2/feature-update-1.webp" alt="map" />
+        </div>
+        <div class="img-two">
+          <img src="../../../../assets/create-sound-v2/feature-update-2.webp" alt="map" />
+        </div> -->
+
+        <!-- <div class="wrapper">
+          <div class="bg-asia">
+            <img src="../../../../assets/img/east_asia.webp" alt="map" />
+          </div>
+          <div class="actor-icon">
+            <img
+              class="mmvoice voiceicon"
+              src="../../../../assets/icons/toolbar/conversation/voice/myanmarVoice.webp"
+              alt="V"
+            /><img
+              class="lavoice voiceicon"
+              src="../../../../assets/icons/toolbar/conversation/voice/laosVoice.webp"
+              alt="V"
+            /><img
+              class="thvoice voiceicon"
+              src="../../../../assets/icons/toolbar/conversation/voice/thaiVoice.webp"
+              alt="V"
+            /><img
+              class="vtvoice voiceicon"
+              src="../../../../assets/icons/toolbar/conversation/voice/vietnamVoice.webp"
+              alt="V"
+            /><img
+              class="thsouthvoice voiceicon"
+              src="../../../../assets/icons/toolbar/conversation/voice/thaiSouthVoice.webp"
+              alt="V"
+            /><img
+              class="malayvoice voiceicon"
+              src="../../../../assets/icons/toolbar/conversation/voice/malayVoice.webp"
+              alt="V"
+            /><img
+              class="indovoice voiceicon"
+              src="../../../../assets/icons/toolbar/conversation/voice/indoVoice.webp"
+              alt="V"
+            />
+            <img
+              class="filipinonorthvoice voiceicon"
+              src="../../../../assets/icons/toolbar/conversation/voice/filipinonorthVoice.webp"
+              alt="V"
+            /><img
+              class="filipinoeastvoice voiceicon"
+              src="../../../../assets/icons/toolbar/conversation/voice/filipinoeastVoice.webp"
+              alt="V"
+            /><img
+              class="singaporewestvoice voiceicon"
+              src="../../../../assets/icons/toolbar/conversation/voice/singaporewestVoice.webp"
+              alt="V"
+            /><img
+              class="singaporemidvoice voiceicon"
+              src="../../../../assets/icons/toolbar/conversation/voice/singaporemidVoice.webp"
+              alt="V"
+            /><img
+              class="singaporeeastvoice voiceicon"
+              src="../../../../assets/icons/toolbar/conversation/voice/singaporeeastVoice.webp"
+              alt="V"
+            />
+          </div>
+        </div>
+        <div class="person">
+          <img
+            class="actor"
+            src="../../../../assets/images/carousel/Ava-global.webp"
+            alt="ava"
+          />
+        </div>
+      </div> -->
+        <!-- <div class="map-text">
+        <div class="line1">
+          <p class="whitetext">
+            {{ textMap.sound_sample.text_text_1 }}
+            <span class="gradient-text">
+              {{ textMap.sound_sample.text_text_2 }}
+            </span>
+            <br />
+            {{ textMap.sound_sample.text_text_3 }}
+            <span class="gradient-text">{{
+              textMap.sound_sample.text_text_4
+            }}</span>
+            <br />
+            {{ textMap.sound_sample.text_text_5 }}
+            {{ textMap.sound_sample.text_text_6 }}
+          </p>
+          <p class="country-text">{{ textMap.sound_sample.text_text_7 }}</p>
+        </div>
+        <div class="line5">
+          <img
+            src="../../../../assets/icons/toolbar/conversation/flagsRect/CN.svg"
+            alt="Flag 1"
+          /><img
+            src="../../../../assets/icons/toolbar/conversation/flagsRect/JPN.svg"
+            alt="Flag 2"
+          /><img
+            src="../../../../assets/icons/toolbar/conversation/flagsRect/VN.svg"
+            alt="Flag 3"
+          /><img
+            src="../../../../assets/icons/toolbar/conversation/flagsRect/LA.svg"
+            alt="Flag 4"
+          /><img
+            src="../../../../assets/icons/toolbar/conversation/flagsRect/MMR.svg"
+            alt="Flag 5"
+          /><img
+            src="../../../../assets/icons/toolbar/conversation/flagsRect/ID.svg"
+            alt="Flag 6"
+          /><img
+            src="../../../../assets/icons/toolbar/conversation/flagsRect/TH.svg"
+            alt="Flag 7"
+          /><img
+            src="../../../../assets/icons/toolbar/conversation/flagsRect/EN.svg"
+            alt="Flag 8"
+          />
+        </div>
+        <div class="line6">
+          <button id="LD_trynow_btn" class="box" (click)="loginFirebase()">
+            {{ textMap.sound_sample.text_btn }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="studio-card">
+      <div class="studio-text">
+        <div class="text-wrap">
+          <span class="studio-header">{{ text.card_2_header }}</span>
+          <p class="studio-gradient">{{ text.card_2_sub }}</p>
+        </div>
+        <button
+          id="LD_createProject_btn"
+          class="studio-btn"
+          (click)="loginFirebase()"
+        >
+          {{ text.card_2_btn }}
+        </button>
+      </div>
+      <div class="studio-img">
+        <div class="img-wrapper">
+          <img
+            class="screen"
+            src="../../../../assets/landing-v3/feature/wsp_img.webp"
+            alt="workspace"
+          />
+          <img
+            class="zoom"
+            src="../../../../assets/landing-v3/feature/zoom_img.webp"
+            alt="zoom"
+          />
+        </div>
+      </div>
+    </div> -->
+      </div>
+    </div>
+  </div>
+</div>

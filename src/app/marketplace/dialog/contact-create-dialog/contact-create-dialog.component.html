@@ -1,0 +1,62 @@
+<div class="modal-container">
+  <div class="close">
+    <mat-icon svgIcon="cross" class="close" (click)="onClose()"></mat-icon>
+  </div>
+  <div class="header">{{ text.header_create }}</div>
+  <div class="sub_header">{{ text.sub_header }}</div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="content">
+      <input
+        type="text"
+        class="name"
+        placeholder="{{ text.name }}"
+        formControlName="name"
+      />
+      <input
+        type="email"
+        class="email"
+        placeholder="{{ text.email }}"
+        formControlName="email"
+      />
+      <input
+        type="number"
+        class="phone"
+        placeholder="{{ text.phone }}"
+        formControlName="phone"
+      />
+      <input
+        type="text"
+        class="line"
+        placeholder="{{ text.line }}"
+        formControlName="line"
+      />
+      <!-- <div class="select">
+        <mat-label>{{ text.serviceLabel }}</mat-label>
+        <mat-select #select formControlName="service">
+          <mat-option value="personal">{{ text.self_use }}</mat-option>
+          <mat-option value="organization">{{ text.organization }}</mat-option>
+        </mat-select>
+        <mat-icon
+          matSuffix
+          svgIcon="down"
+          (click)="this.select.open()"
+        ></mat-icon>
+      </div>
+      <input
+        type="text"
+        class="organization_name"
+        placeholder="{{ text.organization_name }}"
+        formControlName="oreganizationName"
+        *ngIf="form.get('service').value === 'organization'"
+      /> -->
+    </div>
+    <div class="btn-group">
+      <button class="cancel-btn" (click)="onClose()">
+        {{ text.btn_cancel }}
+      </button>
+      <button type="submit" class="submit-btn" [disabled]="!form.valid">
+        {{ text.btn_submit }}
+      </button>
+    </div>
+  </form>
+</div>

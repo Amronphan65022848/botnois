@@ -1,0 +1,225 @@
+<ngx-loading [show]="isAuthFormLoading"></ngx-loading>
+@switch (page) {
+  @case ("SignIn") {
+    <div class="form-group" [formGroup]="signInForm">
+      <mat-form-field class="mb-2" appearance="outline">
+        <mat-label>{{ text.email }}</mat-label>
+        <input matInput formControlName="email" />
+        @if (signInForm.get("email").invalid) {
+          <mat-error>{{ getSignInErrorMessage("email") }}</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ text.password }}</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        @if (signInForm.get("password").invalid) {
+          <mat-error>{{ getSignInErrorMessage("password") }}</mat-error>
+        }
+      </mat-form-field>
+      <app-auth-options
+        [text]="text"
+        (_forgotPassword)="onForgotPassword()"
+        (_rememberPassword)="rememberPassword()"
+      ></app-auth-options>
+      <button
+        id="sign-in"
+        [disabled]="signInForm.invalid"
+        (click)="onSignIn()"
+        class="btn-sign-in"
+        mat-raised-button
+      >
+        {{ button }}
+      </button>
+    </div>
+  }
+  @case ("SignUp") {
+    <div class="form-group" [formGroup]="signUpForm">
+      <mat-form-field class="mb-2" appearance="outline">
+        <mat-label>{{ text.email }}</mat-label>
+        <input matInput formControlName="email" />
+        @if (signUpForm.get("email").invalid) {
+          <mat-error>{{ getSignUpErrorMessage("email") }}</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="mb-2" appearance="outline">
+        <mat-label>{{ text.password }}</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        @if (signUpForm.get("password").invalid) {
+          <mat-error>{{ getSignUpErrorMessage("password") }}</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ text.confirm_password }}</mat-label>
+        <input
+          matInput
+          formControlName="confirm_password"
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        @if (signUpForm.get("confirm_password").invalid) {
+          <mat-error>{{ getSignUpErrorMessage("confirm_password") }}</mat-error>
+        }
+      </mat-form-field>
+      <button
+        id="sign-in"
+        [disabled]="signUpForm.invalid"
+        (click)="onSignUp()"
+        class="btn-sign-in"
+        mat-raised-button
+      >
+        {{ button }}
+      </button>
+    </div>
+  }
+
+  @case ("ForgotPassword") {
+    <div class="form-group" [formGroup]="forgotPasswordForm">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ text.email }}</mat-label>
+        <input matInput formControlName="email" />
+        @if (forgotPasswordForm.get("email").invalid) {
+          <mat-error>{{ getSignUpErrorMessage("email") }}</mat-error>
+        }
+      </mat-form-field>
+
+      <button
+        id="sign-in"
+        [disabled]="forgotPasswordForm.invalid"
+        (click)="onSendPassword()"
+        class="btn-sign-in"
+        mat-raised-button
+      >
+        {{ button }}
+      </button>
+    </div>
+  }
+
+  @case ("ResetPassword") {
+    <div class="form-group" [formGroup]="resetPasswordForm">
+      <mat-form-field class="mb-2" appearance="outline">
+        <mat-label>{{ text.password }}</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        @if (signUpForm.get("password").invalid) {
+          <mat-error>{{ getSignUpErrorMessage("password") }}</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ text.confirm_password }}</mat-label>
+        <input
+          matInput
+          formControlName="confirm_password"
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        @if (signUpForm.get("confirm_password").invalid) {
+          <mat-error>{{ getSignUpErrorMessage("confirm_password") }}</mat-error>
+        }
+      </mat-form-field>
+
+      <button
+        id="sign-in"
+        [disabled]="resetPasswordForm.invalid"
+        (click)="onResetPassword()"
+        class="btn-sign-in"
+        mat-raised-button
+      >
+        {{ button }}
+      </button>
+    </div>
+  }
+
+  <!-- Handle state case -->
+  @default {
+    <div class="form-group flex-center" [formGroup]="forgotPasswordForm">
+      @if (page.includes("Success")) {
+        <mat-icon
+          class="ok-circle"
+          svgIcon="ok_circle_gradient_blue"
+        ></mat-icon>
+      } @else {
+        <mat-icon class="email" svgIcon="email"></mat-icon>
+      }
+      <div class="flex-center px-4">
+        <span>
+          {{ description }}
+        </span>
+        <div class="group__sent">
+          <span>
+            {{ sendAt }}
+          </span>
+          <span>
+            {{
+              page === "State__SendPassword"
+                ? forgotPasswordForm.value.email
+                : signUpForm.value.email
+            }}
+          </span>
+        </div>
+      </div>
+
+      <button
+        id="sign-in"
+        (click)="onClose()"
+        class="btn-sign-in"
+        mat-raised-button
+      >
+        {{ button }}
+      </button>
+    </div>
+  }
+}

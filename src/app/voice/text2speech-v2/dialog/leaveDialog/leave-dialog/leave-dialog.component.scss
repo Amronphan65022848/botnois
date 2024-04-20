@@ -1,0 +1,105 @@
+.modal-container {
+  position: relative;
+  width: 446px;
+  height: 347px;
+  max-width: 446px;
+  max-height: 347px;
+
+  .close {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: 21px;
+    top: 21px;
+    cursor: pointer;
+  }
+
+  .modal-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 42px 68px 40px 68px;
+
+    ::ng-deep mat-icon {
+      width: 100px;
+      height: 100px;
+    }
+
+    .modal-title {
+      color: #000;
+      font-family: Sarabun;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      margin-top: 11px;
+    }
+
+    .modal-body {
+      p {
+        color: #acb1ba;
+        text-align: center;
+        font-family: Sarabun;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+
+    .modal-footer {
+      gap: 10px;
+
+      button {
+        display: flex;
+        width: 150px;
+        height: 43px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        text-align: center;
+        font-family: Sarabun;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+      }
+
+      .cancel-btn {
+        border: 1px solid #01bffb;
+        background: #fff;
+        color: #01bffb;
+      }
+
+      .confirm-btn {
+        background: #01bffb;
+        color: #fff;
+        border: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .modal-container {
+    width: auto;
+    height: auto;
+    max-height: none;
+
+    .modal-box {
+      padding: auto;
+
+      .modal-footer {
+        justify-content: center;
+        align-items: center;
+
+        button {
+          width: 75px;
+        }
+      }
+    }
+  }
+}

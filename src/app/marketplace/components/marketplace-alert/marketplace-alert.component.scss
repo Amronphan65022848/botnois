@@ -1,0 +1,113 @@
+.alert-background{
+    z-index: 55;
+    top: 0%;
+    left: 0%;
+    position: fixed;
+    background-color: #323C4C66;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+
+    .alert-box{
+        height: 395px;
+        width: 554px;
+        border-radius: 8px;
+        position: absolute;
+        background-color: #FFFFFF;
+        box-shadow: 0px 3px 10px rgba(50, 60, 76, 0.3);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .float-button{
+        position: absolute;
+        .close-btn{
+            position: relative;
+            border: none;
+            background-color: #00000000;
+            bottom: 60px;
+            left: 486px;
+            font-size: 16px;
+            color: linear-gradient(90deg, #5B6370 0%, #323C4C 100%);
+        }
+    }
+    img{
+        margin-top: 80px;
+    }
+    h2, p{
+        font-family: "Sarabun", sans-serif;
+    }
+    h2{
+        margin: 20px 0 0 0;
+        font-size: 22px;
+        font-weight: 700;
+    }
+    p{
+        margin: 8px 0 0 0;
+        font-size: 14px;
+        font-weight: 400;
+    }
+    button{
+        margin-top: 60px;
+        height: 43px;
+        width: 99px;
+        border: 1px solid #01BFFB;
+        border-radius: 10px;
+
+        font-family: "Sarabun", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        text-align: center;
+    }
+    .removebtn{
+        color: #FFFFFF;
+        background-color: #01BFFB;
+    }
+    .cancelbtn{
+        margin-right: 16px;
+        background-color: #FFFFFF;
+        color: #01BFFB;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .alert-background{
+        .alert-box{
+            height: 225px;
+            width: 316px;
+        }
+        .float-button{
+            position: absolute;
+            .close-btn{
+                position: relative;
+                bottom: 25px;
+                left: 253px;
+            }
+        }
+        img{
+            width: 55px;
+            height: 55px;
+            margin-top: 27px;
+        }
+        h2{
+            margin: 10px 0 0 0;
+            font-size: 14px;
+        }
+        p{
+            margin: 0;
+            font-size: 12px;
+        }
+        button{
+            margin-top: 24px;
+            height: 40px;
+            width: 95px;
+            border: 1px solid #01BFFB;
+            border-radius: 10px;
+
+            font-family: "Sarabun", sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+        }
+    }
+}

@@ -1,0 +1,76 @@
+<ngx-loading [show]="isLoading"></ngx-loading>
+<div class="reset-subscription-container">
+  <div class="header">
+    <h1>
+      {{ text.header }}
+    </h1>
+  </div>
+  <div class="body">
+    <p class="detail">
+      {{ user.subscription === "Free" ? text.sub_header_199 : text.sub_header }}
+    </p>
+    <p class="detail">
+      {{
+        user.compensate_sub || user.subscription.includes("Compensate")
+          ? text.body_compensate
+          : user.subscription_month === 12
+          ? text.body_yearly
+          : user.subscription_month === 1
+          ? text.body_monthly
+          : null
+      }}
+    </p>
+    <ul>
+      <li
+        *ngIf="
+          !(
+            user.compensate_sub ||
+            user.subscription.includes('Compensate') ||
+            user.subscription === 'Free'
+          )
+        "
+      >
+        {{ text.compensate_list[0].text_1 }}{{ user.subscription_month
+        }}{{ text.compensate_list[0].text_2 }}{{ user.subscription
+        }}{{ text.compensate_list[0].text_3 }}
+        {{ calculatePoint(user.subscription_month) | number
+        }}{{ text.compensate_list[0].text_4
+        }}{{ calculatePoint(user.subscription_month) / 40 | number
+        }}{{ text.compensate_list[0].text_5 }}
+      </li>
+      <li
+        *ngIf="
+          !(
+            user.compensate_sub ||
+            user.subscription.includes('Compensate') ||
+            user.subscription === 'Free' ||
+            user.subscription_month === 1
+          )
+        "
+      >
+        {{ text.compensate_list[1].text_1 }}{{ this.user.subscription_month
+        }}{{ text.compensate_list[1].text_2 }}
+      </li>
+      <li
+        *ngIf="
+          user.compensate_sub ||
+          user.subscription.includes('Compensate') ||
+          user.subscription === 'Free' ||
+          user.subscription_month === 1
+        "
+      >
+        {{ text.compensate_list[3] }}
+      </li>
+      <li>
+        {{ text.compensate_list[2] }}
+      </li>
+    </ul>
+  </div>
+  <div class="footer">
+    <button (click)="onClose()">
+      <span>
+        {{ text.btn }}
+      </span>
+    </button>
+  </div>
+</div>

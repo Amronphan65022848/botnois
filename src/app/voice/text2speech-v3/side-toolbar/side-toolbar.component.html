@@ -1,0 +1,47 @@
+<div class="toggleExpand" (click)="toggleExpand()">
+  <p>โปรเจคใหม่1</p>
+</div>
+<div class="toolbar" *ngIf="expand === true" [@toggle]="expand == true">
+  <div class="tool-project">
+    <div class="storage">
+      <div
+        class="storage-bar"
+        role="storagebar"
+        aria-valuenow="25"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >
+        25%
+      </div>
+      <p>พื้นที่เก็บโปรเจค</p>
+    </div>
+    <button class="new-project">สร้างโปรเจคใหม่</button>
+    <a href="" class="project">
+      <p>โปรเจคใหม่1</p>
+    </a>
+    <button class="add-storage">เพิ่มพื้นที่</button>
+  </div>
+  <div class="quota">
+    <div class="text-quota">
+      <p class="text">โควต้าตัวอักษร</p>
+      <!-- <p>1000/{{ maxTextQuota }}</p> -->
+      <p>
+        <span>{{ textQuota }}</span
+        >/<span class="max">{{ maxTextQuota }}</span>
+      </p>
+    </div>
+    <div class="progress-bar" [ngStyle]="textProgressBar()"></div>
+    <div class="download-point">
+      <p class="text">ดาวน์โหลดพ้อยท์</p>
+      <p>
+        <span>{{ downloadPoint }}</span
+        >/<span class="max">{{ maxDownloadPoint }}</span>
+      </p>
+    </div>
+    <div class="progress-bar" [ngStyle]="downloadPointProgressBar()"></div>
+    <button class="add-point">เติมพ้อยท์</button>
+  </div>
+  <div class="fix-word">
+    <button class="fix-button">แก้ไขคำอ่าน</button>
+  </div>
+</div>

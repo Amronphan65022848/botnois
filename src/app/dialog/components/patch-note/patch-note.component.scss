@@ -1,0 +1,52 @@
+.patch-note-container{
+  padding: 5% 10%;
+  position: relative;
+  .close{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+  }
+  .header{
+    padding: 12px 0 36px 0;
+    p{
+      text-align: center;
+      font-size: 24px;
+      margin: auto;
+      font-weight: bold;
+    }
+  }
+  .body{
+    max-height: 450px;
+    overflow: auto;
+    padding-right: 10px;
+    margin: 10px 0;
+    pre{
+      white-space: pre-wrap;
+      font-family: 'Sarabun';
+      font-size: 14px;
+      line-height: 24px;
+    }
+    img{
+      max-width: 100%;
+      padding: 12px 0;
+    }
+  }
+  .group {
+    // border: 2px solid #01BFFB;
+    margin: auto;
+    width: fit-content;
+    padding: 6px 24px;
+  }
+  .btn-group{
+    justify-content: center;
+    width: 100%;
+    button {
+      background: #01bffb;
+      border-color: transparent;
+      color: white;
+      padding: 8px 24px;
+      border-radius: 10px;
+    }
+  }
+}

@@ -1,0 +1,278 @@
+<div class="paid-container">
+  <ngx-loading [show]="isLoading"></ngx-loading>
+
+  @switch (step) {
+  @case (2) {
+  <div class="paid-content">
+    <div class="header">
+      <p>{{ text.title }}</p>
+      <mat-icon class="cross" svgIcon="cross" (click)="close()"></mat-icon>
+    </div>
+    <div class="group-box">
+      <div class="box">
+        <div class="title">
+          <span>{{ price | number }} {{ text.currency[currency] }}</span>
+        </div>
+        <div class="content">
+          <span>{{ text.step2.title }}</span>
+          @if (qr?.length > 0) {
+          <div class="qr">
+            <qrcode #parent [allowEmptyString]="true" elementType="img" [qrdata]="qr" [errorCorrectionLevel]="'M'"
+              [width]="126">
+            </qrcode>
+          </div>
+          }
+        </div>
+      </div>
+      <div class="info">
+        <span>{{ text.step2.info }}</span>
+      </div>
+    </div>
+  </div>
+  }
+  @default {
+  <div class="paid-content">
+    <div class="header">
+      <p>{{ text.title }}</p>
+      <mat-icon [id]="analyticId.button.close" class="cross" svgIcon="cross" (click)="close()"></mat-icon>
+    </div>
+    <div class="details">
+      <p>{{ text.order }}</p>
+      <div class="card-details gradient-border" [class]="addon ? 'addon-border' : 'no-addon-border'">
+        <img class="point-icon" src="../../assets/img/Real_point.svg" alt="icon" />
+        <!-- Subscription -->
+        @if (sub_data) {
+        <div class="point-text" [class]="addon ? 'addon-text' : 'no-addon-text'">
+          <span class="point">{{ point }}</span>
+        </div>
+        } @else {
+        <div class="point-text" [class]="addon ? 'addon-text' : 'no-addon-text'">
+          <span class="point">{{ point | number }} PT</span>
+          @if (addon) {
+          <ul>
+            <li class="addon">
+              {{ text.free_gift[0] }}
+              {{ addon.add_on }}
+              {{ addon.add_on_day }}
+              {{ text.free_gift[1] }}
+            </li>
+          </ul>
+          }
+
+          @if (bonus > 0) {
+          <span class="bonus"> + {{ bonus | number }} PT</span>
+          }
+        </div>
+        }
+
+        <span class="price" [class]="addon ? 'addon-text' : 'no-addon-text'">
+          {{ price | number }} {{ text.currency[currency] }}
+          @if (sub_data?.month) {
+          <span>/{{ text?.period[sub_data.month] }}</span>
+          }
+        </span>
+      </div>
+    </div>
+
+    <div class="payment-type">
+      <span class="payment-text">{{ text.metholdTitle }}</span>
+      <div class="payment-card">
+        @for (item of displayMethodByLang(text.method); track $index) {
+        <button data-group="abc" class="method" [appSetElementId]="analyticId.method[$index]" [ngClass]="{
+                  active: item.type === method,
+                  disabled:
+                    sub_data?.subscription_rank === 'Mini' &&
+                    item.type === 'card'
+                }" (click)="onSelectMethod(item.type)">
+          @if (item.type === method) {
+          <mat-icon class="checked" svgIcon="check_circle_filled">
+          </mat-icon>
+          }
+
+          <mat-icon class="card-icon" [svgIcon]="item.icon"></mat-icon>
+          <div class="group">
+            <p class="type-text">
+              {{ item.text }}
+            </p>
+            <p class="fee-text">
+              {{ isFee ? item.fee : text.method[0].fee }}
+            </p>
+          </div>
+        </button>
+        }
+      </div>
+      <!-- <div
+        class="info-credit"
+        [ngClass]="{ hide: method !== 'card' || !isRecurring }"
+      >
+        <span class="info-text">{{ text.auto_credit }}</span>
+      </div> -->
+    </div>
+    @if (
+    sub_data?.type !== 4 &&
+    sub_data?.name !== "NoAds" &&
+    sub_data?.name !== "Limit_text"
+    ) {
+    <div [id]="analyticId.code.expand" class="code">
+      <ngx-loading [show]="isCodeFetchingValidate" [config]="{ fullScreenBackdrop: false }"></ngx-loading>
+      <div [id]="analyticId.code.expand" class="checkbox pointer" (click)="toggleCodeCheck()">
+        <!-- <input type="checkbox" name="code" id="code-input" (change)="toggleCodeCheck()" />
+        <label for="code-input">
+          <div class="circle">
+            <div class="inner-circle"></div>
+          </div>
+          <p>{{ text.sales.code }}</p>
+        </label> -->
+        <!-- <mat-icon [matTooltip]="text.sales.info" class="tool-tip" svgIcon="help_circle"></mat-icon> -->
+        <p [id]="analyticId.code.expand" class="text-center">
+          {{ text.sales.code }}
+        </p>
+        @if (sellerCode) {
+        <p class="text-seller-code">
+          {{ text.sales.sellerStatus }}
+        </p>
+        }
+        <mat-icon [id]="analyticId.code.expand" class="down" svgIcon="down" [style.transform]="
+                  isCodeCheck ? 'rotate(180deg)' : 'rotate(0deg)'
+                "></mat-icon>
+      </div>
+
+      <div [id]="analyticId.code.expand" class="group-discount hint pointer" (click)="toggleCodeCheck()">
+        {{ text.sales.info }}
+      </div>
+      @if (isCodeCheck) {
+      <div [id]="analyticId.code.expand" class="discount-code" [ngClass]="{
+                  invalid: isCodeValid === false,
+                  valid: isCodeValid === true
+                }">
+        <input [id]="analyticId.code.input" class="input-code" type="text" [placeholder]="text.sales.code"
+          [formControl]="code" (input)="resetValid()" />
+        @if (!showClearCode) {
+        <button [id]="analyticId.code.btn" class="input-confirm" (click)="onConfirmCode()" [disabled]="!code.value">
+          {{ text.sales.confirm }}
+        </button>
+        } @else {
+        <mat-icon [matTooltip]="text.removeCode" class="cross tool-tip" (click)="toggleClearCode()"
+          svgIcon="close"></mat-icon>
+        }
+      </div>
+      }
+    </div>
+    }
+
+    @if ((isCodeValid === true || isCodeValid === false) && isCodeCheck) {
+    <div class="text-alert">
+      <span class="text-check" [ngClass]="{
+                'text-invalid': isCodeValid === false,
+                'text-valid': isCodeValid === true
+              }">{{ isCodeValid ? text.sales.valid : text.sales.inValid }}</span>
+    </div>
+    }
+
+    <!-- <div class="upsize" *ngIf="sub_data?.type !== 4 && sub_data?.name !== 'NoAds' && sub_data?.name !== 'Limit_text'">
+      <div class="toggle" (click)="toggleShowHotPromotion()">
+        <div class="hotpromotion">
+          <p class="text-center">{{text.hotPromotion}}</p>
+          <img src="../../../../assets/icons/Hottest.png" class="hotpromotion-icon">
+        </div>
+        <mat-icon class="down" svgIcon="down"
+          [style.transform]="showHotPromotion ? 'rotate(180deg)' : 'rotate(0deg)'"></mat-icon>
+      </div>
+      <p class="hint" (click)="toggleShowHotPromotion()">{{text.hotPromotionDescription}}</p>
+      <div class="card-details gradient-border " *ngIf="showHotPromotion">
+        <input type="checkbox" class="upsize-checkbox" [ngModel]="isHotPromotion" >
+        <span class="checkmark" (click)="toggleHotPromotion()"></span>
+        <div class="point-text">
+          <span class="point">+{{ hotpromotion | number }} PT</span>
+          <img src="../../../../assets/icons/Hottest.png" class="hotpromotion-icon">
+        </div>
+        <span class="price">
+          {{ hotpromotionprice | number }} {{ text.currency[currency] }}
+          <span *ngIf="sub_data?.month">/{{ text?.period[sub_data.month] }}</span>
+        </span>
+      </div>
+
+    </div> -->
+    <hr />
+    <div class="result">
+      <!-- <div class="total-point" *ngIf="!isPackage">
+        <span class="result-point">{{text.purchaseAllPoints}}</span>
+        <span class="num-point">{{ point | number }} {{ text.point }}</span>
+      </div> -->
+      @if (showHotPromotion && isHotPromotion) {
+      <div class="total-point">
+        <span class="result-point">{{ text.hotPromotion }}</span>
+        <span class="result-point">{{ hotpromotion | number }} {{ text.point }}</span>
+      </div>
+      }
+      @if (
+      sub_data?.type !== 4 &&
+      sub_data?.name !== "NoAds" &&
+      sub_data?.name !== "Limit_text"
+      ) {
+      <div class="total-point">
+        <span class="result-point">{{ text.codePoint }}</span>
+        <span class="result-point">{{ calSalesBonus() === 0 ? "-" : (calSalesBonus() | number) }}
+          {{ text.point }}</span>
+      </div>
+      }
+      <!-- Package with sales code -->
+
+      <!-- totalpoint -->
+      @if (!isPackage) {
+      <div class="total-point">
+        <span class="result-total fulltotal">{{ text.totalPoint }}</span>
+        <span class="result-total shorttotal">{{
+          text.shortTotalPoint
+          }}</span>
+        <span class="num-total">{{ calPoint() | number }} {{ text.point }}</span>
+      </div>
+      }
+
+      <!-- <div class="total">
+        <span class="result-point">{{text.productCost}}</span>
+        <span class="num-point">{{ price | number }} {{ text.currency }}</span>
+      </div> -->
+      <!-- <div class="fee" *ngIf="method === 'card'">
+        <span class="result-fee">{{ text.fee }}</span>
+        <span class="num-fee">{{ addFee(fee) }} {{ text.currency }}</span>
+      </div> -->
+      @if (showHotPromotion && isHotPromotion) {
+      <div class="promotion">
+        <span class="result-promotion">{{ text.hotPromotionPrice }}</span>
+        <span class="num-promotion">{{ hotpromotionprice | number }}
+          {{ text.currency[currency] }}</span>
+      </div>
+      }
+
+      <div class="fee">
+        <span class="result-fee">{{ text.fee }}</span>
+        <span class="num-fee">{{ addFee(fee) === 0 ? "-" : addFee(fee) }}
+          {{ text.currency[currency] }}</span>
+      </div>
+
+      <div class="total">
+        <span class="result-total">{{ text.total }}</span>
+        <span class="num-total">{{ calPrice(price) | number }}
+          {{ text.currency[currency] }}</span>
+      </div>
+    </div>
+    <div class="button-group">
+      <button [id]="analyticId.button.cancel" (click)="close()" class="cancel-btn">
+        {{ text.cancel }}
+      </button>
+      <button [id]="analyticId.button.confirm" (click)="onPurchase(method)" [disabled]="
+              isCodeCheck === true &&
+              code.value?.length !== 0 &&
+              code.value !== null &&
+              isCodeValid !== true
+            " class="confirm-btn">
+        {{ text.confirm }}
+      </button>
+    </div>
+  </div>
+  }
+  }
+
+  <!-- Step 2 -->
+</div>

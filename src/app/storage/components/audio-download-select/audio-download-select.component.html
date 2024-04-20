@@ -1,0 +1,72 @@
+<div class="confirm-download" *ngIf="!confirmDownload">
+    <mat-icon class="btn-close" (click)="dialogRef.close()">close</mat-icon>
+    <div class="header">
+        <img src="../../../assets/audio_storage/point.png" alt="point">
+    </div>
+    <div class="body">
+        <h1>{{confirmDownloadText}}</h1>
+    </div>
+    <div class="footer">
+        <button (click)="dialogRef.close()">{{cancel}}</button>
+        <button
+        (click)="downloadAll()"
+        class="btn-confirm">{{accept}}</button>
+    </div>
+</div>
+<div class="dialog-queue-download" *ngIf="confirmDownload">
+  <div>
+    <div class="topic_word_text">{{downloadAll_}}</div>
+    <div>
+      <!-- close -->
+    </div>
+  </div>
+  <div class="queue-download">
+    <div
+      *ngFor="let item of queue_download; let i = index"
+      class="list-queue-download"
+    >
+      <div class="leftSightText">
+        <span>{{ i + 1 }}.</span> {{ getsliceText(item.text, item.type_media) }}
+        <div style="color: #b7bbc0; text-indent: 14px">
+          {{ item.size }}
+        </div>
+      </div>
+
+      <div class="rightSightIcon">
+        <img
+          src="../../assets/img/dowload_gif5.gif"
+          *ngIf="!item.success"
+          class="icon_status"
+          alt="icon"
+        />
+        <img
+          src="../../assets/icons/success_icon_pg.svg"
+          *ngIf="item.success"
+          class="green icon_status"
+          alt="icon"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="end_text" style="margin-top: 3%">
+    {{downloadSuccess}} {{ this.successValue }} /
+    {{ queue_download.length }} {{file_}}
+  </div>
+
+  <div>
+    <div
+      class="button_disabled_download"
+      (click)="dialogRef.close()"
+      *ngIf="isDownloading"
+    >
+      {{success}}
+    </div>
+    <div
+      class="button_success_download"
+      (click)="dialogRef.close()"
+      *ngIf="!isDownloading"
+    >
+      {{success}}
+    </div>
+  </div>
+</div>

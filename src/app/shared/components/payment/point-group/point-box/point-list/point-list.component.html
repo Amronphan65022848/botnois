@@ -1,0 +1,116 @@
+@for (
+  item of package | packageType: packageType.type : isSaleEvent : page;
+  track item.package_id;
+  let $packageIndex = $index
+) {
+  <div class="items items--regular">
+    @if ($packageIndex === 0 || packageType.isExpand) {
+      <div class="item-content">
+        <!-- Package Name -->
+        <div class="left">
+          <div class="group-flex">
+            <img src="../../../../assets/img/Credits.svg" alt="credits" />
+            <!-- Unlimited package -->
+            @if (packageType.type === 4) {
+              <div class="group gradient">
+                <span
+                  class="point gradient"
+                  style="margin-right: 4px; font-size: 32px"
+                  >{{ text.unlimited }}
+                  <span>{{ "/ " + item.day + " " + text.day }}</span>
+                </span>
+              </div>
+            } @else {
+              <div class="group">
+                <span class="point gradient"
+                  >{{ item.point | number }}
+                  <span>{{ text.point }}</span>
+                </span>
+                <ul>
+                  @if (item?.add_on) {
+                    <li class="free-gift gradient">
+                      {{ text.free_gift[0] }}
+                      {{ item.add_on === "NoAds" ? "No Ads" : item.add_on }}
+                      {{ dayToMonth(item.add_on_day) }}
+                      {{ text.free_gift[1] }}
+                    </li>
+                  }
+                </ul>
+              </div>
+            }
+          </div>
+          <!-- Price -->
+          <div class="group-discount">
+            @if (displayDiscount(item)) {
+              <div class="discount">
+                <span class="discount-price">{{
+                  _wallet.displayPriceByCurrency(item) | number
+                }}</span>
+              </div>
+            }
+
+            <div class="group">
+              <span class="price gradient">
+                {{
+                  (displayDiscount(item)
+                    ? _wallet.displayDiscountPriceByCurrency(item)
+                    : _wallet.displayPriceByCurrency(item)
+                  ) | number
+                }}
+                <span>{{ text.currency[currency] }}</span>
+              </span>
+              <button
+                [ngClass]="packageType.class"
+                class="mobile--price-button"
+                [id]="
+                  analyticId.buyPoint.buypoint_package[item.type - 1] +
+                  ($packageIndex + 1)
+                "
+                (click)="handlePurchase(item)"
+              >
+                <span>
+                  {{
+                    (displayDiscount(item)
+                      ? _wallet.displayDiscountPriceByCurrency(item)
+                      : _wallet.displayPriceByCurrency(item)
+                    ) | number
+                  }}
+                  <span>{{ text.currency[currency] }}</span>
+                </span>
+              </button>
+              @if (displayDiscount(item)) {
+                <div class="counter gradient">
+                  <mat-icon svgIcon="clock_gradient"></mat-icon>
+                  <span>{{ text.discount }}</span>
+                  <span>{{ timeleft | date: "mm:ss" }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+        <!-- Price -->
+        <div class="right">
+          <button
+            [id]="
+              triggerType === 'noAds'
+                ? analyticId.subscription.event_item_on_dialog[$packageIndex]
+                : triggerType === 'notEnough'
+                  ? analyticId.downloadNoPoint.event_item_on_dialog[
+                      $packageIndex
+                    ]
+                  : analyticId.buyPoint.buypoint_package[item.type - 1] +
+                    ($packageIndex + 1)
+            "
+            [ngClass]="packageType.class"
+            (click)="handlePurchase(item)"
+          >
+            {{ text.buy }}
+            @if (isSaleEvent) {
+              1/1
+            }
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+}

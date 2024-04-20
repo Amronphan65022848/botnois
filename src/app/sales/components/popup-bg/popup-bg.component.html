@@ -1,0 +1,21 @@
+<div class="section">
+  <div class="top">
+    <div class="top" style="padding: 6% 0 0 0">
+      <img src="../../../../assets/sales_page_img/infoImg.svg" />
+    </div>
+    <div class="closeButton">
+      <button
+        (click)="closePopup()"
+        src="../../../../assets/sales_page_img/btn_close.svg"
+      ></button>
+      <!-- <mat-icon class="mat-icon-rtl-mirror" svgIcon="thumb-up"></mat-icon> -->
+    </div>
+  </div>
+  <div class="infoText">
+    <h1>{{ popupObj[0].title }}</h1>
+    <p>{{ popupObj[0].detail }}</p>
+  </div>
+  <div class="areaButton">
+    <button (click)="closePopup()">{{ popupObj[0].buttonInfo }}</button>
+  </div>
+</div>

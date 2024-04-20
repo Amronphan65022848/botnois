@@ -1,0 +1,27 @@
+<div class="dialog-container">
+  <mat-icon class="close" svgIcon="close" (click)="onCancel()"></mat-icon>
+  <div class="full-content">
+    <mat-icon
+      class="card-icon"
+      [svgIcon]="data.icon"
+      [style.color]="data.icon_color"
+    ></mat-icon>
+    <h2 class="header">{{ text.header }}</h2>
+    @if (data.method === "success") {
+      <p class="credits m-0">{{ text.details }} {{ 3 - +data.credits }}/3</p>
+    }
+    <!-- <p class="new-user m-0">
+      <span class="text-gradient">{{ text.newuser_colored }}</span>
+      <span class="text-new-user">{{ text.newuser }}</span>
+    </p> -->
+  </div>
+  <div class="group-btn">
+    <button
+      [ngClass]="state === 'warn' ? 'upgrade' : 'max'"
+      id="LD_tools_Popup_upgrade_click"
+      (click)="onConfirm()"
+    >
+      {{ text.confirm }}
+    </button>
+  </div>
+</div>

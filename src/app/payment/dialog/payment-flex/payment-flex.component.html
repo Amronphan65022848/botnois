@@ -1,0 +1,56 @@
+<div class="dialog-container">
+  <mat-icon
+    class="close"
+    svgIcon="close"
+    (click)="onCancel(data.type)"
+  ></mat-icon>
+  <div class="quota-content">
+    <img
+      src="../../../../assets/shared/point.png"
+      alt="double coin point botnoi voice"
+    />
+    <h2 class="header">{{ data.text.header }}</h2>
+    <div class="details" *ngIf="type !== 4 || type === null">
+      <p *ngIf="package_name === null">
+        {{ data.text.getpoints_text }}
+        <span class="gradient-text">{{ point }}</span>
+        {{ data.text.point }}
+      </p>
+      <p *ngIf="package_name">
+        {{ data.text.right2 }}
+        <span class="gradient-text">{{
+          package_name + " " + addontime + " " + data.text.day
+        }}</span>
+      </p>
+      <div *ngIf="package_name === null && addontime">
+        {{ data.text.right }}
+        <span class="gradient-text">{{
+          data.text.package_noadds + " " + addontime + " " + data.text.day
+        }}</span>
+      </div>
+    </div>
+    <div class="details" *ngIf="type === 4">
+      <p>
+        {{ data.text.right2 }}
+        <span class="gradient-text">{{
+          data.text.package_unlimited + " " + addontime + " " + data.text.day
+        }}</span>
+      </p>
+    </div>
+    <p class="ps">
+      {{ data.text.ps }}
+    </p>
+  </div>
+  <div class="group-btn">
+    <button class="close" (click)="onCancel(data.type)">
+      {{ data.text.close }}
+    </button>
+    <button
+      class="ok"
+      [routerLink]="['/tts/conversation']"
+      (click)="onCancel(data.type)"
+    >
+      {{ data.text.ok }}
+    </button>
+  </div>
+</div>

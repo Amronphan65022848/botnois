@@ -1,0 +1,17 @@
+<div class="dialog-container">
+  <div class="close" [mat-dialog-close]="false">
+    <mat-icon>close</mat-icon>
+  </div>
+  <mat-icon class="image" [svgIcon]="data.image"></mat-icon>
+  <div class="header">
+    {{data.header}}
+  </div>
+  <div class="text">
+    {{data.text}}
+  </div>
+  <button [mat-dialog-close]="'cancel'">
+    <span>
+      {{data.btn}}
+    </span>
+  </button>
+</div>

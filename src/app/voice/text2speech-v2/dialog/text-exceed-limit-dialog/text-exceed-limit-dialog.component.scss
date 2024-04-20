@@ -1,0 +1,249 @@
+$black-color: #424242;
+
+.dialog-container {
+  position: relative;
+  padding: 24px 16px;
+  max-width: 554px;
+
+  .close {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: 16px;
+    top: 24px;
+    cursor: pointer;
+  }
+
+  .full-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    padding: 0px 55px;
+
+    ::ng-deep .danger-icon {
+      width: 83px;
+      height: 83px;
+    }
+
+    .header {
+      color: #000;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 20px;
+    }
+
+    .details {
+      color: #424242;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 300;
+      margin-bottom: 0px;
+    }
+  }
+
+  .group-btn {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding-top: 1em;
+
+    button {
+      height: 44px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      text-align: center;
+      font-family: Sarabun;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .ok {
+      border: 1px solid #01bffb;
+      color: #01bffb;
+      background: #fff;
+    }
+
+    .upgrade {
+      border: none;
+      background: #01bffb;
+      color: #fff;
+    }
+  }
+  .box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #BDBDBD;
+    gap: 8px;
+    white-space: nowrap;
+    .left-group, .center-group{
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      .label-input {
+        font-weight: bold;
+      }
+    }
+
+    .currency {
+      font-size: 16px;
+    }
+    input[type="number"] {
+      text-align: center;
+      width: 117px;
+      height: 36px;
+      // padding: 8px, 7.49px, 7px, 6.55px
+      border-radius: 6px;
+      border: 1px solid #B1EAFC;
+      outline: none;
+    }
+
+    .preview {
+      padding: 0 20px;
+      span {
+        color: var(--botnoi-color);
+        font-weight: bold;
+      }
+    }
+
+    button {
+      background: #01BFFB;
+      color: white;
+      padding: 6px;
+      border-radius: 8px;
+      width: 84px;
+      height: 36px;
+      align-self: center;
+    }
+    .point-group {
+      display: flex;
+      flex-direction: column;
+      align-items: baseline;
+      justify-content: center;
+      white-space: normal;
+      li {
+        padding-left: 6px;
+      }
+      .point {
+        background: var(--gradient-purple);
+        font-size: 28px;
+        font-weight: bold;
+
+      }
+      .free-gift {
+        background: var(--gradient-brown);
+        font-size: 12px;
+      }
+    }
+    .price-group {
+      display: flex;
+      gap: 8px;
+      position: relative;
+      // padding-left: 54px;
+      .original {
+        color: var(--red-color);
+        text-decoration: line-through;
+        font-weight: 500;
+      }
+      .group-1 {
+        display: flex;
+        gap: 8px;
+        position: relative;
+        .group-2 {
+          .discount {
+            background: var(--gradient-light-blue2);
+            font-weight: bold;
+            font-size: 28px;
+            // @extend .gradient;
+          }
+          .counter {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 3px;
+            mat-icon {
+              max-height: 12px;
+              max-width: 12px;
+            }
+            span {
+              font-weight: 300;
+              font-size: 10px;
+              background: var(--gradient-brown);
+            }
+          }
+        }
+      }
+
+
+    }
+    .point-icon {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  .special-text {
+    text-align: center;
+    padding: 16px;
+    .highlight {
+      color: #C800FF;
+    }
+
+    span {
+      color: $black-color;
+      font-size: 18px;
+    }
+  }
+
+  .upsell {
+    // Gradient properties
+    background: var(--gradient-purple);
+    // -webkit-background-clip: text;
+    // background-clip: text;
+    box-shadow: 0px 3px 15px 0px #4F758A4D;
+  }
+
+  span, li, p, h2 {
+    font-family: 'Sarabun';
+  }
+}
+
+@media screen and (max-width:680px) {
+  .box {
+    flex-direction: column;
+    .price-group {
+      gap: 12px !important;
+      flex-direction: column;
+      .original {
+        padding-top: 6px;
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .dialog-container {
+    .full-content {
+      padding: 0px 15px;
+    }
+  }
+}
+
+@media screen and (max-width:365px) {
+  .box {
+    .center-group {
+      flex-direction: column;
+    }
+  }
+  .footer {
+    display: none;
+  }
+}

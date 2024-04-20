@@ -1,0 +1,26 @@
+<div class="modal-container">
+  <mat-icon class="close" svgIcon="close" (click)="onCancel()"></mat-icon>
+  <div class="modal-overlay"></div>
+  <div class="modal-box">
+    <mat-icon class="trash" svgIcon="trash"></mat-icon>
+    <div class="modal-header">
+      <h2 class="modal-title">{{ text.header }}</h2>
+    </div>
+    <div class="modal-body">
+      <p>{{ text.askDelete }}</p>
+      <div class="history-word">
+        {{ historyWord.before_text }}
+        <mat-icon class="arrow-right" svgIcon="arrow_right"></mat-icon>
+        {{ historyWord.after_text }}
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="cancel-btn" (click)="onCancel()">
+        {{ text.cancel }}
+      </button>
+      <button type="button" class="confirm-btn" (click)="onConfirm()">
+        {{ text.confirm }}
+      </button>
+    </div>
+  </div>
+</div>

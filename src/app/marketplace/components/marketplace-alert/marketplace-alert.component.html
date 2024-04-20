@@ -1,0 +1,14 @@
+<div class="alert-background">
+  <div class="alert-box">
+    <div class="float-button">
+      <button class="close-btn" (click)="closeAlert()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <img src="assets/icons/toolbar/trash.svg" alt="trash">
+    <h2>{{alert_text}}</h2>
+    <p>{{text_arr[0]}} {{count}} {{text_arr[1]}} </p>
+    <button class="cancelbtn" (click)="closeAlert()">{{cancel}}</button>
+    <button class="removebtn" (click)="submitRemove()">{{access}}</button>
+  </div>
+</div>

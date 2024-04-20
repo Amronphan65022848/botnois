@@ -1,0 +1,195 @@
+<div class="createSound-container" id="createSoundSample">
+  <section class="slide1">
+    <div class="bg">
+      <img
+        src="../../../../assets/seo_page/bg_pink_wave.webp"
+        alt="background"
+      />
+    </div>
+    <div class="group container">
+      <div class="tts">
+        <div>
+          {{ transformValueToText(currentPath) }} Text To Speech <br />
+          with Botnoi voice
+        </div>
+        <div class="tts2">
+          An online AI voice generator seamlessly allows you to retrieve and
+          edit your project across various devices.
+        </div>
+        <button class="tts-btn" (click)="navigateToLang('en')">
+          <span>Open studio</span>
+        </button>
+      </div>
+      <app-gen-sound-sample
+        (onSetSpeakerList)="setSpeakerList($event)"
+        (onSetSpeakers)="setAllSpeaker($event)"
+      ></app-gen-sound-sample>
+    </div>
+  </section>
+  <!-- slide2 -->
+  <section class="slide2 container">
+    <div class="header">
+      <h1 class="header-title">Why Botnoi Voice?</h1>
+      <span class="header-subtitle"
+        >Easily, Quickly, and efficiently  convert text into voice. Importantly,
+        it can be shared across multiple platforms without copyright issues, and
+        enhance all projects.</span
+      >
+    </div>
+    <div class="card-list">
+      <div class="card-container">
+        <div class="img">
+          <img src="../../../../assets/seo_page/cards/1.webp" alt="card-img" />
+        </div>
+        <div class="card-description">Custom Correction Feature</div>
+      </div>
+      <div class="card-container">
+        <div class="img">
+          <img src="../../../../assets/seo_page/cards/2.webp" alt="card-img" />
+        </div>
+        <div class="card-description">Update, Store data as necessary</div>
+      </div>
+      <div class="card-container">
+        <div class="img">
+          <img src="../../../../assets/seo_page/cards/3.webp" alt="card-img" />
+        </div>
+        <div class="card-description">Seamlessly Multilingual</div>
+      </div>
+      <div class="card-container">
+        <div class="img">
+          <img src="../../../../assets/seo_page/cards/4.webp" alt="card-img" />
+        </div>
+        <div class="card-description">Natural-sounding AI Voice</div>
+      </div>
+      <div class="card-container">
+        <div class="img">
+          <img src="../../../../assets/seo_page/cards/5.webp" alt="card-img" />
+        </div>
+        <div class="card-description">Quick MP3, M4A Conversion</div>
+      </div>
+      <div class="card-container">
+        <div class="img">
+          <img src="../../../../assets/seo_page/cards/6.webp" alt="card-img" />
+        </div>
+        <div class="card-description">API for Developer</div>
+      </div>
+    </div>
+  </section>
+  <!-- slide 3 -->
+  <section class="slide3 container">
+    <div class="header">
+      <h1 class="header-title">Who else can get benefit from text to speech</h1>
+      <div class="header-subtitle">Content creators</div>
+      <div class="subtitle-detail">
+        AI Voices transform written content into engaging audio in multiple
+        languages quickly, enhancing content accessibility and audience reach.
+      </div>
+      <div class="header-subtitle">Educators</div>
+      <div class="subtitle-detail">
+        Text to speech technology transforms education, aiding students and
+        instructors by engagement, and enjoyment, supporting diverse learning
+        styles.
+      </div>
+      <div class="header-subtitle">Authors</div>
+      <div class="subtitle-detail">
+        Text to speech functions as an essential editing tool,  allowing authors
+        to customize and correct common mistakes. It facilitates the conversion
+        of texts into audiobooks and podcasts.
+      </div>
+
+      <h1 class="header-title mt-5">Use Cases of Text to Speech Software</h1>
+      <div class="header-subtitle">Assistive Technology</div>
+      <div class="subtitle-detail">
+        Essential for individuals with dyslexia, visual impairments, and other
+        disabilities, text-to-speech (TTS) software facilitates learning and
+        literacy by transforming written content into spoken words.
+      </div>
+      <div class="header-subtitle">Customer Service</div>
+      <div class="subtitle-detail">
+        Revolutionizes interactions by using human-like AI voices, personalizing
+        customer experiences beyond traditional robotic calls, and fostering
+        better connections similar to live agents.
+      </div>
+      <div class="header-subtitle">Healthcare</div>
+      <div class="subtitle-detail">
+        Facilitates patient care by providing audible information, which aids in
+        patient screening and professional communication.
+      </div>
+    </div>
+  </section>
+  <!-- slide 4 -->
+  <app-experience
+    style="width: 100%"
+    [speakerList]="speakerList"
+    [textLang]="textLang"
+    [languageObj]="languageObj"
+    [flagList]="flagList"
+    [allSpeaker]="allSpeaker"
+    [_currentPath]="currentPath"
+  ></app-experience>
+  <!-- slide 5 -->
+  <section class="slide5 container">
+    <div class="header">
+      <h1 class="header-title">Text to Voice Made Easy</h1>
+      <span class="header-subtitle"
+        >Let's start saving budget and time with our online text to speech
+        converter. Watch our step-by-step guide to discover the simple steps to
+        achieve natural-sounding brilliance.</span
+      >
+    </div>
+    <div class="img-container">
+      <img
+        src="../../../../assets/seo_page/bottom_image.webp"
+        alt="sample-image"
+      />
+    </div>
+    <button class="studio-btn" (click)="login()">Open Studio</button>
+  </section>
+  <!-- slide 6 -->
+  <section class="slide6 container">
+    <div class="header">
+      <h1 class="header-title">FAQ</h1>
+    </div>
+    <mat-accordion>
+      <mat-expansion-panel
+        hideToggle
+        *ngFor="let item of text?.faq_list; let i = index"
+        (opened)="setPanelState(i, true)"
+        (closed)="setPanelState(i, false)"
+        [expanded]="getPanelState(i)"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon
+              svgIcon="{{
+                getPanelState(i) ? 'minus_gradient' : 'plus_gradient'
+              }}"
+            ></mat-icon>
+            {{ item.title }}</mat-panel-title
+          >
+        </mat-expansion-panel-header>
+        <p>
+          {{ item.description }}
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </section>
+  <!-- slide 7 -->
+  <!-- <section class="payment container">
+    <h3 class="header">Simple and affordable price</h3>
+    <app-point-list [page]="'seo'" [isLoggedIn]="isLoggedIn"></app-point-list>
+  </section> -->
+  <div class="bottom-card">
+    <div class="card-text-btm">
+      <span class="head text-bold">Start Exploring</span>
+      <span>
+        <span class="highlight text-bold">Botnoi AI</span> Voice Generator
+        Today.</span
+      >
+    </div>
+    <div class="card-btn">
+      <button (click)="login()">Create for free</button>
+    </div>
+  </div>
+</div>
+<app-footer-seo></app-footer-seo>

@@ -1,0 +1,73 @@
+:host {
+  display: block;
+
+  .social-sign-in {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-direction: column;
+    .btn-social {
+      width: 330px;
+      min-height: 49px;
+      height: auto;
+      padding: 0 15px;
+      border-radius: 10px;
+      outline: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      position: relative;
+
+      mat-icon {
+        pointer-events: none;
+      }
+
+      span {
+        white-space: nowrap;
+        font-size: 16px;
+        font-weight: 500;
+        pointer-events: none;
+
+        img {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+
+    .social-bottom {
+      font-size: 12px;
+    }
+
+    .google {
+      background-color: white;
+      border: 1px solid #bdbdbd;
+      span {
+        color: #616161;
+      }
+    }
+
+    .facebook {
+      background-color: #3b5998;
+      span {
+        color: white;
+      }
+    }
+
+    .line {
+      background-color: #00b900;
+      .social-title {
+        color: white;
+      }
+    }
+  }
+  .email {
+    justify-content: space-evenly;
+    flex-direction: row;
+    .btn-social {
+      width: 85px;
+      justify-content: center;
+    }
+  }
+}

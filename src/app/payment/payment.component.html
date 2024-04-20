@@ -1,0 +1,128 @@
+<div class="bg-wallet">
+  <div class="container-wallet">
+    <!-- promotion  -->
+
+    <div class="section-promotion" *ngIf="promotion_show == false">
+      <div class="icon-section">
+        <svg
+          width="23"
+          height="23"
+          viewBox="0 0 23 23"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M11.4926 22.7753C10.8732 22.7753 10.2994 22.4958 9.91754 22.0076L7.62021 19.0942L3.59322 19.0918C1.6121 19.0918 0 17.4797 0 15.498V3.77343C0 1.79178 1.6121 0.179688 3.59374 0.179688H19.4062C21.3879 0.179688 23 1.79178 23 3.77343V11.0058C23 11.5021 22.5978 11.9043 22.1015 11.9043C21.6053 11.9043 21.2031 11.5021 21.2031 11.0058V3.77343C21.2031 2.78269 20.3969 1.97656 19.4062 1.97656H3.59374C2.60301 1.97656 1.79687 2.78269 1.79687 3.77343V15.498C1.79687 16.4888 2.60301 17.2949 3.59374 17.2949L8.05679 17.2975C8.33176 17.2977 8.59147 17.4239 8.76168 17.6397L11.3308 20.8978C11.3833 20.965 11.4473 20.9785 11.4928 20.9785H11.4937C11.5389 20.9783 11.6035 20.9644 11.6537 20.8993C11.6553 20.8972 11.6569 20.8951 11.6584 20.8932L14.2067 17.6393C14.3771 17.4219 14.6378 17.2949 14.914 17.2949H19.4062C20.3971 17.2949 21.2031 16.4888 21.2031 15.498C21.2031 15.0018 21.6053 14.5996 22.1015 14.5996C22.5978 14.5996 23 15.0018 23 15.498C23 17.4797 21.3879 19.0918 19.4062 19.0918H15.3517L13.075 21.9985C12.6953 22.4898 12.1219 22.7729 11.5007 22.7753C11.498 22.7753 11.4952 22.7753 11.4926 22.7753ZM12.3984 13.8808V9.02928C12.3984 8.53303 11.9962 8.13084 11.5 8.13084C11.0037 8.13084 10.6015 8.53303 10.6015 9.02928V13.8808C10.6015 14.3771 11.0037 14.7793 11.5 14.7793C11.9962 14.7793 12.3984 14.3771 12.3984 13.8808ZM11.5 5.03124C11.0037 5.03124 10.6015 5.43343 10.6015 5.92968C10.6015 6.42592 11.0037 6.82811 11.5 6.82811C11.9962 6.82811 12.3984 6.42592 12.3984 5.92968C12.3984 5.43343 11.9962 5.03124 11.5 5.03124Z"
+            fill="white"
+          />
+        </svg>
+      </div>
+      <div class="block-text">
+        <div class="maintext">
+          <div>{{ text.main_text_PromotionFirst[0] }} &nbsp;</div>
+          <div>{{ text.main_text_PromotionFirst[1] }}</div>
+        </div>
+        <div class="secondtext">
+          {{ text.main_text_PromotionSecord }}
+        </div>
+      </div>
+    </div>
+    <div id="here" class="own-credits">
+      <img
+        class="pc"
+        src="../../assets/payment/finance-new.webp"
+        alt="finance"
+      />
+      <div class="group">
+        <!-- <div class="row-1">
+          <span class="package">{{ text.my_package }} : </span>
+          <span class="package"
+            >&nbsp;{{
+              showPackage != "Free"
+                ? showPackage
+                : lang === "TH"
+                ? "ไม่มี"
+                : "None"
+            }}</span
+          >
+        </div> -->
+        <div class="row-2">
+          <span class="mycredits">{{ text.my_point }} : </span>
+          <div class="group-point">
+            <span class="credits">
+              {{ credits | number }}
+              <!-- <span class="sub">
+                {{ text.point }}
+              </span> -->
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="pc vl"></div> -->
+      <!-- <button style="visibility: hidden;" class="btn-report" (click)="toTaxInvoice()">
+        <img
+          src="../../assets/payment/transparent-info.svg"
+          alt="transparent-info"
+        />
+        <span>{{ text.noted }}</span>
+      </button> -->
+    </div>
+    <div class="line"></div>
+    <div class="navigate">
+      <div class="nav-row-1" *ngIf="!isTablet">
+        <div
+          class="group-btn-1"
+          *ngFor="let item of text.navigate; let i = index"
+          [ngClass]="{ active: category === i }"
+          (click)="changeNav(i)"
+        >
+          <div [id]="analyticId[i]" class="btn-nav">
+            <span [id]="analyticId[i]">{{ item }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="nav-row-1" *ngIf="isTablet">
+        <div
+          class="group-btn-1"
+          *ngFor="let item of text.navigate | slice : 0 : 3; let i = index"
+          [ngClass]="{ active: category === i }"
+          (click)="changeNav(i)"
+        >
+          <div class="btn-nav">
+            <span>{{ item }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="nav-row-2" *ngIf="isTablet">
+        <div
+          class="group-btn-2"
+          *ngFor="
+            let item of text.navigate | slice : 3 : text.navigate.length;
+            let i = index
+          "
+          [ngClass]="{ active: category === i + 3 }"
+          (click)="changeNav(i + 3)"
+        >
+          <div class="btn-nav">
+            <span>{{ item }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-buy-points
+      *ngIf="category === 0"
+      (_changeNav)="changeNavAndPage($event)"
+      [user]="user"
+    ></app-buy-points>
+    <app-subscription
+      #subscriptionComponentRef
+      *ngIf="category === 1"
+      (_currentPackagePrice)="getCurrentPackagePrice($event)"
+    ></app-subscription>
+    <app-invite-page *ngIf="category === 2"></app-invite-page>
+    <app-record-voice *ngIf="category === 3"></app-record-voice>
+    <app-coupon-code *ngIf="category === 4"></app-coupon-code>
+    <app-payment-footer *ngIf="category < 2"></app-payment-footer>
+  </div>
+</div>

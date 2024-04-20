@@ -1,0 +1,74 @@
+<div class="buy-points-container">
+  <!-- <div appSaleEvent class="header-event">
+    <div class="flex-center">
+      <mat-icon svgIcon="thunder"></mat-icon>
+      <span class="title"> BIG SALE 3.3 </span>
+      <mat-icon svgIcon="thunder"></mat-icon>
+    </div>
+
+    <span class="sub">
+      {{ text.event_sub_title }}
+    </span>
+  </div> -->
+  <div
+    class="close-unlimited"
+    *ngIf="isUnlimited === true"
+    (click)="closeUnlimited()"
+  >
+    <img src="../../../../assets/payment/buy-points/arrow-left.png" />
+    <p class="back">{{ text.back }}</p>
+  </div>
+  <app-promotion-box *ngIf="isUnlimited === true"></app-promotion-box>
+
+  <app-point-box
+    *ngIf="isUnlimited === false"
+    class="py-3"
+    appSaleEvent
+    [page]="page"
+    [user]="user"
+    [isSaleEvent]="true"
+  />
+
+  <div *ngIf="isUnlimited === false" class="header">
+    <span class="title">
+      {{ text.title }}
+    </span>
+    <span class="sub">
+      {{ text.sub_title[0] }}
+      {{ _wallet.convertPriceByCurrency(text.sub_title[1]) }}
+    </span>
+  </div>
+  <app-point-group
+    *ngIf="isUnlimited === false"
+    class="py-3"
+    [page]="page"
+    [user]="user"
+  />
+  <img
+    *ngIf="isUnlimited === false"
+    (click)="openUnlimited()"
+    class="banner-company"
+    src="../../../../assets/payment/buy-points/company-{{
+      lang.toLowerCase()
+    }}.webp"
+    alt="company banner for request tax invoice"
+  />
+  <!-- <img *ngIf="isUnlimited === false" (click)="openUnlimited()" class="banner-company" src="../../../../assets/payment/buy-points/pro-{{
+        lang.toLowerCase()
+      }}.png" alt="company banner for promotion" /> -->
+  <div class="header" *ngIf="page !== 'quote' && isUnlimited === false">
+    <span class="title">
+      {{ text.title_input }}
+    </span>
+  </div>
+  <app-input-point
+    class="input-point"
+    *ngIf="page !== 'quote' && isUnlimited === false"
+    [price]="price"
+    [text]="text"
+    [pointForm]="pointForm"
+    [currency]="currency"
+    [analyticId]="analyticId.inputPoint"
+    (onTopup)="topup()"
+  ></app-input-point>
+</div>

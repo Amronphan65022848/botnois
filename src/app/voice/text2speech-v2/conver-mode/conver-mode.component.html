@@ -1,0 +1,387 @@
+<div class="app-alert-text2speech" *ngIf="nosoundClick">
+  <div class="floating-message">
+    <svg
+      width="8"
+      height="18"
+      viewBox="0 0 8 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M5.25 15.75H6.50375C7.19125 15.75 7.75 16.2495 7.75 16.875C7.75 17.496 7.18375 18 6.50375 18H1.49625C0.80875 18 0.25 17.5005 0.25 16.875C0.25 16.254 0.81625 15.75 1.49625 15.75H2.75V6.75H1.5125C0.8125 6.75 0.25 6.2505 0.25 5.625C0.25 5.004 0.80375 4.5 1.5125 4.5H3.9875C4.6875 4.5 5.25 4.9995 5.25 5.625V15.75ZM3.375 3.375C4.41 3.375 5.25 2.619 5.25 1.6875C5.25 0.756 4.41 0 3.375 0C2.34 0 1.5 0.756 1.5 1.6875C1.5 2.619 2.34 3.375 3.375 3.375Z"
+        fill="#E1AD27"
+      />
+    </svg>
+    <p>{{ alertText }}</p>
+  </div>
+</div>
+
+<div
+  class="conver-mode"
+  cdkDropList
+  cdkDragPreviewContainer="parent"
+  (cdkDropListDropped)="drop($event)"
+>
+  <div
+    class="conver-box"
+    cdkDrag
+    cdkDragLockAxis="y"
+    cdkDragBoundary=".conver-mode"
+    *ngFor="let item of data; let i = index"
+  >
+    <div
+      #conversation_box
+      id="conversation-box"
+      class="conversation-box"
+      (click)="focus(i)"
+      [class.conversation-box-focus]="focusIndex == i"
+    >
+      <div class="loading-box">
+        <div
+          #overlay_loading
+          id="overlay_loading"
+          class="loading"
+          [ngStyle]="{
+            display: item.isLoading ? 'flex' : 'none',
+            height: item.box_height
+          }"
+        >
+          <img src="assets/img/dowload_gif5.gif" alt="กำลังโหลด" />
+        </div>
+      </div>
+      <div class="during-play-box">
+        <!-- <div
+                [ngStyle]="{
+                  'display': item.isPlaying ? 'flex' : 'none',
+                  'width': onloadedPlay + '%',
+                  'height': item.box_height
+                }"
+                id="during_playing"
+                #during_playing
+                class="during-play"
+              ></div> -->
+      </div>
+      <div [class.downloaded]="item.isDownload" class="generate-box">
+        <img
+          cdkDragHandle
+          class="grab-dots"
+          src="assets/icons/toolbar/grab-dots.svg"
+          alt="grab-dots"
+        />
+        <div class="group-box">
+          <div class="textbox-tab">
+            <!-- <div *ngIf="showTipsBox" class="animate tips-box arrow-top">
+                    <img src="../../../../assets/conversation/tips_delay.png" alt="Display how to add delay image">
+                    <div class="title">
+                      <label>
+                        {{textbox.tips.title}}
+                      </label>
+                      <ul>
+                        <li *ngFor="let item of textbox.tips.detail">{{item}}</li>
+                      </ul>
+                    </div>
+                    <button (click)="onAgreedTipsBox()">
+                      <span>
+                        {{textbox.button}}
+                      </span>
+                    </button>
+                  </div> -->
+            <div class="select-speaker">
+              @if (!item.speaker) {
+                <div
+                  class="select-voice-no-speaker"
+                  (click)="
+                    triggerSelectSpeaker(item.speaker, i, conversation_box)
+                  "
+                  matTooltip="{{ text?.toolbar.select_voiceover }}"
+                  matTooltipClass="mat-tooltip-speaker"
+                  [matTooltipShowDelay]="showDelay.value"
+                  [matTooltipPosition]="position.value"
+                >
+                  <div class="frame">
+                    <mat-icon
+                      class="mic"
+                      svgIcon="person_dynamic"
+                      [class.large-speaker]="this.device === 'Mobile'"
+                      [class.no-speaker-focus-img]="focusIndex == i"
+                    ></mat-icon>
+                  </div>
+
+                  <div class="no-speaker-text">
+                    <span [class.no-speaker-focus-label]="focusIndex == i">
+                      {{ text?.toolbar.select_voiceover }}
+                    </span>
+                    <mat-icon class="down" svgIcon="down"></mat-icon>
+                  </div>
+                </div>
+              } @else {
+                <div
+                  class="speaker-display"
+                  (click)="
+                    triggerSelectSpeaker(item.speaker, i, conversation_box)
+                  "
+                  matTooltip="{{ text?.toolbar.select_voiceover }}"
+                  matTooltipClass="mat-tooltip-speaker"
+                  [matTooltipShowDelay]="showDelay.value"
+                  [matTooltipPosition]="position.value"
+                >
+                  <img
+                    *ngIf="item.speaker"
+                    class="img-btn-select-voice"
+                    [class.speaker-img-focus]="focusIndex == i"
+                    [class.large-speaker]="this.device === 'Mobile'"
+                    [src]="findfaceimg(item.speaker)"
+                  />
+                  <div class="speaker-text">
+                    <span
+                      *ngIf="item.speaker && this.device != 'Mobile'"
+                      class="label-btn-select-voice"
+                      [class.speaker-label-focus]="focusIndex == i"
+                    >
+                      {{ findSpeakerName(item.speaker) }}
+                    </span>
+                    <mat-icon
+                      *ngIf="item.speaker && this.device != 'Mobile'"
+                      class="down"
+                      svgIcon="down"
+                    ></mat-icon>
+                  </div>
+                </div>
+              }
+            </div>
+            <div
+              class="input-box"
+              [class.input-box-focus]="focusIndex == i"
+              [class.border-red]="item.isTextExceed"
+            >
+              <p
+                class="on-line-text"
+                *ngIf="focusIndex == i"
+                [ngStyle]="{ color: item.isTextExceed ? '#FF5252' : '#01bffb' }"
+              >
+                {{ text.type_word }}
+              </p>
+              <div
+                text-editable
+                [(ngModel)]="item.display_text"
+                [disabled]="item.isDownload || !item.isEdit"
+                #textarea_inputbox
+                class="prevent-ios-zoom"
+                [class.textarea_inputbox_disable]="
+                  item.isDownload || !item.isEdit
+                "
+                [class.textarea_inputbox]="!item.isDownload || item.isEdit"
+                id="textarea_inputbox_{{ i }}"
+                attr.placeholder="{{ placeholder }}"
+                type="text"
+                (keydown)="detectKey($event, i, conversation_box)"
+                (input)="
+                  highlightText($event.target);
+                  updateData(i);
+                  textExceedLimit($event.target, i)
+                "
+                (paste)="onPasteText($event)"
+              ></div>
+              <!-- detectLanguage($event.target, i) ยังไม่สมบูรณ์ เอาออกก่อน -->
+              <span
+                class="textlength"
+                [ngClass]="
+                  getCurrentTextCounted(item.text) > limitText ? 'textRed' : ''
+                "
+              >
+                {{ getCurrentTextCounted(item.text) }}/{{ limitText }}
+              </span>
+            </div>
+          </div>
+          <div class="exceed-text" *ngIf="item.isTextExceed">
+            {{ text.text_exceed }}
+          </div>
+          <div class="group-tools">
+            <div class="audio-control" *ngIf="item.isDownload || !item.isEdit">
+              <button
+                class="play-pause"
+                matTooltip="{{ play }}"
+                matTooltipClass="mat-tooltip-dropdown"
+                [matTooltipShowDelay]="showDelay.value"
+                [matTooltipPosition]="position.value"
+                [disabled]="item?.isEdit || item?.isDownload"
+                (click)="playsound(i)"
+              >
+                <mat-icon svgIcon="play" *ngIf="!item.isPlaying"></mat-icon>
+                <mat-icon svgIcon="pause" *ngIf="item.isPlaying"></mat-icon>
+              </button>
+              <div class="disable" *ngIf="currentIndex != i">
+                <span>{{ 0 | date: "m:ss" }} / {{ 0 | date: "m:ss" }}</span>
+                <input class="slider" type="range" [value]="0" [max]="0" />
+              </div>
+              <div class="play" *ngIf="currentIndex == i">
+                <span
+                  >{{ currentTime | date: "m:ss" }} /
+                  {{ duration | date: "m:ss" }}</span
+                >
+                <input
+                  class="slider"
+                  type="range"
+                  [value]="currentTime"
+                  [max]="duration"
+                  (input)="onSliderInput($event)"
+                  [ngStyle]="{
+                    background:
+                      'linear-gradient(to right, #01BFFB 0%, #01BFFB ' +
+                      (currentTime / duration) * 100 +
+                      '%, #efefef ' +
+                      (currentTime / duration) * 100 +
+                      '%, #efefef 100%)'
+                  }"
+                  [disabled]="item.isEdit || item.freeze"
+                />
+              </div>
+            </div>
+            <div
+              class="edit-btn"
+              *ngIf="item.isDownload || !item.isEdit"
+              matTooltip="{{ text.toolbar.edit_ }}"
+              matTooltipClass="mat-tooltip-dropdown"
+              [matTooltipShowDelay]="showDelay.value"
+              [matTooltipPosition]="position.value"
+              (click)="setEdit(true, i)"
+            >
+              {{ text.toolbar.edit_ }}
+            </div>
+            <div
+              [class.freeze]="!item.isEdit && item.category == 'soundtrack'"
+              class="dropdown-conversation"
+              *ngIf="!(item.isDownload || !item.isEdit)"
+            >
+              <!-- [main_lang]="item.main_lang"
+            [sub_lang]="item.sub_lang" -->
+
+              <app-conver-toolbar
+                *ngIf="speaker?.length >= 1"
+                [index]="i"
+                [isDownload]="item.isDownload"
+                [isSettingSound]="
+                  !item.isEdit && item.category === 'soundtrack'
+                "
+                [inputText]="item.text"
+                [_data]="_gfunc.deepclone(item)"
+                [device]="device"
+                [box]="conversation_box"
+                [_voiceSpeaker]="item.speaker"
+                [voiceSpeed]="item.speed"
+                [voiceVolume]="item.volume"
+                [iconSpeaker]="findfaceimg(item.speaker)"
+                (_editSound)="setEdit($event, i)"
+                (_onChangeLanguage)="setLanguage($event, i)"
+                (_onChangeMainSubLang)="setLanguage($event, i)"
+                (_onChangeSpeed)="setSpeed($event, i)"
+                (_onChangeVolume)="setvolume($event, i)"
+                (_onChangeMainSubLang)="setMainSubLanguage($event, i)"
+                (_createSound)="enqueueData($event)"
+                (triggerDropdown)="triggerdropdown($event)"
+              ></app-conver-toolbar>
+            </div>
+            <div
+              class="line"
+              *ngIf="device !== 'Mobile' || item.isDownload || !item.isEdit"
+            ></div>
+
+            <div class="generate-box-inner">
+              <button
+                class="delay-button"
+                [disabled]="!item.text || item.isDownload || !item.isEdit"
+                *ngIf="!(item.isDownload || !item.isEdit)"
+                matTooltip="{{ delayHover }}"
+                matTooltipClass="mat-tooltip-dropdown"
+                [matTooltipShowDelay]="showDelay.value"
+                [matTooltipPosition]="position.value"
+                (click)="delayText(i, '0.5')"
+              >
+                <mat-icon class="delay-icon" svgIcon="delay"></mat-icon>
+              </button>
+              <button
+                class="cut-button"
+                [disabled]="!item.text || item.isDownload || !item.isEdit"
+                *ngIf="!(item.isDownload || !item.isEdit)"
+                matTooltip="{{ cutTextHover }}"
+                matTooltipClass="mat-tooltip-dropdown"
+                [matTooltipShowDelay]="showDelay.value"
+                [matTooltipPosition]="position.value"
+                (click)="cutText(i)"
+              >
+                <mat-icon class="cut-icon" svgIcon="cut"></mat-icon>
+              </button>
+              <button
+                matTooltip="{{ closeText }}"
+                matTooltipClass="mat-tooltip-dropdown"
+                [matTooltipShowDelay]="showDelay.value"
+                [matTooltipPosition]="position.value"
+                class="del-button"
+                (click)="remove(i)"
+              >
+                <mat-icon class="delete-icon" svgIcon="delete"></mat-icon>
+              </button>
+            </div>
+            <div class="box-last">
+              <div
+                class="text"
+                [class.cross-out]="user?.subscription === 'Unlimited'"
+                *ngIf="item.isDownload || !item.isEdit"
+              >
+                <p class="point-text">
+                  {{ item.point ? item.point : "0" }}{{ " " + point }}
+                </p>
+                <p class="price-text">
+                  {{ "≈ " }}{{ _wallet.convertPointByCurrency(item.point) }}
+                </p>
+              </div>
+              <button
+                [class.share-download-disabled]="item.isEdit"
+                class="download-button"
+                [disabled]="!item.text || item.isTextExceed"
+                (click)="handleDownloadOrCreate(i, conversation_box)"
+                [matTooltip]="
+                  !(item.isDownload || !item.isEdit)
+                    ? generateText
+                    : downloadText
+                "
+                matTooltipClass="mat-tooltip-dropdown"
+                [matTooltipShowDelay]="showDelay.value"
+                [matTooltipPosition]="position.value"
+              >
+                <!-- <img
+                  *ngIf="!item.isEdit"
+                  src="assets/icons/toolbar/download.svg"
+                />
+                <img
+                  *ngIf="item.isEdit"
+                  src="assets/icons/toolbar/conversation/download-disable.svg"
+                  alt="download-disabled"
+                /> -->
+                <p class="my-0">
+                  {{
+                    !item.isEdit && item.category === "soundtrack"
+                      ? downloadBtnText
+                      : text.toolbar.generate
+                  }}
+                </p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="bottom-box mb-3">
+  <button
+    id="btn-add"
+    [disabled]="data.length >= limitBox"
+    [matTooltip]="add_word"
+    class="add-button"
+    (click)="add_textbox()"
+  >
+    <img src="assets/icons/toolbar/conversation/add.svg" />
+    <span>{{ add_word }}</span>
+  </button>
+</div>

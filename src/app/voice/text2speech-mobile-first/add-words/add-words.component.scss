@@ -1,0 +1,226 @@
+.add-word-container {
+  width: 100%;
+  padding: 32px 16px 20px;
+  font-family: Prompt !important;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .header {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    p {
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+
+  .input-words-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+
+    .writing,
+    .reading {
+      flex: 1;
+      border: 1px solid #01bffb;
+      border-radius: 10px;
+
+      .top,
+      .bottom {
+        .label-box {
+          font-size: 14px;
+          font-weight: 600;
+        }
+      }
+
+      .top {
+        padding: 8px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: #effbfe;
+        border-bottom: 1px solid #01bffb;
+        border-radius: 10px 10px 0px 0px;
+      }
+
+      .bottom {
+        padding: 16px 8px;
+
+        input {
+          font-size: 12px;
+          font-weight: 400;
+          width: 100%;
+          border: none;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+
+  .save-word-btn {
+    width: 100%;
+    height: 36px;
+    background-color: #01bffb;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+
+  .latest-word {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .latest-text {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      h3 {
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      button {
+        padding: 0;
+        background-color: transparent;
+        font-size: 14px;
+        font-weight: 400;
+        color: #01bffb;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .history-word {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 8px 0px;
+    gap: 24px;
+
+    .before-text {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex: 1;
+
+      span {
+        text-wrap: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .edit-input {
+        border: none;
+        width: 80%;
+
+        &::placeholder {
+          color: #d5d7d9;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    ::ng-deep .icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 12px;
+      cursor: pointer;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .tools {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+
+      // .edit {
+      //   margin-right: 8px;
+      // }
+
+      // .done {
+      //   margin-right: 8px;
+      // }
+
+      ::ng-deep .icon {
+        width: 16px;
+        height: 16px;
+        margin: 0;
+        cursor: pointer;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+
+      ::ng-deep .cancel {
+        width: 14px;
+        height: 14px;
+        svg {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+  }
+
+  .add-other-words {
+    display: flex;
+    padding: 0px;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+    height: 36px;
+    border: 1px dashed #01bffb;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: #01bffb;
+    font-size: 12px;
+    font-weight: 700;
+
+    mat-icon {
+      width: 16px;
+      height: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+::ng-deep .mat-horizontal-stepper-header-container {
+  display: none !important;
+}
+
+::ng-deep .mat-horizontal-content-container {
+  padding: 0px !important;
+}

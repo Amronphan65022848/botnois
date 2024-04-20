@@ -1,0 +1,84 @@
+<div class="dialog-ads-container">
+  <div class="counter" (click)="onClose()">
+    <div class="group">
+      <mat-progress-spinner
+        class="spinner"
+        [class.skip]="canSkip"
+        [color]="progressSpinnerData.color"
+        [mode]="progressSpinnerData.mode"
+        [value]="progressSpinnerData.value"
+      >
+      </mat-progress-spinner>
+      <ng-container *ngIf="adsCounter <= 0; else elseTemplate">
+        <mat-icon class="icon" svgIcon="close"></mat-icon>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <span [class.hide]="!adsCounter" class="number">
+          {{ adsCounter }}
+        </span>
+      </ng-template>
+    </div>
+  </div>
+  <div class="header">
+    <span> {{ text.header[0] }}<br />{{ text.header[1] }} </span>
+  </div>
+  <div class="ads" [ngStyle]="{ 'background-image': extractCategoryFromUrl() }">
+    <div class="ads--bottom">
+      <div class="group">
+        <span> {{ text.play }} {{ formattedDuration }} </span>
+        <div class="speaker" *ngIf="currentSpeaker">
+          <img src="{{ currentSpeaker.square_image }}" alt="speaker image" />
+          <div class="card_group">
+            <span
+              class="tag"
+              [ngStyle]="{
+                backgroundColor: currentSpeaker?.premier ? '#FEE8CC' : '#F7D9FF'
+              }"
+            >
+              <mat-icon
+                svgIcon="crown_dynamic"
+                [ngStyle]="{ color: '#FB8C00' }"
+                *ngIf="currentSpeaker?.premier"
+              ></mat-icon>
+              <span
+                [ngStyle]="{
+                  color: currentSpeaker?.premier ? '#FB8C00' : '#C800FF'
+                }"
+                >{{ currentSpeaker?.premier ? text.premium : text.free }}</span
+              >
+            </span>
+            <span class="speaker_name"
+              >{{ text.voice_front }}{{ currentSpeaker.name }}</span
+            >
+          </div>
+        </div>
+      </div>
+      <mat-progress-bar
+        [color]="progressBarData.color"
+        [mode]="progressBarData.mode"
+        [value]="progressBarData.value"
+      >
+      </mat-progress-bar>
+      <div class="group">
+        <span class="text_read" [class.hide]="data?.description.length <= 0">
+          {{ lang === "TH" ? backgroundData.name : backgroundData.EN_name }}
+        </span>
+        <u (click)="toUrl()">
+          {{ text.url }}
+        </u>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>
+      {{ text.ads[0] }}
+      {{ noAdsPrice }}
+      {{ text.ads[1] }}
+    </span>
+    <button (click)="toPayment()">
+      <span>
+        {{ text.apply }}
+      </span>
+    </button>
+  </div>
+</div>

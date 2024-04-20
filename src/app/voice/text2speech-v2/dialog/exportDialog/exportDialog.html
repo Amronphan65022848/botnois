@@ -1,0 +1,37 @@
+<div class="main">
+  <mat-dialog-content class="mat-typography">
+    <mat-dialog-actions class="close-bt">
+      <mat-button mat-dialog-close class="close"></mat-button>
+    </mat-dialog-actions>
+
+    <div class="image">
+      <img src="../../../../assets/icons/export-icon.png" />
+    </div>
+    <h2>{{exportFile}}</h2>
+
+    <div class="type-panel">
+      <mat-radio-group class="content" [(ngModel)]="selectedFileType">
+        <p>{{selectType}}</p>
+        <mat-radio-button [value]="'xlsx'" class="type-xlsx"
+          >.xlsx</mat-radio-button
+        >
+        <mat-radio-button
+          [value]="'csv'"
+          class="type-csv"
+          [checked]="selectedFileType === 'csv'"
+          >.csv</mat-radio-button
+        >
+      </mat-radio-group>
+    </div>
+
+    <div class="bt-panel">
+      <mat-button mat-dialog-close class="btn-form1">{{cancel}}</mat-button>
+      <mat-button
+        mat-dialog-close
+        class="btn-form2"
+        (click)="export(selectedFileType);"
+        >{{exportConfirm}}</mat-button
+      >
+    </div>
+  </mat-dialog-content>
+</div>

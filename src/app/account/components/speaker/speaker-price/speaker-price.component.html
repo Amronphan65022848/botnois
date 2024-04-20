@@ -1,0 +1,6 @@
+<div class="speaker-price-container">
+  <input [formControl]="point" type="number" [placeholder]="text.placeholder">
+  <button [disabled]="point.invalid"(click)="onSubmit(point.value)">
+    <span> {{text.submit}} </span>
+  </button>
+</div>

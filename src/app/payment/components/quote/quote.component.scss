@@ -1,0 +1,277 @@
+$gradient-color: linear-gradient(
+  90deg,
+  #b2a1fa 0.19%,
+  var(--botnoi-color) 171.96%
+);
+.quote-container {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  span {
+    font-family: "Sarabun";
+  }
+  background: url("../../../../assets/landing-v3/bg_compare.webp");
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+  background-size: 120% 120%;
+  .container {
+    display: flex;
+    padding: 100px 132px 64px;
+    flex-direction: column;
+    height: 100%;
+    gap: 16px;
+
+    .box-1 {
+      width: 100%;
+
+      height: auto;
+      // background: linear-gradient(99deg, #222166 0%, #812448 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+
+      .row-1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+
+        .group-text {
+          display: flex;
+          flex-direction: column;
+          margin-top: 10px;
+
+          p:nth-child(1) {
+            text-align: center;
+            margin: 0;
+            color: #000;
+            font-family: Sarabun;
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 42px;
+          }
+          .detail {
+            padding-top: 8px;
+            text-align: center;
+            color: #000;
+            font-family: Sarabun;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: normal;
+            background: var(
+              --Old,
+              linear-gradient(91deg, #222166 5.33%, #812448 90.37%)
+            );
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        }
+      }
+    }
+  }
+  .card-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    // padding: 0px 130px;
+
+    .card-container {
+      display: flex;
+      padding: 12px 16px;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      background: #ffffff;
+      border-radius: 10px;
+      font-style: normal;
+
+      // border-radius: 10px;
+      // box-shadow: 0px 3px 10px 0px rgba(79, 117, 138, 0.3);
+
+      .icon-doc,
+      .icon-tiktok,
+      .icon-movie {
+        // position: absolute;
+        z-index: 5;
+      }
+
+      .icon-doc {
+        width: 100px;
+        height: 100px;
+        transform: rotate(-10deg) scale(1.1);
+        left: 10px;
+      }
+
+      .icon-tiktok {
+        width: 80px;
+        height: 80px;
+        transform: rotate(23.626deg);
+        left: 10px;
+      }
+
+      .icon-movie {
+        width: 90px;
+        height: 90px;
+        transform: rotate(-24deg);
+      }
+
+      .card-header {
+        color: #000;
+        text-align: center;
+        font-family: Sarabun;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 32px;
+      }
+
+      .card-body {
+        display: flex;
+        width: max-content;
+        height: 91px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 4px;
+        opacity: 0.9;
+
+        .card-detail {
+          color: #01bffb;
+          text-align: center;
+          font-family: Sarabun;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 32px;
+        }
+
+        .card-price {
+          color: #000;
+          text-align: center;
+          font-family: Sarabun;
+          font-size: 20px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .group-box {
+      display: flex;
+      flex: 1;
+      // height: 100%;
+      gap: 24px;
+
+      .box-2,
+      .box-3 {
+        height: 100%;
+        width: 50%;
+        max-height: 100px;
+        // max-width: 480px;
+        box-shadow: 0px 2px 8px rgba(33, 192, 249, 0.15);
+        border-radius: 10px;
+      }
+
+      .box-2 {
+        background-image: url("../../../../assets/payment/buy-cheaper.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      .box-2 {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .group-text {
+          display: flex;
+          gap: 8px;
+          flex-direction: column;
+          padding: 20px;
+          span {
+            font-weight: bold;
+            font-size: 22px;
+            color: #01bffb;
+          }
+
+          span:nth-child(1) {
+            color: #212529;
+            font-family: Sarabun;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 34px;
+          }
+        }
+      }
+
+      .img-2 {
+        height: 197px;
+        width: 50%;
+      }
+
+      .box-3 {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background: linear-gradient(
+          92.76deg,
+          #ffffff 0.44%,
+          rgba(219, 246, 255, 0.48) 29.91%,
+          rgba(0, 193, 255, 0.19) 99.7%
+        );
+
+        .group-text {
+          span {
+            color: #01bffb;
+            font-family: Sarabun;
+            font-size: 22px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+          }
+        }
+      }
+    }
+  }
+
+  .btn-click {
+    background: #ffffff;
+    border: 1px solid #21c0f9;
+    border-radius: 10px;
+    color: #21c0f9;
+    height: 38px;
+    padding: 0 23px;
+  }
+}
+
+app-point-list {
+  padding-top: 48px;
+  padding-left: 16px;
+  padding-right: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 1240px) {
+  .quote-container {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+}
+
+@media (max-width: 1000px) {
+}
+
+@media (max-width: 450px) {
+}
+
+@media (max-width: 375px) {
+}

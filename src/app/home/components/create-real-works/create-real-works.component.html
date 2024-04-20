@@ -1,0 +1,239 @@
+<div class="works">
+  <div class="works-container">
+    <div class="header">
+      <h2>{{ text.result.header }}</h2>
+      <span class="subtitle">
+        {{ text.result.subtitle }}
+      </span>
+    </div>
+
+    <div class="card-container">
+      <div class="card">
+        <div class="card-content">
+          <div class="video-card">
+            <div class="video" style="width: 100%">
+              <img
+                (click)="popup1 = true"
+                src="../../../assets/images/why-us/img_video1.webp"
+              />
+              <button (click)="popup1 = true" type="button">
+                <div class="icon">
+                  <svg
+                    width="22"
+                    height="25"
+                    viewBox="0 0 22 25"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g clip-path="url(#clip0_8813_43427)">
+                      <path
+                        d="M-0.104492 3.12851C-0.104492 0.700382 2.54551 -0.799618 4.62988 0.450382L20.2549 9.82226C22.2768 11.0348 22.2768 13.966 20.2549 15.1785L4.62988 24.5504C2.54551 25.8004 -0.104492 24.3004 -0.104492 21.8723V3.12851Z"
+                        fill="white"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_8813_43427">
+                        <rect width="21.6667" height="25" fill="white" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+              </button>
+              <div class="overlay" *ngIf="popup1" (click)="popup1 = false">
+                <div class="popup">
+                  <iframe
+                    width="100%"
+                    height="547px"
+                    src="https://www.tiktok.com/embed/7046978624695635226"
+                    title="Tiktok : bosebosh"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write;
+                            encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-text">
+            {{ text.result.card1 }}
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="name">
+            <img
+              class="logo"
+              src="../../../../assets/media-center/bosebosh.webp"
+              alt="Logo"
+            />
+            <span class="title">{{ text.result.card1_name }}</span>
+          </div>
+
+          <button
+            class="footer-button"
+            (click)="navigateToUrl('https://www.tiktok.com/@bosebosh')"
+          >
+            <img
+              class="v-icon"
+              src="../../../../assets/create-sound-v2/v-icon.svg"
+              alt="v-icon"
+            />
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-content">
+          <div class="video-card">
+            <div class="video" style="width: 100%">
+              <img
+                (click)="popup2 = true"
+                src="../../../assets/images/why-us/img_video1.webp"
+              />
+              <button (click)="popup2 = true" type="button">
+                <div class="icon">
+                  <svg
+                    width="22"
+                    height="25"
+                    viewBox="0 0 22 25"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g clip-path="url(#clip0_8813_43427)">
+                      <path
+                        d="M-0.104492 3.12851C-0.104492 0.700382 2.54551 -0.799618 4.62988 0.450382L20.2549 9.82226C22.2768 11.0348 22.2768 13.966 20.2549 15.1785L4.62988 24.5504C2.54551 25.8004 -0.104492 24.3004 -0.104492 21.8723V3.12851Z"
+                        fill="white"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_8813_43427">
+                        <rect width="21.6667" height="25" fill="white" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+              </button>
+              <div class="overlay" *ngIf="popup2" (click)="popup2 = false">
+                <div class="popup">
+                  <iframe
+                    width="100%"
+                    height="547px"
+                    src="https://www.youtube.com/embed/ji5-FqHXvhM"
+                    title="Youtube : KruApiwat"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write;
+                            encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-text">
+            {{ text.result.card2 }}
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="name">
+            <img
+              class="logo"
+              src="../../../../assets/create-sound-v2/logo-ครูอภิวัฒน์.webp"
+              alt="Logo"
+            />
+            <span class="title">{{ text.result.card2_name }}</span>
+          </div>
+
+          <button
+            class="footer-button"
+            (click)="navigateToUrl('https://www.youtube.com/@KruApiwat')"
+          >
+            <img
+              class="v-icon"
+              src="../../../../assets/create-sound-v2/v-icon.svg"
+              alt="v-icon"
+            />
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-content">
+          <div class="video-card">
+            <div class="video" style="width: 100%">
+              <img
+                (click)="popup3 = true"
+                src="../../../assets/images/why-us/img_video1.webp"
+              />
+              <button (click)="popup3 = true" type="button">
+                <div class="icon">
+                  <svg
+                    width="22"
+                    height="25"
+                    viewBox="0 0 22 25"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g clip-path="url(#clip0_8813_43427)">
+                      <path
+                        d="M-0.104492 3.12851C-0.104492 0.700382 2.54551 -0.799618 4.62988 0.450382L20.2549 9.82226C22.2768 11.0348 22.2768 13.966 20.2549 15.1785L4.62988 24.5504C2.54551 25.8004 -0.104492 24.3004 -0.104492 21.8723V3.12851Z"
+                        fill="white"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_8813_43427">
+                        <rect width="21.6667" height="25" fill="white" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+              </button>
+              <div class="overlay" *ngIf="popup3" (click)="popup3 = false">
+                <div class="popup">
+                  <iframe
+                    width="100%"
+                    height="547px"
+                    src="https://www.tiktok.com/embed/7312752034317389062"
+                    title="Tiktok : fictionfive11"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write;
+                            encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-text">
+            {{ text.result.card3 }}
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="name">
+            <img
+              class="logo"
+              src="../../../../assets/media-center/fictionfive11.jpeg"
+              alt="Logo"
+            />
+            <span class="title">{{ text.result.card3_name }}</span>
+          </div>
+
+          <button
+            class="footer-button"
+            (click)="navigateToUrl('https://www.tiktok.com/@fictionfive11')"
+          >
+            <img
+              class="v-icon"
+              src="../../../../assets/create-sound-v2/v-icon.svg"
+              alt="v-icon"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="btn-container">
+      <button id="LD_seemore_btn" class="btn" (click)="mediaCenter()">
+        {{ text.result.button }}
+      </button>
+    </div>
+  </div>
+</div>

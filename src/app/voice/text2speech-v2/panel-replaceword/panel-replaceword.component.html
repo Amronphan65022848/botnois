@@ -1,0 +1,402 @@
+<aside class="tool-sidebar" aria-disabled="true">
+  <!-- <div *ngIf="freeUser" class="package">
+    <div class="package-card">
+      <div class="package-header">
+        <mat-icon svgIcon="price_tag" color="#FFF"></mat-icon>
+        <p>{{ text?.card.header }}</p>
+      </div>
+      <div class="package-detail">
+        <p>{{ text?.card.detail }}</p>
+        <button (click)="toSub()">{{ text?.card.btn }}</button>
+      </div>
+    </div>
+  </div> -->
+  <form class="section-addword">
+    <div class="title-section">
+      {{ text?.play_download.total_pay_point }}
+      <button
+        class="arrow-tool-top"
+        (click)="isTotalPointExpand = !isTotalPointExpand"
+      >
+        <mat-icon svgIcon="{{ isTotalPointExpand ? 'up' : 'down' }}"></mat-icon>
+      </button>
+    </div>
+    <div class="point-panel" *ngIf="isTotalPointExpand">
+      <div
+        class="total-pay-point"
+        [class.cross-out]="user?.subscription === 'Unlimited'"
+      >
+        <div class="point">
+          <span>
+            {{ totalPayPoint | number }}
+          </span>
+          <span>
+            {{ text?.play_download.point }}
+          </span>
+        </div>
+        <div>
+          <span class="to-baht">{{
+            "≈ " + _wallet.convertPointByCurrency(totalPayPoint)
+          }}</span>
+        </div>
+      </div>
+      <div class="button-panel">
+        <button
+          class="group-btn play"
+          (click)="playAll()"
+          [disabled]="
+            !isReadyDownloadAll || !isReadyPlayAll || loadingState > 0
+          "
+          [hidden]="isPlayAll"
+          [matTooltip]="text?.play_download.playAll"
+        >
+          <img src="../../../assets/icons/toolbar/play.svg" />
+          <span>{{ text?.play_download.playAll }}</span>
+        </button>
+
+        <button
+          class="group-btn play"
+          (click)="pauseAll()"
+          [hidden]="!isPlayAll"
+          [matTooltip]="text?.play_download.pauseAll"
+        >
+          <img src="../../../assets/icons/toolbar/pause.svg" />
+          <span>{{ text?.play_download.pauseAll }}</span>
+        </button>
+
+        <button
+          class="group-btn download"
+          (click)="downloadAll()"
+          [disabled]="!isReadyDownloadAll || loadingState > 0"
+          [matTooltip]="text?.play_download.downloadAll"
+        >
+          <img src="../../../assets/icons/toolbar/download.svg" />
+          <span>{{ text?.play_download.downloadAll }}</span>
+        </button>
+      </div>
+    </div>
+  </form>
+  <!-- <form class="section-addword">
+    <div class="title-section">
+      {{ text?.subscription.title }}
+    </div>
+    <div class="subscription-panel">
+      <div class="group-play-quota">
+        <div class="text">
+          <span>
+            {{ text.play_quota.text }}
+          </span>
+          <mat-icon
+            [matTooltip]="text.play_quota.tip"
+            svgIcon="infoCircle"
+          ></mat-icon>
+        </div>
+        <span class="quota">{{ playQuota }}</span>
+      </div>
+      <div class="line"></div>
+      <div class="group-play-quota">
+        <div class="text">
+          <span>
+            {{ text.monthly_point.text }}
+          </span>
+          <mat-icon
+            [matTooltip]="text.monthly_point.tip"
+            svgIcon="infoCircle"
+          ></mat-icon>
+        </div>
+        <span class="quota">{{ monthlyPoints }}</span>
+      </div>
+      <div class="group-btn">
+        <button class="add-quota" (click)="add_quota()">
+          <span>{{text.play_quota.btn_add}}</span>
+        </button>
+      </div>
+
+    </div>
+  </form> -->
+  <form class="section-addword once-hide" *ngIf="page === 2">
+    <div class="title-section">
+      {{ text?.tools.title }}
+      <div class="group-icon">
+        <svg
+          [matTooltip]="text?.tools.info"
+          width="16"
+          height="17"
+          viewBox="0 0 16 17"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g clip-path="url(#clip0_10543_49708)">
+            <path
+              d="M8.00586 16.5926C3.59486 16.5926 0.00585938 12.8707 0.00585938 8.2963C0.00585938 3.72193 3.59486 0 8.00586 0C12.4169 0 16.0059 3.72193 16.0059 8.2963C16.0059 12.8707 12.4169 16.5926 8.00586 16.5926ZM8.00586 2.07407C4.69686 2.07407 2.00586 4.86474 2.00586 8.2963C2.00586 11.7278 4.69686 14.5185 8.00586 14.5185C11.3149 14.5185 14.0059 11.7278 14.0059 8.2963C14.0059 4.86474 11.3149 2.07407 8.00586 2.07407Z"
+              fill="#A19F9D"
+            />
+            <path
+              d="M7.99283 6.32905C8.61083 6.32905 9.13083 5.78979 9.13083 5.1489C9.13083 4.50801 8.61083 3.96875 7.99283 3.96875C7.39783 3.96875 6.85483 4.50801 6.88183 5.1209C6.85583 5.79705 7.37183 6.32801 7.99283 6.32801V6.32905Z"
+              fill="#A19F9D"
+            />
+            <path
+              d="M8.21861 12.6008C8.64461 12.4753 8.91161 12.074 8.91161 11.5856C8.88861 11.2921 8.87361 10.9955 8.85161 10.703C8.79161 9.58616 8.73061 8.48793 8.66661 7.37105C8.64361 6.99253 8.36161 6.71875 7.99661 6.71875C7.63161 6.71875 7.34461 7.01119 7.32661 7.3949C7.32661 7.62512 7.32661 7.83668 7.30361 8.07105C7.26561 8.78971 7.22061 9.50423 7.18261 10.2229C7.15961 10.6875 7.12261 11.1521 7.09961 11.6177C7.09961 11.7857 7.12261 11.934 7.18261 12.0823C7.36361 12.4961 7.79261 12.7076 8.21861 12.6019V12.6008Z"
+              fill="#A19F9D"
+            />
+          </g>
+          <defs>
+            <clipPath id="clip0_10543_49708">
+              <rect width="16" height="16.5926" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+        <button
+          class="arrow-tool"
+          (click)="isImportExportExpand = !isImportExportExpand"
+        >
+          <mat-icon
+            svgIcon="{{ isImportExportExpand ? 'up' : 'down' }}"
+          ></mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="tools-panel" *ngIf="isImportExportExpand">
+      <app-importexport-t2s
+        [data]="data"
+        [lang]="lang"
+        (loadCSV)="loadcsvToData($event)"
+      >
+      </app-importexport-t2s>
+    </div>
+  </form>
+  <form [formGroup]="formWords" (ngSubmit)="onsubmit()" class="section-addword">
+    <div class="title-section" style="border-bottom: 1px solid #e2e3e9">
+      {{ text?.title }}
+      <div class="group">
+        <span class="view-all" (click)="viewAll()">{{ text.viewAll }}</span>
+        <button
+          class="arrow-tool"
+          (click)="isChangeWordExpand = !isChangeWordExpand"
+        >
+          <mat-icon
+            svgIcon="{{ isChangeWordExpand ? 'up' : 'down' }}"
+          ></mat-icon>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="isChangeWordExpand">
+      <div formArrayName="words" class="form-word">
+        <!-- <div class="group-input-word">
+          <div class="example-wordreplace">
+            <div class="example-wordreplace-write-read">
+              <span>{{ text?.writing }}</span>
+              <span>
+                <img
+                  src="../../assets/img/Real_audio.svg"
+                  alt="ฟังเสียงตัวอย่าง"
+                  srcset=""
+                  (click)="playTestExample('../../assets/audio/อูเบอร์.wav')"
+                  style="cursor: pointer"
+                />
+              </span>
+            </div>
+            <div class="example-wordreplace-placeholder">
+              {{ text?.ex_writing }}
+            </div>
+          </div>
+          <div>
+            <img
+              src="../../assets/img/fast_forward.svg"
+              style="width: 12px"
+              alt="icon"
+              srcset=""
+            />
+          </div>
+          <div class="example-wordreplace">
+            <div class="example-wordreplace-write-read">
+              <span>{{ text?.reading }}</span>
+              <span>
+                <img
+                  src="../../assets/img/Real_audio.svg"
+                  alt="ฟังเสียงตัวอย่าง"
+                  srcset=""
+                  (click)="playTestExample('../../assets/audio/อูเบ้อร์.wav')"
+                  style="cursor: pointer"
+                />
+              </span>
+            </div>
+            <div class="example-wordreplace-placeholder">
+              {{ text?.ex_reading }}
+            </div>
+          </div>
+        </div> -->
+        <div *ngFor="let w of arrWord.controls; let i = index">
+          <!-- <hr *ngIf="!allsoundState && state_loading == 0" /> -->
+          <div
+            class="group-input-word"
+            [formGroupName]="i"
+            *ngIf="!allsoundState && state_loading == 0"
+          >
+            <div>
+              <div class="p-2">
+                <span>{{ text?.writing }}</span>
+
+                <span>
+                  <img
+                    src="../../assets/img/Real_audio.svg"
+                    alt="ฟังเสียงตัวอย่าง"
+                    srcset=""
+                    (click)="playWord($event)"
+                    style="cursor: pointer"
+                  />
+                </span>
+              </div>
+              <div>
+                <input
+                  matInput
+                  type="text"
+                  placeholder="{{ text?.writing_ }}"
+                  autocomplete="off"
+                  formControlName="before_text"
+                  style="text-align: left"
+                />
+              </div>
+            </div>
+
+            <div>
+              <img
+                src="../../assets/img/fast_forward_blue.svg"
+                style="width: 12px"
+                alt="ฟังเสียงตัวอย่าง"
+                srcset=""
+              />
+            </div>
+            <div>
+              <div class="p-2">
+                <span>{{ text?.reading }}</span>
+                <span>
+                  <img
+                    src="../../assets/img/Real_audio.svg"
+                    alt="ฟังเสียงตัวอย่าง"
+                    srcset=""
+                    (click)="playWord($event)"
+                    style="cursor: pointer"
+                  />
+                </span>
+              </div>
+              <div>
+                <input
+                  matInput
+                  type="text"
+                  placeholder="{{ text?.reading_ }}"
+                  autocomplete="off"
+                  formControlName="after_text"
+                  style="text-align: left"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          class="btn-add-wordreplace"
+          type="button"
+          (click)="addWord('', '')"
+          *ngIf="!allsoundState && state_loading == 0"
+        >
+          {{ text?.addWord }}
+        </button>
+        <div class="save-edit-word" *ngIf="isChangeWordExpand">
+          <button
+            class="save-edit-word-button"
+            [disabled]="
+              formWords.value.words[0].before_text?.length < 1 ? true : false
+            "
+            mat-flat-button
+            type="submit"
+          >
+            {{ text?.save }}
+          </button>
+        </div>
+        <hr class="horizon-line" *ngIf="historyWord?.length" />
+        <div class="history-content-word" *ngIf="historyWord?.length">
+          <div
+            class="history-word"
+            *ngFor="let item of historyWord | slice : 0 : 5; let i = index"
+          >
+            <div class="before-text">
+              <mat-icon
+                (click)="playHistoryWord(item.before_text)"
+                svgIcon="audio"
+              ></mat-icon>
+              <span *ngIf="!item.isEdit">{{ item.before_text }}</span>
+              <input
+                class="edit-input"
+                *ngIf="item.isEdit"
+                name="before"
+                [attr.data-ref]="item.ref_id"
+                placeholder="{{ item.before_text }}"
+                type="text"
+                (keydown)="detectKey($event, item)"
+              />
+            </div>
+            <div>
+              <img src="../../assets/img/fast_forward_blue.svg" />
+            </div>
+            <div class="before-text">
+              <mat-icon
+                (click)="playHistoryWord(item.after_text)"
+                svgIcon="audio"
+              ></mat-icon>
+              <span *ngIf="!item.isEdit">{{ item.after_text }}</span>
+              <input
+                class="edit-input"
+                *ngIf="item.isEdit"
+                name="after"
+                [attr.data-ref]="item.ref_id"
+                placeholder="{{ item.after_text }}"
+                type="text"
+                (keydown)="detectKey($event, item)"
+              />
+            </div>
+            <div class="tools">
+              <mat-icon
+                class="edit"
+                svgIcon="edit_pencil"
+                (click)="editText(i)"
+                *ngIf="!item.isEdit"
+              ></mat-icon>
+              <mat-icon
+                class="done"
+                svgIcon="check"
+                (click)="editDone(item, i)"
+                *ngIf="item.isEdit"
+              ></mat-icon>
+              <mat-icon
+                class="delete"
+                svgIcon="trash"
+                (click)="deleteHistoryWord(item)"
+                *ngIf="!item.isEdit"
+              ></mat-icon>
+              <mat-icon
+                class="cancel"
+                svgIcon="cross"
+                (click)="editCancel(i)"
+                *ngIf="item.isEdit"
+              ></mat-icon>
+            </div>
+          </div>
+          <div *ngIf="!historyWord?.length">
+            <p class="no-history">{{ text?.err_redirect.no_history }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="survey" *ngIf="surveyStatus()">
+    <button (click)="openSurvey()">{{text.survey.text}}</button>
+  </div>
+  <div class="promotion" *ngIf="image">
+    <img
+      (click)="toPayment()"
+      *ngIf="image"
+      [src]="image"
+      alt="botnoi voice news image dialog"
+    />
+  </div>
+</aside>

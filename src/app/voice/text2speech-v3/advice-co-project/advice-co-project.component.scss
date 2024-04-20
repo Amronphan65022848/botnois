@@ -1,0 +1,44 @@
+.row-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.advice {
+  display: flex;
+  margin: 12px 0px 0px 12px;
+}
+
+.advice-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 108px;
+  height: 37px;
+  border: none;
+  border-radius: 12px;
+  background-color: #f7f8fa;
+  font-family: "prompt";
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.advice-btn svg {
+  margin-right: 8px;
+}
+
+.advice-btn:hover {
+  background-color: #ffffff;
+  text-decoration: underline;
+}
+
+.shared-project {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  font-size: 12px;
+  font-weight: 400;
+  margin: 12px 12px 0px 0px;
+}

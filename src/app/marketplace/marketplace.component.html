@@ -1,0 +1,7 @@
+<app-marketplace-alert [hidden]="!clickDelete" [count]="deletePersonCount" (close)="closeAlert()"
+  (remove)="submitRemove()">
+</app-marketplace-alert>
+<app-floating-message [hidden]="!messageShow" [alertMessage]="floatingMessage"></app-floating-message>
+<app-marketplace-v3 [isLoggedIn]="isLoggedIn" (sendCart)="checkCart($event)"></app-marketplace-v3>
+<app-add-cart [hidden]="!isLoggedIn" [panelOpenState]="panelOpenState" [_addlist]="_addlist"
+  (del_addlist)="removelist($event)" (changeopenstate)="changeOpenState()" (save_addlist)="setCart()"></app-add-cart>

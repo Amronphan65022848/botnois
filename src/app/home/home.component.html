@@ -1,0 +1,30 @@
+<div class="home-container">
+  <ngx-loading [show]="isLoading"></ngx-loading>
+  <app-create-sound></app-create-sound>
+
+  @defer {
+    <app-partner></app-partner>
+    <app-discover-users></app-discover-users>
+    <app-activity-news />
+    <app-create-real-works />
+    <app-compare-content></app-compare-content>
+    <!-- <app-experience
+      [page]="'seo'"
+      [languageObj]="languageObj"
+      [allSpeaker]="allSpeaker"
+    /> -->
+
+    <app-steps [isLoggedin]="isLoggedin"></app-steps>
+    <app-features-update [isLoggedin]="isLoggedin"></app-features-update>
+    <app-card-list></app-card-list>
+    <app-bottom-banner [isLoggedin]="isLoggedin"></app-bottom-banner>
+    <app-why-us></app-why-us>
+    <app-review></app-review>
+    <!-- <app-contact-us ></app-contact-us> -->
+    <app-footer-v2></app-footer-v2>
+    <!-- <app-creative-work-v2 ></app-creative-work-v2> -->
+
+    <!-- Disabled: need login first to get speaker data -->
+    <!-- <app-sound-sample-v3 ></app-sound-sample-v3> -->
+  }
+</div>

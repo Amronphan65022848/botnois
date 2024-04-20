@@ -1,0 +1,226 @@
+$black-color: #424242;
+
+.upsell-container {
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  .close {
+    justify-content: flex-end;
+    width: 100%;
+    display: flex;
+    mat-icon {
+      cursor: pointer;
+    }
+  }
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    .text {
+      font-weight: bold;
+      font-size: 20px;
+      color: black;
+    }
+    .sub {
+      text-align: center;
+    }
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    .box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #BDBDBD;
+      gap: 8px;
+      white-space: nowrap;
+      .left-group, .center-group{
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        .label-input {
+          font-weight: bold;
+        }
+      }
+
+      .currency {
+        font-size: 16px;
+      }
+      input[type="number"] {
+        text-align: center;
+        width: 117px;
+        height: 36px;
+        // padding: 8px, 7.49px, 7px, 6.55px
+        border-radius: 6px;
+        border: 1px solid #B1EAFC;
+        outline: none;
+      }
+
+      .preview {
+        padding: 0 20px;
+        span {
+          color: var(--botnoi-color);
+          font-weight: bold;
+        }
+      }
+
+      button {
+        background: #01BFFB;
+        color: white;
+        padding: 6px;
+        border-radius: 8px;
+        width: 84px;
+        height: 36px;
+        align-self: center;
+      }
+      .point-group {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        justify-content: center;
+        li {
+          padding-left: 6px;
+        }
+        .point {
+          background: var(--gradient-light-blue);
+          font-size: 28px;
+          font-weight: bold;
+
+        }
+        .free-gift {
+          background: var(--gradient-brown);
+          font-size: 12px;
+        }
+      }
+      .price-group {
+        display: flex;
+        gap: 8px;
+        position: relative;
+        // padding-left: 54px;
+        .original {
+          color: var(--red-color);
+          text-decoration: line-through;
+          font-weight: 500;
+        }
+        .group-1 {
+          display: flex;
+          gap: 8px;
+          position: relative;
+          .group-2 {
+            .discount {
+              background: var(--gradient-light-blue2);
+              font-weight: bold;
+              font-size: 28px;
+              // @extend .gradient;
+            }
+            .counter {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              gap: 3px;
+              justify-content: flex-end;
+              mat-icon {
+                max-height: 12px;
+                max-width: 12px;
+              }
+              span {
+                font-weight: 300;
+                font-size: 10px;
+                background: var(--gradient-brown);
+              }
+            }
+          }
+        }
+
+
+      }
+      .point-icon {
+        width: 36px;
+        height: 36px;
+      }
+    }
+    .upsell {
+      // Gradient properties
+      background: var(--gradient-purple);
+      // -webkit-background-clip: text;
+      // background-clip: text;
+      box-shadow: 0px 3px 15px 0px #4F758A4D;
+      opacity: 0.6;
+    }
+
+    .full-opacity,
+    .upsell:hover {
+      opacity: 1;
+    }
+
+    .special-text {
+      text-align: center;
+      .highlight {
+        color: #C800FF;
+      }
+
+      span {
+        color: $black-color;
+        font-size: 18px;
+      }
+    }
+
+  }
+  .footer {
+    text-align: center;
+    span {
+      font-weight: 600;
+      color: var(--black-color);
+    }
+    .see-more {
+      text-decoration: underline;
+      color: var(--botnoi-color);
+
+    }
+  }
+
+  span {
+    font-family: 'Sarabun';
+    color: $black-color;
+  }
+
+
+
+}
+
+@media screen and (max-width:680px) {
+  .box {
+    flex-direction: column;
+    .price-group {
+      .box {
+        .price-group {
+          .counter {
+            justify-content: flex-start !important;
+          }
+        }
+      }
+      gap: 12px !important;
+      flex-direction: column;
+      .original {
+        padding-top: 6px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:365px) {
+  .box {
+    .center-group {
+      flex-direction: column;
+    }
+  }
+  .footer {
+    display: none;
+  }
+}

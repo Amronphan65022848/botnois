@@ -1,0 +1,20 @@
+<div class="news-form-container">
+  <div class="title">
+    <span>
+      {{text.title}}
+    </span>
+    <span
+        class="material-symbols-outlined"
+        (click)="onClose()"
+      >
+        close
+      </span>
+  </div>
+  <div class="content">
+    <img (click)="goto()" [src]="image" alt="botnoi voice news image dialog">
+    <div class="btn-group" (click)="goto()">
+      <button>{{text.btn}}</button>
+    </div>
+    <!-- <mat-checkbox color="primary" [formControl]="dontShow" (click)="onDoNotShow()">{{text.ask[0] + days + text.ask[1]}}</mat-checkbox> -->
+  </div>
+</div>

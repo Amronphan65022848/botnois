@@ -1,0 +1,145 @@
+<div class="upsell-container">
+  <div class="close">
+    <mat-icon [id]="analyticId.close" [matDialogClose]="false">close</mat-icon>
+  </div>
+  <div class="header">
+    <img
+      src="../../../../assets/shared/point.png"
+      alt="double coin point image"
+    />
+    @if (data.noAds) {
+      <span class="text">
+        {{ text.header.text_noads }}
+      </span>
+      <span class="sub">
+        {{ text.header.sub_noads[0] }}
+        {{ text.header.sub_noads[1] }}
+      </span>
+    } @else {
+      <span class="text">
+        {{ text.header.text }}
+      </span>
+      <span class="sub">
+        {{ text.header.sub[0] }}
+        {{ data.paidPoint | number }}
+        {{ text.header.sub[1] }}
+      </span>
+    }
+  </div>
+  <div class="content">
+    <div appNonEvent class="special-text">
+      <span class="highlight">
+        {{ text.content.special_text[0] }}
+      </span>
+      <span class="text">
+        {{ text.content.special_text[1] }}
+      </span>
+    </div>
+    <app-point-box
+      #pointBox
+      appSaleEvent
+      class="py-3"
+      [isSaleEvent]="true"
+      [page]="'studio'"
+      [triggerType]="data.noAds ? 'noAds' : 'notEnough'"
+    />
+    @for (item of promotePackage; track item.package_id) {
+      @defer (on viewport(pointBox)) {
+        <!-- Nothing -->
+      } @placeholder {
+        <div
+          class="box gradient-border upsell"
+          (mouseenter)="selectPackage($index)"
+          [ngClass]="{ 'full-opacity': $index === currentSelect }"
+        >
+          <div class="left-group">
+            <img
+              class="point-icon"
+              src="../../assets/img/Real_point.svg"
+              alt="icon"
+            />
+            <div class="point-group">
+              <span class="point gradient">
+                {{
+                  item?.point === "No Ads"
+                    ? item?.point
+                    : (item?.point | number)
+                }}
+                @if (isBuyPoint(item)) {
+                  <span class="currency">{{ text.content.point }}</span>
+                }
+              </span>
+              @if (isBuyPoint(item)) {
+                <li class="free-gift gradient">
+                  {{ text.content.free_gift[0] }}
+                  {{ item?.add_on }}
+                  {{ dayToMonth(item?.add_on_day) }}
+                  {{ text.content.free_gift[1] }}
+                </li>
+              }
+            </div>
+          </div>
+
+          <div class="price-group">
+            <div class="group-1">
+              <span class="original" [class.hide]="!isDiscount">
+                {{ _wallet.displayPriceByCurrency(item) | number }}
+              </span>
+              <div class="group-2">
+                <span class="discount gradient">
+                  {{
+                    isDiscount &&
+                      (_wallet.displayDiscountPriceByCurrency(item) | number)
+                  }}
+                  <span class="currency">{{
+                    text.content.currency[currency]
+                  }}</span>
+                </span>
+                <div class="counter" [class.hide]="!isDiscount">
+                  <mat-icon svgIcon="clock_gradient"></mat-icon>
+                  <span class="gradient">{{ text.content.countdown }}</span>
+                  <span class="gradient">{{ countdown | date: "mm:ss" }}</span>
+                </div>
+              </div>
+            </div>
+
+            <button
+              [id]="analyticId.item_on_dialog[$index]"
+              (click)="onPay({ action: 'promotion', item })"
+            >
+              {{ text.content.btn }}
+            </button>
+          </div>
+        </div>
+      }
+    }
+
+    @if (!data.noAds) {
+      <app-input-point
+        class="box"
+        [style.padding]="0"
+        [price]="price"
+        [text]="text.content"
+        [pointForm]="pointForm"
+        [currency]="currency"
+        [analyticId]="analyticId.inputPoint"
+        (onTopup)="
+          onPay({ action: 'point', item: { point: pointForm.value, price } })
+        "
+      ></app-input-point>
+    }
+  </div>
+  <div class="footer">
+    <span>
+      {{ text.content.footer[0] }}
+    </span>
+    <span
+      [id]="analyticId.seemore ?? ''"
+      class="see-more"
+      [routerLink]="['/payment']"
+      [matDialogClose]="false"
+    >
+      {{ text.content.footer[1] }}
+    </span>
+  </div>
+</div>

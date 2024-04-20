@@ -1,0 +1,59 @@
+@if (isSaleEvent && page !== "quote") {
+  <img
+    class="sale-event-banner"
+    src="https://bn-voice-pics.s3.ap-southeast-1.amazonaws.com/photo/hot-deal-{{
+      lang
+    }}.webp"
+    alt="promotion sale point {{ lang }}"
+    srcset="
+    https://bn-voice-pics.s3.ap-southeast-1.amazonaws.com/photo/hot-deal-{{ lang }}.webp 1200w,
+    https://bn-voice-pics.s3.ap-southeast-1.amazonaws.com/photo/hot-deal-mobile-{{ lang }}.webp 600w
+    "
+  />
+}
+
+<div
+  [class.display-none]="notShowEventOnQuote"
+  class="package-box gradient-border"
+  [class.gradient-border-event]="isSaleEvent"
+  [ngClass]="getSelectedClass"
+>
+  <div [ngClass]="[getPackageTagClass, getSelectedClass]">
+    @if (isSaleEvent) {
+      <span>{{ text.tag_sale_event }}</span>
+    } @else {
+      <span>{{ text.tag_list[$typeIndex] }}</span>
+    }
+  </div>
+  <app-point-list
+    class="w-100"
+    [page]="page"
+    [user]="user"
+    [packageType]="getPackageType"
+    [isSaleEvent]="isSaleEvent"
+    [triggerType]="triggerType ? triggerType : 'normal'"
+  ></app-point-list>
+
+  @if (packageType?.type === 4) {
+    <span class="description">{{ text.unlimited_desc }}</span>
+  }
+
+  <div
+    [id]="analyticId[$typeIndex]"
+    class="expand-toggle"
+    (click)="toggleExpand()"
+  >
+    @if (!isSaleEvent || !packageEventTypes.isExpand) {
+      <span [id]="analyticId[$typeIndex]">{{ text.more }}</span>
+    }
+
+    @if (!isSaleEvent) {
+      <mat-icon
+        [id]="analyticId[$typeIndex]"
+        svgIcon="{{ packageType.isExpand ? 'up_dynamic' : 'down_dynamic' }}"
+        [style.color]="getSelectedExpandColor"
+      ></mat-icon>
+    }
+  </div>
+  <ngx-loading [show]="isLoadPackage"></ngx-loading>
+</div>

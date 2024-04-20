@@ -1,0 +1,399 @@
+.invitePage-section {
+    margin-top: 8px;
+    border: 1px solid #b1eafc;
+    box-shadow: 0px 1px 4px rgba(177, 234, 252, 0.45);
+    border-radius: 10px;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+  .first-line-block{
+    display:flex
+  }
+  .link-invite {
+    margin-top: 8px;
+    background: #ffffff;
+    box-shadow: 0px 1px 4px rgba(177, 234, 252, 0.45);
+    border-radius: 10px;
+    padding: 20px;
+
+  }
+  .link-text-invite {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .link-text-invite {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+  }
+  .link-input{
+    padding-left: 10px;
+  }
+  .link-input input {
+    width: 400px;
+    border: 1px solid #c4cfdb;
+    border-radius: 10px;
+    height: 38px;
+
+  }
+  .link-input input:disabled {
+    border: 1px solid #C4CFDB
+
+  }
+  .link-input input:focus {
+    outline: none;
+  }
+  .img_star {
+    width: 56px;
+    height: 56px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: baseline;
+  }
+  .word-link {
+    font-family: Sarabun;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    align-items: center;
+    color: #000000;
+
+    padding-top: 5px;
+    display: inline-flex;
+    align-items: baseline;
+  }
+  .word-number-link {
+    font-family: Sarabun;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    align-items: center;
+    color: #000000;
+    width: 100%;
+    padding-top: 5px;
+  }
+
+  .qr_container {
+    width: auto;
+    height: 280px;
+    background: #ffffff;
+    box-shadow: 0px 1px 4px rgb(177 234 252 / 45%);
+    border-radius: 10px;
+    margin-top: 8px;
+  }
+  .qr_maintext {
+    font-family: Sarabun;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    text-align: center;
+    padding-top: 5px;
+    color: #000000;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    padding-top: 25px;
+  }
+
+  .qr_img_invite {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: 150px;
+
+    margin-top: 2%;
+  }
+::ng-deep .qr_img_invite img{
+   width: 150px !important;
+ }
+.qr_img_invite .qrcode{
+  background-color: red;
+}
+  .qr_copy_btn {
+    padding: 10px;
+    background: #01bffb;
+    border-radius: 10px;
+    color: white;
+    width: 125px;
+    height: 38px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Sarabun;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .btn_link {
+    width: 125px;
+    padding: 9px 0;
+    /* height: 38px; */
+    background-color: #01bffb;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+
+  .btn_link:disabled{
+    background-color: #D6D8DB;
+  }
+  .btn_link:hover:enabled{
+    color: #01bffb;
+    background-color: white;
+    border: 1px solid #01bffb;
+    transition: 0.5s;
+  }
+  .main-text-invite {
+    font-family: Sarabun;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    color: #01bffb;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sub-text-invite {
+    font-family: Sarabun;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 2%;
+    /* light blue */
+
+    color: #01bffb;
+  }
+
+
+
+
+  .invite-information-contain{
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgba(117, 219, 202, 1);
+    border-radius: 10px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    max-width: max-content;
+  }
+  .invite-information-contain .invite-information{
+  font-family: Sarabun;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  font-weight: 800;
+  color: #01BFFB;
+  padding-left: 49px;
+  padding-right: 49px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+text-align: center;
+
+  }
+  #bold-font{
+    font-weight: 900;
+  }
+
+  .grid-contain{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 10px;
+  }
+  .grid-middle-bottom{
+    display: none;
+  }
+  .link-input input {
+    width: 300px;
+    border: 1px solid #c4cfdb;
+    border-radius: 10px;
+    height: 38px;
+    font-size: 14px;
+    padding-left: 13px;
+  }
+  .warning{
+    gap: 6px;
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+  }
+  .warning span{
+    font-family: 'Sarabun';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    white-space: pre-line;
+    /* identical to box height */
+
+
+    /* error */
+
+    color: #F87979;
+  }
+  @media  screen and (max-width:1080px) {
+    .link-input input {
+      width: 300px;
+      border: 1px solid #c4cfdb;
+      border-radius: 10px;
+      height: 38px;
+      font-size: 14px;
+      padding-left: 13px;
+    }
+  }
+  @media screen and (max-width:768px) {
+    .bg-wallet {
+      background-color: #f7f8fa;
+      height: calc(114vh);
+    }
+    .link-text-invite[_ngcontent-dfh-c153] {
+       padding-left: 0px;
+       padding-right: 0px;
+      width: 100%;
+  }
+    .link-input input {
+      width: 100%;
+      border: 1px solid #c4cfdb;
+      border-radius: 10px;
+      height: 34px;
+
+    }
+    .grid-contain{
+      grid-template-columns: 1fr ;
+    }
+    .grid-middle-top{
+      display: none;
+    }
+    .grid-middle-bottom{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      height: 52px;
+      background: #ffffff;
+      box-shadow: 0px 1px 4px rgb(177 234 252 / 45%);
+      border-radius: 10px;
+      margin-top: 8px;
+      padding-top: 3px;
+
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 18px;
+      padding-bottom: 18px;
+      white-space: nowrap;
+    }
+    .grid-right{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 10px;
+    }
+    .main-text-invite{
+      font-size: 12px;
+    }
+    .invite-information-contain .invite-information{
+      font-size: 10px;
+      white-space: nowrap;
+    }
+    .sub-text-invite{
+      font-size: 12px;
+    }
+    .word-link{
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .qr_maintext{
+      font-family: Sarabun;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 12px;
+      display: flex;
+      text-align: center;
+      padding-top: 5px;
+      color: #000000;
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: center;
+      padding-top: 13px;
+      height: 28px;
+    }
+
+    .word-number-link{
+      font-size: 12px;
+    }
+    .img_star{
+      width: 25px;
+      height: 25px;
+    }
+    .btn_link{
+      width: 95px;
+      /* height: 35px; */
+      background-color: #01bffb;
+      border-radius: 10px;
+      color: white;
+      text-align: center;
+      font-size: 12px;
+    }
+    .warning span{
+      font-size: 10px;
+    }
+    .link-text-invite {
+       padding-left: 0px;
+       padding-right: 0px;
+      width: 100%;
+  }
+  .qr_img_invite{
+    width: 98px;
+    height: 98px;
+  }
+  .qr_copy_btn{
+    padding: 4px;
+    background: #01bffb;
+    border-radius: 10px;
+    color: white;
+    width: 106px;
+    height: 32px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Sarabun;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 2%;
+    padding-top: 5px;
+    margin-top: 10px;
+  }
+  .qr_container{
+    width: auto;
+    height: 235px;
+    background: #ffffff;
+    box-shadow: 0px 1px 4px rgb(177 234 252 / 45%);
+    border-radius: 10px;
+    margin-top: 8px;
+  }
+  }
+  @media only screen and (max-width: 540px) {
+   .codepage-comtain{
+     width: 100%;
+   }
+  }
+
+  @media only screen and (max-width: 350px) {
+    ::ng-deep .qr_img_invite img{
+      width: 100px !important;
+    }
+   }

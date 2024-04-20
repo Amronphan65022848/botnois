@@ -1,0 +1,55 @@
+stages:
+  - staging-build
+  - staging-deploy
+  - production-build
+
+# staging-build:
+#   stage: staging-build
+#   image: docker:latest
+#   tags: [docker]
+#   services:
+#     - docker:dind
+#   variables:
+#     DOCKER_TLS_CERTDIR: ""
+#   script:
+#     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+#     - docker build --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME -f ./Dockerfile.staging .
+#     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+#   only:
+#     - staging
+
+# staging-deploy:
+#   stage: staging-deploy
+#   image: ubuntu
+#   tags: [docker]
+#   services:
+#     - docker:dind
+#   environment:
+#     name: Development
+#   before_script:
+#     - "which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )"
+#     - eval $(ssh-agent -s)
+#     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+#     - mkdir -p ~/.ssh
+#     - chmod 700 ~/.ssh
+#   script:
+#     - ssh -o "StrictHostKeyChecking=no" -p22 $TARGET_USER
+#     - ssh -p22 $TARGET_USER "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY"
+#     - ssh -p22 $TARGET_USER "cd botnoi-compose/ && export TAG=$CI_COMMIT_REF_NAME && export ENV=staging && ./deploy-script-front-end.sh S "
+#   only:
+#     - staging
+
+production-build:
+  stage: production-build
+  image: docker:latest
+  tags: [docker]
+  services:
+    - docker:dind
+  variables:
+    DOCKER_TLS_CERTDIR: ""
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build --pull -t $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG -f ./Dockerfile.prod .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
+  only:
+    - tags

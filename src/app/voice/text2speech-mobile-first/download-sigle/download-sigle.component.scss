@@ -1,0 +1,329 @@
+// .download-container {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 20px;
+//   width: 100%;
+//   font-family: Prompt;
+//   color: #000;
+//   padding: 12px 20px;
+//   overflow: scroll;
+// }
+
+.container-dialog {
+  padding: 28px 16px;
+}
+
+.container-dialog-download {
+  padding: 25px 20px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.cdk-overlay-connected-position-bounding-box
+  .cdk-overlay-pane
+  .mat-mdc-select-panel.ng-animating {
+  display: none;
+  position: fixed;
+}
+
+.container-dialog-download1 {
+  display: flex;
+  flex-direction: column;
+  // padding-left: 20px;
+  // padding: 0 10px;
+  // justify-content: flex-end;
+  // align-items: flex-end;
+}
+
+/* ------------step1-------------------- */
+.close-dialog-download {
+  // position: relative;
+  display: flex;
+  justify-content: flex-end;
+  // padding: 15px 0;
+  .material-icons {
+    // position: absolute;
+    // right: 0;
+    // top: 0;
+    background: none;
+    cursor: pointer;
+  }
+}
+
+.namsakul {
+  font-family: "Prompt", sans-serif;
+  font-size: 14px;
+  justify-content: space-between;
+  align-items: center;
+  // width: 360px;
+  width: 100%;
+  display: flex;
+  font-weight: 400;
+  height: 30px;
+}
+
+.hr-namsakul {
+  // width:360px;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.icon-dialog-download img {
+  display: block;
+  margin: auto;
+  padding-top: 60px;
+  margin-bottom: 30px;
+  margin-left: 43%;
+}
+.main_content {
+  font-family: "Prompt", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  letter-spacing: 1px;
+  padding: 10px 0px 15px 0px;
+  color: #000000;
+}
+
+.main_content_bottom {
+  font-family: "Prompt", sans-serif;
+  text-align: center;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+  padding: 20px 0px 12px 0px;
+  color: #000000;
+}
+
+::ng-deep .sub_content_type .mat-mdc-select-arrow-wrapper {
+  padding-right: 4px !important;
+}
+
+.confilm-dowload {
+  font-family: "Sarabun", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 1px;
+  padding: 10px 0px 20px 0px;
+
+  /* black */
+  color: #000000;
+}
+.text-not-enough-coins {
+  font-family: "Sarabun", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 29px;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.text-want-to-by-coins {
+  font-family: "Sarabun", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+::ng-deep .sub_content_type .mat-mdc-select .mat-mdc-select-arrow {
+  transform: rotate(0deg);
+}
+::ng-deep
+  .sub_content_type
+  .mat-mdc-select[aria-expanded="true"]
+  .mat-mdc-select-arrow {
+  transform: rotate(-180deg);
+}
+
+::ng-deep .sub_content_type .selectType {
+  border-radius: 6px !important;
+}
+#panel_card .mat-mdc-select-arrow {
+  opacity: 0 !important;
+}
+
+.typeOfFile .mat-mdc-select-arrow {
+  opacity: 0 !important;
+}
+
+::ng-deep .sub_content_type .mat-mdc-select {
+  width: 100px !important;
+  font-family: "Sarabun", sans-serif;
+  border-radius: 10px !important;
+  display: inline-table;
+  cursor: pointer;
+  border: 1px solid #01bffb;
+  padding: 4px !important;
+}
+
+::ng-deep .sub_content_type .mat-mdc-select:focus {
+  display: inline-table;
+  border: 1px solid #01bffb;
+}
+
+.selectType {
+  width: 146px;
+  height: 30px;
+  vertical-align: center;
+  align-items: center;
+  padding-top: 5px;
+}
+
+::ng-deep .sub_content_type .mat-mdc-select-trigger[aria-expanded="true"] {
+  display: inline-table;
+  cursor: pointer;
+  box-sizing: none;
+  width: 125px;
+  margin-left: 16px !important;
+  border: 2px solid #01bffb;
+  border-radius: 6px;
+}
+
+::ng-deep .sub_content_type mat-select {
+  width: 70px !important;
+}
+
+::ng-deep .sub_content_type .mat-mdc-select-value {
+  padding-left: 15px !important;
+}
+::ng-deep .sub_content_type mat-select-min-line {
+  padding-left: 2px !important;
+}
+::ng-deep mat-option {
+  padding: 0px 4px 0 10px !important;
+}
+
+.sub_content {
+  font-family: "Prompt", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  gap: 12px;
+  // width: 360px;
+  width: 100%;
+}
+
+.pay-baht {
+  font-family: "Sarabun", sans-serif;
+  font-weight: 500;
+  width: 360px;
+  margin-top: 10px;
+  .total-baht {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .scan_pr {
+    color: #01bffb;
+    cursor: pointer;
+  }
+}
+.info {
+  margin-top: 20px;
+  gap: 8px;
+  align-content: center;
+  display: flex;
+  span {
+    font-family: "Prompt", sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    text-align: left;
+
+    .bold-text {
+      font-weight: 700;
+    }
+  }
+}
+
+.button-buycoins-cancel {
+  border-radius: 10px;
+  color: #01bffb;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 2px 20px;
+  height: 40px;
+  width: 96px;
+  border: 1px solid #01bffb;
+  background-color: #ffffff;
+  margin: 0px 10px;
+}
+.button-buycoins-confirm {
+  background: #01bffb;
+  border-radius: 10px;
+  color: #ffffff;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  height: 40px;
+  padding: 2px 10px;
+  border-color: #01bffb;
+  width: 96px;
+  margin: 0px 10px;
+}
+
+.confirm-cancle {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px 10px 20px;
+}
+.grid-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.value_point {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.confirm {
+  display: block;
+  margin: auto;
+  background: #01bffb;
+  border-radius: 10px;
+  color: #ffffff;
+  font-family: "Sarabun", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 10px 10px;
+  border-color: #01bffb;
+  width: 96px;
+}
+.button-buycoins-cancel :focus {
+  background-color: white !important;
+}
+
+::ng-deep .tooltip-style {
+  background: rgba(50, 60, 76, 0.85) !important;
+  border-radius: 4px !important;
+  color: white !important;
+  font-family: "Sarabun", sans-serif !important;
+}
+
+.cross-out {
+  text-decoration: line-through;
+}

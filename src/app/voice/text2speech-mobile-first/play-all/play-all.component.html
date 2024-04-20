@@ -1,0 +1,40 @@
+<div class="play-all-container">
+  <h3 class="header">เล่นเสียงทั้งหมด</h3>
+  <div class="controls">
+    <div class="audio-control">
+      <button
+        class="play-pause"
+        matTooltip="{{ text?.play }}"
+        matTooltipClass="mat-tooltip-dropdown"
+        matTooltipShowDelay="300"
+        matTooltipPosition="above"
+        (click)="playAll()"
+      >
+        <mat-icon svgIcon="play" *ngIf="!isPlaying"></mat-icon>
+        <mat-icon svgIcon="pause" *ngIf="isPlaying"></mat-icon>
+      </button>
+      <div class="play">
+        <span
+          >{{ currentTime | date: "m:ss" }} /
+          {{ duration | date: "m:ss" }}</span
+        >
+        <input
+          class="slider"
+          type="range"
+          [value]="currentTime"
+          [max]="duration"
+          (input)="onSliderInput($event)"
+          [ngStyle]="{
+            background:
+              'linear-gradient(to right, #01BFFB 0%, #01BFFB ' +
+              (currentTime / duration) * 100 +
+              '%, #efefef ' +
+              (currentTime / duration) * 100 +
+              '%, #efefef 100%)'
+          }"
+          [disabled]="!isPlaying"
+        />
+      </div>
+    </div>
+  </div>
+</div>

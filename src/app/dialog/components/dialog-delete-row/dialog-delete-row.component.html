@@ -1,0 +1,53 @@
+<div class="container-dialog">
+  <div class="topic-payment">
+    <span class="material-icons"  (click)="dialogClose()"
+    style="background-color: white; background: none;cursor: pointer;" > close </span>
+  </div>
+
+
+<div class="img_delete_contain">
+  <img src="../../assets/img/Real_trash.svg" class="img_confirm center" alt="icon">
+</div>
+<div class="main_text">
+ {{text.acceptDeletes}}
+</div>
+<div class="sub_text">
+ {{text.confirmDelete}} {{value}} {{text.checkList}}
+</div>
+
+
+<div class="button_contain">
+  <button button class="button-cancle" (click)="dialogRef.close(false)" >{{text.cancel_}}</button>
+  <button button class="button-accept" (click)="dialogRef.close(true)" >{{text.accept_}}</button>
+</div>
+</div>
+
+
+
+<!-- <div class="onMobile" style="width: 100%;">
+
+
+  <div class="container-dialog">
+    <div class="topic-payment">
+      <span class="material-icons"  (click)="dialogClose()"   style="background-color: white; background: none;cursor: pointer;" > close </span>
+    </div>
+
+
+  <div class="img_delete_contain">
+    <img src="../../assets/img/Real_trash.svg" class="img_confirm center" >
+  </div>
+  <div class="main_text">
+   ยืนยันการลบข้อมูล
+  </div>
+  <div class="sub_text">
+   คุณต้องการลบ {{value}} รายการใช่หรือไม่
+  </div>
+
+
+  <div class="button_contain">
+    <button button class="button-cancle" (click)="dialogRef.close(false)" >ยกเลิก</button>
+    <button button class="button-accept" (click)="dialogRef.close(true)" >ยืนยัน</button>
+  </div>
+  </div>
+
+  </div> -->

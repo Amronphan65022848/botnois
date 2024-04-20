@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="title">
+    <h1>{{data.title}}</h1>
+  </div>
+  <div class="content">
+    <label for="{{data.label}}">{{data.label}}</label>
+    <input type="text" [formControl]="inputText">
+  </div>
+  <div class="button">
+    <button
+      [disabled]="data.confirm_text !== inputText.value"
+      [matDialogClose]="true"
+    >
+      <span>{{data.btn}}</span>
+    </button>
+  </div>
+</div>

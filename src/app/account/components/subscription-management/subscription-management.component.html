@@ -1,0 +1,101 @@
+<ngx-loading [show]="isLoading"></ngx-loading>
+<div class="subscription-management-container">
+  <div class="title">
+    <span>{{ text.title }}</span>
+  </div>
+  <div class="group-box">
+    <!-- <div class="box" *ngIf="currentPackage?.subscription_rank">
+      <div class="info">
+        <div class="info-form">
+          <label>{{ text.package + " : " }}</label>
+          <span class="package">{{
+            (currentPackage?.name === "Free" ? "" : text.member + " ") +
+            (currentPackage?.name === "Free"
+            ? text.general_member
+            : currentPackage?.name)
+            }}</span>
+          [style.color]="packageColor[currentPackage?.subscription_rank]"
+        </div>
+        <div class="info-form">
+          <label>{{ text.price + " : " }}</label>
+          <span class="price">{{
+            currentPackage?.subscription_rank === "Free" ||
+            isCompensated ||
+            currentPackage?.subscription_rank === "Free trial"
+              ? text.free
+              : " " +
+                (currentPackage?.price | number) +
+                (text.currency + " / " + text.period[month])
+          }}</span>
+        </div>
+        <div class="info-form">
+          <label>{{ text.status + " : " }}</label>
+          <span class="price">{{
+            currentPackage?.subscription_rank === "Free"
+            ? "-"
+            : " " + expiredTime + text.time.expire
+            }}</span>
+        </div>
+        <div class="info-form">
+          <label>{{ text.expire + " : " }}</label>
+          <span class="date">{{
+            currentPackage?.subscription_rank === "Free" || !isAutoDebit
+              ? text.debit[0]
+              : " " + autoRenewal + text.time.renew
+          }}</span>
+        </div>
+      </div>
+      <div [ngClass]="{ hide: !isAutoDebit }" class="warning">
+        <div class="icon">
+          <mat-icon svgIcon="book_open"></mat-icon>
+        </div>
+        <div class="context">
+          <span class="title">
+            {{ text.warning.title }}
+          </span>
+          <p class="content">
+            {{ text.warning.content }}
+          </p>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button *ngIf="isAutoDebit" (click)="onCancel()" class="cancel">
+          <span>{{ text.cancel }}</span>
+        </button>
+        <button [routerLink]="['/payment']" [queryParams]="{page: 0}" class="upgrade">
+          <span>{{text.upgrade}}</span>
+        </button>
+      </div>
+    </div> -->
+    <ng-container *ngIf="user?.list_add_on; else elseTemplate">
+      <div class="package_tier_container">
+        <app-subscription [page]="'my_package'"></app-subscription>
+      </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div class="no_package">
+        <img src="../../../../assets/img/info.png">
+        <p>
+          {{ rank_text.no_package }}
+          {{rank_text.promotion}}
+          <span [routerLink]="['/payment']" [queryParams]="{page: 1}">
+            {{rank_text.click}}
+          </span>
+        </p>
+      </div>
+    </ng-template>
+
+    <!-- <div class="box-advantage" *ngIf="currentPackage?.subscription_rank">
+      <span class="title">
+        {{text.box2.title}}
+      </span>
+      <div *ngFor="let key of advantagesList">
+        <div class="group" *ngIf="advantages[key]">
+          <mat-icon svgIcon="done"></mat-icon>
+          <span [innerHTML]="advantages[key]"></span>
+        </div>
+
+      </div>
+    </div> -->
+  </div>
+</div>

@@ -1,0 +1,317 @@
+<div class="modal-container">
+  <mat-icon svgIcon="cross" class="close" (click)="onCloseDialog()"></mat-icon>
+  <div class="header">
+    <span>{{ text.header }}</span>
+  </div>
+
+  <div class="controls-container">
+    <div class="searchText" *ngIf="!secondInput">
+      <input id="search-name" class="input-search" type="text" name="search" [placeholder]="inputPlaceholder"
+        [(ngModel)]="searchText" />
+      <mat-icon class="search-icon" [ngClass]="{ black: searchText.length != 0 }"
+        svgIcon="{{ !searchText.length ? 'search' : 'cross' }}" (click)="clearText()"></mat-icon>
+    </div>
+    <!-- <button
+      class="filter-btn-primary"
+      [ngClass]="{ active: isFilterShow }"
+      [matTooltip]="text.tooltip.filter"
+      matTooltipClass="mat-tooltip-dropdown tooltip-star tooltip-margin"
+      matTooltipShowDelay="300"
+      matTooltipPosition="above"
+      (click)="toggleFilter()"
+    >
+      <mat-icon svgIcon="configure"></mat-icon>
+    </button> -->
+    <div class="filter" *ngIf="isFilterShow">
+      <div class="tab">
+        <button class="tab-btn" [ngClass]="{ active: suggest === 1 }" (click)="changeSuggest(1)">
+          {{ text?.freeVoice }}
+        </button>
+        <button class="tab-btn" [ngClass]="{ active: suggest === 4 }" (click)="changeSuggest(4)">
+          {{ text?.favVoice }}
+        </button>
+      </div>
+      <div class="searchTextSec" *ngIf="secondInput">
+        <input id="search-name" class="input-search-2" type="text" name="search" [placeholder]="inputPlaceholder"
+          [(ngModel)]="searchText" />
+        <mat-icon class="search-icon" [ngClass]="{ black: searchText.length != 0 }"
+          svgIcon="{{ !searchText.length ? 'search' : 'cross' }}" (click)="clearText()"></mat-icon>
+      </div>
+      <div class="group-filter">
+        <div class="dropdown" appClickOutside (clickOutside)="closeLangPopup()">
+          <button class="filter-btn" [ngClass]="{ active: isLangShow }" (click)="toggleLangDropdown('Lang')">
+            <span class="filter-text">{{ text.lang }}</span>
+            <mat-icon svgIcon="down" class="down"></mat-icon>
+          </button>
+          <div class="popup-filter popup-lang" *ngIf="isLangShow">
+            <div class="clear-select">
+              <p class="select-all" (click)="selectAllFilter('language')">
+                {{ text.selectAll }}
+              </p>
+              <p class="clear-all" (click)="clearAllFilter('language')">
+                {{ text.clear }}
+              </p>
+            </div>
+            <div class="list-container">
+              <span class="list" *ngFor="let lang of allLang" (click)="addRemoveFilter(lang, 'language')"
+                [ngClass]="{ selected: filterKey.language.includes(lang) }">
+                <img class="flag" src="../../../../assets/icons/toolbar/conversation/flags/{{
+                    getFlagByName(lang)
+                  }}" alt="flag" />
+                {{ lang }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown" appClickOutside (clickOutside)="closeVoicePopup()">
+          <button class="filter-btn" [ngClass]="{ active: isVoiceShow }" (click)="toggleLangDropdown('Voice')">
+            <span class="filter-text">{{ text.style }}</span>
+            <mat-icon svgIcon="down" class="down"></mat-icon>
+          </button>
+          <div class="popup-filter popup-voice" *ngIf="isVoiceShow">
+            <div class="clear-select">
+              <p class="select-all" (click)="selectAllFilter('voiceStyle')">
+                {{ text.selectAll }}
+              </p>
+              <p class="clear-all" (click)="clearAllFilter('voiceStyle')">
+                {{ text.clear }}
+              </p>
+            </div>
+            <div class="list-container">
+              <span class="list" *ngFor="let voice of voiceStyle" (click)="addRemoveFilter(voice, 'voiceStyle')"
+                [ngClass]="{ selected: filterKey.voiceStyle.includes(voice) }">{{ lang === "TH" ? voice.replace("เสียง",
+                "") : voice }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown" appClickOutside (clickOutside)="closeSpeechPopup()">
+          <button class="filter-btn" [ngClass]="{ active: isSpeechShow }" (click)="toggleLangDropdown('Speech')">
+            <span class="filter-text">{{ text.categories }}</span>
+            <mat-icon svgIcon="down" class="down"></mat-icon>
+          </button>
+          <div class="popup-filter popup-speech" *ngIf="isSpeechShow">
+            <div class="clear-select">
+              <p class="select-all" (click)="selectAllFilter('speechStyle')">
+                {{ text.selectAll }}
+              </p>
+              <p class="clear-all" (click)="clearAllFilter('speechStyle')">
+                {{ text.clear }}
+              </p>
+            </div>
+            <div class="list-container">
+              <span class="list" *ngFor="let speech of speechStyle" (click)="addRemoveFilter(speech, 'speechStyle')"
+                [ngClass]="{ selected: filterKey.speechStyle.includes(speech) }">{{
+                lang === "TH" ? speech.replace("สไตล์", "") : speech
+                }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown" appClickOutside (clickOutside)="closeGenderPopup()">
+          <button class="filter-btn" [ngClass]="{ active: isGenderShow }" (click)="toggleLangDropdown('Gender')">
+            <span class="filter-text">{{ text.gender }}</span>
+            <mat-icon svgIcon="down" class="down"></mat-icon>
+          </button>
+          <div class="popup-filter popup-gender" *ngIf="isGenderShow">
+            <div class="clear-select">
+              <p class="select-all" (click)="selectAllFilter('gender')">
+                {{ text.selectAll }}
+              </p>
+              <p class="clear-all" (click)="clearAllFilter('gender')">
+                {{ text.clear }}
+              </p>
+            </div>
+            <div class="list-container">
+              <span class="list" *ngFor="let gender of allGender" (click)="addRemoveFilter(gender, 'gender')"
+                [ngClass]="{ selected: filterKey.gender.includes(gender) }">{{ gender }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="group-suggest">
+        <button
+          class="suggest-btn"
+          [ngClass]="{ active: suggest === 1 }"
+          (click)="changeSuggest(1)"
+        >
+          {{ text.all }}
+        </button>
+        <button
+          class="suggest-btn"
+          [ngClass]="{ active: suggest === 2 }"
+          (click)="changeSuggest(2)"
+        >
+          {{ text.popular }}
+        </button>
+        <button
+          class="suggest-btn"
+          [ngClass]="{ active: suggest === 3 }"
+          (click)="changeSuggest(3)"
+        >
+          {{ text.new }}
+        </button>
+      </div> -->
+    </div>
+  </div>
+
+  <div class="result" *ngIf="searchText">
+    <span class="result-text">{{ text.searchResult }} : {{ text.resultAll }}
+      {{ (mutateList | speakerSearch : searchText)?.length }}
+      {{ text.resultList }}</span>
+  </div>
+  <div class="filter-result" *ngIf="filterList.length">
+    <div class="result-span">
+      <span class="result-filter-text">Filter Result : </span>
+      <div class="filter-span-container">
+        <span *ngFor="let filter of filterList" class="filter-span"
+          (click)="removeFilterItem(filter.name, filter.type)">{{ filter.name }}</span>
+      </div>
+      <p class="clear-filter-list" (click)="clearFilterList()">
+        {{ text.clear }}
+      </p>
+    </div>
+  </div>
+  <div class="speaker-container" *ngIf="isAllShow" [ngClass]="{ expanded: searchText.length > 0 }">
+    <div class="not-found" *ngIf="
+        (mutateList | speakerSearch : searchText).length === 0 ||
+        (mutateList | speakerFilter : filterKey).length === 0
+      ">
+      <mat-icon class="not-found-icon" svgIcon="search"></mat-icon>
+      <p class="no-result">{{ text.noResult }}</p>
+      <p class="try">{{ text.try }}</p>
+    </div>
+    <cdk-virtual-scroll-viewport itemSize="45" class="viewport" *ngIf="
+        (mutateList | speakerSearch : searchText).length !== 0 &&
+        (mutateList | speakerFilter : filterKey).length !== 0
+      ">
+      <ng-container *cdkVirtualFor="
+          let speaker of mutateList
+            | speakerSearch : searchText
+            | speakerFilter : filterKey;
+          let i = index;
+          trackBy: trackByFunction
+        ">
+        <div class="speaker-card" [ngClass]="{ selected: speaker.speaker_id === selectedVoice }">
+          <div class="img">
+            <img src="{{
+                speaker.premier ? speaker.speaker_image : speaker.square_image
+              }}" alt="speaker-image" loading="lazy" [ngClass]="{ shift_img_down: speaker.premier }" />
+            <div class="tag-speaker">
+              <span class="tag-text" *ngIf="!speaker.premier">{{
+                text?.freeTag
+                }}</span>
+              <span class="tag-text-premium" *ngIf="speaker.premier"><img
+                  src="../../../../assets/marketplace/bot_logo.webp" alt="bot_logo" />
+                <!-- <span>{{ text.premium_tag }}</span> -->
+                <span>Premium</span></span>
+            </div>
+            <div class="sound-btn-container">
+              <button class="audio-btn" [matTooltip]="text.tooltip.playSound"
+                matTooltipClass="mat-tooltip-dropdown tooltip-margin" matTooltipShowDelay="300"
+                matTooltipPosition="above" (click)="
+                  playSample(
+                    speaker.audio,
+                    speaker.isPlaying,
+                    speaker.speaker_id
+                  )
+                ">
+                <mat-icon class="audio-icon" svgIcon="{{
+                    speaker.isPlaying ? 'pause_filled' : 'play_filled'
+                  }}" [ngClass]="{ 'shift-left': !speaker.isPlaying }"></mat-icon>
+              </button>
+            </div>
+          </div>
+          <div class="details">
+            <mat-icon class="favorite" svgIcon="{{
+                checkIsInCart(speaker.speaker_id) ? 'star_filled' : 'star'
+              }}" [matTooltip]="
+                checkIsInCart(speaker.speaker_id)
+                  ? text.tooltip.removeFav
+                  : text.tooltip.addFav
+              " matTooltipClass="mat-tooltip-dropdown tooltip-star tooltip-margin" matTooltipShowDelay="300"
+              matTooltipPosition="above" (click)="addRemoveFav(speaker.speaker_id)"></mat-icon>
+            <div class="main-row-1">
+              <div class="col1">
+                <div class="row1">
+                  <span class="name">{{
+                    lang === "EN" ? speaker.eng_name : speaker.thai_name
+                    }}</span>
+                  <div>
+                    <span class="gender">{{
+                      lang === "TH" ? speaker.gender : speaker.eng_gender
+                      }}/</span>
+                    <span class="gender">{{
+                      lang === "TH" ? speaker.age_style : speaker.eng_age_style
+                      }}</span>
+                  </div>
+                </div>
+                <div class="row2">
+                  <span class="style" *ngFor="
+                      let style of lang === 'TH'
+                        ? speaker.speech_style
+                        : speaker.eng_speech_style
+                    " [ngStyle]="{ background: tagColor(style) }">{{
+                    lang === "TH" ? style.replace("สไตล์", "") : style
+                    }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="main-row-2">
+              <div class="flag-list" [appPopupTrigger]="popupElement">
+                <img (error)="onFlagError(speaker)" class="flag" src="../../../../assets/icons/toolbar/conversation/flags/{{
+                    speaker.flagImg
+                  }}" alt="flag" />
+                @for (flag of speaker.available_language.slice(0, 1); track $index) {
+                <span class="second-flag">
+                  @if (speaker.flagImg != getFlagByValue(flag)?.flag) {
+                  <img class="flag" src="../../../../assets/icons/toolbar/conversation/flags/{{
+                    getFlagByValue(flag)?.flag
+                  }}" alt="flag" />
+                  }
+                </span>
+                }
+
+                <span class="other-flags">
+                  {{ text?.other }}
+                </span>
+                <div class="popup-available-lang" #popupElement>
+                  <div class="popup-container">
+                    <p class="popup-header">
+                      {{ text?.other_lang }}
+                    </p>
+                    <div class="popup-wrapper">
+                      <div class="available-lang" *ngFor="let flaglist of speaker.available_language">
+                        <img class="flag" src="../../../../assets/icons/toolbar/conversation/flags/{{
+                            getFlagByValue(flaglist)?.flag
+                          }}" alt="flag" />
+                        <span>{{
+                          lang === "TH"
+                          ? getFlagByValue(flaglist)?.TH_name
+                          : getFlagByValue(flaglist)?.EN_name
+                          }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="select-audio" [matTooltip]="text.tooltip.useVoice"
+                matTooltipClass="mat-tooltip-dropdown tooltip-margin" matTooltipShowDelay="300"
+                matTooltipPosition="above" (click)="selectSpeaker(i, speaker)"
+                [ngClass]="{ active: speaker.speaker_id === selectedVoice }">
+                <mat-icon class="check" svgIcon="check_circle_filled"></mat-icon>
+                <p *ngIf="!isSmallMobile">
+                  {{
+                  speaker.speaker_id === selectedVoice
+                  ? text.using
+                  : text.useVoice
+                  }}
+                </p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </cdk-virtual-scroll-viewport>
+  </div>
+  <!-- <div class="confirm">
+    <button class="confirm-btn" (click)="onSubmit()">{{ text.confirm }}</button>
+  </div> -->
+</div>

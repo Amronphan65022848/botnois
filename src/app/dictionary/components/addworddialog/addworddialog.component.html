@@ -1,0 +1,306 @@
+
+<div class="card" >
+  <div class="topic-edit">
+    <div class="text-edit">{{text.addWrongWord}}</div>
+    <span class="material-icons" mat-dialog-close> close </span>
+  </div>
+  <div class="form-edit-word" >
+    <div class="row" style="width:100%">
+      <div class="col-sm-6 col-md-6" style="margin-top: 2%">
+        <div class="sub-card-input" style="border: 1px solid #323c4c">
+          <div
+            style="
+              border-bottom: 1px solid #323c4c;
+              background-color: #eaedf0;
+              border-radius: 15px 15px 0px 0px;
+              z-index: -10;
+            "
+          >
+            <div class="sub-head" style="padding: 4px 0px 4px 15px;">{{text.writing_ex[0]}}</div>
+            <div class="ic"  (click)="onClickSoundDummy()">
+              <img src="../../assets/img/Real_audio.svg" alt="ฟังเสียงตัวอย่าง" />
+            </div>
+          </div>
+          <div style="padding-top: 0px; padding-left: 5px">
+            <div class="no-select" style="padding-top: 10px; padding-left: 15px">{{text.writing_ex[1]}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6" style="margin-top: 2%">
+        <div class="sub-card-input" style="border: 1px solid #323c4c">
+          <div
+            style="
+              border-bottom: 1px solid #323c4c;
+              background-color: #eaedf0;
+              border-radius: 15px 15px 0px 0px;
+              z-index: -10;
+            "
+          >
+            <div class="sub-head" style="padding: 4px 0px 4px 15px;">{{text.reading_ex[0]}}</div>
+            <div class="ic" (click)="onClickSoundDummy01()" >
+              <img src="../../assets/img/Real_audio.svg" alt="ฟังเสียงตัวอย่าง" />
+            </div>
+          </div>
+          <div style="padding-top: 0px; padding-left: 5px">
+            <div class="no-select" style="padding-top: 10px; padding-left: 15px">{{text.reading_ex[1]}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form [formGroup]="formWords">
+      <div formArrayName="words">
+        <!-- input section -->
+        <div *ngFor="let s of arrWord.controls; let i = index">
+          <div class="row" [formGroupName]="i" style="width: 100%;">
+            <div class="col-sm-6 col-md-6" style="margin-top: 2%">
+              <div class="sub-card-input">
+                <div>
+                  <div class="sub-head" style="padding: 4px 0px 4px 15px;">{{text.writing}}</div>
+                  <div class="ic">
+                    <img src="../../assets/img/Real_audio.svg" alt="ฟังเสียงตัวอย่าง"  (click)="onClickSoundSample_write(s)" />
+                  </div>
+                </div>
+                <div style="padding-top: 0px; padding-left: 5px">
+                  <div class="ipform">
+                    <div style="padding-top: 10px; padding-left: 5px">
+                      <input
+                        type="text"
+                        autocomplete="off"
+                        formControlName="before_text"
+                        matInput
+                        placeholder={{typeWrite}}
+                        class="word"
+                        style="text-align: left; padding-left: 5px;"
+
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6" style="margin-top: 2%">
+              <div class="sub-card-input">
+                <div>
+                  <div class="sub-head" style="padding: 4px 0px 4px 15px">{{text.reading}}</div>
+                  <div class="ic"  (click)="onClickSoundSample_read(s)">
+                    <img src="../../assets/img/Real_audio.svg" alt="ฟังเสียงตัวอย่าง" />
+                  </div>
+                </div>
+                <div style="padding-top: 10px; padding-left: 5px">
+                  <input
+                    type="text"
+                    autocomplete="off"
+                    formControlName="after_text"
+                    matInput
+                    placeholder={{typeRead}}
+                   class="word"
+                   style="text-align: left; padding-left: 5px;"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+
+        style="
+
+      text-align: center;
+      border: 2px dashed #01bffb;
+      margin-top: 5%;
+      box-sizing: border-box;
+      padding: 5px;
+      border-radius: 12px;
+      width: 96%;
+        "
+      >
+        <div
+         (click)="addWord()"
+          class="btn"
+          style="width: 100%; padding: 0; margin: 0"
+        >
+          <i class="material-icons"> add </i><span>{{text.addAnother}}</span>
+    </div>
+      </div>
+    </form>
+    <!-- button section -->
+  </div>
+  <div
+  class="btn"
+      style="text-align: center;
+        width: 160px;
+        padding: 7px 0px 0px 0px;
+        margin-top: 2%;
+        background: #01bffb;
+        border-radius: 10px;
+        color: white;margin-left: auto;
+        margin-right:4%;
+        min-height: 40px"
+        (click)="submit()" >
+
+
+
+
+
+      {{text.save}}
+
+  </div>
+</div>
+
+
+
+
+<div class="card2" style="padding: 20px 19px 20px 19px;">
+  <div class="topic-edit">
+    <div class="text-edit">{{text.addWrongWord}}</div>
+    <span class="material-icons"  (click)="close_dialog()" style="background-color: white; background: none;cursor: pointer;" > close </span>
+  </div>
+  <div class="form-edit-word" style="max-height: 300px;margin-top:2%;" >
+    <form [formGroup]="formWords">
+      <div formArrayName="words">
+        <!-- input section -->
+        <div *ngFor="let s of arrWord.controls; let i = index">
+          <div class="row" [formGroupName]="i"
+          style="width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-left: auto;
+          margin-right: auto;margin-top:3%;">
+            <div class="col-5 col-sm-5 " style="margin-top: 2%">
+              <div class="sub-card-input">
+                <div>
+                  <div class="sub-head" style="font-size: 12px; padding: 3px 3px 3px 13px;">{{text.writing}}</div>
+                  <div class="ic" (click)=" onClickSoundSample_write(s)">
+                    <img src="../../assets/img/Real_audio.svg" alt="ฟังเสียงตัวอย่าง" style="width: 17px;" />
+                  </div>
+                </div>
+                <div style="padding-top: 0px; padding-left: 5px">
+                  <div class="ipform">
+                    <div style="padding-top: 10px; padding-left: 5px">
+                      <input
+                        type="text"
+                        autocomplete="off"
+                        formControlName="before_text"
+                        matInput
+                        placeholder={{typeWrite}}
+                        style="font-size: 12px;text-align: left;"
+
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1 col-sm-1" style="display: flex;align-items: center;justify-content: center;">
+                <img src="../../assets/img/real_forward_icon.svg" alt="icon" style="width: 15px;margin-top:3px;">
+            </div>
+            <div class="col-5 col-sm-5" style="margin-top: 2%">
+              <div class="sub-card-input">
+                <div>
+                  <div class="sub-head" style="font-size: 12px; padding: 3px 3px 3px 13px;">{{text.reading}}</div>
+                  <div class="ic"  (click)="onClickSoundSample_read(s)"  >
+                    <img src="../../assets/img/Real_audio.svg" style="width: 17px;" alt="ฟังเสียงตัวอย่าง" />
+                  </div>
+                </div>
+                <div style="padding-top: 10px; ">
+                  <input
+                    type="text"
+                    autocomplete="off"
+                    formControlName="after_text"
+                    matInput
+                    placeholder={{text.typeReaded}}
+                    style="font-size: 12px; padding-left: 10px;"
+
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+
+
+    <!-- button section -->
+
+
+  <div
+
+    style="
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+      text-align: center;
+      border: 2px dashed #01bffb;
+      margin-top: 5%;
+      box-sizing: border-box;
+      padding: 5px;
+      border-radius: 12px;
+
+    "
+  >
+    <div
+      (click)="addWord()"
+      class="btn"
+      style="width: 100%; padding: 0; margin: 0"
+    >
+      <i class="material-icons" style="width: 15px;"> add </i><span style="font-size: 14px;">{{text.addAnother}}</span>
+</div>
+  </div>
+  <div style="margin-top:6%;padding-left:10px;padding-right:10px; width: 100%;display: flex;justify-content: center;">
+
+  <span  >
+    <p
+      mat-button
+      (click)="cancle()"
+      class="btn"
+      style="
+        width: 80px;
+        padding: 5px;
+        padding-top:9px;
+        margin-top: 2%;
+        color: #01bffb;
+        border-radius: 10px;
+        background-color: white;
+        border: 1px solid #01bffb;
+        height: 40px;
+        margin-right: auto;
+        font-size: 14px;
+      "
+    >
+      {{text.cancel}}
+    </p>
+
+
+  </span>
+  <span>
+    <p
+      mat-button
+      (click)="submit()"
+      class="btn"
+      style="
+        width: 80px;
+        padding: 5px;
+        margin-top: 2%;
+        background: #01bffb;
+        padding-top:10px;
+        border-radius: 10px;
+        color: white;
+        height: 40px;
+        margin-left: 10px;
+        font-size: 14px;
+      "
+    >
+      {{text.save}}
+    </p>
+  </span>
+
+</div>
+</div>
+

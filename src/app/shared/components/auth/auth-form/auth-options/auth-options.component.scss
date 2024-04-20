@@ -1,0 +1,21 @@
+.options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    mat-checkbox {
+        padding: 0 !important;
+    }
+
+    .btn-forgot-password {
+        background: var(--gradient-light-blue);
+        cursor: pointer;
+    }
+}
+
+::ng-deep {
+    .mdc-checkbox__checkmark {
+        color: white !important;
+    }
+}

@@ -1,0 +1,644 @@
+<app-addcart-alert
+  *ngIf="addcartAlert"
+  (close)="closeAlertAddcart()"
+  (link)="routerLink()"
+  (saveandlink)="saveAndRouterLink()"
+>
+</app-addcart-alert>
+<nav class="navbar">
+  <!-- MOBILE -->
+  <mat-sidenav-container
+    [hasBackdrop]="false"
+    style="width: 100%"
+    (backdropClick)="close('backdrop')"
+  >
+    <mat-sidenav
+      #sidenav
+      mode="over"
+      class="{{ isPremiumPage ? 'sidenav dark-bg' : 'sidenav' }}"
+      fixedInViewport="fixed"
+      (keydown.escape)="close('escape')"
+      [autoFocus]="false"
+      fixedTopGap="60"
+    >
+      <div class="{{ isPremiumPage ? 'nav-mobile dark-bg' : 'nav-mobile' }}">
+        <!-- <div class="close-nev" mat-button (click)="close('toggle button')">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6.58648 8.00048L0.293477 1.70748C-0.0965234 1.31748 -0.0965234 0.683477 0.293477 0.293477C0.683477 -0.0965234 1.31748 -0.0965234 1.70748 0.293477L8.00048 6.58648L14.2935 0.293477C14.6835 -0.0965234 15.3175 -0.0965234 15.7075 0.293477C16.0975 0.683477 16.0975 1.31748 15.7075 1.70748L9.41448 8.00048L15.7075 14.2935C16.0975 14.6835 16.0975 15.3175 15.7075 15.7075C15.3175 16.0975 14.6835 16.0975 14.2935 15.7075L8.00048 9.41448L1.70748 15.7075C1.31748 16.0975 0.683477 16.0975 0.293477 15.7075C-0.0965234 15.3175 -0.0965234 14.6835 0.293477 14.2935L6.58648 8.00048Z"
+              [attr.fill]="isPremiumPage ? '#DDDCDC' : '#3D4652'"
+            />
+          </svg>
+        </div> -->
+        <div class="menu mt-1">
+          <div class="sub-menu">
+            @for (
+              iconItem of isPremiumPage ? iconMenuMobileWhite : iconMenuMobile;
+              track iconItem
+            ) {
+              <ng-container mat-button>
+                <div
+                  class="MenuItem"
+                  [ngClass]="{
+                    'sidenav-line': isPremiumPage,
+                    'active-sidenav':
+                      currentPage?.length > 0
+                        ? RoutingMenuMobile[$index]?.includes(currentPage)
+                        : false
+                  }"
+                  (click)="routerLinkto(RoutingMenuMobile[$index])"
+                >
+                  <div class="matMenuItem">
+                    <span
+                      [ngClass]="{
+                        'white-text': isPremiumPage
+                      }"
+                    >
+                      {{ text.navbar_item[$index] }}
+                    </span>
+                  </div>
+                  <div class="line-bar"></div>
+                </div>
+              </ng-container>
+            }
+          </div>
+          <!-- <div class="line_nav"></div> -->
+          @if (isLogined()) {
+            <div class="profile">
+              <div class="img-profile">
+                <img
+                  class="img-avatar"
+                  [src]="user?.image"
+                  alt="รูปประจำตัว"
+                  (error)="updateUrl()"
+                />
+                @if (sellerCode) {
+                  <img
+                    class="icon_affiliate active"
+                    src="../../../assets/icons/navbar-v2/Affiliate_Icon.svg"
+                    alt="Affiliate_Icon.svg"
+                    matTooltip="Affiliate By : {{ sellerCode }}"
+                  />
+                }
+              </div>
+              <div class="user-profile">
+                <span
+                  class="name-profile"
+                  [ngClass]="{ 'white-text': isPremiumPage }"
+                >
+                  {{ user?.username }}
+                  <!-- <div class="subscription-banner">
+                  <span>{{ user?.subscription }}</span>
+                </div> -->
+                </span>
+                <!-- <span
+                class="email-profile"
+                [ngClass]="{ 'white-text': isPremiumPage }"
+              >
+                {{ user?.email }}
+              </span> -->
+                <div
+                  class="uid"
+                  (click)="copyUID(copy, done)"
+                  [ngClass]="{ 'whitegrey-text': isPremiumPage }"
+                >
+                  <span class="text" [title]="user?.uid"
+                    >UID: {{ user?.uid }}</span
+                  >
+                  <span
+                    #copy
+                    class="material-symbols-outlined"
+                    matTooltip="Copy UID"
+                    >content_copy</span
+                  >
+                  <span id="done" #done class="material-symbols-outlined">
+                    done
+                  </span>
+                </div>
+              </div>
+            </div>
+          }
+
+          <div class="sub-menu">
+            @if (isLogined()) {
+              @for (iconItem of text?.menu_navbar[0]; track iconItem) {
+                <div
+                  class="MenuItem MenuItemMobile"
+                  [ngClass]="{ 'sidenav-line': isPremiumPage }"
+                  [ngStyle]="{
+                    display:
+                      $index <= 5 ? '' : user?.sale_code_name ? '' : 'none'
+                  }"
+                  (click)="routerLinkto(RoutingDropdownProfile_1[$index])"
+                >
+                  <div class="matMenuItem">
+                    <mat-icon [svgIcon]="iconMenuMobile_2[$index]"></mat-icon>
+                    <span [ngClass]="{ 'white-text': isPremiumPage }">
+                      {{ iconItem }}
+                    </span>
+                  </div>
+                  <div class="line-bar"></div>
+                </div>
+              }
+
+              <!-- <div class="line_nav"></div> -->
+              <!-- <div
+                class="MenuItem"
+                [ngClass]="{ 'sidenav-line': isPremiumPage }"
+                (click)="routerLinkto(RoutingDropdownProfile_2[0])"
+              >
+                <div class="matMenuItem">
+                  <img
+                    class="iconItem"
+                    [src]="
+                      isPremiumPage
+                        ? '../../assets/icons/navbar-v2/feedback_white.svg'
+                        : '../../assets/icons/navbar-v2/feedback.svg'
+                    "
+                    alt="iconItem"
+                  />
+                  <span [ngClass]="{ 'white-text': isPremiumPage }">
+                    {{ text?.menu_navbar[1][0] }}
+                  </span>
+                </div>
+                <div class="line-bar"></div>
+              </div> -->
+              <!-- <div class="line_nav"></div> -->
+              <div
+                class="MenuItem MenuItemMobile"
+                [ngClass]="{ 'sidenav-line': isPremiumPage }"
+                (click)="SignOut()"
+              >
+                <div class="item-red">
+                  <!-- <img
+                    class="iconItem"
+                    [src]="
+                      isPremiumPage
+                        ? '../../assets/icons/navbar-v2/logout_white.svg'
+                        : '../../assets/icons/navbar-v2/logout.svg'
+                    "
+                    alt="iconItem"
+                  /> -->
+                  <mat-icon
+                    svgIcon="logout_dynamic"
+                    [ngStyle]="{ color: '#FF5252' }"
+                  ></mat-icon>
+                  <span
+                    [ngClass]="{ 'white-text': isPremiumPage }"
+                    class="text-red"
+                  >
+                    {{ text.logout }}
+                  </span>
+                </div>
+              </div>
+            }
+            <div class="button-area change-language-side">
+              <button
+                class="change-language-btn"
+                [ngClass]="{ 'btn-active': selectedLanguage.value === 'TH' }"
+                (click)="changeLangByButton('TH')"
+              >
+                <img
+                  class="flag-img"
+                  src="../../../../assets/icons/toolbar/conversation/flags/TH.svg"
+                  alt="Thai flag"
+                />
+                <span>TH</span>
+              </button>
+              <button
+                class="change-language-btn"
+                [ngClass]="{ 'btn-active': selectedLanguage.value === 'EN' }"
+                (click)="changeLangByButton('EN')"
+              >
+                <img
+                  class="flag-img"
+                  src="../../../../assets/icons/toolbar/conversation/flags/EN.svg"
+                  alt="English flag"
+                />
+                <span>EN</span>
+              </button>
+              <!-- <mat-select
+                placeholder="Placeholder"
+                hideSingleSelectionIndicator
+                panelClass="{{ isPremiumPage ? 'dark-select' : '' }}"
+                [formControl]="selectedLanguage"
+              >
+                <mat-select-trigger
+                  class="national-flag"
+                  [ngClass]="{ 'white-text': isPremiumPage }"
+                >
+                  <img
+                    src="../../../../assets/icons/toolbar/conversation/flags/{{
+                      selectedLanguage.value
+                    }}.svg"
+                    alt="{{ selectedLanguage.value }} flag"
+                  />&nbsp;{{ selectedLanguage.value }}
+                </mat-select-trigger>
+                <mat-option *ngFor="let lang of ['TH', 'EN']" [value]="lang">
+                  <div class="national-flag">
+                    <img
+                      src="../../../../assets/icons/toolbar/conversation/flags/{{
+                        lang
+                      }}.svg"
+                      alt="{{ lang }} flag"
+                    />
+                    <span [ngClass]="{ 'white-text': isPremiumPage }">{{
+                      lang
+                    }}</span>
+                  </div>
+                </mat-option>
+              </mat-select> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-sidenav>
+
+    <!-- NAVBAR -->
+    <mat-sidenav-content class="navbar-inverse">
+      <div
+        id="navbar-container"
+        class="nav-container"
+        [ngClass]="{ 'dark-nav': isPremiumPage }"
+      >
+        <div class="nav-left">
+          <div
+            class="open-mobile"
+            [ngStyle]="isPremiumPage && { 'padding-right': '4px' }"
+            (click)="sidenav.toggle(); animateHamburger()"
+          >
+            <!-- <mat-icon [ngStyle]="isPremiumPage && { color: '#DDDCDC' }"
+              >menu</mat-icon
+            > -->
+            <div #navToggle class="nav-toggle">
+              <span #bar class="bar"></span>
+              <span #bar class="bar"></span>
+              <span #bar class="bar"></span>
+            </div>
+          </div>
+          <div class="logo" (click)="routerLinkto('')">
+            <img
+              class="logo-2"
+              src="{{
+                isPremiumPage
+                  ? '../../../../assets/icons/navbar-v2/botnoi_voice-premium.svg'
+                  : '../../../../assets/icons/navbar-v2/botnoi_voice-logo4.svg'
+              }}"
+              alt="botnoi_voice-logo4"
+            />
+          </div>
+          <div class="logo-mobile" (click)="routerLinkto('')">
+            <img
+              class="mobile-1"
+              src="../../../../assets/icons/navbar-v2/logo_mobile1.svg"
+              alt="logo_mobile1"
+            />
+            <img
+              class="mobile-2"
+              [ngClass]="{ 'premium-mobile-logo': isPremiumPage }"
+              src="{{
+                isPremiumPage
+                  ? '../../../../assets/icons/navbar-v2/logo_premium_mobile.svg'
+                  : '../../../../assets/icons/navbar-v2/logo_mobile2.svg'
+              }}"
+              alt="logo_mobile2"
+            />
+          </div>
+          <!-- Desktop Menu -->
+          <div class="menu">
+            @for (item of text.navbar_item; track item) {
+              <div
+                class="button-area"
+                [ngClass]="{
+                  'white-line': isPremiumPage,
+                  'active-nav':
+                    currentPage?.length > 0
+                      ? RoutingMenuLeft[$index]?.includes(currentPage)
+                      : false
+                }"
+              >
+                <span
+                  (click)="routerLinkto(RoutingMenuLeft[$index])"
+                  [ngClass]="{
+                    'white-text': isPremiumPage,
+                    'white-hover': isPremiumPage
+                  }"
+                >
+                  {{ item }}
+                  <div class="line-bar"></div>
+                </span>
+                @if ($index === 3) {
+                  <button appSaleEvent class="btn-sale-event">SALE</button>
+                }
+              </div>
+            }
+          </div>
+          <!-- <div class="menu">
+            Tutorial
+            <div class="button-area hide" [matMenuTriggerFor]="tutorial">
+              <div class="line-bar">
+                <span>
+                  {{ text.tutorial }}
+                </span>
+              </div>
+            </div>
+            mat-menu
+            <mat-menu
+              #tutorial="matMenu"
+              xPosition="after"
+              class="dropdownMenu"
+            >
+              @for (iconItem of text.studioMenuItem; track iconItem) {
+                Remove ngif when already have ENG video
+                <button
+                  mat-menu-item
+                  class="matMenuItem-dropdown"
+                  (click)="navigateTutorial($index)"
+                >
+                  <span>{{ iconItem }}</span>
+                </button>
+              }
+            </mat-menu>
+          </div> -->
+        </div>
+
+        <div class="nav-right">
+          @if (isLogined()) {
+            <div
+              id="credits_navbar"
+              class="credits"
+              [ngClass]="{ 'hover-box': isPremiumPage }"
+              (click)="routerLinkto('payment')"
+            >
+              <button id="credits_navbar" class="credits-btn">
+                <mat-icon svgIcon="point_gradient_blue"></mat-icon>
+                <span>{{ user?.credits | number }} {{ text.point }}</span>
+                <mat-icon
+                  svgIcon="plus_circle_dynamic"
+                  class="plus-icon"
+                  [ngStyle]="{ color: '#fff' }"
+                ></mat-icon>
+              </button>
+              <!-- <img
+                id="credits_navbar"
+                src="{{
+                  isPremiumPage
+                    ? '../../../../assets/icons/navbar-v2/point_coin.svg'
+                    : '../../../assets/img/Credits.svg'
+                }}"
+                [ngClass]="{ 'enlarge-icon': isPremiumPage }"
+                alt="icon"
+              />
+              <div id="credits_navbar" class="group">
+                <span
+                  id="credits_navbar"
+                  [ngClass]="{
+                    'white-text': isPremiumPage
+                  }"
+                  >{{ user?.credits | number }}
+                </span>
+                <span
+                  id="credits_navbar"
+                  [ngClass]="{
+                    'white-text': isPremiumPage
+                  }"
+                  >{{ text.point }}</span
+                >
+              </div> -->
+            </div>
+            <div class="vertical-line-8"></div>
+          }
+
+          <div
+            class="group-language flex-center"
+            (click)="select_language.open()"
+          >
+            <div class="change-language">
+              <mat-select
+                #select_language
+                placeholder="Placeholder"
+                hideSingleSelectionIndicator
+                panelClass="{{ isPremiumPage ? 'dark-select' : '' }}"
+                [formControl]="selectedLanguage"
+              >
+                <mat-select-trigger
+                  class="national-flag"
+                  [ngClass]="{ 'white-text': isPremiumPage }"
+                >
+                  <img
+                    src="../../../../assets/icons/toolbar/conversation/flags/{{
+                      selectedLanguage.value
+                    }}.svg"
+                    alt="{{ selectedLanguage.value }} flag"
+                  />&nbsp;{{ selectedLanguage.value }}
+                </mat-select-trigger>
+                <mat-option *ngFor="let lang of ['TH', 'EN']" [value]="lang">
+                  <div class="national-flag">
+                    <img
+                      src="../../../../assets/icons/toolbar/conversation/flags/{{
+                        lang
+                      }}.svg"
+                      alt="{{ lang }} flag"
+                    />
+                    <span [ngClass]="{ 'white-text': isPremiumPage }">{{
+                      lang
+                    }}</span>
+                  </div>
+                </mat-option>
+              </mat-select>
+            </div>
+          </div>
+          @if (!isLogined()) {
+            <div class="vertical-line-20"></div>
+            <div class="login-group">
+              <div
+                id="nav_login_click"
+                class="login-line"
+                (click)="firebaseSignIn()"
+              >
+                {{ text.login }}
+              </div>
+              <div
+                class="try-free"
+                id="nav_tryfree_click"
+                (click)="firebaseSignIn()"
+              >
+                {{ text.try_free }}
+              </div>
+            </div>
+          }
+          @if (isLogined()) {
+            <div class="vertical-line-8"></div>
+            <div class="profile">
+              <button [matMenuTriggerFor]="copied ? null : menuProfile">
+                <div class="img-profile">
+                  <img
+                    class="img-avatar"
+                    [src]="user?.image"
+                    alt="รูปประจำตัว"
+                    (error)="updateUrl()"
+                  />
+                  @if (sellerCode) {
+                    <img
+                      class="icon_affiliate active"
+                      src="../../../assets/icons/navbar-v2/Affiliate_Icon.svg"
+                      alt="Affiliate_Icon.svg"
+                      matTooltip="Affiliate By : {{ sellerCode }}"
+                    />
+                  }
+                </div>
+                <div class="user-profile">
+                  <div
+                    class="name-profile"
+                    [ngClass]="{ 'white-text': isPremiumPage }"
+                  >
+                    {{ user?.username }}
+                    <!-- <div class="subscription-banner">
+                    <span>{{ user?.subscription }}</span>
+                  </div> -->
+                  </div>
+                  <div
+                    class="uid"
+                    (click)="copyUID(copy, done)"
+                    [ngClass]="{ 'whitegrey-text': isPremiumPage }"
+                  >
+                    <span
+                      class="text"
+                      [title]="user?.uid"
+                      [ngClass]="{ 'whitegrey-text': isPremiumPage }"
+                      >UID: {{ user?.uid }}</span
+                    >
+                    <span
+                      #copy
+                      id="copy"
+                      class="material-symbols-outlined"
+                      matTooltip="Copy UID"
+                      >content_copy</span
+                    >
+                    <span id="done" #done class="material-symbols-outlined">
+                      done
+                    </span>
+                  </div>
+                </div>
+                <img
+                  class="icon_expand_more1"
+                  src="../../../assets/icons/navbar-v2/icon_expand_more1.svg"
+                  alt="icon_expand_more1"
+                />
+                <img
+                  class="icon_expand_more2"
+                  [src]="
+                    isPremiumPage
+                      ? '../../../assets/icons/navbar-v2/icon_expand_more2_white.svg'
+                      : '../../../assets/icons/navbar-v2/icon_expand_more2.svg'
+                  "
+                  alt="icon_expand_more2"
+                />
+              </button>
+              <!-- dropdown -->
+              <mat-menu
+                #menuProfile="matMenu"
+                xPosition="before"
+                class="{{
+                  isPremiumPage ? 'dropdownMenu dark-bg' : 'navProfileMenu'
+                }}"
+              >
+                @for (iconItem of text?.menu_navbar[0]; track iconItem) {
+                  @if ($index < 6) {
+                    <button
+                      mat-menu-item
+                      class="matMenuItem-dropdown"
+                      (click)="routerLinkto(RoutingDropdownProfile_1[$index])"
+                    >
+                      <mat-icon
+                        [svgIcon]="iconProfileMenu[$index]"
+                        class="icon-profile-menu"
+                      ></mat-icon>
+                      <span [ngClass]="{ 'white-text': isPremiumPage }">{{
+                        iconItem
+                      }}</span>
+                    </button>
+                  }
+                  @if ($index === 6 && user?.sale_code_name) {
+                    <button
+                      mat-menu-item
+                      class="matMenuItem-dropdown"
+                      (click)="routerLinkto(RoutingDropdownProfile_1[6])"
+                    >
+                      <mat-icon
+                        svgIcon="sales_dynamic"
+                        class="icon-profile-menu"
+                      ></mat-icon>
+                      <span [ngClass]="{ 'white-text': isPremiumPage }">{{
+                        iconItem
+                      }}</span>
+                    </button>
+                  }
+                }
+
+                <!-- <div class="line_navMenuItem"></div> -->
+                <!-- <button
+                  mat-menu-item
+                  class="matMenuItem-dropdown"
+                  (click)="routerLinkto(RoutingDropdownProfile_2[0])"
+                >
+                  <img
+                    class="iconItem"
+                    [src]="
+                      isPremiumPage
+                        ? '../../assets/icons/navbar-v2/feedback_white.svg'
+                        : '../../assets/icons/navbar-v2/feedback.svg'
+                    "
+                    alt="iconItem"
+                  />
+                  <span [ngClass]="{ 'white-text': isPremiumPage }">{{
+                    text?.menu_navbar[1][0]
+                  }}</span>
+                </button> -->
+                <!-- <button
+                  mat-menu-item
+                  class="matMenuItem-dropdown"
+                  (click)="toDeleteAccount()"
+                >
+                  <img
+                    class="iconItem"
+                    [src]="
+                      isPremiumPage
+                        ? '../../assets/icons/navbar-v2/delete-account_white.svg'
+                        : '../../assets/icons/navbar-v2/delete-account.svg'
+                    "
+                    alt="iconItem"
+                  />
+                  <span [ngClass]="{ 'white-text': isPremiumPage }">{{
+                    text?.menu_navbar[1][1]
+                  }}</span>
+                </button> -->
+                <button
+                  mat-menu-item
+                  class="matMenuItem-dropdown"
+                  (click)="SignOut()"
+                >
+                  <mat-icon
+                    svgIcon="logout_dynamic"
+                    class="icon-profile-menu icon-red"
+                  ></mat-icon>
+                  <span
+                    [ngClass]="{ 'white-text': isPremiumPage }"
+                    class="text-red"
+                    >{{ text.logout }}</span
+                  >
+                </button>
+              </mat-menu>
+            </div>
+          }
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</nav>

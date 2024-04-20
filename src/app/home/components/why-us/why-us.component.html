@@ -1,0 +1,91 @@
+<div class="why-us-container">
+  <h3 class="header">{{ text.header }}</h3>
+  <div class="wrapper">
+    <div class="video-card">
+      <div class="video" style="width: 100%">
+        <img
+          (click)="popup = true"
+          src="../../../assets/images/why-us/img_video1.webp"
+        />
+        <button (click)="popup = true" type="button">
+          <div class="icon">
+            <svg
+              width="22"
+              height="25"
+              viewBox="0 0 22 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_8813_43427)">
+                <path
+                  d="M-0.104492 3.12851C-0.104492 0.700382 2.54551 -0.799618 4.62988 0.450382L20.2549 9.82226C22.2768 11.0348 22.2768 13.966 20.2549 15.1785L4.62988 24.5504C2.54551 25.8004 -0.104492 24.3004 -0.104492 21.8723V3.12851Z"
+                  fill="white"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_8813_43427">
+                  <rect width="21.6667" height="25" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+        </button>
+        <div class="overlay" *ngIf="popup" (click)="popup = false">
+          <div class="popup">
+            <iframe
+              width="100%"
+              height="547px"
+              src="https://www.youtube.com/embed/uclmAxMb8-Y"
+              title="Botnoi Voice : text to speech"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write;
+                    encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="list-container">
+      <h3 class="list-header">{{ text.header_list }}</h3>
+      <div class="list">
+        <div class="list-text">
+          <mat-icon svgIcon="ok_circle_gradient"></mat-icon>
+          <div class="text">
+            <p class="text-top">{{ text.sub_list_1 }}</p>
+            <p class="text-bottom">
+              {{ text.text_list_1 }}
+            </p>
+          </div>
+        </div>
+        <div class="list-text">
+          <mat-icon svgIcon="ok_circle_gradient"></mat-icon>
+          <div class="text">
+            <p class="text-top">{{ text.sub_list_2 }}</p>
+            <p class="text-bottom">
+              {{ text.text_list_2 }}
+            </p>
+          </div>
+        </div>
+        <div class="list-text">
+          <mat-icon svgIcon="ok_circle_gradient"></mat-icon>
+          <div class="text">
+            <p class="text-top">{{ text.sub_list_3 }}</p>
+            <p class="text-bottom">
+              {{ text.text_list_3 }}
+            </p>
+          </div>
+        </div>
+        <div class="list-text">
+          <mat-icon svgIcon="ok_circle_gradient"></mat-icon>
+          <div class="text">
+            <p class="text-top">{{ text.sub_list_4 }}</p>
+            <p class="text-bottom">
+              {{ text.text_list_4 }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

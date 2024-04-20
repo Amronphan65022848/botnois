@@ -1,0 +1,74 @@
+.container-cookie {
+  width: 100%;
+  height: 228px;
+  display: block;
+  background-image: linear-gradient(91.04deg, #222166 5.33%, #812448 90.37%);
+  padding: 100px 0px 50px 0px;
+}
+.container-cookie1 {
+  width: 80%;
+  background-color: #ffffff;
+  margin: 0 auto;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  overflow-y: auto;
+  height: 75vh;
+}
+.topic-cookie div {
+  font-family: "Prompt", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+  padding: 20px 0px 0px 0px;
+}
+.img-bot {
+  display: block;
+  margin: auto;
+  padding: 30px 0px 0px 0px;
+}
+.frame-topic {
+  padding: 20px 50px;
+}
+.topic-text {
+  font-family: "Prompt", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+}
+.text-cookie {
+  margin: 2px;
+  font-family: "Prompt", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 28px;
+}
+@media screen and (max-width: 600px) {
+  .frame-topic {
+    padding: 20px 20px;
+  }
+  .topic-text {
+    
+    font-size: 16px;
+    
+  }
+  .text-cookie {
+    
+    font-size: 12px;
+   
+  }
+  .container-cookie1 {
+    overflow-x: clip;
+    width: 85%;
+  }
+  .topic-cookie div {
+    
+    font-size: 20px;
+    
+  }
+  .container-cookie {
+   
+    padding: 70px 0px 50px 0px;
+  }
+}

@@ -1,0 +1,404 @@
+<!-- <mat-stepper #stepper>
+  <mat-step> -->
+@if (page === 1) {
+  <div class="add-word-container">
+    <div class="header-text">
+      <h3 class="header m-0">แก้ไขคำอ่านผิด</h3>
+      <p class="m-0">ใช้สัญลักษณ์ | ในการแบ่งคำ และวรรณยุกต์ในการออกเสียง</p>
+    </div>
+    <div class="input-words-group">
+      <div class="writing">
+        <div class="top">
+          <span class="label-box">คำเขียน</span>
+          <span
+            ><img
+              src="../../assets/img/Real_audio.svg"
+              alt="listen sound example"
+              srcset=""
+              (click)="playWord($event)"
+              style="cursor: pointer"
+          /></span>
+        </div>
+        <div class="bottom">
+          <input
+            type="text"
+            placeholder="ตัวอย่าง เช่น อูเบอร์"
+            [(ngModel)]="writingText"
+          />
+        </div>
+      </div>
+      <div class="arrow">
+        <img
+          src="../../assets/img/fast_forward_blue.svg"
+          style="width: 12px"
+          alt="ฟังเสียงตัวอย่าง"
+          srcset=""
+        />
+      </div>
+      <div class="reading">
+        <div class="top">
+          <span class="label-box">คำอ่าน</span>
+          <span
+            ><img
+              src="../../assets/img/Real_audio.svg"
+              alt="listen sound example"
+              srcset=""
+              (click)="playWord($event)"
+              style="cursor: pointer"
+          /></span>
+        </div>
+        <div class="bottom">
+          <input
+            type="text"
+            placeholder="ตัวอย่าง เช่น อู|เบ้อ"
+            [(ngModel)]="readingText"
+          />
+        </div>
+      </div>
+    </div>
+    <button class="save-word-btn">บันทึก</button>
+    <div class="latest-word">
+      <div class="latest-text">
+        <h3 class="m-0">คำที่แก้ไขล่าสุด</h3>
+        <button matStepperNext (click)="page = 2">ดูประวัติ</button>
+      </div>
+      <div
+        class="history-word"
+        *ngFor="let item of historyWord | slice: 0 : 1; let i = index"
+      >
+        <div class="before-text">
+          <mat-icon
+            (click)="playHistoryInSidebar(item.before_text)"
+            svgIcon="audio"
+            class="icon"
+          ></mat-icon>
+          @if (!item.isEdit) {
+            <span>{{ item.before_text }}</span>
+          } @else {
+            <input
+              class="edit-input"
+              name="before"
+              [attr.data-ref]="item.ref_id"
+              placeholder="{{ item.before_text }}"
+              type="text"
+              (keydown)="detectKey($event, item)"
+            />
+          }
+        </div>
+        <div>
+          <img src="../../assets/img/fast_forward_blue.svg" />
+        </div>
+        <div class="before-text">
+          <mat-icon
+            (click)="playHistoryWord(item.after_text)"
+            class="icon"
+            svgIcon="audio"
+          ></mat-icon>
+          @if (!item.isEdit) {
+            <span>{{ item.after_text }}</span>
+          } @else {
+            <input
+              class="edit-input"
+              name="after"
+              [attr.data-ref]="item.ref_id"
+              placeholder="{{ item.after_text }}"
+              type="text"
+              (keydown)="detectKey($event, item)"
+            />
+          }
+        </div>
+        <div class="tools">
+          <mat-icon
+            class="icon edit"
+            svgIcon="edit_pencil"
+            (click)="editText(i)"
+            *ngIf="!item.isEdit"
+          ></mat-icon>
+          <mat-icon
+            class="icon done"
+            svgIcon="check"
+            (click)="editDone(item, i)"
+            *ngIf="item.isEdit"
+          ></mat-icon>
+          <mat-icon
+            class="icon delete"
+            svgIcon="trash"
+            (click)="deleteHistoryWord(item)"
+            *ngIf="!item.isEdit"
+          ></mat-icon>
+          <mat-icon
+            class="icon cancel"
+            svgIcon="cross"
+            (click)="editCancel(i)"
+            *ngIf="item.isEdit"
+          ></mat-icon>
+        </div>
+      </div>
+      <div *ngIf="!historyWord?.length">
+        <p class="no-history">{{ text?.err_redirect.no_history }}</p>
+      </div>
+    </div>
+    <!-- <div formArrayName="words" class="form-word">
+              <div *ngFor="let w of arrWord.controls; let i = index">
+                <div
+                  class="group-input-word"
+                  [formGroupName]="i"
+                  *ngIf="!allsoundState && state_loading == 0"
+                >
+                  <div>
+                    <div class="p-2">
+                      <span>{{ text?.writing }}</span>
+          
+                      <span>
+                        <img
+                          src="../../assets/img/Real_audio.svg"
+                          alt="ฟังเสียงตัวอย่าง"
+                          srcset=""
+                          (click)="playWord($event)"
+                          style="cursor: pointer"
+                        />
+                      </span>
+                    </div>
+                    <div>
+                      <input
+                        matInput
+                        type="text"
+                        placeholder="{{ text?.writing_ }}"
+                        autocomplete="off"
+                        formControlName="before_text"
+                        style="text-align: left"
+                      />
+                    </div>
+                  </div>
+          
+                  <div>
+                    <img
+                      src="../../assets/img/fast_forward_blue.svg"
+                      style="width: 12px"
+                      alt="ฟังเสียงตัวอย่าง"
+                      srcset=""
+                    />
+                  </div>
+                  <div>
+                    <div class="p-2">
+                      <span>{{ text?.reading }}</span>
+                      <span>
+                        <img
+                          src="../../assets/img/Real_audio.svg"
+                          alt="ฟังเสียงตัวอย่าง"
+                          srcset=""
+                          (click)="playWord($event)"
+                          style="cursor: pointer"
+                        />
+                      </span>
+                    </div>
+                    <div>
+                      <input
+                        matInput
+                        type="text"
+                        placeholder="{{ text?.reading_ }}"
+                        autocomplete="off"
+                        formControlName="after_text"
+                        style="text-align: left"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="btn-add-wordreplace"
+                type="button"
+                (click)="addWord('', '')"
+                *ngIf="!allsoundState && state_loading == 0"
+              >
+                {{ text?.addWord }}
+              </button>
+              <div class="save-edit-word" *ngIf="isChangeWordExpand">
+                <button
+                  class="save-edit-word-button"
+                  [disabled]="
+                    formWords.value.words[0].before_text?.length < 1 ? true : false
+                  "
+                  mat-flat-button
+                  type="submit"
+                >
+                  {{ text?.save }}
+                </button>
+              </div>
+              <hr class="horizon-line" *ngIf="historyWord?.length" />
+              <div class="history-content-word" *ngIf="historyWord?.length">
+                <div
+                  class="history-word"
+                  *ngFor="let item of historyWord | slice: 0 : 5; let i = index"
+                >
+                  <div class="before-text">
+                    <mat-icon
+                      (click)="playHistoryInSidebar(item.before_text)"
+                      svgIcon="audio"
+                    ></mat-icon>
+                    <span *ngIf="!item.isEdit">{{ item.before_text }}</span>
+                    <input
+                      class="edit-input"
+                      *ngIf="item.isEdit"
+                      name="before"
+                      [attr.data-ref]="item.ref_id"
+                      placeholder="{{ item.before_text }}"
+                      type="text"
+                      (keydown)="detectKey($event, item)"
+                    />
+                  </div>
+                  <div>
+                    <img src="../../assets/img/fast_forward_blue.svg" />
+                  </div>
+                  <div class="before-text">
+                    <mat-icon
+                      (click)="playHistoryWord(item.after_text)"
+                      svgIcon="audio"
+                    ></mat-icon>
+                    <span *ngIf="!item.isEdit">{{ item.after_text }}</span>
+                    <input
+                      class="edit-input"
+                      *ngIf="item.isEdit"
+                      name="after"
+                      [attr.data-ref]="item.ref_id"
+                      placeholder="{{ item.after_text }}"
+                      type="text"
+                      (keydown)="detectKey($event, item)"
+                    />
+                  </div>
+                  <div class="tools">
+                    <mat-icon
+                      class="edit"
+                      svgIcon="edit_pencil"
+                      (click)="editText(i)"
+                      *ngIf="!item.isEdit"
+                    ></mat-icon>
+                    <mat-icon
+                      class="done"
+                      svgIcon="check"
+                      (click)="editDone(item, i)"
+                      *ngIf="item.isEdit"
+                    ></mat-icon>
+                    <mat-icon
+                      class="delete"
+                      svgIcon="trash"
+                      (click)="deleteHistoryWord(item)"
+                      *ngIf="!item.isEdit"
+                    ></mat-icon>
+                    <mat-icon
+                      class="cancel"
+                      svgIcon="cross"
+                      (click)="editCancel(i)"
+                      *ngIf="item.isEdit"
+                    ></mat-icon>
+                  </div>
+                </div>
+                <div *ngIf="!historyWord?.length">
+                  <p class="no-history">{{ text?.err_redirect.no_history }}</p>
+                </div>
+              </div>
+            </div> -->
+  </div>
+} @else {
+  <!-- </mat-step> -->
+  <!-- <mat-step> -->
+  <div class="add-word-container">
+    <div class="header-text">
+      <h3 class="header m-0">ประวัติการแก้คำอ่าน</h3>
+    </div>
+    <div
+      class="history-word"
+      *ngFor="
+        let items of historyWord | slice: firstIndexOfItem : lastIndexOfItem;
+        let i = index
+      "
+    >
+      <div class="before-text">
+        <mat-icon
+          class="icon"
+          (click)="playHistoryInSidebar(items.before_text)"
+          svgIcon="audio"
+        ></mat-icon>
+        @if (!items.isEdit) {
+          <span>{{ items.before_text }}</span>
+        } @else {
+          <input
+            class="edit-input"
+            name="before"
+            [attr.data-ref]="items.ref_id"
+            placeholder="{{ items.before_text }}"
+            type="text"
+            (keydown)="detectKey($event, items)"
+          />
+        }
+      </div>
+      <div>
+        <img src="../../assets/img/fast_forward_blue.svg" />
+      </div>
+      <div class="before-text">
+        <mat-icon
+          class="icon"
+          (click)="playHistoryWord(items.after_text)"
+          svgIcon="audio"
+        ></mat-icon>
+        @if (!items.isEdit) {
+          <span>{{ items.after_text }}</span>
+        } @else {
+          <input
+            class="edit-input"
+            name="after"
+            [attr.data-ref]="items.ref_id"
+            placeholder="{{ items.after_text }}"
+            type="text"
+            (keydown)="detectKey($event, items)"
+          />
+        }
+      </div>
+      <div class="tools">
+        <mat-icon
+          class="edit icon"
+          svgIcon="edit_pencil"
+          (click)="editText(i)"
+          *ngIf="!items.isEdit"
+        ></mat-icon>
+        <mat-icon
+          class="done icon"
+          svgIcon="check"
+          (click)="editDone(items, i)"
+          *ngIf="items.isEdit"
+        ></mat-icon>
+        <mat-icon
+          class="delete icon"
+          svgIcon="trash"
+          (click)="deleteHistoryWord(items)"
+          *ngIf="!items.isEdit"
+        ></mat-icon>
+        <mat-icon
+          class="cancel icon"
+          svgIcon="cross"
+          (click)="editCancel(i)"
+          *ngIf="items.isEdit"
+        ></mat-icon>
+      </div>
+    </div>
+    <mat-paginator
+      #paginator
+      class="demo-paginator"
+      (page)="handlePageEvent($event)"
+      [pageIndex]="pageIndex"
+      [length]="historyWord.length"
+      pageSize="4"
+      [hidePageSize]="true"
+    >
+    </mat-paginator>
+    <button class="add-other-words" (click)="page = 1">
+      <mat-icon
+        svgIcon="plus_dynamic"
+        [ngStyle]="{ color: '#01BFFB' }"
+      ></mat-icon>
+      <span>เพิ่มคำอื่นๆ</span>
+    </button>
+  </div>
+}
+<!-- </mat-step>
+</mat-stepper> -->

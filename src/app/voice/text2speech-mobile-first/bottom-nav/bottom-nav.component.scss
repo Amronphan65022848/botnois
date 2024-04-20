@@ -1,0 +1,73 @@
+.bottom-nav {
+  display: flex;
+  width: 100%;
+  height: 62px;
+  background-color: #fff;
+  box-shadow: 0px 3px 15px 0px #4f758a4d;
+  position: fixed;
+  bottom: 0px;
+  z-index: 9999;
+
+  .selecting-nav,
+  .normal-nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 8px 12px;
+  }
+
+  .normal-nav,
+  .selecting-nav {
+    .edit-misread,
+    .play-all,
+    .download,
+    .save,
+    .change-speaker,
+    .generate,
+    .download,
+    .delete-selected {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      mat-icon {
+        width: 16px;
+        height: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .icon-text {
+        font-family: Prompt;
+        font-size: 10px;
+        line-height: 16px;
+        font-weight: 400;
+        text-align: center;
+      }
+
+      &:hover {
+        background-color: #ccf2fe;
+      }
+    }
+
+    .active {
+      background-color: #ccf2fe;
+    }
+  }
+
+  .active {
+    background-color: #ccf2fe;
+  }
+}
+
+::ng-deep mat-snack-bar-container {
+  margin-bottom: 76px !important;
+}

@@ -1,0 +1,258 @@
+<div class="compare-container">
+  <div class="text-header">
+    <h3 class="header">
+      {{ text.point_content.box1.title[0] }}
+      {{ _wallet.convertPriceByCurrency(text.point_content.box1.title[1][0]) }}
+      {{ text.point_content.box1.title[1][1] }}
+    </h3>
+    <span class="details">
+      {{ text.point_content.box1.title[2][0] }}
+      {{ _wallet.convertPriceByCurrency(text.point_content.box1.title[2][1]) }}
+      {{ text.point_content.box1.title[2][2] }}
+    </span>
+  </div>
+  <div class="card-section">
+    <div class="card-container">
+      <img
+        class="icon-doc"
+        src="../../../../assets/payment/image 3.webp"
+        alt="content-icon"
+      />
+      <div class="card-body">
+        <span class="card-header">{{ text.point_content.box1.paper[0] }}</span>
+        <span class="card-detail">{{ text.point_content.box1.paper[1] }}</span>
+        <span class="card-price">
+          {{ text.point_content.box1.paper[2][0] }}
+          {{
+            _wallet.convertPriceByCurrency(text.point_content.box1.paper[2][1])
+          }}
+          {{ text.point_content.box1.paper[2][2] }}
+        </span>
+      </div>
+    </div>
+    <div class="card-container">
+      <img
+        class="icon-tiktok"
+        src="../../../../assets/payment/image 4.webp"
+        alt="content-icon"
+      />
+      <div class="card-body">
+        <span class="card-header">{{ text.point_content.box1.social[0] }}</span>
+        <span class="card-detail">{{ text.point_content.box1.social[1] }}</span>
+        <span class="card-price">
+          {{ text.point_content.box1.social[2][0] }}
+          {{
+            _wallet.convertPriceByCurrency(text.point_content.box1.social[2][1])
+          }}
+          {{ text.point_content.box1.social[2][2] }}
+        </span>
+      </div>
+    </div>
+    <div class="card-container">
+      <img
+        class="icon-movie"
+        src="../../../../assets/payment/image 5.webp"
+        alt="content-icon"
+      />
+      <div class="card-body">
+        <span class="card-header">{{ text.point_content.box1.media[0] }}</span>
+        <span class="card-detail">{{ text.point_content.box1.media[1] }}</span>
+        <span class="card-price">
+          {{ text.point_content.box1.media[2][0] }}
+          {{
+            _wallet.convertPriceByCurrency(text.point_content.box1.media[2][1])
+          }}
+          {{ text.point_content.box1.media[2][2] }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="card-banner">
+    <div class="banner-text-container">
+      <span class="banner-header">{{ textCard.card_header }}</span>
+      <span
+        class="banner-detail"
+        [ngStyle]="{ width: lang === 'TH' ? '100%' : '100%' }"
+        >{{ textCard.card_detail }}</span
+      >
+    </div>
+    <button id="LD_buynow_btn" class="banner-btn" (click)="onSignIn()">
+      {{ textCard.card_btn[0] }}
+      {{ _wallet.convertPriceByCurrency(textCard.card_btn[1], true) }}
+    </button>
+  </div>
+  <!-- <div class="package" *ngIf="isMobile">
+    <button class="more-package" [routerLink]="['/payment/quote']">{{ text.point_content.box2.btn }}</button>
+  </div> -->
+  <!-- <div class="compare-package">
+    <div class="compare-wrapper">
+      <div class="package-text-container">
+        <h3 class="package-header">{{ textCard.card_header }}</h3>
+        <p class="package-detail">
+          {{ textCard.card_detail }}
+        </p>
+        <button class="package-btn" (click)="goToPaymentPage()">
+          {{ textCard.card_btn }}
+        </button>
+      </div>
+      <div class="package-card-container">
+        <div class="package-card">
+          <span class="package-name">{{ textCard.pack.basic.name }}</span>
+          <p class="package-price">
+            <span class="price">{{ textCard.pack.basic.price }}</span>
+            <span class="price-unit">{{ textCard.pack.basic.unit }}</span>
+          </p>
+          <div class="package-sub-detail">
+            <p>{{ textCard.pack.basic.detail_1 }}</p>
+            <p>{{ textCard.pack.basic.detail_2 }}</p>
+          </div>
+          <div class="package-detail-list">
+            <p>
+              <mat-icon svgIcon="check"></mat-icon>
+              <span>
+                <b>{{ textCard.pack.basic.detail_list.row_1_num }}</b>
+                {{ textCard.pack.basic.detail_list.row_1_text }}</span
+              >
+            </p>
+            <p>
+              <mat-icon svgIcon="check"></mat-icon>
+              <span
+                >{{ textCard.pack.basic.detail_list.row_2_text_1 }}
+                <b> {{ textCard.pack.basic.detail_list.row_2_num }} </b
+                >{{ textCard.pack.basic.detail_list.row_2_text_2 }}</span
+              >
+            </p>
+            <p>
+              <mat-icon svgIcon="check"></mat-icon>
+              <span
+                >{{ textCard.pack.basic.detail_list.row_3_text_1 }}
+                <b> {{ textCard.pack.basic.detail_list.row_3_num }} </b
+                >{{ textCard.pack.basic.detail_list.row_3_text_2 }}</span
+              >
+            </p>
+            <p>
+              <mat-icon svgIcon="check"></mat-icon>
+              <span
+                >{{ textCard.pack.basic.detail_list.row_4_text_1 }}
+                <b> {{ textCard.pack.basic.detail_list.row_4_num }} </b
+                >{{ textCard.pack.basic.detail_list.row_4_text_2 }}</span
+              >
+            </p>
+            <p>
+              <mat-icon svgIcon="check"></mat-icon>
+              <span
+                >{{ textCard.pack.basic.detail_list.row_5_text_1 }}
+                <b> {{ textCard.pack.basic.detail_list.row_5_num }} </b
+                >{{ textCard.pack.basic.detail_list.row_5_text_2 }}</span
+              >
+            </p>
+          </div>
+        </div>
+        <div class="package-card">
+          <span class="package-name">{{ textCard.pack.advance.name }}</span>
+          <p class="package-price">
+            <span class="price">{{ textCard.pack.advance.price }}</span>
+            <span class="price-unit">{{ textCard.pack.advance.unit }}</span>
+          </p>
+          <div class="package-sub-detail">
+            <p>{{ textCard.pack.advance.detail_1 }}</p>
+            <p>{{ textCard.pack.advance.detail_2 }}</p>
+          </div>
+          <div class="package-detail-list">
+            <p>
+              <mat-icon svgIcon="check"></mat-icon>
+              <span>
+                <b>{{ textCard.pack.advance.detail_list.row_1_num }}</b>
+                {{ textCard.pack.advance.detail_list.row_1_text }}</span
+              >
+            </p>
+            <p>
+              <mat-icon svgIcon="check"></mat-icon>
+              <span
+                >{{ textCard.pack.advance.detail_list.row_2_text_1 }}
+                <b> {{ textCard.pack.advance.detail_list.row_2_num }} </b
+                >{{ textCard.pack.advance.detail_list.row_2_text_2 }}</span
+              >
+            </p>
+            <p>
+              <mat-icon svgIcon="check"></mat-icon>
+              <span
+                >{{ textCard.pack.advance.detail_list.row_3_text_1 }}
+                <b> {{ textCard.pack.advance.detail_list.row_3_num }} </b
+                >{{ textCard.pack.advance.detail_list.row_3_text_2 }}</span
+              >
+            </p>
+            <p>
+              <mat-icon svgIcon="check"></mat-icon>
+              <span
+                >{{ textCard.pack.advance.detail_list.row_4_text_1 }}
+                <b> {{ textCard.pack.advance.detail_list.row_4_num }} </b
+                >{{ textCard.pack.advance.detail_list.row_4_text_2 }}</span
+              >
+            </p>
+            <p>
+              <mat-icon svgIcon="check"></mat-icon>
+              <span
+                >{{ textCard.pack.advance.detail_list.row_5_text_1 }}
+                <b> {{ textCard.pack.advance.detail_list.row_5_num }} </b
+                >{{ textCard.pack.advance.detail_list.row_5_text_2 }}</span
+              >
+            </p>
+          </div>
+        </div>
+        <div class="package-card">
+          <span class="package-name">{{ textCard.pack.pro.name }}</span>
+          <p class="package-price">
+            <span class="price">{{ textCard.pack.pro.price }}</span>
+            <span class="price-unit">{{ textCard.pack.pro.unit }}</span>
+          </p>
+          <div class="package-sub-detail">
+            <p>{{ textCard.pack.pro.detail_1 }}</p>
+            <p>{{ textCard.pack.pro.detail_2 }}</p>
+          </div>
+          <div class="package-detail-list">
+            <p>
+              <mat-icon svgIcon="check"></mat-icon>
+              <span>
+                <b>{{ textCard.pack.pro.detail_list.row_1_num }}</b>
+                {{ textCard.pack.pro.detail_list.row_1_text }}</span
+              >
+            </p>
+            <p>
+              <mat-icon svgIcon="check"></mat-icon>
+              <span
+                >{{ textCard.pack.pro.detail_list.row_2_text_1 }}
+                <b> {{ textCard.pack.pro.detail_list.row_2_num }} </b
+                >{{ textCard.pack.pro.detail_list.row_2_text_2 }}</span
+              >
+            </p>
+            <p>
+              <mat-icon svgIcon="check"></mat-icon>
+              <span
+                >{{ textCard.pack.pro.detail_list.row_3_text_1 }}
+                <b> {{ textCard.pack.pro.detail_list.row_3_num }} </b
+                >{{ textCard.pack.pro.detail_list.row_3_text_2 }}</span
+              >
+            </p>
+            <p>
+              <mat-icon svgIcon="check"></mat-icon>
+              <span
+                >{{ textCard.pack.pro.detail_list.row_4_text_1 }}
+                <b> {{ textCard.pack.pro.detail_list.row_4_num }} </b
+                >{{ textCard.pack.pro.detail_list.row_4_text_2 }}</span
+              >
+            </p>
+            <p>
+              <mat-icon svgIcon="check"></mat-icon>
+              <span
+                >{{ textCard.pack.pro.detail_list.row_5_text_1 }}
+                <b> {{ textCard.pack.pro.detail_list.row_5_num }} </b
+                >{{ textCard.pack.pro.detail_list.row_5_text_2 }}</span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>

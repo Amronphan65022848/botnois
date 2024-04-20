@@ -1,0 +1,252 @@
+$gradient-discount-text: linear-gradient(270deg, #01bffb 0.19%, rgba(200, 0, 255, 0.15) 171.96%);
+$gradient-border: linear-gradient(180deg, #b1a1fa 0%, #02bffb 100%);
+
+@mixin hoverToggle {
+  background: var(--gradient-light-blue);
+
+  span,
+  p,
+  span span {
+    -webkit-text-fill-color: white;
+  }
+}
+
+.buy-points-container {
+  padding: 36px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+
+  .header,
+  .header-event {
+    display: flex;
+    border-radius: 10px;
+    width: inherit;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+  .close-unlimited {
+    // position: absolute;
+    // top: 5%;
+    // left: 3%;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-left: 64px;
+    p.back {
+      padding: 8px;
+      margin: 0;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0.25px;
+      text-align: left;
+      color: #01BFFB;
+      cursor: pointer;
+      font-family: Prompt;
+    }
+  }
+
+  .header-event {
+    flex-direction: column;
+
+    .flex-center {
+      gap: 9px;
+    }
+
+    .title {
+      color: #f70101;
+      font-size: 40px;
+      font-family: "Racing Sans One";
+      text-align: center;
+    }
+
+    .sub {
+      font-family: "Prompt";
+      width: 500;
+      font-size: 1rem;
+    }
+  }
+
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header {
+    .title,
+    .sub {
+      color: var(--black-color);
+      font-weight: bold;
+    }
+
+    .title {
+      font-size: 36px;
+    }
+
+    .sub {
+      font-size: 20px;
+    }
+
+    span {
+      font-weight: bold;
+    }
+
+    .toggle {
+      border: 1px solid var(--botnoi-color);
+      border-radius: 100px;
+      height: 65px;
+      display: inline-flex;
+      align-items: center;
+      padding: 2px;
+
+      button {
+        width: 117px;
+        height: 60px;
+        border-radius: 100px;
+        padding: 8px;
+        // line-height: 18px;
+
+        p,
+        span {
+          background-clip: text !important;
+          -webkit-background-clip: text !important;
+          -webkit-text-fill-color: transparent;
+          background: linear-gradient(83.04deg, #222166 3.33%, #812448 123.37%);
+          line-height: 27px;
+          height: 24px;
+          display: flex;
+          justify-content: center;
+          gap: 4px;
+        }
+
+        span {
+          font-weight: 400;
+        }
+
+        p {
+          font-size: 14px;
+          font-weight: 300;
+          font-family: "Sarabun";
+
+          span {
+            -webkit-text-fill-color: var(--red-color);
+          }
+        }
+      }
+
+      button:first-child:hover,
+      .active,
+      .active-2 {
+        @include hoverToggle;
+      }
+
+      button:not(:first-child):hover,
+      .active-2 {
+        background: var(--gradient-brown);
+
+        span,
+        p {
+          -webkit-text-fill-color: white;
+
+          span {
+            -webkit-text-fill-color: white;
+          }
+        }
+      }
+    }
+  }
+
+  span,
+  label,
+  li {
+    font-family: "Sarabun";
+  }
+}
+
+::ng-deep ngx-loading .full-screen {
+  position: absolute !important;
+}
+
+@media (max-width: 1080px) {
+  input {
+    width: auto !important;
+  }
+
+  .package-box {
+    .items {
+      flex-direction: column;
+
+      .left,
+      .right {
+        flex-direction: inherit;
+      }
+
+      .right {
+        .group {
+          .counter {
+            justify-content: flex-start !important;
+          }
+        }
+
+        .discount {
+          .discount-price {
+            align-self: center !important;
+          }
+        }
+      }
+
+      .tag {
+        left: auto !important;
+        top: -45px;
+      }
+    }
+
+    .items:nth-child(3) {
+      margin-top: 47px;
+    }
+  }
+}
+
+.input-point {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+}
+
+.banner-company {
+  width: 100%;
+  max-width: 644px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+@media (max-width: 500px) {
+  .toggle {
+    /* display: flex; */
+    flex-direction: column;
+    height: auto !important;
+    width: 100%;
+    // border: none !important;
+    padding: 4px !important;
+    gap: 4px;
+    border-radius: 8px !important;
+
+    button {
+      width: 100% !important;
+      border-radius: 8px !important;
+    }
+  }
+}
+
+app-point-group,
+app-point-box,
+.input-point {
+  max-width: 644px;
+  width: 100%;
+}

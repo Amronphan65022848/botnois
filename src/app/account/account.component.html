@@ -1,0 +1,22 @@
+<div class="account-container">
+  <div class="list">
+    <ul class="no-bullets">
+      <li
+        *ngFor="let item of text; let i = index"
+        (click)="onChoose(i)"
+        [ngClass]="{ choose: i === pages }"
+      >
+        <mat-icon [svgIcon]="image[i]"></mat-icon>
+        <span>{{ item }}</span>
+      </li>
+    </ul>
+  </div>
+  <div class="content">
+    <app-profile *ngIf="pages === 0"></app-profile>
+    <app-subscription-management
+      *ngIf="pages === 1"
+    ></app-subscription-management>
+    <app-speaker *ngIf="pages === 2"></app-speaker>
+    <!-- <app-history *ngIf="pages === 1"></app-history> -->
+  </div>
+</div>

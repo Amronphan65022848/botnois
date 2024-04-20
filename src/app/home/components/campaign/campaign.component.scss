@@ -1,0 +1,105 @@
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  font-family: Prompt;
+
+  .header{
+      // background-image: url('../../../../assets/main_page_img/campaign/campaign-header.png');
+      // background-size: cover;
+      background: linear-gradient(91.04deg, #222166 5.33%, #812448 90.37%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      color: #FFFFFF;
+      line-height: 35px;
+      padding: 1rem 0;
+      span{
+          font-style: normal;
+          font-weight: 700;
+          font-size: min(3.5vw,24px);
+          line-height: 20px;
+      }
+      .sub-text{
+          font-size: min(3vw,14px);
+          font-weight: 500;
+          margin-top: 11px;
+      }
+  }
+  .body{
+      padding: 3% 13%;
+      background: #F7F8FA;
+      flex: 1;
+      .mat-expansion-panel-header{
+          color: #2C2E37;
+          font-family: Prompt;
+          font-style: normal;
+          font-weight: 600;
+          font-size: min(4vw, 18px);
+          line-height: 27px;
+      }
+      a{
+          word-break: break-all;
+      }
+      .expand{
+          margin: 15px 0;
+          span, ul, ol{
+              line-height: 30px;
+              font-family: Prompt;
+              color: #323C4C;
+          }
+          .btn-form{
+              font-family: Sarabun;
+              font-weight: 500;
+              .btn-group{
+                  display: flex;
+                  justify-content: flex-start;
+                  align-items: center;
+                  flex-wrap: wrap;
+                  button{
+                      background: #01BFFB;
+                      border-radius: 10px;
+                      height: 43px;
+                      width: 189px;
+                      border: none;
+                      color: white;
+                      font-size: 16px;
+                  }
+                  span{
+                      padding: 8px;
+                  }
+              }
+
+          }
+      }
+    .contact-container{
+      border: 1px solid #75DBCA;
+      background: #FFFFFF;
+      box-shadow: 0px 3px 10px rgba(50, 60, 76, 0.05);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 38px;
+      gap: 12px;
+      span:nth-child(1){
+        font-weight: 600;
+        font-size: 16px;
+        color: #323C4C;
+      }
+      span:nth-child(2){
+        font-size: 14px;
+        color: #323C4C;
+      }
+    }
+  }
+}
+
+@media (max-width:768px) {
+  .btn-group{
+      justify-content: center !important;
+  }
+}

@@ -1,0 +1,41 @@
+.container-notFound {
+  max-width: 1150px;
+  width: 100%;
+  margin: 0 auto;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.topic-404 {
+  padding: 0px 20px;
+}
+.topic-text-404 img {
+  width: 400px;
+  display: block;
+  margin: auto;
+}
+.text-404 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 100px;
+  font-family: "Sarabun", sans-serif;
+}
+.text-404-1 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Sarabun", sans-serif;
+}
+@media only screen and (max-width: 600px) {
+  .topic-text-404 img {
+    width: 250px;
+  }
+  .text-404 {
+    font-size: 28px;
+  }
+  .text-404-1 {
+    font-size: 14px;
+  }
+}

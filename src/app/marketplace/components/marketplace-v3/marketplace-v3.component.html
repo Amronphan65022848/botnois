@@ -1,0 +1,321 @@
+<ngx-loading [show]="isLoading"></ngx-loading>
+<div class="hero-container">
+  <div class="hero-text-container">
+    <h1 class="hero-header">{{ text.hero.header }}</h1>
+    <h2 class="hero-detail">
+      {{ text.hero.sub_header }}
+      <span class="free-tag">
+        <span>{{ text.free_tag }}</span>
+      </span>
+    </h2>
+    <p class="hero-sub-detaPil">
+      {{ text.hero.detail }}
+    </p>
+  </div>
+  <div class="hero-sound-container">
+    <div class="display-speaker-container">
+      <div class="speaker-card" *ngFor="let speaker of heroSpeakerList; let last = last"
+        [ngClass]="{ hide: isTablet() && last }">
+        <img src="{{ speaker.square_image }}" alt="speaker" loading="lazy" />
+        <button class="toggle-sound" (click)="
+            playSampleHero(speaker.isPlaying, speaker.speaker_id, speaker.audio)
+          ">
+          <mat-icon class="play-pause" svgIcon="{{ speaker.isPlaying ? 'pause_filled' : 'play_filled' }}"
+            [ngClass]="{ 'shift-left': !speaker.isPlaying }"></mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="marketplace-container">
+  <div class="tab-container" [hidden]="!isLoggedIn">
+    <button class="all" (click)="changeSuggest(1)" [ngClass]="{ active: tab === 1 }">
+      {{ text.marketplace.tab.free }}
+    </button>
+    <button class="cart" (click)="changeSuggest(2)" [ngClass]="{ active: tab === 2 }">
+      {{ text.marketplace.tab.favorite }}
+    </button>
+  </div>
+  <div class="filter-container">
+    <div class="search-filter">
+      <input id="search-name" class="input-search" type="text" name="search" [placeholder]="inputPlaceholder"
+        [(ngModel)]="searchText" (input)="onSearchSpeaker(searchText)" />
+      <mat-icon class="search-icon" [ngClass]="{ black: searchText.length != 0 }"
+        svgIcon="{{ !searchText.length ? 'search' : 'cross' }}" (click)="clearText()"></mat-icon>
+    </div>
+    <div class="group-filter">
+      <div class="dropdown" appClickOutside (clickOutside)="closeLangPopup()">
+        <button class="filter-btn" [ngClass]="{ active: isLangShow }" (click)="toggleLangDropdown('Lang')">
+          <span class="filter-text">{{ text.marketplace.filter.lang }}</span>
+          <mat-icon svgIcon="down" class="down"></mat-icon>
+        </button>
+        <div class="popup-filter popup-lang" *ngIf="isLangShow" [@fadeInOut]>
+          <div class="clear-select">
+            <p class="select-all" (click)="selectAllFilter('language')">
+              {{ text.marketplace.filter.selectAll }}
+            </p>
+            <p class="clear-all" (click)="clearAllFilter('language')">
+              {{ text.marketplace.filter.clear }}
+            </p>
+          </div>
+          <div class="list-container">
+            <span class="list" *ngFor="let lang of allLang" (click)="addRemoveFilter(lang, 'language')"
+              [ngClass]="{ selected: filterKey.language.includes(lang) }">
+              <img class="flag" src="../../../../assets/icons/toolbar/conversation/flags/{{
+                  getFlagByName(lang)
+                }}" alt="flag" />
+              {{ lang }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="dropdown" appClickOutside (clickOutside)="closeVoicePopup()">
+        <button class="filter-btn" [ngClass]="{ active: isVoiceShow }" (click)="toggleLangDropdown('Voice')">
+          <span class="filter-text">{{ text.marketplace.filter.style }}</span>
+          <mat-icon svgIcon="down" class="down"></mat-icon>
+        </button>
+        <div class="popup-filter popup-voice" *ngIf="isVoiceShow" [@fadeInOut]>
+          <div class="clear-select">
+            <p class="select-all" (click)="selectAllFilter('voiceStyle')">
+              {{ text.marketplace.filter.selectAll }}
+            </p>
+            <p class="clear-all" (click)="clearAllFilter('voiceStyle')">
+              {{ text.marketplace.filter.clear }}
+            </p>
+          </div>
+          <div class="list-container">
+            <span class="list" *ngFor="let voice of voiceStyle" (click)="addRemoveFilter(voice, 'voiceStyle')"
+              [ngClass]="{ selected: filterKey.voiceStyle.includes(voice) }">{{ lang === "TH" ? voice.replace("เสียง",
+              "") : voice }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="dropdown" appClickOutside (clickOutside)="closeSpeechPopup()">
+        <button class="filter-btn" [ngClass]="{ active: isSpeechShow }" (click)="toggleLangDropdown('Speech')">
+          <span class="filter-text">{{
+            text.marketplace.filter.categories
+            }}</span>
+          <mat-icon svgIcon="down" class="down"></mat-icon>
+        </button>
+        <div class="popup-filter popup-speech" *ngIf="isSpeechShow" [@fadeInOut]>
+          <div class="clear-select">
+            <p class="select-all" (click)="selectAllFilter('speechStyle')">
+              {{ text.marketplace.filter.selectAll }}
+            </p>
+            <p class="clear-all" (click)="clearAllFilter('speechStyle')">
+              {{ text.marketplace.filter.clear }}
+            </p>
+          </div>
+          <div class="list-container">
+            <span class="list" *ngFor="let speech of speechStyle" (click)="addRemoveFilter(speech, 'speechStyle')"
+              [ngClass]="{ selected: filterKey.speechStyle.includes(speech) }">{{ lang === "TH" ?
+              speech.replace("สไตล์", "") : speech }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="dropdown" appClickOutside (clickOutside)="closeGenderPopup()">
+        <button class="filter-btn" [ngClass]="{ active: isGenderShow }" (click)="toggleLangDropdown('Gender')">
+          <span class="filter-text">{{ text.marketplace.filter.gender }}</span>
+          <mat-icon svgIcon="down" class="down"></mat-icon>
+        </button>
+        <div class="popup-filter popup-gender" *ngIf="isGenderShow" [@fadeInOut]>
+          <div class="clear-select">
+            <p class="select-all" (click)="selectAllFilter('gender')">
+              {{ text.marketplace.filter.selectAll }}
+            </p>
+            <p class="clear-all" (click)="clearAllFilter('gender')">
+              {{ text.marketplace.filter.clear }}
+            </p>
+          </div>
+          <div class="list-container">
+            <span class="list" *ngFor="let gender of allGender" (click)="addRemoveFilter(gender, 'gender')"
+              [ngClass]="{ selected: filterKey.gender.includes(gender) }">{{ gender }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="result-group" *ngIf="filterList.length">
+    <div class="filter-result" *ngIf="filterList.length">
+      <div class="result-span">
+        <span class="result-filter-text">Filter Result : </span>
+        <div class="filter-span-container">
+          <span *ngFor="let filter of filterList" class="filter-span"
+            (click)="removeFilterItem(filter.name, filter.type)">{{ filter.name }}</span>
+        </div>
+        <p class="clear-filter-list" (click)="clearFilterList()">
+          {{ text.marketplace.filter.clear }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="searchTextResult" *ngIf="searchText.length !== 0">
+    <span class="bold">{{ text.marketplace.result.searchResult }} : </span>
+    <span class="grey">{{ text.marketplace.result.resultAll }}</span>
+    <span class="grey"> {{ filteredArrList.length }} </span>
+    <span class="grey">{{ text.marketplace.result.resultList }}</span>
+  </div>
+  <h2 class="header" *ngIf="paginatedItems.length !== 0">
+    {{ text.marketplace.card.freeVoice }}
+  </h2>
+  <div class="not-found pt-5" *ngIf="paginatedItems.length === 0">
+    <mat-icon class="not-found-icon" svgIcon="search"></mat-icon>
+    <p class="no-result">{{ text.marketplace.result.noResult }}</p>
+    <p class="try pb-5">{{ text.marketplace.result.try }}</p>
+  </div>
+  <div class="speaker-container">
+    <div *ngFor="let speaker of paginatedItems; let i = index">
+      <div class="speaker-card">
+        <div class="img">
+          <img src="{{ speaker.square_image }}" alt="speaker-image" loading="lazy" />
+          <span class="free-tag">
+            <span>{{ text.free_tag }}</span>
+          </span>
+          <div class="group-btn">
+            <button class="sound-sample" (click)="
+                playSample(speaker.audio, speaker.isPlaying, speaker.speaker_id)
+              ">
+              <mat-icon class="audio-icon" svgIcon="{{
+                  speaker.isPlaying ? 'pause_filled' : 'play_filled'
+                }}" [ngClass]="{ 'shift-left': !speaker.isPlaying }"></mat-icon>
+            </button>
+            <!-- <button class="sound-sample">
+              <mat-icon class="audio-icon" svgIcon="play_filled"></mat-icon>
+            </button>
+            <button class="sound-sample">
+              <mat-icon class="audio-icon" svgIcon="play_filled"></mat-icon>
+            </button> -->
+          </div>
+        </div>
+        <div class="details">
+          <div class="main-row-1">
+            <div class="col1">
+              <div class="row1">
+                <span class="name">{{
+                  lang === "EN" ? speaker.eng_name : speaker.thai_name
+                  }}</span>
+                <span class="gender">{{ lang === "EN" ? speaker.eng_gender : speaker.gender }}/{{
+                  lang === "EN" ? speaker.eng_age_style : speaker.age_style
+                  }}</span>
+              </div>
+              <div class="row2">
+                <span class="style" *ngFor="
+                    let style of lang === 'TH'
+                      ? speaker.speech_style
+                      : speaker.eng_speech_style
+                  " [ngStyle]="{ background: tagColor(style) }">{{
+                  lang === "EN" ? style : style.replace("สไตล์", "")
+                  }}</span>
+              </div>
+            </div>
+            <!-- <div class="col2">
+              <button
+                [matTooltip]="text.tooltip.playSound"
+                matTooltipClass="mat-tooltip-dropdown"
+                matTooltipShowDelay="300"
+                matTooltipPosition="above"
+                class="audio"
+                (click)="
+                  playSample(
+                    speaker.audio,
+                    speaker.isPlaying,
+                    speaker.speaker_id
+                  )
+                "
+              >
+                <mat-icon
+                  class="audio-icon"
+                  svgIcon="{{
+                    speaker.isPlaying ? 'pause_filled' : 'play_filled'
+                  }}"
+                  [ngClass]="{ 'shift-left': !speaker.isPlaying }"
+                ></mat-icon>
+              </button>
+            </div> -->
+          </div>
+          <div class="main-row-2">
+            <div class="flag-list" [appPopupTrigger]="popupElement">
+              <img (error)="onFlagError(speaker)" class="flag" src="../../../../assets/icons/toolbar/conversation/flags/{{
+                speaker.flagImg
+              }}" alt="flag" />
+              @for (flag of speaker.available_language.slice(0, 1); track $index) {
+              <span class="second-flag">
+                @if (speaker.flagImg != getFlagByValue(flag)?.flag) {
+                <img class="flag" src="../../../../assets/icons/toolbar/conversation/flags/{{
+                  getFlagByValue(flag)?.flag
+                }}" alt="flag" />
+                }
+              </span>
+              }
+              <span class="other-flags">
+                {{ text.marketplace.card.other }}
+              </span>
+              <div class="popup-available-lang" #popupElement>
+                <div class="popup-container">
+                  <p class="popup-header">
+                    {{ text.marketplace.card.other_lang }}
+                  </p>
+                  <div class="popup-wrapper">
+                    <div class="available-lang" *ngFor="let flaglist of speaker.available_language">
+                      <img class="flag" src="../../../../assets/icons/toolbar/conversation/flags/{{
+                          getFlagByValue(flaglist)?.flag
+                        }}" alt="flag" />
+                      <span>{{
+                        lang === "TH"
+                        ? getFlagByValue(flaglist)?.TH_name
+                        : getFlagByValue(flaglist)?.EN_name
+                        }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="select-audio" [matTooltip]="
+                checkIsInCart(speaker.speaker_id)
+                  ? text.tooltip.removeFav
+                  : text.tooltip.addFav
+              " matTooltipClass="mat-tooltip-dropdown tooltip-star" matTooltipShowDelay="300"
+              matTooltipPosition="above" (click)="addRemoveFav(speaker)"
+              [ngClass]="{ active: checkIsInCart(speaker.speaker_id) }" [hidden]="!isLoggedIn">
+              <mat-icon class="favorite" svgIcon="{{
+                  checkIsInCart(speaker.speaker_id)
+                    ? 'star_filled_white'
+                    : 'star'
+                }}" [ngClass]="{ 'blue-icon': !checkIsInCart(speaker.speaker_id) }"></mat-icon>
+              <p *ngIf="!isSmallMobile">
+                {{
+                !checkIsInCart(speaker.speaker_id)
+                ? text.marketplace.card.addFav
+                : text.marketplace.card.removeFav
+                }}
+              </p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="control-container">
+    <div class="page-controls" *ngIf="paginatedItems.length !== 0">
+      <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1" [matTooltip]="text.tooltip.previous"
+        matTooltipClass="mat-tooltip-dropdown" matTooltipShowDelay="300" matTooltipPosition="above">
+        <mat-icon svgIcon="previous"></mat-icon>
+      </button>
+
+      <div *ngFor="let pageNumber of getPageNumbers()">
+        <ng-container *ngIf="pageNumber === '...'">{{
+          pageNumber
+          }}</ng-container>
+        <ng-container *ngIf="pageNumber !== '...'">
+          <span class="page-number" [class.selected]="currentPage === pageNumber" (click)="goToPage(pageNumber)">
+            {{ pageNumber }}
+          </span>
+        </ng-container>
+      </div>
+      <button [matTooltip]="text.tooltip.next" matTooltipClass="mat-tooltip-dropdown" matTooltipShowDelay="300"
+        matTooltipPosition="above" (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">
+        <mat-icon svgIcon="next"></mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+<app-footer-v2></app-footer-v2>

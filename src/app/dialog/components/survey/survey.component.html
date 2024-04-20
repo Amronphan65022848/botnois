@@ -1,0 +1,134 @@
+<div class="survey" [class.showusefor]="currentstep === 1 && !isShowClose"
+    [class.showyoudo]="currentstep === 2 && selectedCareerId !== 6 && selectedCareerId !== 4 && !isShowClose"
+    [class.showyoudo2]="currentstep === 2 && selectedCareerId == 4 && !isShowClose"
+    [class.showyoudoother]="currentstep === 2 && (selectedCareerId == 6 || isOtherCareer == true) && !isShowClose"
+    [class.showemail]="currentstep === 3 && !isShowClose"
+    [class.showage]="currentstep === 3 && (email.valid || email.disabled) && !isShowClose"
+    [class.showcountry]="currentstep === 3 && (email.valid || email.disabled) && age && !isShowClose"
+    [class.showthank]="currentstep === 4 && !isShowClose" [class.showclose]="isShowClose">
+    <div class="step-close" *ngIf="isShowClose">
+        <img src="../../../../assets/images/survey/info-circle.png">
+        <p class="close">{{text.close}}<span class="close2">{{text.close2}}</span></p>
+        <div class="showmore">
+            <input type="checkbox" class="dontshow-checkbox" [ngModel]="dontShowMore">
+            <span class="checkmark" (click)="toggledontShowMore()"></span>
+            <p (click)="toggledontShowMore()">{{text.dontshow}}</p>
+        </div>
+        <div class="button-group">
+            <button class="leave" (click)="close()">{{text.leave}}</button>
+            <button class="back" (click)="goBackToSurvey()">{{text.back}}</button>
+        </div>
+    </div>
+    <div class="survey-container" [class.showemail]="currentstep === 3" *ngIf="!isShowClose">
+        <mat-icon class="cross close" svgIcon="cross" (click)="showClose()"></mat-icon>
+
+        <div class="header">
+            <h3 class="survey-head" *ngIf="currentstep === 1">{{text.surveyhead}}<span
+                    class="text-blue">{{text.surveyhead2}}</span>
+            </h3>
+                <!-- <h4>[{{currentstep}}/3]&nbsp;</h4> -->
+                <h4 class="title" *ngIf="currentstep === 1">[{{currentstep}}/3] {{text.usefor}}</h4>
+                <h4 class="title" *ngIf="currentstep === 2 && selectedCareerId !== 6">[{{currentstep}}/3] {{text.youdo}}</h4>
+                <h4 class="title" *ngIf="currentstep === 2 && selectedCareerId == 6">[{{currentstep}}/3] {{text.usefor}}</h4>
+                <h4 class="title" *ngIf="currentstep === 3 ">[{{currentstep}}/3] {{text.nearly}}</h4>
+                <h4 class="title" *ngIf="currentstep === 4">{{text.ready}}</h4>
+            <div class="step-progress-bar">
+                <div class="step-progress" [class.active]="currentstep == 1 || currentstep == 2 || currentstep == 3 || currentstep == 4"></div>
+                <div class="step-progress" [class.active]="currentstep == 2 || currentstep == 3 || currentstep == 4"></div>
+                <div class="step-progress" [class.active]="currentstep == 3 || currentstep == 4"></div>
+                <!-- <div class="step-progress" [class.active]="ready"></div> -->
+            </div>
+        </div>
+        <div class="content">
+            <div class="step-usefor" *ngIf="currentstep === 1">
+                <div class="career">
+                    <div class="career-item " *ngFor="let item of text.careerArray; index as index"
+                        (click)="selectCareer(item,index)" [class.selected]="selectedUseFor === index">
+                        <img src="{{item.img}}">
+                        <h5>{{item.title}}</h5>
+                        <div class="desc">
+                            {{item.desc1}}<br>
+                            {{item.desc2}}
+                        </div>
+                        <!-- <p>{{item.desc2}}</p> -->
+                    </div>
+                </div>
+            </div>
+            <div class="step-youdo" *ngIf="currentstep === 2">
+                <div class="career">
+                    <div class="user">
+                        <img src="../../../../assets/images/survey/user-pic.png">
+                        <p>{{text.youdo}}</p>
+                    </div>
+                    <div class="choice" *ngIf="selectedCareerId != 6 && isOtherCareer == false">
+                        <button class="choice-button" *ngFor="let item of getChoiceById(); index as index"
+                            (click)="selectChoice($event,index,item)" [class.selected]="selectedYoudo === index">{{item.name}}</button>
+                    </div>
+                    <div class="choice-other" *ngIf="selectedCareerId == 6 && isOtherCareer == false">
+                        <input type="text" class="other" [(ngModel)]="othercareer" placeholder="{{text.inputother}}"
+                            (keydown.enter)="sendOther(othercareer)">
+                        <button class="other-button" [disabled]="!othercareer.trim()"
+                            (click)="sendOther(othercareer)">{{text.next}}</button>
+                    </div>
+                    <div class="choice-other" *ngIf="isOtherCareer == true">
+                        <input type="text" class="other" [(ngModel)]="otherchoice" placeholder="{{text.inputother}}"
+                            (keydown.enter)="sendOther(otherchoice)">
+                        <button class="other-button" [disabled]="!otherchoice.trim()" 
+                            (click)="sendOther(otherchoice)">{{text.next}}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="step-email" *ngIf="currentstep === 3">
+                <div class="email">
+                    <p class="sub-title">{{text.youremail}}</p>
+                    <div class="input-with-image">
+                        <input #textInputEmail type="email" id="email" name="email" [formControl]="email" placeholder="{{text.inputemail}}">
+                        <img src="../../../../assets/images/survey/Edit.png" (click)="focusInput()">
+                    </div>
+                </div>
+                <div class="age" *ngIf="(email.value !== '' && email.valid) || email.disabled">
+                    <p class="sub-title">{{text.yourage}}</p>
+                    <div class="age-button-group">
+                        <button class="age-button" [class.selected]="selectedAgeButtonIndex === index"
+                            (click)="selectAge($event,index,item)" *ngFor="let item of text.age; index as index"
+                            id="{{index}}">{{item.age}}</button>
+                    </div>
+                </div>
+                <div class="country" *ngIf="age && (email.value !== '' && email.valid || email.disabled ) ">
+                    <p class="sub-title">{{text.yourcountry}}</p>
+                    <mat-form-field class="select-country-text"
+                        *ngIf="(email.value !== '' && email.valid && age) || email.disabled">
+                        <!-- <mat-label>{{text.selectcountry}}</mat-label> -->
+                        <input type="text" aria-label="Number" placeholder="{{text.selectcountry}}" matInput
+                            [formControl]="countryControl" [matAutocomplete]="auto" required>
+                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="getOptionText">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                {{option.name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <!-- <select class="select-country" [(ngModel)]="selectedCountry" (change)="selectCountry()">
+                                                <option value="" disabled>{{text.selectcountry}}</option>
+                                                <option value="{{country}}" *ngFor="let country of text.countries.sort(); index as i">
+                                                    {{country}}</option>
+                                            </select> -->
+                </div>
+                <button class="finish" *ngIf="age && (email.value !== '' && email.valid || email.disabled ) "
+                    [disabled]="!countryControl.valid" (click)="finishForm()">{{text.finish}}</button>
+            </div>
+            <div class="step-ready" *ngIf="currentstep === 4">
+                <div class="thanks">
+                    <img src="../../../../assets/images/survey/ok-circle-filled.png">
+                    <div>
+                        <p>{{text.thanks1}}</p>
+                        <p>{{text.thanks2}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="goback" *ngIf="currentstep != 1 && currentstep != 4 && isShowClose != true" (click)="goBack()">
+        <img src="../../../../assets/images/survey/turn-left.png">
+        <p>{{text.back2}}</p>
+    </div>
+</div>

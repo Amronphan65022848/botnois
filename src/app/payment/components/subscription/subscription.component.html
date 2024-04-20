@@ -1,0 +1,78 @@
+<ngx-loading [show]="isLoading" [config]="{ fullScreenBackdrop: true }"></ngx-loading>
+<div [ngStyle]="{ padding: isMyPackage ? '1em 0' : '' }" class="subscription-container">
+  <div class="header" *ngIf="!isMyPackage">
+    <span class="header_text">{{ text.title }}</span>
+    <span class="sub_header_text">{{ text.sub_title }}</span>
+  </div>
+  <div [ngStyle]="{ 'justify-content': isMyPackage ? 'flex-start' : '' }" class="package_tier_container">
+    <div class="tier_card" *ngFor="
+        let item of isMyPackage ? addonOwnData : allPackageTier;
+        let i = index
+      ">
+      <div class="top_card noAds">
+        <div class="col1">
+          <div class="member">
+            <img src="../../../../assets/subscription/bot_logo_white.webp" alt="logo" />
+            <span>Member</span>
+          </div>
+          <span class="tier_text">{{ item.display_name }}</span>
+        </div>
+      </div>
+      <div class="bottom_card">
+        <div class="content_noAds">
+          <span class="text_noAds">
+            <!-- lower text to be JSON key, ex. text.tier[noads]  -->
+            {{ text.tier[item.name.toLowerCase()] }}
+          </span>
+        </div>
+        <span *ngIf="isMyPackage">
+          {{ text.expire_at }}
+          {{ item.exp | date : "MM/dd/yyyy" }}
+        </span>
+        <div class="price">
+          <span *ngIf="item?.price_discount" [ngStyle]="{ color: isMyPackage ? '#B3B3B3' : '#FF5252' }"
+            class="old_price">{{ _wallet.displayPriceByCurrency(item) | number }}</span>
+          <span class="discount_price">{{
+            item?.price_discount &&
+            (_wallet.displayDiscountPriceByCurrency(item) | number)
+            }}</span>
+          <span class="price_unit">{{ text.currency[currency] }}/{{ text.month }}</span>
+        </div>
+        <span *ngIf="item?.date_event" class="discount-limited">
+          {{ text.special[0] }}
+          {{
+          item.date_event
+          | era : lang
+          | date : "dd MMMM yyyy" : "+0700" : currentLocale
+          }}
+          {{ text.special[1] }}
+        </span>
+        <span class="remaining_days" *ngIf="isMyPackage">
+          {{ text.remaining_days[0] }}
+          {{ getDaysLeft(item.exp) | number }}
+          {{ text.remaining_days[1] }}
+        </span>
+        <div [id]="analyticId.addon_on_subscription[i]" class="button">
+          <button [id]="analyticId.addon_on_subscription[i]" (click)="onChoose(item)">
+            {{ buttonLabel }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="faq" *ngIf="!isMyPackage">
+    <div class="title">
+      <span>{{ text.faq_title }}</span>
+    </div>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let item of text.faq">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <span>{{ item.question }}</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>{{ item.answer }}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

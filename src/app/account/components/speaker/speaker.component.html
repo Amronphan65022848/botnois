@@ -1,0 +1,77 @@
+<div class="speaker-container">
+  <span class="title">
+    {{text.title}}
+  </span>
+  <div class="speaker-list" *ngIf="!speaker">
+
+    <div class="content">
+      <div class="box" *ngFor="let item of speaker_list; let i = index;" (click)="onChooseSpeaker(i)">
+        <img [src]="item.image" alt="user_image">
+        <span>{{item.name}}</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="speaker" class="speaker-info">
+    <div class="content">
+      <div class="image">
+        <img [src]="speaker.image" alt="user_image">
+      </div>
+      <div class="info">
+        <div class="toggle">
+          <mat-button-toggle-group>
+            <mat-button-toggle value="private" [checked]="true">
+              Private
+            </mat-button-toggle>
+            <mat-button-toggle value="public">
+              Public
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        <span>{{speaker.name}}</span>
+        <span>{{speaker.name}}</span>
+        <span>{{speaker.name}}</span>
+        <div class="price">
+          <span>{{text.price.text + price + ' พอยท์ / ตัวอักษร'}}</span>
+          <button (click)="onEditPrice()" class="btn-edit">
+            <span class="material-symbols-outlined">
+              edit
+            </span>
+          </button>
+          <!-- <span>{{1}}</span> -->
+          <!-- <mat-select>
+            <mat-option *ngFor="let item of text.price.list" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-select> -->
+        </div>
+      </div>
+    </div>
+    <div class="control-panel">
+      <button (click)="openInvite()">
+        <span>{{text.button.invite}}</span>
+      </button>
+      <button (click)="toggleHistory()">
+        <span>{{text.button.history}}</span>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="openHistory" class="speaker-history">
+    <table>
+      <tr>
+        <th *ngFor="let header of text.table.thead">
+          {{header}}
+        </th>
+      </tr>
+      <tr *ngFor="let item of speaker_table; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{item.text}}</td>
+        <td>{{item.channel}}</td>
+        <td>{{item.date}}</td>
+        <td>{{item.uid}}</td>
+      </tr>
+    </table>
+  </div>
+
+</div>

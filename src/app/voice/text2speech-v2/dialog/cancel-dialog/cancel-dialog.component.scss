@@ -1,0 +1,148 @@
+.modal-container {
+  position: relative;
+  width: 446px;
+  height: 375px;
+  max-width: 446px;
+  max-height: 375;
+
+  .close {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: 21px;
+    top: 21px;
+    cursor: pointer;
+  }
+
+  .modal-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 42px 68px 40px 68px;
+
+    ::ng-deep .trash {
+      width: 85px;
+      height: 85px;
+
+      path {
+        fill: #f87979;
+      }
+    }
+
+    .modal-title {
+      color: #000;
+      font-family: Sarabun;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      margin-top: 24px;
+      margin-bottom: 11px;
+    }
+
+    .modal-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      .history-word {
+        color: #000;
+        font-family: Sarabun;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+
+        ::ng-deep .arrow-right {
+          width: 12px;
+          height: 9px;
+          margin: 0px 8px;
+
+          svg {
+            width: 12px;
+            height: 9px;
+          }
+
+          path {
+            fill: #f87979;
+          }
+        }
+      }
+
+      p {
+        color: #acb1ba;
+        text-align: center;
+        font-family: Sarabun;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 15px;
+      }
+    }
+
+    .modal-footer {
+      gap: 10px;
+
+      button {
+        display: flex;
+        width: 150px;
+        height: 43px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        text-align: center;
+        font-family: Sarabun;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+      }
+
+      .cancel-btn {
+        border: 1px solid #f87979;
+        background: #fff;
+        color: #f87979;
+      }
+
+      .confirm-btn {
+        background: #f87979;
+        color: #fff;
+        border: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .modal-container {
+    width: auto;
+    height: auto;
+    max-height: none;
+
+    .modal-box {
+      padding: 40px 35px 40px 35px;
+
+      .modal-header {
+        .modal-title {
+          text-align: center;
+        }
+      }
+
+      .modal-body {
+        .history-word {
+          margin-bottom: 20px;
+        }
+      }
+
+      .modal-footer {
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}

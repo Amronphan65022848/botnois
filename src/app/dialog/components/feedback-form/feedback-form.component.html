@@ -1,0 +1,104 @@
+<div class="container" [formGroup]="feedbackForm">
+
+    <!-- header -->
+    <div class="header">
+        <span class="text">{{text.header.title}}</span>
+        <div class="line"></div>
+    </div>
+    <!-- test -->
+    <!-- input data form  -->
+    <!-- <div class="form-container">
+        <mat-select
+        placeholder={{text.data_form.title}}
+        formControlName="category">
+            <mat-option *ngFor="let item of text.data_form.category" [value]="item">
+                {{item}}
+            </mat-option>
+        </mat-select>
+        <div class="error" *ngIf="feedbackForm.get('category').touched && feedbackForm.get('category').invalid">
+          *{{text.err_redirect.select_topic}}
+        </div>
+
+        <div
+          [formGroup]="speakerProblemForm"
+          *ngIf="feedbackForm.get('category')?.value == 'ปัญหาเกี่ยวกับเสียงพากย์'"
+          class="speaker-problem-form"
+        >
+          <input
+            formControlName="speaker"
+            placeholder={{text.data_form.voiceover}}
+            type="text"
+          >
+          <div class="error" *ngIf="speakerProblemForm.get('speaker').touched && speakerProblemForm.get('speaker').invalid">
+            *{{text.err_redirect.select_voiceover}}
+          </div>
+          <input
+            formControlName="text"
+            placeholder={{text.data_form.word}}
+            type="text"
+          >
+          <div class="error" *ngIf="speakerProblemForm.get('text').touched && speakerProblemForm.get('text').invalid">
+            *{{text.err_redirect.enter_word}}
+          </div>
+        </div>
+
+        <textarea
+          formControlName="problem_message"
+          placeholder={{text.data_form.problemMessage}}>
+        </textarea>
+        <div class="error" *ngIf="feedbackForm.get('problem_message').touched && feedbackForm.get('problem_message').invalid">
+            *{{text.err_redirect.problem_message}}
+        </div>
+        <div class="image-form">
+            <input type="file" #feedback_image hidden (change)="onImageChange($event)"/>
+            <button class="btn-img" (click)="feedback_image.click()">{{text.err_redirect.img_button}}</button>
+            <span>{{text.err_redirect.note}}</span>
+        </div>
+        <div class="image-display" *ngIf="fileName.length > 0">
+            <span>{{this.fileName}}</span>
+            <mat-icon (click)="removeImage()">close</mat-icon>
+
+        </div>
+        <input
+            formControlName="name"
+            placeholder={{text.data_form.enterName}}
+            type="text"
+        >
+        <div class="error" *ngIf="feedbackForm.get('name').touched && feedbackForm.get('name').invalid">
+            *{{text.err_redirect.not_enter_name}}
+        </div>
+        <input
+            formControlName="phone"
+            placeholder={{text.data_form.phone}}
+            type="text"
+        >
+        <div class="error" *ngIf="feedbackForm.get('phone').touched && feedbackForm.get('phone').invalid">
+            *{{text.err_redirect.not_enter_phone}}
+        </div>
+        <input
+            formControlName="email"
+            placeholder={{text.data_form.email}}
+            type="text"
+        >
+        <div class="error"
+        *ngIf="feedbackForm.get('email').touched && feedbackForm.get('email').invalid">
+            *{{text.err_redirect.not_enter_email}}
+        </div>
+    </div> -->
+    <div class="form-container" style="gap: 24px;">
+      <span>{{text.data_form.to_facebook}}</span>
+      <div>
+        <a href="https://www.facebook.com/texttospeech.botnoi" target="_blank">
+          <img src="../../../assets/main_page_img/Real_line.svg" style="width: 90px" /></a>
+      </div>
+    </div>
+    <!-- button -->
+    <!-- <div class="btn-container">
+        <button
+        class="btn-submit"
+        [disabled]="feedbackForm.invalid"
+        (click)="onSubmit()">
+            {{text.err_redirect.submit}}
+        </button>
+    </div> -->
+</div>

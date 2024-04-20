@@ -1,0 +1,153 @@
+<div class="t2s-container">
+  <div class="page-t2s">
+    <app-side-toolbar></app-side-toolbar>
+    <main>
+      <div class="t2s">
+        <app-advice-co-project></app-advice-co-project>
+        <div class="display-container">
+          <app-instruction *ngIf="!pinTexts.length"></app-instruction>
+          <!-- <div class="full-audio" *ngIf="pinTexts.length">
+          <button>P</button>
+          <div></div>
+          <button class="audio-type">mp3</button>
+          <button class="audio-download-top">ดาวน์โหลดทั้งหมด</button>
+          <p class="total-point">ใช้ 400 พ้อยท์</p>
+        </div> -->
+          <div
+            class="audio-list"
+            cdkDropList
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div
+              class="audio-box"
+              cdkDrag
+              cdkDragLockAxis="y"
+              cdkDragBoundary=".audio-list"
+              *ngFor="let pinText of pinTexts; let i = index"
+            >
+              <div class="audio-container">
+                <div class="overlay" *ngIf="pinText.isLoading">
+                  <mat-spinner
+                    [diameter]="50"
+                    class="mat-spinner-color"
+                  ></mat-spinner>
+                </div>
+                <div class="audio-row-1">
+                  <div cdkDragHandle class="drag-btn">
+                    <img src="../../../assets/icons/v3/6dot.svg" alt="" />
+                  </div>
+                  <button class="voice-actor-btn">
+                    <img src="{{ pinText.face_img }}" alt="speaker_image" />
+                  </button>
+                  <button class="play-btn" (click)="toggleAudio(i)">
+                    <img src="../../../assets/icons/v3/play.svg" alt="" />
+                  </button>
+                  <input
+                    type="range"
+                    class="timeline"
+                    max="100"
+                    value="0"
+                    [id]="'timeline_' + i"
+                    (change)="onChangeSeek(i)"
+                  />
+                  <div
+                    class="dropdown"
+                    appClickOutside
+                    (clickOutside)="pinText.isShowDownload = false"
+                  >
+                    <button class="download-btn" (click)="toggleDownload(i)">
+                      <img src="../../../assets/icons/v3/download.svg" alt="" />
+                    </button>
+                    <div class="download-popup" *ngIf="pinText.isShowDownload">
+                      <p>ใช้ 200 Point</p>
+                      <button (click)="downloadAudio(i, 'mp3')">.mp3</button>
+                      <button (click)="downloadAudio(i, 'wav')">.wav</button>
+                    </div>
+                  </div>
+                  <button class="edit-btn" (click)="editAudio(pinText.text, i)">
+                    <img src="../../../assets/icons/v3/pencil.svg" alt="" />
+                  </button>
+                  <button class="delete-btn" (click)="deleteAudio(i)">
+                    <img src="../../../assets/icons/v3/trash.svg" alt="" />
+                  </button>
+                </div>
+                <div class="audio-row-2" [id]="'text_' + i">
+                  <p>{{ pinText.text }}</p>
+                </div>
+                <!-- <div class="audio-row-3">
+                <div>
+                  <button class="audio-type">mp3</button>
+                  <a href="{{ pinText.audio_url }}" download
+                    ><button class="audio-download">ดาวน์โหลด</button></a
+                  >
+                </div>
+                <div class="point-text">
+                  <p>ใช้ 200 พ้อยท์</p>
+                </div>
+              </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="conver-container">
+          <div class="conversation-bar" *ngIf="isCreateVoice">
+            <div class="conver-row-input">
+              <button class="drag-conver">D</button>
+              <textarea
+                class="conver-input"
+                type="text"
+                maxlength="1000"
+                [placeholder]="placeholder"
+                (input)="onBoxResize($event)"
+                [(ngModel)]="value"
+                (ngModelChange)="onQuota(value)"
+              ></textarea>
+              <span class="input-quota">{{ textQuota }}/1000</span>
+              <button class="clear-text-btn" *ngIf="textQuota">C</button>
+              <button class="delete-card-btn">D</button>
+            </div>
+            <div class="conver-control">
+              <div class="conver-row2">
+                <app-conver-tool
+                  (_volumeEvent)="onChangeVolume($event)"
+                  (_speedEvent)="onChangeSpeed($event)"
+                  (_selectedSpeaker)="onSelectSpeaker($event)"
+                  (_speakerImg)="onSpeakerImg($event)"
+                  (_langEvent)="onChangeLang($event)"
+                ></app-conver-tool>
+                <div class="quota">
+                  <p>โควต้า</p>
+                  <div
+                    class="quota-bar"
+                    role="quotabar"
+                    aria-valuenow="25"
+                    aria-valuemin="0"
+                    aria-valuemax="700"
+                  >
+                    {{ textQuota }}
+                  </div>
+                </div>
+              </div>
+              <div class="conver-row3">
+                <button
+                  [disabled]="!value.length"
+                  class="create-voice-btn"
+                  type="button"
+                  (click)="getSound(value)"
+                >
+                  สร้างเสียง Alt+Enter
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="create-new-voice" *ngIf="!isCreateVoice">
+            <button class="create-new-voice-btn" (click)="createNewVoice()">
+              สร้างเสียงใหม่
+            </button>
+          </div>
+        </div>
+      </div>
+      <app-voice-studio [audioList]="pinTexts"></app-voice-studio>
+    </main>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="card-list-container">
+  <div class="card-container" *ngFor="let text of text_arr; let i = index">
+    <div class="icon-card">
+      <mat-icon [svgIcon]="icon_arr[i]"></mat-icon>
+    </div>
+    <div class="text-card">
+      <p class="text">{{ text }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<nav class="bottom-nav">
+  @switch (navState()) {
+    @case ("selecting") {
+      <div class="selecting-nav">
+        <div class="change-speaker">
+          <mat-icon svgIcon="download"></mat-icon>
+          <span class="icon-text">เปลี่ยนเสียง</span>
+        </div>
+        <div
+          class="generate"
+          [ngClass]="{ active: navActivated() === 'generate-selected' }"
+          (click)="toggleDialog('generate-selected')"
+        >
+          <mat-icon svgIcon="pulse"></mat-icon>
+          <span class="icon-text">สร้างที่เลือก</span>
+        </div>
+        <div class="download">
+          <mat-icon svgIcon="download"></mat-icon>
+          <span class="icon-text">ดาวน์โหลด</span>
+        </div>
+        <div class="delete-selected">
+          <mat-icon
+            svgIcon="trash_dynamic"
+            [ngStyle]="{ color: '#000' }"
+          ></mat-icon>
+          <span class="icon-text">ลบที่เลือก</span>
+        </div>
+      </div>
+    }
+    @case ("editing") {
+      <div class="edit-nav"></div>
+    }
+    @default {
+      <div class="normal-nav">
+        <div
+          class="edit-misread"
+          [ngClass]="{ active: navActivated() === 'edit-words' }"
+          (click)="toggleDialog('edit-words')"
+        >
+          <mat-icon svgIcon="edit_pencil"></mat-icon>
+          <span class="icon-text">{{ text.edit_word }}</span>
+        </div>
+        <div
+          class="play-all"
+          [ngClass]="{ active: navActivated() === 'play-all' }"
+          (click)="toggleDialog('play-all')"
+        >
+          <mat-icon svgIcon="play"></mat-icon>
+          <span class="icon-text">{{ text.play_all }}</span>
+        </div>
+        <div
+          class="download"
+          [ngClass]="{ active: navActivated() === 'download' }"
+          (click)="toggleDialog('download')"
+        >
+          <mat-icon svgIcon="download"></mat-icon>
+          <span class="icon-text">{{ text.download }}</span>
+        </div>
+        <div class="save" (click)="onSaveText()">
+          @if (!isSaving) {
+            <mat-icon svgIcon="disk_black"></mat-icon>
+          } @else {
+            <mat-spinner diameter="16"></mat-spinner>
+          }
+          <span class="icon-text">{{ text.save }}</span>
+        </div>
+      </div>
+    }
+  }
+</nav>

@@ -1,0 +1,200 @@
+.modal-container {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+
+  .close {
+    display: inline-flex;
+    justify-content: flex-end;
+    width: 100%;
+
+    mat-icon {
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+
+      ::ng-deep {
+        path {
+          fill: #212121;
+        }
+      }
+    }
+  }
+
+  .header {
+    width: 100%;
+    color: #000;
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 42px;
+  }
+
+  .sub_header {
+    width: 100%;
+    color: #000;
+    text-align: center;
+    font-family: Sarabun;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 42px;
+    margin-bottom: 8px;
+  }
+
+  .content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    input {
+      padding: 0px 18px;
+      width: 45vw;
+      max-width: 550px;
+      height: 56px;
+      align-self: stretch;
+      border-radius: 8px;
+      border: 1.2px solid #bdbdbd;
+      font-family: Sarabun;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 28px;
+    }
+
+    input::placeholder {
+      overflow: visible;
+    }
+
+    input.ng-invalid.ng-touched {
+      border: solid 1.2px #ff5252;
+    }
+
+    .select {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 56px;
+      border-radius: 8px;
+      border: 1.2px solid #bdbdbd;
+      padding: 0px 18px;
+
+      mat-label {
+        position: absolute;
+        left: 10px;
+        top: -10px;
+        color: #616161;
+        font-family: "Sarabun";
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0.4px;
+        background-color: #fff;
+        padding: 0px 6px;
+      }
+
+      mat-icon {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+      }
+
+      ::ng-deep .mat-mdc-select-arrow {
+        display: none;
+      }
+    }
+  }
+
+  .btn-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 38px;
+
+    button {
+      width: 135px;
+      height: 44px;
+      border-radius: 8px;
+      border: 1px solid #01bffb;
+      font-family: Sarabun;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px;
+    }
+
+    .cancel-btn {
+      color: #01bffb;
+      background: #fff;
+    }
+
+    .submit-btn {
+      color: #fff;
+      background: #01bffb;
+
+      &:disabled {
+        background: #bdbdbd;
+        border: 1px solid #bdbdbd;
+      }
+    }
+  }
+}
+
+::ng-deep .mat-pseudo-checkbox {
+  display: none !important;
+}
+
+// ::ng-deep .cdk-global-overlay-wrapper {
+//   overflow: auto;
+//   pointer-events: auto;
+// }
+
+@media (max-width: 635px) {
+  .modal-container {
+    .content {
+      input {
+        width: auto;
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .modal-container {
+    padding: 16px;
+
+    .header {
+      margin-bottom: 12px;
+    }
+
+    .btn-group {
+      flex-direction: column;
+
+      button {
+        width: 100%;
+        min-width: 250px;
+      }
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .modal-container {
+    .btn-group {
+      flex-direction: column;
+
+      button {
+        width: 100%;
+        min-width: auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<div class="main">
+    <mat-icon class="btn-close" (click)="dialogRef.close()">close</mat-icon>
+    <div class="header">
+        <!-- <h1>เลือกนามสกุลไฟล์เสียงที่คุณต้องการ</h1> -->
+        <img src="../../../assets/audio_storage/point.png" alt="point">
+    </div>
+    <div class="body">
+        <h1>{{confirmDownload}}</h1>
+        <!-- <span>นามสกุลไฟล์เสียง :</span>
+        <mat-select 
+        class="select-file-type" 
+        placeholder="เลือกนามสกุลไฟล์" 
+        [formControl]="selectedType">
+            <mat-option 
+            *ngFor="let type of fileType" [value]="type" >
+                {{type}}
+            </mat-option>
+        </mat-select> -->
+    </div>
+    <div class="footer">
+        <button (click)="dialogRef.close()">{{cancel}}</button>
+        <button
+        (click)="download()"
+        class="btn-confirm">{{accept}}</button>
+    </div>
+</div>

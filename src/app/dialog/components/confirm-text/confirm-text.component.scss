@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  gap: 8px;
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  h1 {
+
+    font-weight: 700;
+    font-size: 24px;
+    margin: 0;
+    color: red;
+  }
+
+  h1, span, label {
+    font-family: "Prompt", sans-serif;
+  }
+
+  .button {
+    width: 100%;
+    button {
+      background: #01bffb;
+      border: none;
+      color: #fff;
+      width: inherit;
+      height: 34px;
+      border-radius: 10px;
+    }
+    button:disabled {
+      color: white;
+      background-color: #D6D8DB;
+    }
+  }
+
+}

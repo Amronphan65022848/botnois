@@ -1,0 +1,45 @@
+.bar {
+  // position: relative;
+
+  .border-bar {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    padding: 20px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 3px 15px 0px rgba(79, 117, 138, 0.3);
+
+    div {
+      cursor: pointer;
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+      border-radius: 4px; // Ensure this matches the SVG's border-radius if necessary
+
+      &:hover {
+        transform: scale(1.05); // Slight scale up effect
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); // Soft shadow for depth
+      }
+
+      svg {
+        transition: all 0.3s ease;
+        pointer-events: none;
+        // &:hover {
+
+        // }
+
+        rect {
+          transition: all 0.3s ease;
+        }
+
+        path {
+          transition: all 0.3s ease;
+        }
+      }
+    }
+  }
+}

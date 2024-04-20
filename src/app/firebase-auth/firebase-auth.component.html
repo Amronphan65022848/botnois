@@ -1,0 +1,56 @@
+<ngx-loading [show]="isLoading"></ngx-loading>
+<div id="box-content" class="firebase-auth-container container p-4">
+  <div class="header">
+    <h1 class="gradient">{{ title }}</h1>
+  </div>
+  @if (isEmail) {
+    <app-auth-form
+      [text]="text"
+      [errorMessageMapping]="errorMessageMapping"
+      [oobCode]="oobCode"
+      [page]="page"
+      (_isLoading)="toggleLoading($event)"
+      (_setPage)="setPage($event)"
+    ></app-auth-form>
+
+    @if (page === "SignIn" || page === "SignUp") {
+      <div class="hr">
+        <span>
+          {{ text.or }}
+        </span>
+      </div>
+      <app-social-sign-in
+        [text]="text"
+        [isEmail]="isEmail"
+        (_isEmail)="toggleEmailForm()"
+        (_isLoading)="toggleLoading($event)"
+      ></app-social-sign-in>
+    }
+  } @else {
+    <app-social-sign-in
+      [text]="text"
+      [isEmail]="isEmail"
+      (_isEmail)="toggleEmailForm()"
+      (_isLoading)="toggleLoading($event)"
+    ></app-social-sign-in>
+  }
+  @if (isEmail && !isExistedState) {
+    <div class="other">
+      <span class="text">
+        {{ otherTextLink }}
+      </span>
+      <span class="gradient link" (click)="onUserAuth()">
+        {{ otherText }}
+      </span>
+    </div>
+  }
+  @if (!isEmail) {
+    <div class="footer">
+      <span
+        >By continuing, you are indicating that you accept our
+        <a href="agreement">Terms of Service</a> and
+        <a href="Privacy&Policy">Privacy Policy.</a></span
+      >
+    </div>
+  }
+</div>

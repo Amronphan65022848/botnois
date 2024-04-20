@@ -1,0 +1,23 @@
+<div class="modal-container">
+  <mat-icon class="close" svgIcon="close" (click)="onCancel()"></mat-icon>
+  <div class="modal-overlay"></div>
+  <div class="modal-box">
+    <mat-icon svgIcon="alertInfo"></mat-icon>
+    <div class="modal-header">
+      <h2 class="modal-title">{{ text.free.header }}</h2>
+    </div>
+    <div class="modal-body mb-3">
+      <p>
+        {{ text.free.details_1 }}
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="cancel-btn" (click)="onCancel()">
+        {{ text.free.cancel }}
+      </button>
+      <button type="button" class="confirm-btn" (click)="onConfirm()">
+        {{ text.free.confirm }}
+      </button>
+    </div>
+  </div>
+</div>

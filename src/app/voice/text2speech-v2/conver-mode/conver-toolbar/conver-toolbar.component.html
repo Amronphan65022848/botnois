@@ -1,0 +1,134 @@
+@if (nosoundClick) {
+  <div class="app-alert-text2speech">
+    <div class="floating-message">
+      <svg
+        width="8"
+        height="18"
+        viewBox="0 0 8 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M5.25 15.75H6.50375C7.19125 15.75 7.75 16.2495 7.75 16.875C7.75 17.496 7.18375 18 6.50375 18H1.49625C0.80875 18 0.25 17.5005 0.25 16.875C0.25 16.254 0.81625 15.75 1.49625 15.75H2.75V6.75H1.5125C0.8125 6.75 0.25 6.2505 0.25 5.625C0.25 5.004 0.80375 4.5 1.5125 4.5H3.9875C4.6875 4.5 5.25 4.9995 5.25 5.625V15.75ZM3.375 3.375C4.41 3.375 5.25 2.619 5.25 1.6875C5.25 0.756 4.41 0 3.375 0C2.34 0 1.5 0.756 1.5 1.6875C1.5 2.619 2.34 3.375 3.375 3.375Z"
+          fill="#E1AD27"
+        />
+      </svg>
+      <p>{{ text?.err_redirect }}</p>
+    </div>
+  </div>
+}
+
+@if (device !== "Mobile") {
+  <div class="toolbar-create">
+    <span
+      class="select-lang-tooltip"
+      matTooltip="{{ text?.soundLang }}"
+      matTooltipClass="mat-tooltip-dropdown"
+      [matTooltipShowDelay]="showDelay.value"
+      [matTooltipPosition]="position.value"
+    >
+      <img
+        class="flag"
+        src="../../../../../assets/icons/toolbar/conversation/flags/{{
+          data?.language?.flag
+        }}"
+        alt="flag"
+      />
+      <mat-select
+        matNativeControl
+        disableOptionCentering
+        hideSingleSelectionIndicator
+        panelClass="customLang"
+        [disabled]="isSettingSound"
+        [value]="voiceLanguage?.value"
+        (click)="showdropdown = false"
+        (selectionChange)="onChangeLanguage($event)"
+        class="dropdown-center shift-left"
+      >
+        <!-- *ngFor="let item of main_lang?.length > 0 ? main_lang : langListMain" -->
+        <p class="main-lang">{{ text?.mainLang }}</p>
+        <mat-option *ngFor="let item of main_lang" [value]="item?.value">
+          <img
+            class="flag"
+            src="../../../../../assets/icons/toolbar/conversation/flags/{{
+              item?.flag
+            }}"
+            alt="flag"
+          />{{ getCountryName(item) }}
+        </mat-option>
+        <p class="addons-lang">{{ text?.addonsLang }}</p>
+        <mat-option *ngFor="let item of sub_lang" [value]="item?.value">
+          <img
+            class="flag"
+            src="../../../../../assets/icons/toolbar/conversation/flags/{{
+              item?.flag
+            }}"
+            alt="flag"
+          />{{ getCountryName(item) }}
+        </mat-option>
+      </mat-select>
+    </span>
+
+    <span
+      class="select-speed-tooltip"
+      (click)="showdropdown = false"
+      matTooltip="{{ text?.soundSpeed }}"
+      matTooltipClass="mat-tooltip-dropdown"
+      [matTooltipShowDelay]="showDelay.value"
+      [matTooltipPosition]="position.value"
+    >
+      <mat-icon svgIcon="speed"></mat-icon>
+      <mat-select
+        matNativeControl
+        disableOptionCentering
+        hideSingleSelectionIndicator
+        panelClass="customSpeed"
+        [value]="voiceSpeed"
+        (selectionChange)="onChangeSpeed($event)"
+        class="dropdown-center"
+      >
+        @for (item of speedConfig; track item.value) {
+          <mat-option [value]="item.value">{{ item.name }}</mat-option>
+        }
+      </mat-select>
+    </span>
+
+    <span
+      class="select-volume-tooltip"
+      matTooltip="{{ text?.soundVolume }}"
+      matTooltipClass="mat-tooltip-dropdown"
+      [matTooltipShowDelay]="showDelay.value"
+      [matTooltipPosition]="position.value"
+    >
+      <!-- change image to svg tag for color changing -->
+      <mat-icon svgIcon="volume"></mat-icon>
+      <mat-select
+        style="text-align: right; font-family: Sarabun"
+        matNativeControl
+        disableOptionCentering
+        hideSingleSelectionIndicator
+        panelClass="customVolume"
+        [value]="voiceVolume"
+        (selectionChange)="onChangeVolume($event)"
+        (click)="showdropdown = false"
+        class="dropdown-center"
+      >
+        @for (item of volumeConfig; track item) {
+          <mat-option [value]="item">{{ item }}%</mat-option>
+        }
+      </mat-select>
+    </span>
+
+    <!-- <button
+      matTooltipClass="mat-tooltip-dropdown"
+      [matTooltipShowDelay]="showDelay.value"
+      [matTooltipPosition]="position.value"
+      [matTooltip]="isSettingSound ? text?.edit_ : text?.generate"
+      [disabled]="inputText.length <= 0"
+      class="btn-toolbar-create"
+      (click)="handleClickCreate(i); showdropdown = false"
+    >
+      {{ isSettingSound ? text?.edit_ : text?.generate }}
+    </button> -->
+  </div>
+}

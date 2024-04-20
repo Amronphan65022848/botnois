@@ -1,0 +1,11 @@
+version: "2"
+services:
+  bn-text2speech:
+    build : 
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: bn-text2speech
+    restart: always
+    ports:
+      - 3000:80
+    network_mode: bridge

@@ -1,0 +1,19 @@
+<div class="container-dialog-download" >
+  <div class="close-dialog-download">
+    <span class="material-icons" (click)="close()"  style="background-color: white; background: none;cursor: pointer;" > close </span>
+  </div>
+
+  <div class="icon-dialog-download">
+      <span><img src="../../assets/img/Real_success.svg" /></span>
+  </div>
+
+  <div class="text1-dialog-download">
+      <div class="text-not-enough-coins">{{text.successfulDownloadSound}}</div>
+      <div class="text-want-to-by-coins">{{text.successfulDownload}}</div>
+  </div>
+
+  <div >
+
+      <button mat-flat-button class="confirm" (click)="close()">{{text.agree_}}</button>
+  </div>
+  </div>

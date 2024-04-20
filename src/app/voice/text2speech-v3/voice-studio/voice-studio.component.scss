@@ -1,0 +1,100 @@
+.studio-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0px 16px 16px 16px;
+  padding: 8px;
+  background-color: #f7f8fa;
+  border-radius: 24px;
+  height: 53px;
+}
+
+.play-all {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+
+  button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    margin-right: 12px;
+  }
+
+  input {
+    flex: 1;
+    width: 100%;
+  }
+
+  .timeline-all {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #d2d2d2;
+    border-radius: 100px;
+    height: 2px;
+    background-size: 0% 100%;
+    background-image: linear-gradient(#323130, #323130);
+    background-repeat: no-repeat;
+  }
+
+  .timeline-all::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 6px;
+    height: 6px;
+    background-color: #323130;
+    border-radius: 50%;
+  }
+
+  .timeline-all::-moz-range-thumb {
+    width: 6px;
+    height: 6px;
+    background: #323130;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .timeline-all::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+
+  .timeline-all::-moz-range-track {
+    appearance: none;
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+
+  .timeline-all::-ms-track {
+    appearance: none;
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+}
+
+.download-all-btn {
+  font-family: "Prompt";
+  font-size: 14px;
+  font-weight: 600;
+  width: 166px;
+  height: 37px;
+  padding: 8px 16px;
+  background-color: #01bffb;
+  color: #ffffff;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  margin-left: 12px;
+
+  &:disabled {
+    cursor: default;
+    background: #f2f2f2;
+    color: #000;
+  }
+}

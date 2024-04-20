@@ -1,0 +1,24 @@
+<div class="modal-container">
+  <mat-icon class="close" svgIcon="close" (click)="onCancel()"></mat-icon>
+  <div class="modal-overlay"></div>
+  <div class="modal-box">
+    <mat-icon svgIcon="alertInfo"></mat-icon>
+    <div class="modal-header">
+      <h2 class="modal-title">{{ text.leavePageObj.confirmAlert }}</h2>
+    </div>
+    <div class="modal-body">
+      <p>
+        {{ text.leavePageObj.leaving }} <br />
+        {{ text.leavePageObj.askSave }}
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="cancel-btn" (click)="onCancel()">
+        {{ text.leavePageObj.cancel }}
+      </button>
+      <button type="button" class="confirm-btn" (click)="onConfirm()">
+        {{ text.leavePageObj.confirm }}
+      </button>
+    </div>
+  </div>
+</div>

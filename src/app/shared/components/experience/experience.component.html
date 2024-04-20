@@ -1,0 +1,637 @@
+<div class="bg">
+  <section class="container pt-5">
+    @if (page === 'seo') {
+    <div class="experience">
+      <div class="header">
+        <div class="header-title">Experience AI Voiceover on Your Own.</div>
+        <!-- รอซัพพอร์ตTH,EN  -->
+        <div class="header-subtitle">
+          Explore a spectrum of voices to enhance your work experience even
+          further. Botnoi Voice enabled everyone to select categories, languages
+          and age ranges for your creative content – give it a go!
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div
+          class="card-speaker"
+          *ngFor="let speaker of speakerList.slice(0, 4); let i = index"
+        >
+          <div class="image-wrapper">
+            <div class="border-img">
+              <img
+                src="{{ speaker.square_image }}"
+                alt="speaker"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="mini-box">
+              <div class="type">
+                {{
+                  textLang === "TH"
+                    ? speaker.speech_style[0]
+                    : speaker.eng_speech_style[0]
+                }}
+              </div>
+              <div class="others">
+                <img
+                  (click)="navigateToLang('en')"
+                  class="flag"
+                  src="../../../../assets/icons/toolbar/conversation/flags/{{
+                    currentFlag
+                  }}"
+                  alt="flag"
+                />
+                <!-- <img
+                src="../../../../assets/icons/toolbar/conversation/flags/EN.svg"
+                alt="flag_image"
+              /> -->
+
+                <div class="text">
+                  {{ textLang === "TH" ? "ภาษา" : "" }}{{ lang }}
+                </div>
+                <!-- ใส่ชื่อประเทศตาม ip  -->
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <div class="name">
+              <span class="speaker-name">{{
+                textLang === "TH" ? speaker.thai_name : speaker.eng_name
+              }}</span>
+            </div>
+
+            <div class="border-toggle-sound" (click)="playSound(speaker)">
+              <button class="toggle-sound">
+                <mat-icon
+                  class="play-pause"
+                  [svgIcon]="
+                    isSpeakerPlaying(speaker.speaker_id)
+                      ? 'pause_filled'
+                      : 'play_filled'
+                  "
+                  [ngStyle]="{
+                    'margin-left': isSpeakerPlaying(speaker.speaker_id)
+                      ? '0px'
+                      : '2px'
+                  }"
+                ></mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="play-sounds-container mt5">
+        <div class="card-container-lang container">
+          <div class="row">
+            <div class="card-lang">
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('en')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/EN.svg"
+                      alt="English flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('en')">
+                      English
+                    </div>
+                    <!--กดแล้วไปยังlink ของแต่ละภาษา,ประเทศ -->
+                  </div>
+                  <div class="button-col" (click)="playSoundByLanguage('EN')">
+                    <button class="btn btn-play">
+                      <mat-icon
+                        class="play-pause"
+                        [svgIcon]="
+                          isSpeakerPlaying('EN')
+                            ? 'pause_filled'
+                            : 'play_filled'
+                        "
+                        [ngStyle]="{
+                          'margin-left': isSpeakerPlaying('EN') ? '0px' : '3px'
+                        }"
+                      ></mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('lo')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/LA.svg"
+                      alt="Laos flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('lo')">
+                      Laos
+                    </div>
+                    <div class="speaker-name-sub">ພາສາລາວ</div>
+                  </div>
+                  <div class="button-col" (click)="playSoundByLanguage('LO')">
+                    <button class="btn btn-play">
+                      <mat-icon
+                        class="play-pause"
+                        [svgIcon]="
+                          isSpeakerPlaying('LO')
+                            ? 'pause_filled'
+                            : 'play_filled'
+                        "
+                        [ngStyle]="{
+                          'margin-left': isSpeakerPlaying('LO') ? '0px' : '3px'
+                        }"
+                      ></mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('th')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/TH.svg"
+                      alt="Thai flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('th')">
+                      Thai
+                    </div>
+                    <div class="speaker-name-sub">ภาษาไทย</div>
+                  </div>
+                  <div class="button-col" (click)="playSoundByLanguage('TH')">
+                    <button class="btn btn-play">
+                      <mat-icon
+                        class="play-pause"
+                        [svgIcon]="
+                          isSpeakerPlaying('TH')
+                            ? 'pause_filled'
+                            : 'play_filled'
+                        "
+                        [ngStyle]="{
+                          'margin-left': isSpeakerPlaying('TH') ? '0px' : '3px'
+                        }"
+                      ></mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- row 2 -->
+          <div class="row justify-content-center">
+            <div class="card-lang">
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('id')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/ID.svg"
+                      alt="Indonesian flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('id')">
+                      Indonesian
+                    </div>
+                    <div class="speaker-name-sub">Bahasa Indonesia</div>
+                  </div>
+                  <div class="button-col" (click)="playSoundByLanguage('ID')">
+                    <button class="btn btn-play">
+                      <mat-icon
+                        class="play-pause"
+                        [svgIcon]="
+                          isSpeakerPlaying('ID')
+                            ? 'pause_filled'
+                            : 'play_filled'
+                        "
+                        [ngStyle]="{
+                          'margin-left': isSpeakerPlaying('ID') ? '0px' : '3px'
+                        }"
+                      ></mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('zh')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/CN.svg"
+                      alt="Chinese flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('zh')">
+                      Chinese
+                    </div>
+                    <div class="speaker-name-sub">中文</div>
+                  </div>
+                  <div class="button-col" (click)="playSoundByLanguage('ZH')">
+                    <button class="btn btn-play">
+                      <mat-icon
+                        class="play-pause"
+                        [svgIcon]="
+                          isSpeakerPlaying('ZH')
+                            ? 'pause_filled'
+                            : 'play_filled'
+                        "
+                        [ngStyle]="{
+                          'margin-left': isSpeakerPlaying('ZH') ? '0px' : '3px'
+                        }"
+                      ></mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('vi')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/VN.svg"
+                      alt="Vietnamese flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('vi')">
+                      Vietnamese
+                    </div>
+                    <div class="speaker-name-sub">tiếng Việt</div>
+                  </div>
+                  <div class="button-col" (click)="playSoundByLanguage('VI')">
+                    <button class="btn btn-play">
+                      <mat-icon
+                        class="play-pause"
+                        [svgIcon]="
+                          isSpeakerPlaying('VI')
+                            ? 'pause_filled'
+                            : 'play_filled'
+                        "
+                        [ngStyle]="{
+                          'margin-left': isSpeakerPlaying('VI') ? '0px' : '3px'
+                        }"
+                      ></mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- row3 -->
+
+          <div class="row justify-content-center">
+            <div class="card-lang">
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('ja')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/JPN.svg"
+                      alt="Japanese flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('ja')">
+                      Japanese
+                    </div>
+                    <div class="speaker-name-sub">日本語</div>
+                  </div>
+                  <div class="button-col" (click)="playSoundByLanguage('JA')">
+                    <button class="btn btn-play">
+                      <mat-icon
+                        class="play-pause"
+                        [svgIcon]="
+                          isSpeakerPlaying('JA')
+                            ? 'pause_filled'
+                            : 'play_filled'
+                        "
+                        [ngStyle]="{
+                          'margin-left': isSpeakerPlaying('JA') ? '0px' : '3px'
+                        }"
+                      ></mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('my')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/MMR.svg"
+                      alt="Burmese flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('my')">
+                      Burmese
+                    </div>
+                    <div class="speaker-name-sub">မြန်မာ</div>
+                  </div>
+                  <div class="button-col" (click)="playSoundByLanguage('MY')">
+                    <button class="btn btn-play">
+                      <mat-icon
+                        class="play-pause"
+                        [svgIcon]="
+                          isSpeakerPlaying('MY')
+                            ? 'pause_filled'
+                            : 'play_filled'
+                        "
+                        [ngStyle]="{
+                          'margin-left': isSpeakerPlaying('MY') ? '0px' : '3px'
+                        }"
+                      ></mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('km')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/KM.svg"
+                      alt="Khmer flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('km')">
+                      Khmer
+                    </div>
+                    <div class="speaker-name-sub">ខ្មែរ</div>
+                  </div>
+                  <div class="button-col" (click)="playSoundByLanguage('KM')">
+                    <button class="btn btn-play">
+                      <mat-icon
+                        class="play-pause"
+                        [svgIcon]="
+                          isSpeakerPlaying('KM')
+                            ? 'pause_filled'
+                            : 'play_filled'
+                        "
+                        [ngStyle]="{
+                          'margin-left': isSpeakerPlaying('KM') ? '0px' : '3px'
+                        }"
+                      ></mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="gradient-button" (click)="onSignIn()">
+        Try for Free!
+      </button>
+    </div>
+    } @else {
+
+    <div class="experience-landing">
+      <div class="header">
+        <div class="header-title text-center">มีเสียงให้เลือกถึง 10 ภาษา</div>
+        <div class="header-subtitle">
+          รวมเสียงพากย์ไทย อังกฤษ และภาษาเพื่อนบ้านอีกมากมาย
+          ให้เลือกใช้รวมกันมากถึง 10 ภาษา
+        </div>
+      </div>
+
+      <div class="play-sounds-container mt5">
+        <div class="card-container-lang container">
+          <div class="row justify-content-center">
+            <div class="card-lang">
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('en')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/EN.svg"
+                      alt="English flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('en')">
+                      English Text to Speech Voices
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('lo')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/LA.svg"
+                      alt="Laos flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('lo')">
+                      Laos Text to Speech Voices
+                    </div>
+                    <!-- <div class="speaker-name-sub">ພາສາລາວ</div> -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('th')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/TH.svg"
+                      alt="Thai flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('th')">
+                      Thailand Text to Speech Voices
+                    </div>
+                    <div class="speaker-name-sub">แปลงข้อความเป็นเสียงภาษาไทย</div>
+                  </div>
+                  
+                </div>
+              </div> -->
+            </div>
+          </div>
+          <!-- row 2 -->
+          <div class="row justify-content-center">
+            <div class="card-lang">
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('th')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/TH.svg"
+                      alt="Thai flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('th')">
+                      Thailand Text to Speech Voices
+                    </div>
+                    <div class="speaker-name-sub">
+                      แปลงข้อความเป็นเสียงภาษาไทย
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('th')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/ID.svg"
+                      alt="Indonesia flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('th')">
+                      Indonesia Text to Speech Voices
+                    </div>
+                    <div class="speaker-name-sub">Ubah teks jadi suara</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- row3 -->
+
+          <div class="row justify-content-center">
+            <div class="card-lang">
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('zh')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/CN.svg"
+                      alt="Chinese flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('zh')">
+                      Chinese Text to Speech Voices
+                    </div>
+                    <div class="speaker-name-sub">文字轉語音中文</div>
+                  </div>
+                </div>
+              </div>
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('vi')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/VN.svg"
+                      alt="Vietnamese flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('vi')">
+                      Vietnam Text to Speech Voices
+                    </div>
+                    <div class="speaker-name-sub">
+                      Chuyển văn bản thành giọng nói online
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- row4 -->
+          <div class="row justify-content-center">
+            <div class="card-lang">
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('ja')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/JPN.svg"
+                      alt="Japanese flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('ja')">
+                      Japanese Text to Speech Voices
+                    </div>
+                    <div class="speaker-name-sub">テキスト 音声変換</div>
+                  </div>
+                </div>
+              </div>
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('my')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/MMR.svg"
+                      alt="Burmese flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('my')">
+                      Myanmar Text to Speech Voices
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- row5 -->
+          <div class="row justify-content-center mb-5">
+            <div class="card-lang align-items-center">
+              <div class="language-card">
+                <div class="card-color d-flex align-items-center">
+                  <div class="flag-col">
+                    <img
+                      (click)="navigateToLang('km')"
+                      class="flag"
+                      src="../../../../assets/icons/toolbar/conversation/flags/KM.svg"
+                      alt="Khmer flag"
+                    />
+                  </div>
+                  <div class="text-col">
+                    <div class="speaker-name" (click)="navigateToLang('km')">
+                      Khmer Text to Speech Voices
+                    </div> 
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </section>
+</div>

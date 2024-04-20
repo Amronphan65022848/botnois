@@ -1,0 +1,126 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .header{
+        padding: 2rem;
+        .text{
+            font-family: Prompt;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 36px;
+            white-space: nowrap;
+            color: #2C2E37;
+            text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.25);
+        }
+        .line{
+            margin: 16px 50px 0 50px;
+            border-bottom: 2px solid;
+            border-image: linear-gradient(90deg, #01BFFB 0%, #75DBCA 100%) 1;
+            box-shadow: 0px 0px 30px #01BFFB;
+        }
+    }
+
+    .btn-container, .form-container{
+        width: 512px;
+        max-width: calc(100% - 20px);
+        font-family: 'Noto Sans Thai', sans-serif;
+    }
+
+    .form-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .speaker-problem-form{
+          display: contents;
+        }
+        .image-form{
+            display: flex;
+            width: 100%;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 5px;
+            span{
+                white-space: nowrap;
+                font-family: 'Noto Sans Thai', sans-serif;
+                font-weight: 500;
+                font-size: min(3vw,14px);
+                color: #8E949D;
+            }
+            .btn-img{
+                font-size: 14px;
+                color: white;
+                background: #01BFFB;
+                border-radius: 10px;
+                border: none;
+                outline: none;
+                width: 100%;
+                height: 38px;
+            }
+        }
+
+        textarea, input, mat-select {
+            font-family: 'Noto Sans Thai', sans-serif;
+            background: #FFFFFF;
+            border: 1px solid #C4CFDB;
+            box-sizing: border-box;
+            border-radius: 10px;
+            padding: 9px 15px;
+            margin: 12px;
+            width: 100%;
+            outline: none;
+            &:focus{
+                box-shadow: 0 0 1px 1px #01BFFB;
+            }
+        }
+        .image-display{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #D0F2FD;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 10px;
+            color: #01BFFB;
+            padding: 0 10px;
+            mat-icon{
+                color: #323C4C;
+                cursor: pointer;
+            }
+        }
+        textarea{
+            height: 130px;
+            resize: none;
+        }
+        .error{
+            width: 100%;
+            font-size: 12px;
+            color: red;
+        }
+    }
+    .btn-container{
+        padding: 16px 0;
+        .btn-submit{
+            font-size: 14px;
+            color: white;
+            background: #01BFFB;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            width: 100%;
+            height: 38px;
+        }
+        .btn-submit:disabled{
+            background: gray;
+        }
+    }
+}
+
+@media (max-width:768px) {
+    .image-form{
+        flex-direction: column;
+    }
+}
+

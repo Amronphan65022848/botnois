@@ -1,0 +1,68 @@
+{
+    "files.associations": {
+        "*.yaml": "home-assistant"
+    },
+    "better-comments.tags": [
+      {
+        "tag": "!",
+        "color": "#FF2D00",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "tag": "?",
+        "color": "#3498DB",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "tag": "//",
+        "color": "#474747",
+        "strikethrough": true,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "tag": "todo",
+        "color": "#FF8C00",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+      },
+      {
+        "tag": "*",
+        "color": "#98C379",
+        "strikethrough": false,
+        "underline": false,
+        "backgroundColor": "transparent",
+        "bold": false,
+        "italic": false
+      }
+    ],
+    "turboConsoleLog.includeFileNameAndLineNum": false,
+    "turboConsoleLog.delimiterInsideMessage": "~",
+    "turboConsoleLog.logType": "log",
+    "turboConsoleLog.insertEnclosingFunction": false,
+    "turboConsoleLog.insertEnclosingClass": false,
+    "turboConsoleLog.quote": "`",
+    "angular-schematics.schematicsDefaultOptions": {
+      "angular-*": {
+        "externalTemplate": true
+      },
+      "angular-component": {
+        "ngOnInit": true,
+        "skipChangeDetectionOnPush": true
+      }
+    },
+    "html-to-css-autocompletion.autocompletionFilesScope": "linked-files"
+}

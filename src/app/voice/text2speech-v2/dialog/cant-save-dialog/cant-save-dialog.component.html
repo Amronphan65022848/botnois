@@ -1,0 +1,14 @@
+<div class="dialog-container">
+  <mat-icon class="close" svgIcon="close" (click)="onCancel()"></mat-icon>
+  <div class="full-content">
+    <mat-icon class="card-icon" svgIcon="danger"></mat-icon>
+    <h2 class="header">{{ text.header }}</h2>
+    <p class="details">
+      {{ text.details }}
+    </p>
+  </div>
+  <div class="group-btn">
+    <button class="ok" (click)="onCancel()">{{ text.cancel }}</button>
+    <button class="upgrade" (click)="toSubPage()">{{ text.confirm }}</button>
+  </div>
+</div>

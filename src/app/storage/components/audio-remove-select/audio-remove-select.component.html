@@ -1,0 +1,20 @@
+<div class="main">
+  <ngx-loading [show]="isLoading"></ngx-loading>
+    <div class="header">
+        <mat-icon class="btn-close" (click)="dialogRef.close()">close</mat-icon>
+    </div>
+    <div class="body">
+        <img src="../../../assets/audio_storage/remove_confirm.png" alt="remove_confirm">
+        <span class="header">{{acceptDeleted}}</span>
+        <span class="sub-header">{{deleteSeleted}}
+          <span class="audio-count"> ({{this.audioData.length}} {{count}}) </span>
+        {{confirm}} </span>
+    </div>
+    <div class="footer">
+        <button (click)="dialogRef.close()">{{cancel_}}</button>
+        <button
+        (click)="remove()"
+        [disabled]="deleting"
+        class="btn-confirm">{{accept_}}</button>
+    </div>
+</div>

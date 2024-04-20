@@ -1,0 +1,100 @@
+.firebase-auth-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  // padding: 24px;
+  width: 381px;
+
+  .header {
+    margin-top: 15px;
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+      background: var(--gradient-light-blue);
+    }
+  }
+
+  .footer {
+    max-width: 350px;
+    margin-top: 20px;
+
+    span {
+      font-size: 12px;
+      color: #424242;
+    }
+  }
+
+  .hr {
+    width: 100%;
+    display: flex;
+    font-size: 12px;
+  }
+
+  .hr:before,
+  .hr:after {
+    content: "";
+    border-bottom: 1px solid #c2c8d0;
+    flex: 1 0 auto;
+    height: 0.5em;
+    margin: 4px;
+  }
+
+  .other {
+    display: inline-flex;
+    gap: 6px;
+    width: 100%;
+    margin-top: 10px;
+    justify-content: center;
+
+    span {
+      font-size: 14px;
+    }
+
+    .text {
+      color: #616161;
+    }
+
+    .link {
+      background: var(--gradient-light-blue);
+
+      cursor: pointer;
+    }
+
+    .link:hover {
+      background: var(--gradient-light-blue-hover);
+    }
+
+    // .link:hover {
+    //   color: var(--bs-link-hover-color);
+    // }
+  }
+
+  span,
+  h1,
+  .btn-sign-in {
+    font-family: "Prompt";
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .firebase-auth-container {
+    // margin: 5% 0;
+    height: 100%;
+  }
+}
+
+app-auth-form {
+  position: relative;
+}
+
+// @media screen and (max-height:500px) {
+//   .firebase-auth-container {
+
+//   }
+// }

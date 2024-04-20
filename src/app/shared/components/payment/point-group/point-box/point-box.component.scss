@@ -1,0 +1,253 @@
+.gradient-border::before {
+    border-radius: 0px 8px 8px 8px !important;
+}
+
+.gradient-border-event::before {
+    border-radius: 0px 0px 8px 8px !important;
+}
+
+.sale-event-banner {
+    max-width: 100%;
+    border-radius: 12px 12px 0 0;
+}
+
+.package-box {
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    position: relative;
+    box-shadow: 0px 3px 15px 0px #4f758a4d;
+    border-radius: 8px;
+    padding: 3px;
+
+    .package-tag {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 185px;
+        height: 26px;
+        border-radius: 8px 8px 0px 0px;
+        top: -23px;
+        left: 0px;
+        color: #fff;
+
+        span {
+            font-family: Prompt;
+            font-size: 16px;
+            font-weight: 700;
+        }
+    }
+
+    .event-tag {
+        @extend .package-tag;
+        width: 404px;
+        left: 100px;
+    }
+
+
+    .no-point {
+        font-weight: 600;
+        color: #424242;
+        font-size: 20px;
+    }
+
+    .items {
+        display: inherit;
+        width: inherit;
+        gap: 12px;
+
+        .item-content {
+            padding: 12px 16px;
+            width: 100%;
+            max-width: 674px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+
+            span:not(.tag > span) {
+                font-size: 16px;
+                font-weight: bold;
+                text-align: end;
+            }
+
+            .left,
+            .right {
+                display: inherit;
+                align-items: inherit;
+                gap: 15px;
+            }
+
+            .left {
+                flex: 1;
+                justify-content: space-between;
+
+                .group-flex {
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+
+                    img {
+                        width: 36px;
+                        height: 36px;
+                    }
+
+                    .group {
+                        display: flex;
+                        align-items: baseline;
+                        flex-direction: column;
+                        justify-content: center;
+
+                        .point {
+                            white-space: nowrap;
+                            margin-right: 8px;
+                            font-size: 28px;
+                            display: block;
+                            // line-height: 53px;
+                        }
+
+                        ul {
+                            padding-left: 20px;
+                            margin: 0;
+                        }
+
+                        .free-gift {
+                            background: var(--gradient-brown);
+                            font-size: 12px;
+                        }
+                    }
+                }
+
+                .group-discount {
+                    display: flex;
+                    gap: 8px;
+                    align-items: flex-start;
+                    justify-content: center;
+
+                    .group {
+                        display: flex;
+                        flex-direction: column;
+
+                        .price {
+                            white-space: nowrap;
+                            font-size: 28px;
+                        }
+
+                        .counter {
+                            mat-icon {
+                                width: 12px;
+                                height: 12px;
+                            }
+
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 4px;
+
+                            background: var(--gradient-brown);
+                            justify-content: flex-end;
+
+                            &>span {
+                                font-size: 10px;
+                                font-weight: 300;
+                            }
+                        }
+                    }
+                }
+
+                .discount {
+                    display: flex;
+                    flex-direction: column;
+                    align-self: flex-start;
+
+                    .discount-price {
+                        color: var(--red-color);
+                        text-decoration: line-through;
+                        font-size: 16px;
+                        font-weight: inherit;
+                        align-self: flex-end;
+                    }
+                }
+            }
+
+            .right {
+                button {
+                    background: var(--gradient-border);
+                    color: white;
+                    border-radius: 8px;
+                    height: 36px;
+                    width: 84px;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+            }
+
+            &:hover {
+                background-color: #01bffb1a;
+            }
+        }
+    }
+
+    .expand-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 4px;
+        cursor: pointer;
+
+        span {
+            font-family: Prompt;
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        mat-icon {
+            width: 16px;
+            height: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+::ng-deep ngx-loading .full-screen {
+    position: absolute !important;
+}
+
+@media (max-width: 767px) {
+    .buy-points-container {
+        .package-box {
+            padding-top: 6px;
+        }
+
+
+    }
+
+    .event-tag {
+        width: 100% !important;
+        left: 0 !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .buy-points-container {
+        .gradient-border::before {
+            border-radius: 0px 0px 8px 8px !important;
+        }
+
+        .package-box {
+            .package-tag {
+                width: 100%;
+            }
+        }
+    }
+
+    .sale-event-banner {
+        padding-bottom: 1rem;
+    }
+}

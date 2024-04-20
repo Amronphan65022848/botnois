@@ -1,0 +1,186 @@
+.main{
+    display: flex;
+    
+    .header{
+        font-weight: bold;
+        color: black;
+        font-size: 24px;
+    }
+    .detail{
+        color: black;
+        font-size: 18px;
+    }
+
+    .sidenav{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 15%;
+        padding: 24px;
+        gap: 12px;
+        // .title{
+        //     font-weight: bold;
+        //     color: black;
+        //     font-size: 18px;
+        // }
+        span{
+            color: black;
+        }
+    }
+    .contain{
+        
+        width: 100%;
+        background-color: #f0f4f8;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 4%;
+        .description-box{
+            max-height: 135px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            gap: 8px;
+            span{
+                color: black;
+                font-size: 18px;
+            }
+            
+        }
+        .test-box{
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            padding: 24px 0;
+
+            input[type=text]{
+                padding: 9px 18px;
+                border-radius: 12px;
+                border: solid 2px rgb(235, 235, 235);
+                outline: none;
+            }
+            input[type=text]:focus{
+                border: solid 2px #01BFFB;
+            }
+            .btn-form{
+                text-align: end;
+                button{
+                    outline: none;
+                    border: none;
+                    background-color: black;
+                    padding: 12px 2rem;
+                    border-radius: 12px;
+                    span{
+                        font-weight: 400;
+                        font-size: 20px;
+                        color: white;
+                    }
+                }
+            }
+        }
+        .speaker-box{
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+            flex-wrap: wrap;
+            span{
+                color: black;
+                font-size: 16px;
+            }
+        }
+        .guide-box{
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            .header-layout{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                button{
+                    background-color: #2680c2;
+                    border: none;
+                    padding: 4px 12px;
+                    span{
+                        color: white;
+                    }
+                }
+            }
+            .language{
+                display: flex;
+                justify-content: flex-end;
+                button{
+                    outline: none;
+                    border: none;
+                    padding: 2px 8px;
+                    background-color: transparent;
+                    span{
+                        color: black;
+                        font-size: min(4vw,18px);
+                        font-weight: bold;
+                    }
+                }
+            }
+            .code-box{
+                background-color: rgb(50, 71, 87);
+                padding: 18px;
+                position: relative;
+                .btn-layout{
+                    position: absolute;
+                    right: 18px;
+
+                    button{
+                        background-color: #2680c2;
+                        border: none;
+                        padding: 4px 12px;
+                        span{
+                            color: white;
+                        }
+                    }
+                    
+                }
+                pre{
+                    word-break: break-all;
+                    white-space: pre-wrap;
+                    color: white;
+                    margin-top: 12px;
+                }
+                span{
+                    word-break: break-all;
+                    color: white;
+                    white-space: pre-line;
+                }
+            }
+            .credentials{
+                word-break: break-all;
+                color: black;
+            }
+            .example{
+                display: flex;
+                flex-direction: row;
+                gap: 12px;
+                .post{
+                    .box{
+                        
+                        background-color: rgb(117, 211, 245);
+                        span{
+                            padding: 8px;
+                            color: black;
+                        }
+                    }
+                }
+                .contents{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                    
+                    span, pre{
+                        color: black;
+                        font-size: 16px;
+                        word-break: break-all;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,101 @@
+
+
+<div class="main">
+    <div class="contain">
+
+        <div class="guide-box">
+            <span class="header">
+                {{text.guide_header}}
+            </span>
+            <span class="detail">
+                {{text.ex_api}}
+            </span>
+            <div class="example">
+                <div class="post">
+                    <div class="box">
+                        <span>
+                            POST
+                        </span>
+                    </div>
+
+                </div>
+                <div class="contents">
+                    <span>
+                        URL: {{apiUrl}}
+                    </span>
+                    <pre>{{apiJson | json}}</pre>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="guide-box">
+            <div class="header-layout">
+                <span class="header">
+                    Credentials
+                </span>
+                <button (click)="reCredentials()">
+                    <span>
+                        {{text.chang}}
+                    </span>
+                </button>
+            </div>
+
+            <span class="credentials">
+                {{credentials}}
+            </span>
+        </div>
+        <hr>
+        <div class="guide-box">
+            <span class="header">
+                Speaker Lists
+            </span>
+            <div class="speaker-box">
+                <span *ngFor="let item of speakers let i=index">
+                  {{item.speaker_id}} : {{lang === 'EN' ? item.eng_name : item.thai_name}} {{ speakers.length == i+1 ? '' : ','}}
+                </span>
+            </div>
+        </div>
+
+        <hr>
+        <div class="guide-box">
+            <span class="header">
+                {{text.forDev_header}}
+            </span>
+            <span class="detail">
+                {{text.copyDetail}}
+            </span>
+            <div class="language">
+                <button
+                        (click)="onLanguageSelected(i)"
+                        *ngFor="let item of programingLanguages; let i=index"
+                        [ngStyle]="langaugeSelected == i ? {background: 'rgb(44, 130, 192)'} : {}"
+                    >
+                        <span
+                            [ngStyle]="langaugeSelected == i ? {color: 'white'} : {}"
+                        >
+                            {{item}}
+                        </span>
+                    </button>
+            </div>
+            <div class="code-box">
+                <div class="btn-layout">
+                    <button
+                        (click)="onCopy()"
+                        [cdkCopyToClipboard]="codeTexts[langaugeSelected]"
+                    >
+                        <span>
+                            {{text.copy}}
+                        </span>
+                    </button>
+                </div>
+
+                <pre>
+                    {{codeTexts[langaugeSelected]}}
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-loading [show]="isLoading" [config]="{fullScreenBackdrop: true}"></ngx-loading>
+

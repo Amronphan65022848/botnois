@@ -1,0 +1,118 @@
+<div class="wrapper">
+  <div class="review-container">
+    <img
+      class="background"
+      src="../../../../assets/landing-v3/bg_feedback.webp"
+      alt="background"
+    />
+    <h3 class="header">{{ headerText }}</h3>
+
+    <div class="review-card">
+      <div id="feedbackCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="review-content">
+              <div class="content-card">
+                <p class="card-text">{{ text.feedback_item[0].description }}</p>
+              </div>
+              <div class="person-card">
+                <img
+                  class="face-image"
+                  src="{{ text.feedback_item[0].image }}"
+                  alt="face_image"
+                />
+                <div class="person-detail">
+                  <p class="name">{{ text.feedback_item[0].name }}</p>
+                  <p class="position">{{ text.feedback_item[0].position }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="review-content">
+              <div class="content-card">
+                <p class="card-text">{{ text.feedback_item[1].description }}</p>
+              </div>
+              <div class="person-card">
+                <img
+                  class="face-image"
+                  src="{{ text.feedback_item[1].image }}"
+                  alt="face_image"
+                />
+                <div class="person-detail">
+                  <p class="name">{{ text.feedback_item[1].name }}</p>
+                  <p class="position">{{ text.feedback_item[1].position }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="review-content">
+              <div class="content-card">
+                <p class="card-text">{{ text.feedback_item[2].description }}</p>
+              </div>
+              <div class="person-card">
+                <img
+                  class="face-image"
+                  src="{{ text.feedback_item[2].image }}"
+                  alt="face_image"
+                />
+                <div class="person-detail">
+                  <p class="name">{{ text.feedback_item[2].name }}</p>
+                  <p class="position">{{ text.feedback_item[2].position }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="review-content">
+              <div class="content-card">
+                <p class="card-text">{{ text.feedback_item[3].description }}</p>
+              </div>
+              <div class="person-card">
+                <img
+                  class="face-image"
+                  src="{{ text.feedback_item[3].image }}"
+                  alt="face_image"
+                />
+                <div class="person-detail">
+                  <p class="name">{{ text.feedback_item[3].name }}</p>
+                  <p class="position">{{ text.feedback_item[3].position }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#feedbackCarousel"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#feedbackCarousel"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#feedbackCarousel"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#feedbackCarousel"
+            data-bs-slide-to="3"
+            aria-label="Slide 4"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

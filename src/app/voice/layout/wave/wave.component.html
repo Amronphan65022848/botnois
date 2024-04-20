@@ -1,0 +1,7 @@
+<div class="boxContainer">
+  <div
+    *ngFor="let index of items"
+    class="box box{{ index }}"
+    [ngClass]="{'pause': !isPlaying}"
+    ></div>
+</div>

@@ -1,0 +1,23 @@
+<div class="modal-container">
+    <mat-icon class="close" svgIcon="close" (click)="onCancel()"></mat-icon>
+    <div class="modal-box">
+        <mat-icon svgIcon="trash"></mat-icon>
+        <div class="modal-header">
+            <h2 class="modal-title">{{text.header}}</h2>
+        </div>
+        <div class="modal-body mb-3">
+            <p>{{text.body}}</p>
+            <section class="example-section">
+                <mat-checkbox class="example-margin" [(ngModel)]="isChecked">{{text.checkbox}}</mat-checkbox>
+            </section>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="cancel-btn" (click)="onCancel()">
+                {{text.btnCancel}}
+            </button>
+            <button type=" button" class="confirm-btn" (click)="onConfirm()">
+                {{text.btnConfirm}}
+            </button>
+        </div>
+    </div>
+</div>

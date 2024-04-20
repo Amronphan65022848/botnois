@@ -1,0 +1,19 @@
+<div class="studio-container">
+  <div class="play-all">
+    <button (click)="playAll()">P</button>
+    <input
+      type="range"
+      class="timeline-all"
+      id="timeline-all"
+      max="100"
+      value="0"
+    />
+  </div>
+  <button
+    class="download-all-btn"
+    (click)="downloadAll()"
+    [disabled]="audioList.length === 0"
+  >
+    ดาวน์โหลดทั้งหมด
+  </button>
+</div>

@@ -1,0 +1,48 @@
+<footer class="footer-container">
+  <div class="content">
+    <div class="navigation">
+      <div class="group" (click)="navigate('', '')">
+        <img
+          class="bot"
+          src="../../../../assets/logo_bnv/logo_bot.webp"
+          alt="logo"
+        />
+        <img
+          class="text"
+          src="../../../../assets/logo_bnv/logo_text.webp"
+          alt="logo"
+        />
+      </div>
+      <div class="text">
+        <span (click)="navigate('tts', 'conversation')">Studio</span>
+        <span (click)="navigate('tts', 'api-developer')">APIs</span>
+        <span (click)="navigate('payment', '')">Pricing</span>
+        <span (click)="toDocs()">Document</span>
+        <span (click)="navigate('Privacy&Policy', '')">Privacy&Policy</span>
+      </div>
+      <div class="icon">
+        <img
+          (click)="toWeb()"
+          src="../../../../assets/footer/mail 2.webp"
+          alt="icon"
+        />
+        <img
+          (click)="toReport()"
+          src="../../../../assets/footer/facebook 2.webp"
+          alt="icon"
+        />
+        <img
+          (click)="toYoutube()"
+          src="../../../../assets/footer/play 1.webp"
+          alt="icon"
+        />
+        <img
+          (click)="toTwitter()"
+          src="../../../../assets/footer/twitter copy 2.webp"
+          alt="icon"
+        />
+      </div>
+    </div>
+    <span class="copy_right">©2023 Botnoi Group.</span>
+  </div>
+</footer>

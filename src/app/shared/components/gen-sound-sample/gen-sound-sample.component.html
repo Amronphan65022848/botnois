@@ -1,0 +1,293 @@
+<div class="sound-card">
+  <!-- <h3 class="m-0 header-text">{{ text?.try }}</h3> -->
+  <div class="list-language">
+    @for (item of flagList; track $index) {
+      <div
+        class="language-btn"
+        (click)="selectLang(item.value)"
+        [ngClass]="{ active: item.value === currentLangSelect }"
+        id="LD_tools_{{ googleAnalytics[item.value] }}_click"
+      >
+        <img
+          src="../../../../assets/icons/toolbar/conversation/flags/{{
+            item.flag
+          }}"
+          class="btn-flag"
+          alt="{{ item.EN_name }}_flag"
+        />
+        <span class="btn-text">{{
+          textLang === "TH" ? item.TH_name : item.EN_name
+        }}</span>
+      </div>
+    }
+  </div>
+  <div class="spktext">
+    <div class="controls-btn">
+      <div class="lang-controls">
+        @if (!currentLangSelect) {
+          <button class="toggle-lang">
+            <div
+              class="rounded-circle d-flex justify-content-center align-items-center"
+              [ngStyle]="{
+                width: '30px',
+                height: '30px',
+                background: '#E1F7FF'
+              }"
+            >
+              <mat-icon
+                svgIcon="person_dynamic"
+                [ngStyle]="{ width: '18px', height: '18px', color: '#01bffb' }"
+              ></mat-icon>
+            </div>
+            <span
+              [ngStyle]="{
+                flex: '1',
+                'margin-left': '10px',
+                'text-align': 'justify'
+              }"
+              >{{ text?.alertSelect }}</span
+            >
+          </button>
+        } @else {
+          <button class="toggle-lang" (click)="select.open()">
+            <div class="d-flex align-items-center">
+              <img
+                class="flag"
+                [src]="currentSpeaker?.square_image"
+                alt="speaker_image"
+              />
+              <span>{{
+                textLang === "TH"
+                  ? currentSpeaker?.thai_name
+                  : currentSpeaker?.eng_name
+              }}</span>
+            </div>
+            <mat-icon class="down" svgIcon="down"></mat-icon>
+            <mat-select
+              #select
+              hideSingleSelectionIndicator
+              panelClass="speakerDropdownHome"
+              (selectionChange)="switchSpeaker($event)"
+            >
+              <mat-option *ngFor="let item of speakerList" [value]="item">
+                <img
+                  class="flag-dropdown"
+                  [src]="item.face_image"
+                  alt="speaker_image"
+                  loading="lazy"
+                />
+                {{
+                  textLang === "TH" ? item.thai_name : item.eng_name
+                }}</mat-option
+              >
+            </mat-select>
+          </button>
+        }
+      </div>
+      <!-- <div class="speaker-controls">
+        <div
+          class="selectspeaker"
+          *ngFor="let speaker of speakerMaleFemale; let i = index"
+          (click)="onSelectSpeaker(speaker.speaker_id)"
+          [ngClass]="{
+            active: selectedSpeaker === speaker.speaker_id
+          }"
+        >
+          <div class="speaker">
+            <img src="{{ speaker.face_image }}" alt="speaker" />
+            <div class="text">
+              {{ textLang === "TH" ? speaker.thai_name : speaker.eng_name }}
+            </div>
+            @if (selectedSpeaker === speaker.speaker_id) {
+              <mat-icon svgIcon="check_circle_filled_gradient"></mat-icon>
+            }
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="generate-section">
+      <div class="input">
+        <textarea
+          [(ngModel)]="textAreaValue"
+          [placeholder]="
+            currentLangSelect
+              ? placeholder[currentLangSelect]
+              : text?.placeholderDefault
+          "
+          type="text"
+          name="textInput"
+          id="text_input"
+          [maxlength]="maxText"
+        ></textarea>
+        @if (textAreaValue.length > 0) {
+          <mat-icon
+            class="clear"
+            svgIcon="cross_dynamic"
+            [ngStyle]="{ color: '#000' }"
+            (click)="clearText()"
+            [matTooltip]="text?.clearText"
+          ></mat-icon>
+        }
+        <div class="bottom-box">
+          @if (downloadMax <= downloadCount && checkLogin()) {
+            <span class="alert-quota">
+              <mat-icon
+                svgIcon="alert_dynamic"
+                [ngStyle]="{ color: '#F70101' }"
+              ></mat-icon>
+              {{ text?.no_credit }}
+            </span>
+          } @else {
+            <!-- <div class="ai">
+              <span class="try-ai">
+                <mat-icon svgIcon="ai_edit_gradient"></mat-icon>
+                <span>Try AI generate text</span>
+              </span>
+              <div class="gen-text-btn">
+                <button class="gen-btn" (click)="generateText('advertisement')">
+                  <span>Advertisement</span>
+                </button>
+                <button class="gen-btn" (click)="generateText('storytelling')">
+                  <span>Storytelling</span>
+                </button>
+                <button class="gen-btn" (click)="generateText('presentation')">
+                  <span>Presentation</span>
+                </button>
+              </div>
+            </div> -->
+          }
+          <div class="counter">
+            <mat-spinner
+              class="progress"
+              mode="determinate"
+              [color]="convertMaxToPercent() > 90 ? 'warn' : 'primary'"
+              [value]="convertMaxToPercent()"
+            >
+            </mat-spinner>
+            <span
+              class="count"
+              [ngClass]="{ 'alert-red': convertMaxToPercent() > 90 }"
+              >{{ textAreaValue.length }}</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="generate-controls">
+        <div class="quota">
+          <mat-icon class="icon" svgIcon="point_icon"></mat-icon>
+          <div class="quota-text">
+            <div
+              class="row-1"
+              [ngClass]="{ 'text-red': downloadMax <= downloadCount }"
+            >
+              {{ text?.credit }} {{ downloadMax - downloadCount }}
+              {{ text?.credit_subfix }}
+            </div>
+            @if (downloadMax > downloadCount) {
+              <div class="row-2" (click)="navigateToPayment()">
+                {{ text?.upgrade }}
+              </div>
+            }
+          </div>
+        </div>
+        @if (downloadMax <= downloadCount) {
+          <div class="btn-group">
+            <div class="outer-border">
+              <button
+                class="upgrade-btn"
+                id="LD_tools_upgrade_click"
+                (click)="login()"
+              >
+                {{ text?.full_version }}
+              </button>
+            </div>
+          </div>
+        } @else {
+          <div class="btn-group">
+            @if (!isGenerated) {
+              <div class="outer-border">
+                <button
+                  id="LD_tools_generate_click"
+                  class="generate-btn"
+                  (click)="gensound(textAreaValue, currentSpeaker.speaker_id)"
+                >
+                  {{ text?.generate }}
+                </button>
+              </div>
+            } @else {
+              <div class="outer-border">
+                <div
+                  class="toggle-play"
+                  id="LD_tools_play_click"
+                  (click)="handlePlayAudio()"
+                  [matTooltip]="isAudioPlay ? text?.pause : text?.play"
+                >
+                  @if (isGenerating) {
+                    <mat-icon
+                      class="spinner"
+                      svgIcon="spinner_gradient"
+                    ></mat-icon>
+                  } @else {
+                    <mat-icon
+                      class="play-pause"
+                      svgIcon="{{
+                        isAudioPlay
+                          ? 'pause_gradient_filled'
+                          : 'play_gradient_filled'
+                      }}"
+                    ></mat-icon>
+                  }
+                </div>
+              </div>
+              <div class="outer-border">
+                <button
+                  class="generate-btn"
+                  id="LD_tools_download_click"
+                  (click)="downloadAudio()"
+                  [disabled]="isGenerating"
+                >
+                  {{ text.download }}
+                </button>
+              </div>
+              <!-- <div
+              class="audio-button-wrapper"
+              [ngClass]="{ disabled: !textAreaValue.trim() }"
+            >
+              <button
+                class="toggle-sound"
+                (click)="handlePlayAudio()"
+                [disabled]="!textAreaValue.trim()"
+              >
+                <mat-icon
+                  class="play-pause"
+                  svgIcon="{{ isAudioPlay ? 'pause_filled' : 'play_filled' }}"
+                ></mat-icon>
+              </button>
+              <div *ngIf="isLoading" class="spinner-overlay">
+                <div class="spinner"></div>
+              </div>
+            </div> -->
+              <!-- <div class="bor" [ngClass]="{ disabled: isDownloadDisable }">
+              <button
+                class="max-download"
+                (click)="downloadAudio()"
+                [disabled]="isDownloadDisable"
+              >
+                <mat-icon class="download-icon" svgIcon="download"></mat-icon>
+                <p class="download-num">
+                  <span
+                    class="count-num"
+                    [ngClass]="{ maxed: downloadCount === downloadMax }"
+                    >{{ downloadMax - downloadCount }}</span
+                  >
+                  <span class="max-num">/{{ downloadMax }}</span>
+                </p>
+              </button>
+            </div> -->
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

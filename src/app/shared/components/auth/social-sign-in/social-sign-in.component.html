@@ -1,0 +1,25 @@
+<div class="social-sign-in" [class.email]="isEmail">
+  @for (item of sliceArrays(); track item) {
+    <div class="group-btn-social" (click)="authenticateWithProvider(item)">
+      <button
+        class="btn-social"
+        [id]="
+          item === 'line' ? 'nav_login_Line_click' : 'nav_login_google_click'
+        "
+        [class]="item === 'line' ? 'line' : 'google'"
+      >
+        <mat-icon [svgIcon]="item + '_icon'"></mat-icon>
+        @if (!isEmail) {
+          <span class="social-title">
+            {{ text.signin_by }} {{ item | titlecase }}
+          </span>
+        }
+      </button>
+      @if (isEmail) {
+        <span class="social-bottom">
+          {{ item | titlecase }}
+        </span>
+      }
+    </div>
+  }
+</div>

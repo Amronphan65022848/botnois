@@ -1,0 +1,20 @@
+<div class="patch-note-container">
+  <mat-icon class="close" (click)="onClose()">close</mat-icon>
+  <div class="header">
+    <!-- <p>Patch Note</p> -->
+    <p>{{text.title}}</p>
+  </div>
+  <div class="body">
+    <p *ngFor="let item of text.text">{{item}}</p>
+    <!-- <pre [innerHTML]="text.text"></pre> -->
+
+    <!-- <img *ngFor="let item of image" [src]="item" alt="image url for promote patch note"> -->
+  </div>
+  <div class="group">
+    <mat-checkbox color="primary" [(ngModel)]="isNeverShow">{{text.checkbox}}</mat-checkbox>
+  </div>
+  <div class="btn-group" (click)="onClose()">
+    <button>{{text.agree}}</button>
+  </div>
+
+</div>

@@ -1,0 +1,17 @@
+<div class="input-points">
+  <div class="col-group">
+    <div class="group">
+      <mat-icon svgIcon="point"></mat-icon>
+      <label for="input_points">{{ text.input }}</label>
+    </div>
+    <input
+      [id]="analyticId.input"
+      type="number"
+      (input)="limitNumber()"
+      [formControl]="pointForm"
+    />
+  </div>
+  <button [id]="analyticId.btn" [disabled]="price <= 0" (click)="topup()">
+    {{ price | number }} {{ text.currency[currency] }}
+  </button>
+</div>

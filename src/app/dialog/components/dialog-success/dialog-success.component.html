@@ -1,0 +1,24 @@
+<div class="container-dialog">
+  <!-- ---------------step 1----------------- -->
+  <div *ngIf="step == 1" class="payment-qrcode-step1">
+    <div class="topic-payment">
+      <span class="material-icons" [mat-dialog-close]="false"> close </span>
+    </div>
+
+    <div class="img_comfirm_contain">
+      <mat-icon svgIcon="ok_circle"></mat-icon>
+      <!-- <img src="../../assets/img/Real_after_pay.svg" class="img_confirm" alt="icon" /> -->
+    </div>
+    <div class="main_text">{{text.successfulPayment}}</div>
+    <div style="visibility: hidden;" class="sub_text">
+      {{text.ownerPoint}}
+      <span> {{ data | number: "1.0":"en-US" }} </span> <span> PT </span>
+    </div>
+
+    <div class="total-price-payment" style="display: flex;justify-content: center;">
+      <button class="button-buycoins3" [mat-dialog-close]="false">
+        {{text.returnToText2Speech}}
+      </button>
+    </div>
+  </div>
+</div>

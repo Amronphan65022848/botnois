@@ -1,0 +1,69 @@
+<div class="profile-container">
+  <div class="group-profile">
+    <div class="profile">
+      <div class="user-group">
+        <img [src]="user?.image" alt="user image">
+        <div class="user">
+          <span class="username">
+            {{user?.username}}
+          </span>
+          <div class="uid" (click)="copyUID(copy._elementRef.nativeElement,done._elementRef.nativeElement)">
+            <span class="text">
+              {{ 'UID: ' + user?.uid}}
+            </span>
+            <mat-icon #copy [matTooltip]="text.copy" svgIcon="copy"></mat-icon>
+            <mat-icon id="done" #done [matTooltip]="text.done" svgIcon="done"></mat-icon>
+            <!-- <span #copy class="material-symbols-outlined" matTooltip="Copy UID">content_copy</span> -->
+            <!-- <span id="done" #done class="material-symbols-outlined">
+              done
+            </span> -->
+          </div>
+
+        </div>
+      </div>
+      <div class="contact">
+        <div class="title">
+          <span>{{text.title}}</span>
+        </div>
+        <div class="info">
+          <div class="group" *ngFor="let item of [1]">
+            <label for="email"> {{text.email + ' • '}} </label>
+            <span> {{user?.email}} </span>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="upgrade">
+        <div class="title">
+          <span>พื้นที่จัดเก็บคลังเสียง</span>
+        </div>
+        <mat-progress-bar
+          mode="determinate"
+          [value]="50">
+        </mat-progress-bar>
+
+      </div>
+      <div class="point">
+
+      </div> -->
+    </div>
+  </div>
+
+  <div class="speaker">
+    <div class="header">
+      <button
+        (click)="toggleSpeakerPage(toggleSpeaker)"
+        [ngClass]="{'selected': toggleSpeaker === i}"
+        *ngFor="let item of text.speaker.header; let i = index;">
+        <mat-icon [svgIcon]="item"></mat-icon>
+        <span> {{text.speaker.header_text[i]}} </span>
+      </button>
+
+    </div>
+    <div class="content">
+      <div class="no-speaker">
+        <span>{{text.speaker.noSpeaker}}</span>
+      </div>
+    </div>
+  </div>
+
+</div>

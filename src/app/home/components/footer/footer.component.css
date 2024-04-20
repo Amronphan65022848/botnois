@@ -1,0 +1,26 @@
+.footer {
+  background: linear-gradient(91.04deg, #222166 5.33%, #812448 90.37%);
+  padding: 8px 6%;
+
+  font-family: Prompt;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 24px;
+  display: flex;
+  justify-content: space-between;
+
+  /* identical to box height, or 200% */
+  letter-spacing: 0.75px;
+  color: #ffffff;
+
+  display: flex;
+  gap: 3vw;
+  white-space: nowrap;
+}
+
+.group {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}

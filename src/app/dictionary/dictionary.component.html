@@ -1,0 +1,694 @@
+
+<div class="onSite">
+  <div class="bg-word-store" style="height: 100%">
+    <div class="container-word-stole">
+      <!-- ------------------topic------------------- -->
+      <div class="topic-word-stole">
+        <div class="text-topic-word">{{text.topic_word}}</div>
+        <div class="topic-word-stole-right">
+          <div >
+            <div
+              mat-flat-button
+              class="edit-button-word"
+              (click)="addWrongword()"
+              style="cursor: pointer; text-align:center; padding-left: 2%"
+            >
+              <img
+                src="../../assets/img/addEdit.png"
+                style="margin-right: 5px; margin-bottom: 5px; "
+              /> <span>&nbsp; {{text.addWrongWord}}</span>
+            </div>
+          </div>
+
+          <div class="text_search">
+            <mat-form-field appearance="outline"  >
+              <input
+                [(ngModel)]="textSearch"
+                (keyup)="search($event)"
+                autocomplete="off"
+                class="search_engine_onsite"
+                matInput
+                placeholder={{searching}}
+                (keydown)="detectkey($event,data)"
+              />
+              <mat-icon matSuffix *ngIf="!textSearch">search</mat-icon>
+              <mat-icon
+                (click)="clearSearch()"
+                mat-icon-button
+                matSuffix
+                *ngIf="textSearch"
+                >close</mat-icon
+              >
+            </mat-form-field>
+          </div>
+          <div>
+            <div>
+              <div
+                mat-icon-button
+                class="button-trash"
+                (click)="openSelectState()"
+                *ngIf="firstClick == false"
+                [matTooltip]="text.remove"
+                matTooltipClass="mat-tooltip-trash"
+                [matTooltipShowDelay]="showDelay.value"
+                [matTooltipPosition]="position.value"
+              >
+                <img
+                  src="../../assets/img/new_trash_icon_1.svg"
+                  width="38px"
+                  height="38px"
+                  style="margin-left: 10px;cursor: pointer;"
+                />
+              </div>
+
+              <div
+                mat-icon-button
+                class="button-trash"
+                (click)="removeRow()"
+                *ngIf="firstClick == true"
+                [matTooltip]="text.remove"
+                matTooltipClass="mat-tooltip-trash"
+                [matTooltipShowDelay]="showDelay.value"
+                [matTooltipPosition]="position.value"
+              >
+                <img
+                  src="../../assets/img/new_trash_icon_1.svg"
+                  width="38px"
+                  height="38px"
+                  style="margin-left: 10px;cursor:pointer"
+                />
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="
+          border: 1px solid #01bffb;
+          border-radius: 16px;
+          padding: 5px;
+          background-color: white;
+        "
+      >
+
+          <table
+            mat-table
+            [dataSource]="dataSource"
+            class="table-topic-word-store"
+            style="width: 100%"
+          >
+
+            <ng-container matColumnDef="select">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                class="bdtop-bot-left"
+                style="width: 60px"
+              >
+              <mat-checkbox
+              *ngIf="selectState && hasValue"
+              [checked] = "checkAll()"
+              (change)="masterToggle($event)"
+              style="text-align: center;
+              margin-left: auto;
+              margin-right: auto;
+              display: flex;
+              justify-content: center;"
+
+              >
+              </mat-checkbox>
+            </th>
+              <td
+                mat-cell
+                *matCellDef="let data; let i = index"
+                style="text-align: center"
+              >
+                <mat-checkbox
+                  (change)="checked(data._id)"
+                  [checked]="data.selected"
+                  *ngIf="selectState"
+                  style="text-align: center;
+                  margin-left: auto;
+                  margin-right: auto;
+                  display: flex;
+                  justify-content: center;"
+                >
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <!-- ------------date-time--------------- -->
+            <ng-container matColumnDef="date_time">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                style="
+                  text-align: center;
+                  font-size: 14px;
+                  color: black;
+                  line-height: 24px;
+                "
+              >
+                {{text.dateTime[0]}}
+              </th>
+              <td mat-cell *matCellDef="let data" style="text-align: center">
+                {{ data.date_time | date: 'dd/MM/YYYY HH:mm' }} {{text.dateTime[1]}}
+              </td>
+            </ng-container>
+            <!-- ------------writing--------------- -->
+            <ng-container matColumnDef="before_text">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                style="
+                  text-align: center;
+                  font-size: 14px;
+                  color: black;
+                  width: 245px;
+                  line-height: 24px;
+                "
+              >
+                {{text.writing}}
+              </th>
+              <td mat-cell *matCellDef="let data; let i = index">
+                <div style="text-align: center">
+                  <span *ngIf="data.isEdit == false">
+                    {{ longtext(data.before_text) }}
+                  </span>
+                </div>
+
+                <div style="text-align: center">
+                  <input
+                    type="text"
+                    name="before"
+                    [attr.data-ref]="data.ref_id"
+                    [value]="data.before_text"
+                    *ngIf="data.isEdit == true"
+                    (keydown)="detectkey($event,data)"
+                  />
+                </div>
+              </td>
+            </ng-container>
+            <!-- ------------edited-reading--------------- -->
+            <ng-container matColumnDef="after_text">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                style="
+                  text-align: center;
+                  font-size: 14px;
+                  color: black;
+                  width: 245px;
+                  line-height: 24px;
+                "
+              >
+                {{text.edit_writing}}
+              </th>
+
+              <td mat-cell *matCellDef="let data; let i = index">
+                <div *ngIf="data.isEdit === false" style="text-align: center">
+                  {{ longtext(data.after_text) }}
+                </div>
+
+                <div *ngIf="data.isEdit === true" style="text-align: center">
+                  <input
+                    type="text"
+                    name="after"
+                    [attr.data-ref]="data.ref_id"
+                    *ngIf="data.isEdit == true"
+                    [value]="data.after_text"
+                    (keydown)="detectkey($event,data)"
+                  />
+                </div>
+              </td>
+            </ng-container>
+            <!-- ------------listen-to-sound--------------- ->- -->
+
+            <ng-container matColumnDef="listen-to-sound">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                style="
+                  text-align: center;
+                  font-size: 14px;
+                  color: black;
+                  line-height: 24px;
+                "
+              >
+                {{text.listening}}
+              </th>
+              <!-- let data == let data of data -->
+              <td mat-cell *matCellDef="let data; let i = index">
+
+
+                <div style="text-align: center">
+                  <button
+                    mat-flat-button
+                    class="listen-to-sound"
+                    (click)="playWord(data)"
+                  >
+
+                  <div  *ngIf="!data.isLoadSound"  >
+
+
+                    <img
+                      src="../../assets/img/playSound.png"
+                      style="margin-right: 5px; margin-bottom: 5px"
+                    />{{text.listening}}
+                  </div>
+                  <div  *ngIf="data.isLoadSound"  >
+                    <div class="lds-ellipsis" style="    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    position: absolute;
+                    left: 30px;
+
+                    top: -20px;"><div></div><div></div><div></div><div></div></div>
+                  </div>
+
+
+
+
+                  </button>
+                </div>
+
+
+              </td>
+            </ng-container>
+
+            <!-- -- ------------edit--------------- -->
+            <ng-container matColumnDef="edit">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                style="
+                  text-align: center;
+                  font-size: 14px;
+                  color: black;
+                  width: 150px;
+                  line-height: 24px;
+                "
+                class="bdtop-bot-right"
+              >
+                {{text.edit}}
+              </th>
+
+              <td mat-cell *matCellDef="let data; let i = index">
+                <div *ngIf="data.isEdit == false" style="text-align: center">
+                  <button
+                    mat-icon-button
+                    (click)="editRow(data._id)"
+                    matTooltip={{text.edit}}
+                    matTooltipClass="mat-tooltip-dropdown"
+                    [matTooltipShowDelay]="showDelay.value"
+                    [matTooltipPosition]="position.value"
+                  >
+                    <img src="../../assets/img/pencil_edit.svg" />
+                  </button>
+                </div>
+                <div *ngIf="data.isEdit == true" style="text-align: center">
+                  <div style="display: flex; justify-content: center">
+                    <span
+                      class="material-icons-outlined edit_btn"
+                      (click)="editDone(data)"
+                      matTooltip={{text.accept}}
+                      matTooltipClass="mat-tooltip-dropdown"
+                      [matTooltipShowDelay]="showDelay.value"
+                      [matTooltipPosition]="position.value"
+                    >
+                      done
+                    </span>
+                    <span
+                      class="material-icons-outlined edit_btn"
+                      style="margin-left: 5%"
+                      (click)="closeEdit(data._id)"
+                      matTooltip={{text.cancel}}
+                      matTooltipClass="mat-tooltip-dropdown"
+                      [matTooltipShowDelay]="showDelay.value"
+                      [matTooltipPosition]="position.value"
+                    >
+                      close
+                    </span>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumn"></tr>
+            <div>
+              <tr mat-row *matRowDef="let row; columns: displayedColumn"></tr>
+
+              <tr class="mat-row" *matNoDataRow>
+                <td style="text-align: center" class="mat-cell" colspan="9999">
+                  <span>{{text.err_redirect.not_found}}</span>
+                </td>
+              </tr>
+            </div>
+          </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="onMobile" style="width: 100%">
+  <div class="bg-word-store" style="height: 100%">
+    <div class="text-topic-word" style="padding: 4%;">
+      {{text.topic_word}}
+    </div>
+    <div class="container-word-stole">
+      <div class="topic-word-stole">
+        <div class="topic-word-stole-right" style="width: 100%">
+          <div>
+            <div
+              mat-flat-button
+              class="edit-button-word"
+              (click)="addWrongword()"
+            >
+              <img
+                src="../../assets/img/addEdit.png"
+                style="margin-bottom: 5px; font-size: 13px;margin-left: 0%;"
+              />{{text.addWrongWord}}
+            </div>
+          </div>
+          <div>
+            <mat-form-field appearance="outline"   class="search_input text_search">
+              <input
+
+                [(ngModel)]="textSearch"
+                (keyup)="search($event)"
+                autocomplete="off"
+                matInput
+                placeholder={{text.searchingWord}}
+                (keydown)="detectkey($event,data)"
+
+              />
+              <mat-icon matSuffix *ngIf="!textSearch">search</mat-icon>
+              <mat-icon
+                (click)="clearSearch()"
+                mat-icon-button
+                matSuffix
+                *ngIf="textSearch"
+                style="cursor: pointer"
+              >
+                <span style="cursor: pointer">close</span></mat-icon
+              >
+            </mat-form-field>
+          </div>
+          <div>
+
+
+            <div>
+              <button
+
+                class="button-trash"
+                focusable="false"
+                (click)="openSelectState()"
+                *ngIf="firstClick == false"
+                style="border:none;background: none;"
+              >
+                <img
+                  src="../../assets/img/new_trash_icon_1.svg"
+                  width="38px"
+                  height="38px"
+                />
+              </button>
+              <button
+                tabindex="-1"
+                focusable="false"
+                class="button-trash"
+                style="border: none; background:none;"
+                (click)="removeRow()"
+                *ngIf="firstClick == true"
+              >
+                <img
+                  src="../../assets/img/new_trash_icon_1.svg"
+                  width="38px"
+                  height="38px"
+                />
+              </button>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="
+          border: 1px solid #01bffb;
+          border-radius: 16px;
+          padding: 5px;
+          background-color: white;
+        "
+      >
+        <form action=" " [formGroup]="textForm">
+          <table
+            mat-table
+            [dataSource]="dataSource"
+            class="table-topic-word-store"
+            style="width: 100%"
+          >
+            <ng-container matColumnDef="select" style="text-align: center">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+              >
+              <mat-checkbox
+              *ngIf="selectState && hasValue"
+              (change)="masterToggle($event)"
+              style="text-align: center;
+              margin-left: auto;
+              margin-right: auto;
+              display: flex;
+              justify-content: center;"
+
+              >
+              </mat-checkbox></th>
+              <td mat-cell *matCellDef="let data; let i = index">
+                <mat-checkbox
+                  (change)="checked(data._id)"
+                  [checked]="data.selected"
+
+                  *ngIf="selectState"
+                  style="text-align: center;
+              margin-left: auto;
+              margin-right: auto;
+              display: flex;
+              justify-content: center;"
+                >
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="date_time">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+
+              >
+                {{text.dateTime[0]}}
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let data"
+              >
+               <div>{{ data.date_time | date: 'dd/MM/YYYY' }}</div>
+              <div>{{ data.date_time | date: 'HH:mm' }} {{text.dateTime[1]}}</div>
+
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="before_text">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+              >
+                {{text.writing}}
+              </th>
+
+              <div formArrayName="before">
+                <td mat-cell *matCellDef="let data; let i = index">
+                  <div style="text-align: center">
+                    <span
+                      *ngIf="data.isEdit == false"
+
+                    >
+                      {{ longtext(data.before_text) }}
+                    </span>
+                  </div>
+                  <div >
+                    <input
+                      type="text"
+                      [attr.data-ref]="data.ref_id"
+                      [value]="data.before_text"
+                      *ngIf="data.isEdit == true"
+                      (keydown)="detectkey($event,data)"
+                    />
+                  </div>
+                </td>
+              </div>
+            </ng-container>
+
+            <ng-container matColumnDef="after_text">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+
+              >
+                {{text.reading}}
+              </th>
+              <div formArrayName="after">
+                <td mat-cell *matCellDef="let data; let i = index">
+                  <div
+                    *ngIf="data.isEdit === false"
+
+                  >
+                    {{ longtext(data.after_text) }}
+                  </div>
+
+                  <div *ngIf="data.isEdit === true" >
+                    <input
+                      type="text"
+                      [attr.data-ref]="data.ref_id"
+                      [value]="data.after_text"
+                      (keydown)="detectkey($event,data)"
+                    />
+                  </div>
+                </td>
+              </div>
+            </ng-container>
+
+            <ng-container matColumnDef="listen-to-sound">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+
+              >
+                {{text.listening}}
+              </th>
+              <td
+                mat-cell
+                *matCellDef="let data; let i = index"
+                style="text-align: center"
+              >
+                <div style="text-align: center">
+                  <button
+                    mat-flat-button
+                    class="listen-to-sound"
+                    (click)="playWord(data)"
+                    style="width: 33px"
+                  >
+
+
+
+                    <div  *ngIf="!data.isLoadSound"  >
+
+
+                      <img
+                      src="../../assets/img/playSound.png"
+                      style="text-align: center; width: 15px"
+                    /><span style="padding-left: 4%;vertical-align: middle;">{{text.liste}}</span>
+                    </div>
+                    <div  *ngIf="data.isLoadSound"  >
+                      <div class="lds-ellipsis" style="    display: flex;
+                      justify-content: center;
+                      align-items: center;
+
+                      position: absolute;
+                      left: -2px;
+
+                      top: -17px;"><div></div><div></div><div></div><div></div></div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+              >
+                {{text.edit}}
+              </th>
+
+              <td
+                mat-cell
+                *matCellDef="let data; let i = index"
+                style="text-align: center"
+              >
+                <div>
+                  <button
+                    mat-icon-button
+                    (click)="editRowMobile(data)"
+                    style="text-align: center"
+                  >
+                    <img src="../../assets/img/pencil_edit.svg" />
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumn"></tr>
+            <div>
+              <tr mat-row *matRowDef="let row; columns: displayedColumn"></tr>
+            </div>
+            <tr class="mat-row" *matNoDataRow>
+              <td style="text-align: center" class="mat-cell" colspan="9999">
+                <span>{{text.err_redirect.not_found}}</span>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+isEdit = {{isEdit}}
+<button (click)="onEdit()" [disabled]="isEdit">edit</button>
+<div [formGroup]="textForm">
+    <div *ngFor="let text of showText">
+        <div *ngIf="!isEdit">
+            <input type="text" readonly [value]="text.before_text">
+            <input type="text" readonly [value]="text.after_text">
+            <br>
+        </div>
+    </div>
+
+    <div *ngIf="isEdit" style="display: flex;">
+        <div formArrayName="before">
+            <div *ngFor="let item of before['controls']; let beforeIndex = index;">
+                <div [formGroupName]="beforeIndex">
+                    <input type="text" formControlName="text">
+                </div>
+            </div>
+        </div>
+        <div formArrayName="after">
+            <div *ngFor="let item of after['controls']; let afterIndex = index;">
+                <div [formGroupName]="afterIndex">
+                    <input type="text" formControlName="text">
+                </div>
+            </div>
+        </div>
+        <button (click)="onSubmit()">submit</button>
+        <button (click)="onCancel()">cancel</button>
+    </div>
+</div> -->

@@ -1,0 +1,53 @@
+.news-form-container{
+  .title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 14px 20px;
+
+    span {
+      color: #5B6370;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    mat-checkbox {
+      margin: 9px;
+      font-family: 'Prompt';
+      color: #5B6370;
+      font-size: 13px;
+    }
+    .material-symbols-outlined{
+      font-family: 'Material Symbols Outlined' !important;
+      cursor: pointer;
+    }
+  }
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    button {
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #01BFFB;
+      color: white;
+      border-color: transparent;
+      font-family: "Sarabun";
+    }
+  }
+  .content{
+    img{
+      width: 100%;
+      cursor: pointer;
+    }
+    mat-checkbox {
+      margin: 9px;
+      font-family: 'Prompt';
+      color: #5B6370;
+      font-size: 13px;
+    }
+  }
+  span{
+    font-family: 'Sarabun';
+  }
+}

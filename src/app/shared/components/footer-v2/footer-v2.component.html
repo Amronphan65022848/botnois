@@ -1,0 +1,104 @@
+<footer class="footer-container" [ngClass]="{ dark: isPremiumPage }">
+  <div class="footer">
+    <div class="navigation">
+      <h3 class="header" [ngClass]="{ greenHeader: isPremiumPage }">
+        Botnoi Voice
+      </h3>
+      <p
+        class="text"
+        [ngClass]="{ whiteText: isPremiumPage }"
+        (click)="navigate('tts', 'conversation')"
+      >
+        {{ text.studio }}
+      </p>
+      <p
+        class="text"
+        [ngClass]="{ whiteText: isPremiumPage }"
+        (click)="navigate('marketplace', 'selectvoice')"
+      >
+        {{ text.voice }}
+      </p>
+      <p
+        class="text"
+        [ngClass]="{ whiteText: isPremiumPage }"
+        (click)="navigate('tts', 'api-developer')"
+      >
+        {{ text.dev }}
+      </p>
+      <p
+        class="text"
+        [ngClass]="{ whiteText: isPremiumPage }"
+        (click)="navigate('payment')"
+      >
+        {{ text.price }}
+      </p>
+      <p
+        class="text"
+        [ngClass]="{ whiteText: isPremiumPage }"
+        (click)="toDocs()"
+      >
+        {{ text.docs }}
+      </p>
+      <p
+        class="text"
+        [ngClass]="{ whiteText: isPremiumPage }"
+        (click)="toReport()"
+      >
+        {{ text.report }}
+      </p>
+    </div>
+    <div class="contact">
+      <h3 class="header" [ngClass]="{ greenHeader: isPremiumPage }">
+        {{ text.contact }}
+      </h3>
+      <p class="text default-cursor" [ngClass]="{ whiteText: isPremiumPage }">
+        {{ text.email }}
+      </p>
+      <p class="text default-cursor" [ngClass]="{ whiteText: isPremiumPage }">
+        {{ text.phone }}
+      </p>
+      <p
+        class="text"
+        [ngClass]="{ whiteText: isPremiumPage }"
+        (click)="toWeb()"
+      >
+        {{ text.web }}
+      </p>
+    </div>
+    <div class="social">
+      <h3 class="header" [ngClass]="{ greenHeader: isPremiumPage }">
+        {{ text.social }}
+      </h3>
+      <div class="icons">
+        <mat-icon
+          svgIcon="line_dynamic"
+          [style.color]="isPremiumPage ? '#fff' : '#212121'"
+          (click)="toLine()"
+        ></mat-icon>
+        <mat-icon
+          svgIcon="facebook_dynamic"
+          [style.color]="isPremiumPage ? '#fff' : '#212121'"
+          (click)="toFacebook()"
+        ></mat-icon>
+        <mat-icon
+          svgIcon="youtube_dynamic"
+          [style.color]="isPremiumPage ? '#fff' : '#212121'"
+          (click)="toYoutube()"
+        ></mat-icon>
+        <mat-icon
+          svgIcon="tiktok_dynamic"
+          [style.color]="isPremiumPage ? '#fff' : '#212121'"
+          (click)="toTiktok()"
+        ></mat-icon>
+      </div>
+      <p
+        class="text"
+        [ngClass]="{ whiteText: isPremiumPage }"
+        (click)="scrollToTop()"
+      >
+        {{ text.toTop }}
+      </p>
+    </div>
+  </div>
+</footer>
+<footer class="footer-banner">© 2023 Botnoi Group</footer>

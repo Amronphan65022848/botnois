@@ -1,0 +1,202 @@
+<app-floating-message [hidden]="!messageShow" [alertMessage]="floatingMessage"
+  [sizeBox]="sizeBox"></app-floating-message>
+<div class="main">
+  <div class="header">
+    <span class="header-text">{{ studio }}</span>
+    <div class="storage">
+      <div class="storage-left-form">
+        <span class="storage-text">{{ storageText }} :</span>
+        <span class="not-display">Not display</span>
+      </div>
+      <div class="storage-right-form">
+        <div class="storage-bar">
+          <mat-progress-bar #progressBar class="bar" [value]="remainingStorage" mode="determinate"></mat-progress-bar>
+        </div>
+        <span class="storage-used-text">{{ usede }} {{ currentSize }} {{ from }} {{ storageMax }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="table-form">
+      <div class="table-head">
+        <span>{{ allsoundFile }}</span>
+      </div>
+      <div class="sub-table">
+        <div class="sub-table-first">
+          <!-- <button class="btn-upload"(click)="audio_input.click()">
+                        <input type="file" #audio_input accept=".wav,.mp3" hidden (change)="onFileChange($event)"/>
+                        <img src="../../assets/audio_storage/upload.svg" alt="upload">
+                        <span>{{upload}}</span>
+                    </button> -->
+          <div class="search-form">
+            <input type="text" class="search" placeholder="{{ searchSound }}" [formControl]="audioSearch" />
+            <img src="../../assets/audio_storage/search.svg" alt="search" />
+          </div>
+        </div>
+
+        <div class="pagination">
+          <button class="btn-left" (click)="previousPage()">
+            <img src="../../assets/audio_storage/triangle-right.svg" alt="triangle-right" />
+          </button>
+          <span class="page"> {{ page_ }} {{ page }} </span>
+          <button class="btn-right" (click)="nextPage()">
+            <img src="../../assets/audio_storage/triangle-right.svg" alt="triangle-right" />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="line"></div>
+    <div class="speakerbox">
+      <div class="cell-form" *ngFor="
+          let data of audioData
+            | audioSearch : audioData : audioSearch.value : 'text'
+            | pagination : page : 10;
+          let i = index
+        ">
+        <mat-checkbox class="checkbox" [value]="data" (change)="checkCheckBoxvalue($event)"
+          [(ngModel)]="data.selected"></mat-checkbox>
+        <div class="music-play">
+          <button class="btn-logo" #audio_image (click)="clickImageToPlayAudio(audio_image, data)">
+            <button class="btn-play-pause">
+              <img [src]="
+                  '../../assets/audio_storage/' +
+                  (audio_image == audioLogoHtml && isAudioPlay
+                    ? 'pause'
+                    : 'play') +
+                  '.svg'
+                " alt="playandpause" />
+            </button>
+          </button>
+        </div>
+        <div class="music-detail-head">
+          <div class="detail">
+            <span [title]="data.text + '.' + data.type_media" class="text-title">
+              {{ data.text + "." + data.type_media }}
+            </span>
+            <a class="full_word" *ngIf="data.text?.length > 17" (click)="openfulltext(i)">
+              {{ text_ }}
+            </a>
+          </div>
+          <div class="text-size">{{ data.size }}</div>
+          <div class="relativescroll">
+            <div class="fulltext" [ngStyle]="
+                nowfulltextIndex == i
+                  ? { display: 'flex' }
+                  : { display: 'none' }
+              ">
+              <div class="text">
+                <span>{{ data.text }}</span>
+              </div>
+              <div class="fulltexttool">
+                <a class="closefulltext" (click)="closefulltext()">ปิดหน้าต่างนี้</a>
+                <button class="copyfulltext" (click)="copyfulltext(data.text)">
+                  คัดลอกข้อความ
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="music-detail-body">
+          <span>{{ data.eng_name | titlecase }}</span>
+          <span>{{ data.duration }}</span>
+          <span>{{ data.datetime | date : "dd/MM/yyyy HH:mm" }}</span>
+        </div>
+        <div class="button-set">
+          <div class="tools" *ngFor="
+              let imgNames of [
+                'copy_text',
+                'download',
+                'copy_link',
+                'trash'
+              ];
+              let i = index
+            ">
+            <button [disabled]="
+                data.type_voice &&
+                imgNames != 'copy_text' &&
+                imgNames != 'trash'
+              " (click)="toolControl(imgNames, data)" matTooltip="{{ tooltips[i] }}"
+              matTooltipClass="mat-tooltip-audio-storage" [matTooltipShowDelay]="showDelay.value"
+              [matTooltipPosition]="position.value">
+              <img [src]="'../../assets/audio_storage/' + imgNames + '.svg'" alt="imgNames" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="action-before-checkbox">
+      <div class="checkbox-tab">
+        <button class="btn-select-all" (click)="checkAll()">
+          <span>
+            {{ seletedPage + page + ")" }}
+          </span>
+        </button>
+        <button class="btn-clear-all" [disabled]="arrayOfCheck.length <= 0" (click)="clearAll()">
+          <span>
+            {{ deleteSelected }}
+          </span>
+        </button>
+      </div>
+
+      <div class="select-tab">
+        <button matTooltip="{{ downloadSoundfile }}" class="btn-icon" [disabled]="arrayOfCheck.length <= 0"
+          (click)="onDownload()">
+          <img class="download" src="../../assets/audio_storage/download.svg" alt="download" />
+          <span class="mobile">
+            {{ download_ }}
+          </span>
+        </button>
+        <button matTooltip="{{ deleteSoundfile }}" class="btn-icon" [disabled]="arrayOfCheck.length <= 0"
+          (click)="onRemove()">
+          <img class="trash" src="../../assets/audio_storage/trash.svg" alt="trash" />
+          <span class="mobile">
+            {{ delete_ }}
+          </span>
+        </button>
+        <button [matTooltip]="text.removeAll" class="btn-delete-all" [disabled]="audioData.length <= 0"
+          (click)="onRemoveAll()">
+          <img src="../../assets/audio_storage/delete_all.svg" alt="delete_all" />
+          <span>
+            {{ text.removeAll }}
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="footer">
+    <ngx-audio-player
+        class="audio-player"
+        [playlist]="msaapPlaylist"
+        [displayTitle]="true"
+        [autoPlay]="msaapAutoPlay"
+        [displayPlaylist]="false"
+        [displayVolumeControls]="true"
+        [displayRepeatControls]="true"
+        [disablePositionSlider]="true"
+        [displayArtist]="false"
+        [displayDuration]="true"
+        muted="muted"
+        (trackEnded)="onEnded($event)">
+    </ngx-audio-player>
+</div> -->
+
+<!--
+  <div class="footer">
+    <div class="audio-player">
+        <div class="controls">
+            <img src="../../assets/audio_storage/previous.svg" alt="previous">
+            <img src="../../assets/audio_storage/play.svg" alt="play">
+            <img src="../../assets/audio_storage/next.svg" alt="next">
+            <img src="../../assets/audio_storage/repeat.svg" alt="repeat">
+        </div>
+        <div class="audio">
+            <audio controls>
+                <source src="https://www.youtube.com/watch?v=n9IdOuKq404&ab_channel=ZaadOatStudio">
+            </audio>
+        </div>
+    </div>
+  </div>
+-->

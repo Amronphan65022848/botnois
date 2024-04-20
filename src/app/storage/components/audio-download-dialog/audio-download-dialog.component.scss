@@ -1,0 +1,73 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 9%;
+    font-family: "Sarabun";
+    position: relative;
+
+    align-items: center;
+    .btn-close{
+        position: absolute;
+        right: 5%;
+        top: 5%;
+    }
+    .header{
+        
+    }
+    .body{
+        h1{
+            font-family: 'Sarabun';
+            font-size: min(5vw,18px);
+            font-weight: bold;
+        }
+        // display: flex;
+        // width: 100%;
+        // align-items: center;
+        // gap: 12px;
+        // span{
+        //     white-space: nowrap;
+        //     font-size: 14px;
+        //     font-weight: 400;
+        //     color: black;
+        // }
+        // .select-file-type{
+        //     background: #FFFFFF;
+        //     border: 1px solid #C4CFDB;
+        //     box-sizing: border-box;
+        //     border-radius: 10px;
+        //     padding: 9px 15px;
+        // }
+
+    }
+    .footer{
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        button{
+            outline: none;
+            background: #FFFFFF;
+            border: 1px solid #01BFFB;
+            box-sizing: border-box;
+            border-radius: 10px;
+            color: #01BFFB;
+            height: 43px;
+            width: 96px;
+
+        }
+        .btn-confirm{
+            color: white;
+            background-color: #01BFFB;
+            border: none;
+        }
+        .btn-confirm:disabled{
+            background-color: gray;
+        }
+        
+    }
+}
+
+button, .btn-close{
+    cursor: pointer;
+}

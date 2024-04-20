@@ -1,0 +1,109 @@
+<div class="container-dialog-download" style="overflow-x: clip">
+  <div class="step_1" *ngIf="step == 1">
+    <div class="container-dialog">
+      <div class="container-dialog-download1">
+        <div class="close-dialog-download">
+          <span class="material-icons" (click)="close_dialog(false)">
+            close
+          </span>
+        </div>
+        <div class="main_content">{{ text.topic }}</div>
+
+        <div class="sub_content_type">
+          <div class="namsakul" id="panel_card">
+            <span class="type_file">{{ text.fileExtension }} :</span>
+            <mat-select
+              class="select"
+              [(ngModel)]="fileType"
+              (selectionChange)="onChangefileType()"
+            >
+              <mat-option *ngFor="let type of formatType" [value]="type">
+                {{ type }}
+              </mat-option>
+            </mat-select>
+          </div>
+          <div *ngIf="canSaveFile" class="namsakul" style="margin-top: 16px">
+            <div>
+              <span>{{ text.storage.text }}&nbsp;:</span>
+              <!-- <img
+                [matTooltip]="text.redirect.turnOnbtSaveFile"
+                src="../../../assets/icons/info-circle-blue.svg"
+                alt="blue-info"
+              > -->
+            </div>
+            <mat-select
+              class="select"
+              [(ngModel)]="isSaveFile"
+              (selectionChange)="onChangeSave($event)"
+            >
+              <mat-option [value]="false">No</mat-option>
+              <!-- <mat-option [value]="true">Yes</mat-option> -->
+            </mat-select>
+
+            <!-- <mat-slide-toggle
+              matTooltipClass="tooltip-style"
+              [matTooltip]="text.redirect.turnOnbtSaveFile"
+              color="primary"
+              [(ngModel)]="isSaveFile"
+            >
+            </mat-slide-toggle> -->
+          </div>
+          <!-- <div *ngIf="downloadState == 'all'" class="namsakul" style="margin-top: 16px;">
+            <div>
+              <span>Merge files &nbsp;</span>
+              <img
+                src="../../../assets/icons/info-circle-blue.svg"
+                alt="blue-info"
+              >
+            </div>
+            <mat-slide-toggle
+              matTooltipClass="tooltip-style"
+              [matTooltip]="text.redirect.turnOnbtDownloadAll"
+              color="primary"
+              [(ngModel)]="isSlideToggle"
+            >
+            </mat-slide-toggle>
+          </div> -->
+        </div>
+        <hr class="hr-namsakul" style="color: #ddd" />
+
+        <div class="main_content" id="main_2_text">
+          {{ text.confirmDownload }}
+        </div>
+        <div class="sub_content">
+          <span>{{ text.paidPoint }} :</span>
+          <span
+            [class.cross-out]="subscription === 'Unlimited'"
+            class="value_point"
+            >{{ this.value }} PT</span
+          >
+        </div>
+        <!-- <div class="pay-baht">
+          <div class="total-baht">
+            <span>{{text.price}} :</span>
+            <span class="value_point">{{ this.value }} THB</span>
+          </div>
+        </div> -->
+
+        <div class="info">
+          <img
+            src="../../../assets/icons/info-circle-blue.svg"
+            alt="blue-info"
+          />
+          <span>{{ text.note[0] }} : {{ text.note[1] }}</span>
+        </div>
+      </div>
+      <div class="grid-container">
+        <button class="button-buycoins-cancel" (click)="close_dialog(false)">
+          {{ text.cancel }}
+        </button>
+        <button
+          class="button-buycoins-confirm"
+          (click)="close_dialog(fileType)"
+        >
+          {{ text.confirm }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

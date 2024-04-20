@@ -1,0 +1,161 @@
+.partner-container {
+  width: 100%;
+  display: flex;
+  padding: 20px 0px;
+  flex-direction: column;
+  align-items: center;
+  font-family: Prompt !important;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+
+    .header {
+      margin: 0px;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 54px;
+      text-align: center;
+      padding: 0px 16px;
+    }
+
+    .counting-card {
+      display: flex;
+      flex-direction: row;
+      padding: 0px 16px;
+      gap: 20px;
+
+      .cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 4px 12px;
+        background:
+          linear-gradient(white, white) padding-box,
+          linear-gradient(
+              50deg,
+              rgba(200, 0, 255, 0.8) -39.94%,
+              rgb(0, 246, 255, 0.8) 133.17%
+            )
+            border-box;
+        border-radius: 12px;
+        border: 3px solid transparent;
+
+        .card-header {
+          font-size: 14px;
+          line-height: 28px !important;
+          font-weight: 500;
+        }
+
+        .user-details,
+        .generate-details {
+          font-size: 24px;
+          line-height: 40px;
+          font-weight: 700;
+          text-align: center;
+          background: linear-gradient(90deg, #b2a1fa 0%, #01bffb 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          text-fill-color: transparent;
+        }
+      }
+    }
+
+    .partner-section {
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      // overflow: hidden;
+
+      .partner-header {
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 42px;
+        text-align: center;
+        padding: 0px 16px;
+        background: linear-gradient(62.51deg, #c800ff -39.94%, #00f6ff 133.17%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+      }
+
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(-100% - 32px));
+        }
+      }
+
+      .partner-logos {
+        // height: 48px;
+        // overflow: hidden;
+        position: relative;
+        // width: 99vw;
+        display: flex;
+
+        //
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 32px;
+
+        .slide {
+          height: 48px;
+
+          img {
+            height: 100%;
+          }
+        }
+
+        // .slide-track {
+        //   animation: scroll 20s linear infinite;
+        //   display: flex;
+        //   width: max-content;
+        //   gap: 32px;
+        //   margin-right: 32px;
+        // }
+
+        // .slide {
+        //   display: flex;
+        //   align-items: center;
+        //   justify-content: center;
+        //   height: 48px;
+        //   width: 165px;
+        // }
+      }
+    }
+
+    .become-partner {
+      .partnet-btn {
+        padding: 4px 16px;
+        font-size: 16px;
+        line-height: 36px;
+        font-weight: 600;
+        color: #fff;
+        background: linear-gradient(62.51deg, #c800ff -39.94%, #00f6ff 133.17%);
+        border-radius: 8px;
+        &:hover {
+          background: linear-gradient(
+            60.97deg,
+            rgba(200, 0, 255, 0.8) -41.07%,
+            rgba(0, 246, 255, 0.8) 127.94%
+          );
+        }
+      }
+    }
+  }
+
+  @media (max-width: 490px) {
+    .counting-card {
+      flex-direction: column !important;
+    }
+  }
+}

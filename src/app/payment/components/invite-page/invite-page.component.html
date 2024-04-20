@@ -1,0 +1,109 @@
+<div class="invitePage-section" style="border-radius: 10px 10px 0px 0px">
+  <div class="box-section-invite">
+    <div class="main-text-invite">
+      <img src="../../assets/img/wallet_star.svg" alt="" class="img_star" />
+      {{ main_text_invite[0] }}
+      {{ _wallet.convertPriceByCurrency(main_text_invite[1]) }}
+      {{ main_text_invite[0] }}
+    </div>
+    <div class="invite-information-contain">
+      <div class="invite-information">
+        {{ invite_one[0] }}<span id="bold-font">{{ invite_one[1] }}</span>
+        {{ invite_one[2] }}
+      </div>
+      <div
+        class="invite-information"
+        style="border-top: 1px solid rgba(117, 219, 202, 1)"
+      >
+        {{ invite_ten[0] }} <span id="bold-font">{{ invite_ten[1] }}</span>
+        {{ invite_ten[2] }}
+      </div>
+      <div
+        class="invite-information"
+        style="border-top: 1px solid rgba(117, 219, 202, 1)"
+      >
+        {{ invite_100[0] }} <span id="bold-font">{{ invite_100[1] }}</span>
+        {{ invite_100[2] }}
+      </div>
+      <!-- <div class="invite-information" style="border-top: 1px solid rgba(117, 219, 202, 1);">
+        เชิญเพื่อน 100 คน <span id="bold-font">รับฟรี</span> 250,000 พอยท์
+      </div> -->
+    </div>
+
+    <div class="sub-text-invite">
+      {{ sub_text_invite }}
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<div class="grid-contain">
+  <div class="grid-left">
+    <div class="link-invite">
+      <div class="link-text-invite">
+        <div class="word-link">
+          {{ link_invite }}
+          <div class="link-input">
+            <input readonly type="text" [(ngModel)]="qrLink" id="input_text" />
+            <!-- <div class="warning" *ngIf="countInvite >= 10">
+                  <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_8407_28161)">
+                  <path d="M8.00586 16.5926C3.59486 16.5926 0.00585938 12.8707 0.00585938 8.2963C0.00585938 3.72193 3.59486 0 8.00586 0C12.4169 0 16.0059 3.72193 16.0059 8.2963C16.0059 12.8707 12.4169 16.5926 8.00586 16.5926ZM8.00586 2.07407C4.69686 2.07407 2.00586 4.86474 2.00586 8.2963C2.00586 11.7279 4.69686 14.5185 8.00586 14.5185C11.3149 14.5185 14.0059 11.7279 14.0059 8.2963C14.0059 4.86474 11.3149 2.07407 8.00586 2.07407V2.07407Z" fill="#F87979"/>
+                  <path d="M7.99283 6.32905C8.61083 6.32905 9.13083 5.78979 9.13083 5.1489C9.13083 4.50801 8.61083 3.96875 7.99283 3.96875C7.39783 3.96875 6.85483 4.50801 6.88183 5.1209C6.85583 5.79705 7.37183 6.32801 7.99283 6.32801V6.32905Z" fill="#F87979"/>
+                  <path d="M8.21861 12.6008C8.64461 12.4753 8.91161 12.074 8.91161 11.5856C8.88861 11.2921 8.87361 10.9955 8.85161 10.703C8.79161 9.58616 8.73061 8.48793 8.66661 7.37105C8.64361 6.99253 8.36161 6.71875 7.99661 6.71875C7.63161 6.71875 7.34461 7.01119 7.32661 7.3949C7.32661 7.62512 7.32661 7.83668 7.30361 8.07105C7.26561 8.78971 7.22061 9.50423 7.18261 10.2229C7.15961 10.6875 7.12261 11.1521 7.09961 11.6177C7.09961 11.7857 7.12261 11.934 7.18261 12.0823C7.36361 12.4961 7.79261 12.7076 8.21861 12.6019V12.6008Z" fill="#F87979"/>
+                  </g>
+                  <defs>
+                  <clipPath id="clip0_8407_28161">
+                  <rect width="16" height="16.5926" fill="white"/>
+                  </clipPath>
+                  </defs>
+                  </svg>
+                  <span>{{noted[0]}} : {{noted[1]}}</span>
+              </div> -->
+          </div>
+        </div>
+        <button
+          class="btn_link"
+          (click)="copytoClipboard()"
+          style="user-select: none"
+        >
+          {{ copy_link }}
+        </button>
+      </div>
+    </div>
+    <div>
+      <div class="link-invite grid-middle-top" style="margin-top: 1%">
+        <div class="link-text-invite">
+          <div class="word-number-link">
+            {{ number_link[0] }} : {{ countInvite }} {{ number_link[1] }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid-right">
+    <div class="grid-middle-bottom">
+      <div class="word-number-link">
+        {{ number_link[0] }} : {{ countInvite }} {{ number_link[1] }}
+      </div>
+    </div>
+
+    <div class="qr_container">
+      <div class="qr_maintext">{{ qr_maintext }}</div>
+      <hr />
+      <div class="qr_img_invite" *ngIf="qrLink?.length > 0">
+        <qrcode
+          *ngIf="qrLink?.length > 0"
+          [allowEmptyString]="true"
+          elementType="img"
+          [qrdata]="qrLink"
+          [errorCorrectionLevel]="'M'"
+        >
+        </qrcode>
+      </div>
+      <!--
+        <div class="qr_copy_btn" (click)="copy_image_qr()">คัดลอกคิวอาร์โค้ด</div> -->
+    </div>
+  </div>
+</div>

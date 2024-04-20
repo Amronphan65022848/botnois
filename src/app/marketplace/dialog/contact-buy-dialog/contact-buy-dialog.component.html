@@ -1,0 +1,60 @@
+<div class="modal-container">
+  <div class="close">
+    <mat-icon svgIcon="cross" class="close" (click)="onClose()"></mat-icon>
+  </div>
+  <div class="header">{{ text.header }}</div>
+  <div class="sub_header">{{ text.sub_header }}</div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="content">
+      <input
+        type="text"
+        class="name"
+        placeholder="{{ text.name }}"
+        formControlName="name"
+      />
+      <input
+        type="email"
+        class="email"
+        placeholder="{{ text.email }}"
+        formControlName="email"
+      />
+      <input
+        type="number"
+        class="phone"
+        placeholder="{{ text.phone }}"
+        formControlName="phone"
+      />
+      <input
+        type="text"
+        class="line"
+        placeholder="{{ text.line }}"
+        formControlName="line"
+      />
+      <div class="select">
+        <mat-label>{{ text.selectedVoiceLabel }}</mat-label>
+        <mat-select #select formControlName="voiceName">
+          <mat-option
+            *ngFor="let premium of allPremium"
+            [value]="lang === 'TH' ? premium.thai_name : premium.eng_name"
+            >{{
+              lang === "TH" ? premium.thai_name : premium.eng_name
+            }}</mat-option
+          >
+        </mat-select>
+        <mat-icon
+          matSuffix
+          svgIcon="down"
+          (click)="this.select.open()"
+        ></mat-icon>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="cancel-btn" (click)="onClose()">
+        {{ text.btn_cancel }}
+      </button>
+      <button type="submit" class="submit-btn" [disabled]="!form.valid">
+        {{ text.btn_submit }}
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,67 @@
+<ngx-loading [show]="isLoading"></ngx-loading>
+<div class="workspace-container">
+  <div class="wrapper">
+    <div class="project">
+      <h1>{{ text.project }}</h1>
+      <div class="project-display">
+        <button class="create-new-project" (click)="onCreate()">
+          <img src="../../../assets/icons/v3/plus.svg" alt="new project" />
+          <div>{{ text.createProject }}</div>
+        </button>
+        <div
+          class="card-wrapper"
+          *ngFor="let project of projects; let i = index"
+        >
+          <div
+            class="dropdown"
+            appClickOutside
+            (clickOutside)="project.isEdit = false"
+          >
+            <button class="edit-btn" (click)="project.isEdit = !project.isEdit">
+              <img src="../../../assets/icons/v3/dots-vr.svg" alt="edit" />
+            </button>
+            <div class="edit-popup" *ngIf="project.isEdit">
+              <button (click)="onEditName(project, i)">
+                {{ text.changeName }}
+              </button>
+              <button
+                (click)="
+                  onDeleteDialog(project.workspace_id, i, 'normal');
+                  project.isEdit = false
+                "
+              >
+                {{ text.deleteProject }}
+              </button>
+            </div>
+          </div>
+          <div class="project-card">
+            <!-- <p class="tag" [ngClass]="{
+                'conver-color': project.type_workspace === 'conversation',
+                'book-color': project.type_workspace === 'book'
+              }">
+              {{ lang === "TH" ? "บทสนทนา" : "Conversation" }}
+            </p> -->
+            <img
+              class="project-cover"
+              [src]="project.picture"
+              alt="project cover"
+            />
+          </div>
+          <p
+            class="edit-project"
+            (click)="
+              onSelect(
+                project.workspace_id,
+                project.type_workspace,
+                project.name
+              )
+            "
+          ></p>
+          <div class="description">
+            <p class="project-name">{{ project.name }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

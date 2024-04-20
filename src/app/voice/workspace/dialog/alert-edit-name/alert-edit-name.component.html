@@ -1,0 +1,29 @@
+<div class="dialog-container">
+  <mat-icon class="close" svgIcon="close" (click)="onCancel()"></mat-icon>
+  <div class="full-content">
+    <h2 class="header">
+      {{ type === "edit" ? text.header_edit : text.header_create }}
+    </h2>
+    <div class="input-box">
+      <p class="input-text">{{ text.input_text }}</p>
+      <input
+        type="text"
+        [(ngModel)]="changedName"
+        [ngClass]="changedName.length > 25 ? 'border-red' : ''"
+      />
+      <p class="mt-1 mb-0 text-alert" *ngIf="changedName.length > 25">
+        {{ text.alert }}
+      </p>
+    </div>
+  </div>
+  <div class="group-btn">
+    <button class="ok" (click)="onCancel()">{{ text.cancel }}</button>
+    <button
+      class="upgrade"
+      (click)="onSubmit()"
+      [disabled]="changedName.length === 0 || changedName.length > 25"
+    >
+      {{ text.confirm }}
+    </button>
+  </div>
+</div>

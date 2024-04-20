@@ -1,0 +1,134 @@
+<ngx-loading [show]="isLoading"></ngx-loading>
+<main class="text2speech-container">
+  @if (!hideWarning) {
+    <div class="alert-container">
+      <div class="warning">
+        <mat-icon svgIcon="annouce" [ngStyle]="{ color: '#FB8C00' }"></mat-icon>
+        <span>
+          {{ warning_text }}
+        </span>
+        <mat-icon
+          class="close"
+          svgIcon="cross"
+          (click)="closeWarning()"
+        ></mat-icon>
+      </div>
+    </div>
+  }
+  <div class="head">
+    <div class="back" (click)="toWorkspace()">
+      <mat-icon svgIcon="left_dynamic" [ngStyle]="{ color: '#fff' }"></mat-icon>
+    </div>
+    <div class="left">
+      <span
+        class="project-dropdown"
+        matTooltip="{{ text?.workspace.project }}"
+        matTooltipClass="mat-tooltip-dropdown"
+        [matTooltipShowDelay]="300"
+        [matTooltipPosition]="'below'"
+        (click)="select.open()"
+      >
+        <p>{{ currentWorkspace?.name }}</p>
+        <mat-icon
+          svgIcon="down_dynamic"
+          [ngStyle]="{ color: '#fff' }"
+        ></mat-icon>
+        <mat-select
+          #select
+          matNativeControl
+          disableOptionCentering
+          hideSingleSelectionIndicator
+          panelClass="customProject"
+          (selectionChange)="switchWorkspace($event)"
+          class="dropdown-center"
+        >
+          <mat-option class="viewAll" (click)="goBack()">
+            <mat-icon svgIcon="folder"></mat-icon>
+            <p>{{ text?.workspace.view }}</p>
+          </mat-option>
+          <mat-option class="create" (click)="createWorkspace()">
+            <mat-icon svgIcon="plus_circle"></mat-icon>
+            <p>{{ text?.workspace.create }}</p>
+          </mat-option>
+          @for (item of workspace; track item.workspace_id) {
+            <mat-option
+              [value]="item"
+              [class.selected]="
+                item?.workspace_id === currentWorkspace?.workspace_id
+              "
+              >{{ item.name }}</mat-option
+            >
+          }
+        </mat-select>
+      </span>
+    </div>
+    <div class="save" (click)="onSaveText()">
+      @if (!isSaving) {
+        <mat-icon svgIcon="disk"></mat-icon>
+      } @else {
+        <mat-spinner diameter="16"></mat-spinner>
+      }
+    </div>
+    <!-- <div class="right">
+      @if (isDraging()) {
+        <div class="complete" (click)="toggleDraging()">
+          <span>Complete</span>
+          <mat-icon
+            svgIcon="check_dynamic"
+            [ngStyle]="{ color: '#01BFFB' }"
+          ></mat-icon>
+        </div>
+      } @else if (!isSelecting()) {
+        <span class="select" (click)="onSelecting()">Select all</span>
+      } @else {
+        <div class="select-controls">
+          <span class="cancel-select" (click)="onCancelSelect()">Cancel</span>
+          @if (selectedList().length > 0) {
+            <span class="clear-select" (click)="onClearSelect()">Clear</span>
+          } @else {
+            <span class="clear-select" (click)="onSelectAll()">SelectAll</span>
+          }
+          <span class="count-select">Selected ({{ this.countSelect() }})</span>
+        </div>
+      }
+    </div> -->
+  </div>
+  <app-box-lists
+    #boxList
+    [(data)]="data"
+    [(focusIndex)]="focusIndex"
+    [(selectedList)]="selectedList"
+    [(countSelect)]="countSelect"
+    [(isDraging)]="isDraging"
+    [user]="user"
+    [speaker]="speakerIcon"
+    [limitText]="limitText"
+    [limitBox]="limitBox"
+    [historyWord]="historyWord"
+    [device]="device"
+    (addTextBox)="addTextBox($event)"
+    (addTextBoxByIndex)="addBlankTextBoxByIndex($event)"
+    (calpoint)="calculatePoint()"
+    [currentIndex]="currentIndex"
+    [currentTime]="currentTime"
+    [duration]="duration"
+    (playSound)="playSoundTrack($event)"
+    (stopSound)="pauseSoundTrack($event)"
+    (sliderValue)="setSliderValue($event)"
+    (downloadSound)="downloadTrack($event)"
+    [isSelecting]="isSelecting()"
+  ></app-box-lists>
+  <div class="add-text-box" (click)="addTextBox('')">
+    <button class="add-box-btn">Add sentence</button>
+  </div>
+  <app-bottom-nav
+    [(data)]="data"
+    [(focusIndex)]="focusIndex"
+    [workspaceId]="workspaceId"
+    [isSelecting]="isSelecting()"
+    [(selectedList)]="selectedList"
+    [(countSelect)]="countSelect"
+    [historyWord]="historyWord"
+    (downloadSound)="downloadTrack($event)"
+  ></app-bottom-nav>
+</main>
